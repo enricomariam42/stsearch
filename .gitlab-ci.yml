@@ -1,0 +1,16 @@
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run lint
+    - npm run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist/
+  cache:
+    paths:
+      - node_modules/

@@ -1,0 +1,15 @@
+@import '~bootstrap/scss/bootstrap';
+
+@import 'utils/em';
+@import 'utils/fonts';
+@import 'utils/helpers';
+
+html, body {
+	margin: 0;
+	height: 100vh;
+}
+
+body {
+	font-family: $system-sans-serif;
+	font-size: $em-base + 0px;
+}

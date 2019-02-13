@@ -1,0 +1,14 @@
+/* "env" variable is defined dynamically by sass-loader */
+$env: development !default;
+
+/* Hide element in production builds */
+@if $env == 'production' {
+	.hide-in-production:not(.godmode) {
+		display: none !important;
+	}
+}
+
+/* Increase margin between Font Awesome icons and labels */
+.svg-inline--fa + .lbl {
+	margin-left: rem(5);
+}
