@@ -8,7 +8,7 @@ export default class SearchFormElement extends BaseElement {
 			<form>
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
-						<div class="flex-fill mb-3 mb-md-0 mr-2">
+						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<input type="search" class="form-control" placeholder="Search...">
 								<div class="input-group-append">
@@ -17,7 +17,7 @@ export default class SearchFormElement extends BaseElement {
 							</div>
 						</div>
 						<div class="w-100 w-md-auto">
-							<div class="btn-group">
+							<div class="btn-group w-100">
 								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-stpivot"></i></button>
 								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-streport"></i></button>
 								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-stdashboard"></i></button>
@@ -29,7 +29,7 @@ export default class SearchFormElement extends BaseElement {
 				</div>
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
-						<div class="flex-fill mb-3 mb-md-0 mr-2">
+						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="far fa-fw fa-calendar-alt"></i></span>
@@ -42,7 +42,7 @@ export default class SearchFormElement extends BaseElement {
 							</div>
 						</div>
 						<div class="w-100 w-md-auto">
-							<div class="input-group">
+							<div class="input-group w-100">
 								<select class="custom-select">
 									<option selected value="creation">Creation date</option>
 									<option value="modification">Modification date</option>
