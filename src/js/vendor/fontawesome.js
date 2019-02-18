@@ -5,6 +5,7 @@ import {faAngleDoubleLeft} from '@fortawesome/free-solid-svg-icons/faAngleDouble
 import {faAngleDoubleRight} from '@fortawesome/free-solid-svg-icons/faAngleDoubleRight';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons/faAngleLeft';
 import {faAngleRight} from '@fortawesome/free-solid-svg-icons/faAngleRight';
+import {faCDE} from './fontawesome-extra/fa-cde.js';
 import {faCalendarAlt} from '@fortawesome/free-regular-svg-icons/faCalendarAlt';
 import {faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
 import {faHome} from '@fortawesome/free-solid-svg-icons/faHome';
@@ -20,6 +21,7 @@ library.add(faAngleDoubleLeft);
 library.add(faAngleDoubleRight);
 library.add(faAngleLeft);
 library.add(faAngleRight);
+library.add(faCDE);
 library.add(faCalendarAlt);
 library.add(faEdit);
 library.add(faHome);
