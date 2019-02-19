@@ -1,28 +1,39 @@
 import {html} from 'lit-html';
 
+import {formDataToMap} from '../helpers';
 import BaseElement from './base-element';
 
 export default class SearchFormElement extends BaseElement {
 	get template() {
 		return html`
-			<form>
+			<form @submit=${this.formSubmitHandler} method="post">
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
-								<input type="search" class="form-control" placeholder="Search...">
+								<input name="search-terms" type="search" class="form-control" placeholder="Search...">
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-secondary"><i class="fas fa-fw fa-search"></i></button>
 								</div>
 							</div>
 						</div>
 						<div class="w-100 w-md-auto">
-							<div class="btn-group w-100">
-								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-stpivot"></i></button>
-								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-streport"></i></button>
-								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-stdashboard"></i></button>
-								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-stagile"></i></button>
-								<button type="button" class="btn btn-outline-secondary" data-toggle="button"><i class="fac fa-fw fa-cde"></i></button>
+							<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+								<label class="btn btn-outline-secondary active">
+									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stpivot"></i>
+								</label>
+								<label class="btn btn-outline-secondary active">
+									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-streport"></i>
+								</label>
+								<label class="btn btn-outline-secondary active">
+									<input name="allowed-extensions[]" value="std" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stdashboard"></i>
+								</label>
+								<label class="btn btn-outline-secondary active">
+									<input name="allowed-extensions[]" value="sta" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stagile"></i>
+								</label>
+								<label class="btn btn-outline-secondary active">
+									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-cde"></i>
+								</label>
 							</div>
 						</div>
 					</div>
@@ -34,18 +45,18 @@ export default class SearchFormElement extends BaseElement {
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="far fa-fw fa-calendar-alt"></i></span>
 								</div>
-								<input type="date" class="form-control">
+								<input name="date-min" type="date" class="form-control">
 								<div class="input-group-prepend input-group-append">
 									<span class="input-group-text"><i class="fas fa-fw fa-long-arrow-alt-right"></i></span>
 								</div>
-								<input type="date" class="form-control">
+								<input name="date-max" type="date" class="form-control">
 							</div>
 						</div>
 						<div class="w-100 w-md-auto">
 							<div class="input-group w-100">
-								<select class="custom-select">
-									<option selected value="creation">Creation date</option>
-									<option value="modification">Modification date</option>
+								<select name="date-property" class="custom-select">
+									<option value="created" selected>Creation date</option>
+									<option value="modified">Modification date</option>
 								</select>
 							</div>
 						</div>
@@ -53,5 +64,20 @@ export default class SearchFormElement extends BaseElement {
 				</div>
 			</form>
 		`;
+	}
+
+	get formSubmitHandler() {
+		return {
+			capture: true,
+			passive: false,
+			once: false,
+			handleEvent: event => {
+				event.preventDefault();
+				if (typeof this.options.formSubmitCallback === 'function') {
+					let formMap = formDataToMap(new FormData(event.target));
+					this.options.formSubmitCallback(formMap);
+				}
+			}
+		};
 	}
 }

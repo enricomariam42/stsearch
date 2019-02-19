@@ -9,7 +9,17 @@ import SearchPaginationElement from './search-pagination-element';
 
 export default class SearchContainerElement extends BaseElement {
 	get template() {
-		let searchFormElement = new SearchFormElement(null, {});
+		let searchFormElement = new SearchFormElement(null, {
+			formSubmitCallback: data => {
+				this.options.repository.searchTerms = data.get('search-terms');
+				this.options.repository.allowedExtensions = data.get('allowed-extensions');
+				this.options.repository.dateMin = data.get('date-min');
+				this.options.repository.dateMax = data.get('date-max');
+				this.options.repository.dateProperty = data.get('date-property');
+				this.options.repository.applyFilters();
+				this.render();
+			}
+		});
 
 		let searchFolderListElement = new SearchFolderListElement(null, {
 			folders: this.options.repository.nestedFolders,

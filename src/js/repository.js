@@ -1,19 +1,14 @@
 import inRange from 'lodash/inRange';
 
 export const DEFAULT_SEARCH_TERMS = '';
-export const DEFAULT_ALLOWED_EXTENSIONS = ['xjpivot', 'adhoc', 'std', 'sta', 'cde', 'prpt', '.+'];
-export const DEFAULT_MIN_DATE = new Date(-8640000000000000);
-export const DEFAULT_MAX_DATE = new Date(8640000000000000);
+export const DEFAULT_ALLOWED_EXTENSIONS = ['xjpivot', 'adhoc|prpt', 'std', 'sta', 'wcdf'];
+export const DEFAULT_DATE_MIN = new Date(-8640000000000000);
+export const DEFAULT_DATE_MAX = new Date(8640000000000000);
+export const DEFAULT_DATE_PROPERTY = 'created';
 
 export default class Repository {
-	constructor(hierarchy, filters = {}) {
-		this.searchTerms = filters.searchTerms ? filters.searchTerms : DEFAULT_SEARCH_TERMS;
-		this.allowedExtensions = filters.allowedExtensions ? filters.allowedExtensions : DEFAULT_ALLOWED_EXTENSIONS;
-		this.allowedExtensions = filters.allowedExtensions ? filters.allowedExtensions : DEFAULT_ALLOWED_EXTENSIONS;
-		this.minCreationDate = filters.minCreationDate ? filters.minCreationDate : DEFAULT_MIN_DATE;
-		this.maxCreationDate = filters.maxCreationDate ? filters.maxCreationDate : DEFAULT_MAX_DATE;
-		this.minModificationDate = filters.minModificationDate ? filters.minModificationDate : DEFAULT_MIN_DATE;
-		this.maxModificationDate = filters.maxModificationDate ? filters.maxModificationDate : DEFAULT_MAX_DATE;
+	constructor(hierarchy) {
+		this.initializeFilters();
 		this.hierarchy = hierarchy;
 	}
 
@@ -90,8 +85,21 @@ export default class Repository {
 	 * FILTERS
 	 */
 
+	initializeFilters() {
+		this.searchTerms = DEFAULT_SEARCH_TERMS;
+		this.allowedExtensions = DEFAULT_ALLOWED_EXTENSIONS;
+		this.dateMin = DEFAULT_DATE_MIN;
+		this.dateMax = DEFAULT_DATE_MAX;
+		this.dateProperty = DEFAULT_DATE_PROPERTY;
+	}
+
 	applyFilters() {
 		this.currentFolder = this._currentFolder;
+	}
+
+	resetFilters() {
+		this.initializeFilters();
+		this.applyFilters();
 	}
 
 	isFileFiltered(file) {
@@ -101,8 +109,10 @@ export default class Repository {
 			this._searchTermsRegex.test(file.properties['file.title']) ||
 			this._searchTermsRegex.test(file.properties['file.description'])
 		) && (
-			inRange(new Date(file.created).getTime(), this._minCreationDateEpoch, this._maxCreationDateEpoch) &&
-			inRange(new Date(file.modified).getTime(), this._minModificationDateEpoch, this._maxModificationDateEpoch)
+			inRange(
+				new Date(file[this.dateProperty]).getTime(),
+				this._dateMinEpoch, this._dateMaxEpoch
+			)
 		);
 	}
 
@@ -124,39 +134,31 @@ export default class Repository {
 		this._allowedExtensionsRegex = new RegExp(`^(?:${allowedExtensions.join('|')})$`, 'i');
 	}
 
-	get minCreationDate() {
-		return this._minCreationDate;
+	get dateMin() {
+		return this._dateMin;
 	}
 
-	set minCreationDate(minCreationDate) {
-		this._minCreationDate = new Date(minCreationDate);
-		this._minCreationDateEpoch = this._minCreationDate.getTime();
+	set dateMin(dateMin) {
+		if (dateMin) {
+			this._dateMin = new Date(dateMin);
+		} else {
+			this._dateMin = DEFAULT_DATE_MIN;
+		}
+
+		this._dateMinEpoch = this._dateMin.getTime();
 	}
 
-	get maxCreationDate() {
-		return this._maxCreationDate;
+	get dateMax() {
+		return this._dateMax;
 	}
 
-	set maxCreationDate(maxCreationDate) {
-		this._maxCreationDate = new Date(maxCreationDate);
-		this._maxCreationDateEpoch = this._maxCreationDate.getTime();
-	}
+	set dateMax(dateMax) {
+		if (dateMax) {
+			this._dateMax = new Date(dateMax);
+		} else {
+			this._dateMax = DEFAULT_DATE_MAX;
+		}
 
-	get minModificationDate() {
-		return this._minModificationDate;
-	}
-
-	set minModificationDate(minModificationDate) {
-		this._minModificationDate = new Date(minModificationDate);
-		this._minModificationDateEpoch = this._minModificationDate.getTime();
-	}
-
-	get maxModificationDate() {
-		return this._maxModificationDate;
-	}
-
-	set maxModificationDate(maxModificationDate) {
-		this._maxModificationDate = new Date(maxModificationDate);
-		this._maxModificationDateEpoch = this._maxModificationDate.getTime();
+		this._dateMaxEpoch = this._dateMax.getTime();
 	}
 }
