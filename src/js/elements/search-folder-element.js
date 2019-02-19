@@ -5,13 +5,11 @@ import BaseElement from './base-element';
 export default class SearchFolderElement extends BaseElement {
 	get template() {
 		return html`
-			<li class="list-group-item m-1">
-				<button type="button" class="btn btn-link"
-					@click=${this.folderClickHandlerGenerator(this.options)}>
-					<i class="${this.options.iconClass}"></i>
-					${this.options.name}
-				</button>
-			</li>
+			<button type="button" class="btn btn-outline-secondary m-1"
+				@click=${this.folderClickHandlerGenerator(this.options)}>
+				<i class="${this.options.iconClass}"></i>
+				${this.options.name}
+			</button>
 		`;
 	}
 

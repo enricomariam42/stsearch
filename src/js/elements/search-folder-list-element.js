@@ -34,10 +34,10 @@ export default class SearchFolderListElement extends BaseElement {
 		}
 
 		return html`
-			<ul class="list-group list-group-horizontal m-n1 flex-wrap">
+			<div class="m-n1">
 				${previousFolder.template}
 				${folderTemplates}
-			</ul>
+			</div>
 		`;
 	}
 }
