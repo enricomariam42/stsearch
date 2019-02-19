@@ -12,7 +12,7 @@ export default class SearchFormElement extends BaseElement {
 							<div class="input-group">
 								<input type="search" class="form-control" placeholder="Search...">
 								<div class="input-group-append">
-									<button type="button" class="btn btn-secondary"><i class="fas fa-fw fa-search"></i></button>
+									<button type="submit" class="btn btn-secondary"><i class="fas fa-fw fa-search"></i></button>
 								</div>
 							</div>
 						</div>
