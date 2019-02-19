@@ -121,8 +121,8 @@ export default class Repository {
 	}
 
 	set searchTerms(searchTerms) {
-		this._searchTerms = searchTerms;
-		this._searchTermsRegex = new RegExp(searchTerms, 'i');
+		this._searchTerms = searchTerms ? searchTerms : DEFAULT_SEARCH_TERMS;
+		this._searchTermsRegex = new RegExp(this._searchTerms, 'i');
 	}
 
 	get allowedExtensions() {
@@ -130,8 +130,8 @@ export default class Repository {
 	}
 
 	set allowedExtensions(allowedExtensions) {
-		this._allowedExtensions = allowedExtensions;
-		this._allowedExtensionsRegex = new RegExp(`^(?:${allowedExtensions.join('|')})$`, 'i');
+		this._allowedExtensions = allowedExtensions ? allowedExtensions : DEFAULT_ALLOWED_EXTENSIONS;
+		this._allowedExtensionsRegex = new RegExp(`^(?:${this._allowedExtensions.join('|')})$`, 'i');
 	}
 
 	get dateMin() {
@@ -139,12 +139,7 @@ export default class Repository {
 	}
 
 	set dateMin(dateMin) {
-		if (dateMin) {
-			this._dateMin = new Date(dateMin);
-		} else {
-			this._dateMin = DEFAULT_DATE_MIN;
-		}
-
+		this._dateMin = dateMin ? new Date(dateMin) : DEFAULT_DATE_MIN;
 		this._dateMinEpoch = this._dateMin.getTime();
 	}
 
@@ -153,12 +148,7 @@ export default class Repository {
 	}
 
 	set dateMax(dateMax) {
-		if (dateMax) {
-			this._dateMax = new Date(dateMax);
-		} else {
-			this._dateMax = DEFAULT_DATE_MAX;
-		}
-
+		this._dateMax = dateMax ? new Date(dateMax) : DEFAULT_DATE_MAX;
 		this._dateMaxEpoch = this._dateMax.getTime();
 	}
 }
