@@ -1,3 +1,4 @@
+import uniqueId from 'lodash/uniqueId';
 import {html, render} from 'lit-html';
 
 import {isProduction} from '../helpers';
@@ -9,6 +10,26 @@ export default class BaseElement {
 		this.render();
 	}
 
+	get id() {
+		Object.defineProperty(this, 'id', {
+			enumerable: true,
+			configurable: false,
+			writable: false,
+			value: uniqueId(
+				`${this.constructor.name
+					.replace(/(.+?)([A-Z])/g, '$1-$2')
+					.toLowerCase()
+				}-`
+			)
+		});
+
+		return this.id;
+	}
+
+	get template() {
+		return html``;
+	}
+
 	get proxyHandler() {
 		return {
 			set: (obj, prop, value) => {
@@ -17,10 +38,6 @@ export default class BaseElement {
 				return true;
 			}
 		};
-	}
-
-	get template() {
-		return html``;
 	}
 
 	render() {
