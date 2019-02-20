@@ -6,7 +6,8 @@ import BaseElement from './base-element';
 export default class SearchFilterFormElement extends BaseElement {
 	get template() {
 		return html`
-			<form @submit=${this.formSubmitHandler} method="post">
+			<form id="${this.id}"
+				@submit=${this.formSubmitHandler}>
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">

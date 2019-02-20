@@ -14,7 +14,7 @@ export default class SearchFileElement extends BaseElement {
 		];
 
 		return html`
-			<div class="col-sm-12 col-lg-6 col-xl-4 mb-3">
+			<div id="${this.id}" class="col-sm-12 col-lg-6 col-xl-4 mb-3">
 				<div class="card h-100">
 					<div class="card-header">
 						<div class="card-buttons m-n2 float-right">

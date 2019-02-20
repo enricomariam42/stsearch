@@ -5,6 +5,7 @@ import BaseElement from './base-element';
 import SearchFilterFormElement from './search-filter-form-element';
 import SearchFolderListElement from './search-folder-list-element';
 import SearchFileListElement from './search-file-list-element';
+import SearchFileEditModalElement from './search-file-edit-modal-element';
 import SearchPaginationElement from './search-pagination-element';
 
 export default class SearchContainerElement extends BaseElement {
@@ -53,6 +54,8 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
+		let searchFileEditModalElement = new SearchFileEditModalElement(null, {});
+
 		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
 		let searchPaginationElement = new SearchPaginationElement(null, {
 			pageNumber: this.options.pageNumber,
@@ -65,10 +68,11 @@ export default class SearchContainerElement extends BaseElement {
 		});
 
 		return html`
-			<div class="container-fluid">
+			<div id="${this.id}" class="container-fluid">
 				<div class="my-4">${searchFilterFormElement.template}</div>
 				<div class="my-4">${searchFolderListElement.template}</div>
 				<div class="my-4">${searchFileListElement.template}</div>
+				<div class="my-4">${searchFileEditModalElement.template}</div>
 				<div class="my-4">${searchPaginationElement.template}</div>
 			</div>
 		`;
