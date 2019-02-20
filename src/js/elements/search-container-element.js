@@ -17,6 +17,7 @@ export default class SearchContainerElement extends BaseElement {
 				this.options.repository.dateMax = data.get('date-max');
 				this.options.repository.dateProperty = data.get('date-property');
 				this.options.repository.applyFilters();
+				this.options.pageNumber = 0;
 				this.render();
 			}
 		});
