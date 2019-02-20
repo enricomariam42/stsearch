@@ -2,6 +2,7 @@ import clamp from 'lodash/clamp';
 import {html} from 'lit-html';
 
 import BaseElement from './base-element';
+import EmptyElement from './empty-element';
 import SearchFilterFormElement from './search-filter-form-element';
 import SearchFolderListElement from './search-folder-list-element';
 import SearchFileListElement from './search-file-list-element';
@@ -10,7 +11,7 @@ import SearchPaginationElement from './search-pagination-element';
 
 export default class SearchContainerElement extends BaseElement {
 	get template() {
-		let searchFilterFormElement = new SearchFilterFormElement(null, {
+		this.searchFilterFormElement = new SearchFilterFormElement(null, {
 			formSubmitCallback: data => {
 				this.options.repository.searchTerms = data.get('search-terms');
 				this.options.repository.allowedExtensions = data.get('allowed-extensions');
@@ -23,7 +24,7 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
-		let searchFolderListElement = new SearchFolderListElement(null, {
+		this.searchFolderListElement = new SearchFolderListElement(null, {
 			folders: this.options.repository.nestedFolders,
 			hasParent: this.options.repository.parentFolder !== null,
 			folderUpCallback: () => {
@@ -38,10 +39,11 @@ export default class SearchContainerElement extends BaseElement {
 
 		let filesStart = this.options.pageNumber * this.options.pageSize;
 		let filesEnd = filesStart + this.options.pageSize;
-		let searchFileListElement = new SearchFileListElement(null, {
+		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
 			fileEditCallback: file => {
-				console.log('edit', file);
+				this.currentEditingFile = file;
+				this.render();
 			},
 			fileHomeCallback: file => {
 				console.log('home', file);
@@ -54,27 +56,42 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
-		let searchFileEditModalElement = new SearchFileEditModalElement(null, {});
+		this.searchFileEditModalElement = this.currentEditingFile
+			? new SearchFileEditModalElement(null, this.currentEditingFile)
+			: new EmptyElement();
 
 		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
-		let searchPaginationElement = new SearchPaginationElement(null, {
-			pageNumber: this.options.pageNumber,
-			pagePlaces: this.options.pagePlaces,
-			pageTotal: pageTotal,
-			pageChangeCallback: pageNumber => {
-				this.options.pageNumber = clamp(pageNumber, 0, pageTotal);
-				this.render();
-			}
-		});
+		this.searchPaginationElement = pageTotal > 0
+			? new SearchPaginationElement(null, {
+				pageNumber: this.options.pageNumber,
+				pagePlaces: this.options.pagePlaces,
+				pageTotal: pageTotal,
+				pageChangeCallback: pageNumber => {
+					this.options.pageNumber = clamp(pageNumber, 0, pageTotal);
+					this.render();
+				}
+			})
+			: new EmptyElement();
 
 		return html`
 			<div id="${this.id}" class="container-fluid">
-				<div class="my-4">${searchFilterFormElement.template}</div>
-				<div class="my-4">${searchFolderListElement.template}</div>
-				<div class="my-4">${searchFileListElement.template}</div>
-				<div class="my-4">${searchFileEditModalElement.template}</div>
-				<div class="my-4">${searchPaginationElement.template}</div>
+				<div class="my-4">${this.searchFilterFormElement.template}</div>
+				<div class="my-4">${this.searchFolderListElement.template}</div>
+				<div class="my-4">${this.searchFileListElement.template}</div>
+				<div class="my-4">${this.searchFileEditModalElement.template}</div>
+				<div class="my-4">${this.searchPaginationElement.template}</div>
 			</div>
 		`;
+	}
+
+	render() {
+		super.render();
+
+		if (this.currentEditingFile) {
+			this.searchFileEditModalElement.$ref.modal('show');
+			this.searchFileEditModalElement.$ref.one('hide.bs.modal', () => {
+				this.currentEditingFile = null;
+			});
+		}
 	}
 }

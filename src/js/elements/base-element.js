@@ -5,7 +5,7 @@ import {html, render} from 'lit-html';
 import {isProduction} from '../helpers';
 
 export default class BaseElement {
-	constructor(container = document.body, options = {}) {
+	constructor(container = null, options = {}) {
 		this.container = container;
 		this.options = new Proxy(options, this.proxyHandler);
 		this.render();

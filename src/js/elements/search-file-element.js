@@ -1,6 +1,5 @@
 import {html} from 'lit-html';
 
-import {toLocaleDateTime} from '../helpers';
 import BaseElement from './base-element';
 import SearchFileTagElement from './search-file-tag-element';
 
@@ -36,27 +35,23 @@ export default class SearchFileElement extends BaseElement {
 					</div>
 					<div class="card-body">
 						<div class="row no-gutters">
-							${this.options.properties.thumbnail ? html`
-								<div class="col-sm-2 col-lg-4 mb-2 d-flex justify-content-center align-items-start">
-									<img class="card-img w-auto mw-100" style="max-height: 128px" src="${this.options.properties.thumbnail}">
-								</div>
-								<div class="col-sm-10 col-lg-8 px-2">
-									<h5 class="card-title">${this.options.properties['file.title']}</h5>
-									<p class="card-text">${this.options.properties['file.description']}</p>
-								</div>
-							` : html`
-								<div class="col-12 px-2">
-									<h5 class="card-title">${this.options.properties['file.title']}</h5>
-									<p class="card-text">${this.options.properties['file.description']}</p>
-								</div>
-							`}
+						${this.options.properties.thumbnail ? html`
+							<div class="col-sm-2 col-lg-4 mb-2 d-flex justify-content-center align-items-start">
+								<img class="card-img w-auto mw-100" style="max-height: 128px" src="${this.options.properties.thumbnail}">
+							</div>
+							<div class="col-sm-10 col-lg-8 px-2">
+								<h5 class="card-title">${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}</h5>
+								<p class="card-text">${this.options.properties['file.description']}</p>
+							</div>
+						` : html`
+							<div class="col-12 px-2">
+								<h5 class="card-title">${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}</h5>
+								<p class="card-text">${this.options.properties['file.description']}</p>
+							</div>
+						`}
 						</div>
 					</div>
 					<div class="card-footer">
-						<span class="card-extra">
-							<span class="badge badge-success text-wrap text-break">Created: ${toLocaleDateTime(this.options.created)}</span>
-							<span class="badge badge-success text-wrap text-break">Modified: ${toLocaleDateTime(this.options.modified)}</span>
-						</span>
 						<span class="card-tags">${tagTemplates}</span>
 					</div>
 				</div>
