@@ -13,14 +13,14 @@ export default class SearchFolderElement extends BaseElement {
 		`;
 	}
 
-	folderClickHandlerGenerator(pageNumber) {
+	folderClickHandlerGenerator(options) {
 		return {
 			capture: true,
 			passive: true,
 			once: false,
 			handleEvent: () => {
 				if (typeof this.options.folderClickCallback === 'function') {
-					this.options.folderClickCallback(pageNumber);
+					this.options.folderClickCallback(options);
 				}
 			}
 		};
