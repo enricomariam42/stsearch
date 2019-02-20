@@ -7,7 +7,10 @@ import SearchFileTagElement from './search-file-tag-element';
 export default class SearchFileElement extends BaseElement {
 	get template() {
 		let tagTemplates = [
-			new SearchFileTagElement(null, {name: this.options.extension}).template
+			new SearchFileTagElement(null, {
+				name: this.options.extension,
+				fileTagCallback: this.options.fileTagCallback
+			}).template
 		];
 
 		return html`
@@ -17,15 +20,15 @@ export default class SearchFileElement extends BaseElement {
 						<div class="card-buttons m-n2 float-right">
 							<div class="btn-group">
 								<button type="button" class="btn btn-light btn-sm"
-									@click=${this.editClickHandler}>
+									@click=${this.fileEditClickHandler}>
 									<i class="fas fa-edit"></i>
 								</button>
 								<button type="button" class="btn btn-light btn-sm"
-									@click=${this.homeClickHandler}>
+									@click=${this.fileHomeClickHandler}>
 									<i class="fas fa-home"></i>
 								</button>
 								<button type="button" class="btn btn-light btn-sm"
-									@click=${this.favoriteClickHandler}>
+									@click=${this.fileFavoriteClickHandler}>
 									<i class="fas fa-star"></i>
 								</button>
 							</div>
@@ -61,35 +64,41 @@ export default class SearchFileElement extends BaseElement {
 		`;
 	}
 
-	get editClickHandler() {
+	get fileEditClickHandler() {
 		return {
 			capture: true,
 			passive: true,
 			once: false,
 			handleEvent: () => {
-				console.log('Edit');
+				if (typeof this.options.fileEditCallback === 'function') {
+					this.options.fileEditCallback(this.options);
+				}
 			}
 		};
 	}
 
-	get homeClickHandler() {
+	get fileHomeClickHandler() {
 		return {
 			capture: true,
 			passive: true,
 			once: false,
 			handleEvent: () => {
-				console.log('Home');
+				if (typeof this.options.fileHomeCallback === 'function') {
+					this.options.fileHomeCallback(this.options);
+				}
 			}
 		};
 	}
 
-	get favoriteClickHandler() {
+	get fileFavoriteClickHandler() {
 		return {
 			capture: true,
 			passive: true,
 			once: false,
 			handleEvent: () => {
-				console.log('Favorite');
+				if (typeof this.options.fileFavoriteCallback === 'function') {
+					this.options.fileFavoriteCallback(this.options);
+				}
 			}
 		};
 	}

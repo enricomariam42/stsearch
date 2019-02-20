@@ -9,9 +9,7 @@ export default class SearchFolderListElement extends BaseElement {
 		if (this.options.hasParent) {
 			previousFolder = new SearchFolderElement(null, {
 				iconClass: 'fas fa-arrow-left',
-				folderClickCallback: () => {
-					this.options.folderUpCallback();
-				}
+				folderClickCallback: this.options.folderUpCallback
 			});
 		} else {
 			previousFolder = '';
@@ -23,9 +21,7 @@ export default class SearchFolderListElement extends BaseElement {
 				let folder = new SearchFolderElement(null, {
 					...options,
 					iconClass: 'fas fa-folder mr-1',
-					folderClickCallback: folder => {
-						this.options.folderDownCallback(folder);
-					}
+					folderClickCallback: this.options.folderDownCallback
 				});
 				return folder.template;
 			});

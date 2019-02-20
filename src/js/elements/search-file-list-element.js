@@ -8,7 +8,13 @@ export default class SearchFileListElement extends BaseElement {
 		let fileTemplates;
 		if (Array.isArray(this.options.files)) {
 			fileTemplates = this.options.files.map(options => {
-				let file = new SearchFileElement(null, options);
+				let file = new SearchFileElement(null, {
+					...options,
+					fileEditCallback: this.options.fileEditCallback,
+					fileHomeCallback: this.options.fileHomeCallback,
+					fileFavoriteCallback: this.options.fileFavoriteCallback,
+					fileTagCallback: this.options.fileTagCallback
+				});
 				return file.template;
 			});
 		} else {

@@ -18,7 +18,9 @@ export default class SearchItemTagElement extends BaseElement {
 			passive: true,
 			once: false,
 			handleEvent: () => {
-				console.log(`${this.options.name}`);
+				if (typeof this.options.fileTagCallback === 'function') {
+					this.options.fileTagCallback(this.options);
+				}
 			}
 		};
 	}

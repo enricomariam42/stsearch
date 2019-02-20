@@ -37,7 +37,19 @@ export default class SearchContainerElement extends BaseElement {
 		let filesStart = this.options.pageNumber * this.options.pageSize;
 		let filesEnd = filesStart + this.options.pageSize;
 		let searchFileListElement = new SearchFileListElement(null, {
-			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd)
+			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
+			fileEditCallback: file => {
+				console.log('edit', file);
+			},
+			fileHomeCallback: file => {
+				console.log('home', file);
+			},
+			fileFavoriteCallback: file => {
+				console.log('favorite', file);
+			},
+			fileTagCallback: tag => {
+				console.log('tag', tag);
+			}
 		});
 
 		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
