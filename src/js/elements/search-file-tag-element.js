@@ -2,7 +2,7 @@ import {html} from 'lit-html';
 
 import BaseElement from './base-element';
 
-export default class SearchItemTagElement extends BaseElement {
+export default class SearchFileTagElement extends BaseElement {
 	get template() {
 		return html`
 			<a class="badge badge-primary text-wrap text-break" href="javascript:void(0)"

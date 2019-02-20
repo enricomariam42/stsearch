@@ -2,14 +2,14 @@ import clamp from 'lodash/clamp';
 import {html} from 'lit-html';
 
 import BaseElement from './base-element';
-import SearchFormElement from './search-form-element';
+import SearchFilterFormElement from './search-filter-form-element';
 import SearchFolderListElement from './search-folder-list-element';
 import SearchFileListElement from './search-file-list-element';
 import SearchPaginationElement from './search-pagination-element';
 
 export default class SearchContainerElement extends BaseElement {
 	get template() {
-		let searchFormElement = new SearchFormElement(null, {
+		let searchFilterFormElement = new SearchFilterFormElement(null, {
 			formSubmitCallback: data => {
 				this.options.repository.searchTerms = data.get('search-terms');
 				this.options.repository.allowedExtensions = data.get('allowed-extensions');
@@ -66,7 +66,7 @@ export default class SearchContainerElement extends BaseElement {
 
 		return html`
 			<div class="container-fluid">
-				<div class="my-4">${searchFormElement.template}</div>
+				<div class="my-4">${searchFilterFormElement.template}</div>
 				<div class="my-4">${searchFolderListElement.template}</div>
 				<div class="my-4">${searchFileListElement.template}</div>
 				<div class="my-4">${searchPaginationElement.template}</div>

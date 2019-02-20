@@ -3,7 +3,7 @@ import {html} from 'lit-html';
 import {formDataToMap} from '../helpers';
 import BaseElement from './base-element';
 
-export default class SearchFormElement extends BaseElement {
+export default class SearchFilterFormElement extends BaseElement {
 	get template() {
 		return html`
 			<form @submit=${this.formSubmitHandler} method="post">
