@@ -1,3 +1,4 @@
+import jQuery from 'jquery';
 import uniqueId from 'lodash/uniqueId';
 import {html, render} from 'lit-html';
 
@@ -11,23 +12,57 @@ export default class BaseElement {
 	}
 
 	get id() {
+		let id = uniqueId(`${this.constructor.name
+			.replace(/(.+?)([A-Z])/g, '$1-$2')
+			.toLowerCase()
+		}-`);
+
 		Object.defineProperty(this, 'id', {
 			enumerable: true,
 			configurable: false,
 			writable: false,
-			value: uniqueId(
-				`${this.constructor.name
-					.replace(/(.+?)([A-Z])/g, '$1-$2')
-					.toLowerCase()
-				}-`
-			)
+			value: id
 		});
 
 		return this.id;
 	}
 
 	get template() {
-		return html``;
+		return html`<div id="${this.id}"></div>`;
+	}
+
+	get ref() {
+		let ref = document.querySelector(`#${this.id}`);
+
+		if (ref !== null) {
+			Object.defineProperty(this, 'ref', {
+				enumerable: true,
+				configurable: false,
+				writable: false,
+				value: ref
+			});
+
+			return this.ref;
+		}
+
+		return null;
+	}
+
+	get $ref() {
+		let $ref = jQuery(this.ref);
+
+		if ($ref.length > 0) {
+			Object.defineProperty(this, '$ref', {
+				enumerable: true,
+				configurable: false,
+				writable: false,
+				value: $ref
+			});
+
+			return this.$ref;
+		}
+
+		return null;
 	}
 
 	get proxyHandler() {
@@ -43,13 +78,13 @@ export default class BaseElement {
 	render() {
 		if (this.container !== null) {
 			if (!isProduction) {
-				console.time('render');
+				console.time(`render (${this.id})`);
 			}
 
 			render(this.template, this.container);
 
 			if (!isProduction) {
-				console.timeEnd('render');
+				console.timeEnd(`render (${this.id})`);
 			}
 
 			return true;
