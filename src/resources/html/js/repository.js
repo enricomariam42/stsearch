@@ -8,8 +8,10 @@ export const DEFAULT_DATE_MIN = new Date(-8640000000000000);
 export const DEFAULT_DATE_MAX = new Date(8640000000000000);
 export const DEFAULT_DATE_PROPERTY = 'created';
 
+export const EMPTY_HIERARCHY = {path: '/', children: []};
+
 export default class Repository {
-	constructor(hierarchy = {path: '/', children: []}) {
+	constructor(hierarchy = EMPTY_HIERARCHY) {
 		this.initializeFilters();
 		this.hierarchy = hierarchy;
 	}

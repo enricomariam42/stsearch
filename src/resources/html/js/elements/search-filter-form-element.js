@@ -18,8 +18,8 @@ export default class SearchFilterFormElement extends BaseElement {
 								</div>
 							</div>
 						</div>
-						<div class="w-100 w-md-auto">
-							<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+						<div class="d-flex flex-row w-100 w-md-auto">
+							<div class="btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
 								<label class="btn btn-outline-secondary active">
 									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stpivot"></i>
 								</label>
@@ -35,6 +35,12 @@ export default class SearchFilterFormElement extends BaseElement {
 								<label class="btn btn-outline-secondary active">
 									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-cde"></i>
 								</label>
+							</div>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<button type="button" class="btn btn-secondary"
+									@click=${this.formRefreshHandler}>
+									<i class="fas fa-fw fa-sync"></i>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -53,8 +59,8 @@ export default class SearchFilterFormElement extends BaseElement {
 								<input name="date-max" type="date" class="form-control">
 							</div>
 						</div>
-						<div class="w-100 w-md-auto">
-							<div class="input-group w-100">
+						<div class="d-flex flex-row w-100 w-md-auto">
+							<div class="input-group flex-fill">
 								<select name="date-property" class="custom-select">
 									<option value="created" selected>Creation date</option>
 									<option value="modified">Modification date</option>
@@ -77,6 +83,19 @@ export default class SearchFilterFormElement extends BaseElement {
 				if (typeof this.options.formSubmitCallback === 'function') {
 					let formMap = formDataToMap(new FormData(event.target));
 					this.options.formSubmitCallback(formMap);
+				}
+			}
+		};
+	}
+
+	get formRefreshHandler() {
+		return {
+			capture: true,
+			passive: false,
+			once: false,
+			handleEvent: () => {
+				if (typeof this.options.formRefreshCallback === 'function') {
+					this.options.formRefreshCallback();
 				}
 			}
 		};

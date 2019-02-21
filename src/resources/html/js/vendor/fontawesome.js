@@ -21,6 +21,7 @@ import {faSTPivot} from './fontawesome-extra/fa-stpivot.js';
 import {faSTReport} from './fontawesome-extra/fa-streport.js';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 import {faStar} from '@fortawesome/free-solid-svg-icons/faStar';
+import {faSync} from '@fortawesome/free-solid-svg-icons/faSync';
 library.add(faAngleDoubleLeft);
 library.add(faAngleDoubleRight);
 library.add(faAngleLeft);
@@ -41,6 +42,7 @@ library.add(faSTPivot);
 library.add(faSTReport);
 library.add(faSearch);
 library.add(faStar);
+library.add(faSync);
 
 // Execute SVG replacement.
 dom.watch();

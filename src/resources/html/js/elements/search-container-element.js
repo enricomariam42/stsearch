@@ -1,5 +1,9 @@
 import clamp from 'lodash/clamp';
+import assignIn from 'lodash/assignIn';
 import {html} from 'lit-html';
+
+import RemoteFileMetadata from '../remote-file-metadata';
+import {EMPTY_HIERARCHY} from '../repository';
 
 import BaseElement from './base-element';
 import EmptyElement from './empty-element';
@@ -21,6 +25,14 @@ export default class SearchContainerElement extends BaseElement {
 				this.options.repository.applyFilters();
 				this.options.pageNumber = 0;
 				this.render();
+			},
+			formRefreshCallback: () => {
+				this.options.repository.hierarchy = EMPTY_HIERARCHY;
+				this.render();
+
+				this.options.repository.refresh().then(() => {
+					this.render();
+				});
 			}
 		});
 
@@ -57,7 +69,27 @@ export default class SearchContainerElement extends BaseElement {
 		});
 
 		this.searchFileEditModalElement = this.currentEditingFile
-			? new SearchFileEditModalElement(null, this.currentEditingFile)
+			? new SearchFileEditModalElement(null, {
+				file: this.currentEditingFile,
+				formSubmitCallback: data => {
+					let properties = {
+						'file.title': data.get('title'),
+						'file.description': data.get('description'),
+						thumbnail: data.get('thumbnail')
+					};
+
+					RemoteFileMetadata.setMetadata({path: this.currentEditingFile.path + 'asdsa', properties})
+						.then(result => {
+							if (result !== null && result.length > 0) {
+								assignIn(this.currentEditingFile.properties, properties);
+								this.currentEditingFile = null;
+
+								this.searchFileEditModalElement.$ref.modal('hide');
+								this.render();
+							}
+						});
+				}
+			})
 			: new EmptyElement();
 
 		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
