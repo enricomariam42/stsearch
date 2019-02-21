@@ -1,5 +1,7 @@
 import inRange from 'lodash/inRange';
 
+import RemoteFileMetadata from './remote-file-metadata';
+
 export const DEFAULT_SEARCH_TERMS = '';
 export const DEFAULT_ALLOWED_EXTENSIONS = ['xjpivot', 'adhoc|prpt', 'std', 'sta', 'wcdf'];
 export const DEFAULT_DATE_MIN = new Date(-8640000000000000);
@@ -7,7 +9,7 @@ export const DEFAULT_DATE_MAX = new Date(8640000000000000);
 export const DEFAULT_DATE_PROPERTY = 'created';
 
 export default class Repository {
-	constructor(hierarchy) {
+	constructor(hierarchy = {path: '/', children: []}) {
 		this.initializeFilters();
 		this.hierarchy = hierarchy;
 	}
@@ -37,6 +39,16 @@ export default class Repository {
 		}
 
 		return currentLocation;
+	}
+
+	async refresh() {
+		let hierarchy = await RemoteFileMetadata.getRepository();
+		if (hierarchy !== null) {
+			this.hierarchy = hierarchy;
+			return true;
+		}
+
+		return false;
 	}
 
 	get hierarchy() {

@@ -23,3 +23,5 @@ export const formDataToMap = formData => {
 
 	return formMap;
 };
+
+export const objToSearchParams = obj => new URLSearchParams(obj).toString();
