@@ -78,7 +78,7 @@ export default class SearchContainerElement extends BaseElement {
 						thumbnail: data.get('thumbnail')
 					};
 
-					RemoteFileMetadata.setMetadata({path: this.currentEditingFile.path + 'asdsa', properties})
+					RemoteFileMetadata.setMetadata({path: this.currentEditingFile.path, properties})
 						.then(result => {
 							if (result !== null && result.length > 0) {
 								assignIn(this.currentEditingFile.properties, properties);
