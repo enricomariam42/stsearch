@@ -12,10 +12,7 @@ export default class BaseElement {
 	}
 
 	get id() {
-		let id = uniqueId(`${this.constructor.name
-			.replace(/(.+?)([A-Z])/g, '$1-$2')
-			.toLowerCase()
-		}-`);
+		let id = uniqueId(`${this.className}-`);
 
 		Object.defineProperty(this, 'id', {
 			enumerable: true,
@@ -27,8 +24,23 @@ export default class BaseElement {
 		return this.id;
 	}
 
+	get className() {
+		let className = this.constructor.name
+			.replace(/(.+?)([A-Z])/g, '$1-$2')
+			.toLowerCase();
+
+		Object.defineProperty(this, 'className', {
+			enumerable: true,
+			configurable: false,
+			writable: false,
+			value: className
+		});
+
+		return this.className;
+	}
+
 	get template() {
-		return html`<div id="${this.id}"></div>`;
+		return html`<div id="${this.id}" class="${this.className}"></div>`;
 	}
 
 	get ref() {

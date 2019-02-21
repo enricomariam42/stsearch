@@ -6,7 +6,7 @@ import BaseElement from './base-element';
 export default class SearchFilterFormElement extends BaseElement {
 	get template() {
 		return html`
-			<form id="${this.id}"
+			<form id="${this.id}" class="${this.className}"
 				@submit=${this.formSubmitHandler}>
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
@@ -14,30 +14,30 @@ export default class SearchFilterFormElement extends BaseElement {
 							<div class="input-group">
 								<input name="search-terms" type="search" class="form-control" placeholder="Search...">
 								<div class="input-group-append">
-									<button type="submit" class="btn btn-secondary"><i class="fas fa-fw fa-search"></i></button>
+									<button type="submit" class="btn btn-info"><i class="fas fa-fw fa-search"></i></button>
 								</div>
 							</div>
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
-							<div class="btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
-								<label class="btn btn-outline-secondary active">
+							<div class="allowed-extensions btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
+								<label class="btn btn-outline-stpivot active">
 									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stpivot"></i>
 								</label>
-								<label class="btn btn-outline-secondary active">
+								<label class="btn btn-outline-streport active">
 									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-streport"></i>
 								</label>
-								<label class="btn btn-outline-secondary active">
+								<label class="btn btn-outline-stdashboard active">
 									<input name="allowed-extensions[]" value="std" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stdashboard"></i>
 								</label>
-								<label class="btn btn-outline-secondary active">
+								<label class="btn btn-outline-stagile active">
 									<input name="allowed-extensions[]" value="sta" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-stagile"></i>
 								</label>
-								<label class="btn btn-outline-secondary active">
+								<label class="btn btn-outline-cde active">
 									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off"><i class="fac fa-fw fa-cde"></i>
 								</label>
 							</div>
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
-								<button type="button" class="btn btn-secondary"
+								<button type="button" class="btn btn-info"
 									@click=${this.formRefreshHandler}>
 									<i class="fas fa-fw fa-sync"></i>
 								</button>

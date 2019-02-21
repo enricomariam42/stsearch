@@ -30,7 +30,7 @@ export default class SearchFolderListElement extends BaseElement {
 		}
 
 		return html`
-			<div id="${this.id}" class="m-n1">
+			<div id="${this.id}" class="${this.className} m-n1">
 				${previousFolder.template}
 				${folderTemplates}
 			</div>

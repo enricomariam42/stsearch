@@ -6,7 +6,7 @@ import BaseElement from './base-element';
 export default class SearchFileEditModalElement extends BaseElement {
 	get template() {
 		return html`
-			<form id="${this.id}" class="modal" tabindex="-1"
+			<form id="${this.id}" class="${this.className} modal" tabindex="-1"
 				@submit=${this.formSubmitHandler}>
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">

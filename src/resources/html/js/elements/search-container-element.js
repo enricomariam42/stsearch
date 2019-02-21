@@ -78,7 +78,10 @@ export default class SearchContainerElement extends BaseElement {
 						thumbnail: data.get('thumbnail')
 					};
 
-					RemoteFileMetadata.setMetadata({path: this.currentEditingFile.path, properties})
+					RemoteFileMetadata.setMetadata({
+						path: this.currentEditingFile.path,
+						properties
+					})
 						.then(result => {
 							if (result !== null && result.length > 0) {
 								assignIn(this.currentEditingFile.properties, properties);
@@ -106,7 +109,7 @@ export default class SearchContainerElement extends BaseElement {
 			: new EmptyElement();
 
 		return html`
-			<div id="${this.id}" class="container-fluid">
+			<div id="${this.id}" class="${this.className} container-fluid">
 				<div class="my-4">${this.searchFilterFormElement.template}</div>
 				<div class="my-4">${this.searchFolderListElement.template}</div>
 				<div class="my-4">${this.searchFileListElement.template}</div>

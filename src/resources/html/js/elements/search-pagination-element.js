@@ -73,7 +73,7 @@ export default class SearchPaginationElement extends BaseElement {
 		`;
 
 		return html`
-			<nav id="${this.id}">
+			<nav id="${this.id}" class="${this.className}">
 				<ul class="pagination justify-content-center">
 					${pageFirstTemplate}
 					${pagePreviousTemplate}

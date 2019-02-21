@@ -7,13 +7,21 @@ export default class SearchFileElement extends BaseElement {
 	get template() {
 		let tagTemplates = [
 			new SearchFileTagElement(null, {
-				name: this.options.extension,
+				name: 'Example 1',
+				fileTagCallback: this.options.fileTagCallback
+			}).template,
+			new SearchFileTagElement(null, {
+				name: 'Example 2',
+				fileTagCallback: this.options.fileTagCallback
+			}).template,
+			new SearchFileTagElement(null, {
+				name: 'Example 3',
 				fileTagCallback: this.options.fileTagCallback
 			}).template
 		];
 
 		return html`
-			<div id="${this.id}" class="col-sm-12 col-lg-6 col-xl-4 mb-3">
+			<div id="${this.id}" class="${this.className} file-extension-${this.options.extension} col-sm-12 col-lg-6 col-xl-4 mb-3">
 				<div class="card h-100">
 					<div class="card-header">
 						<div class="card-buttons m-n2 float-right">

@@ -5,7 +5,7 @@ import BaseElement from './base-element';
 export default class SearchFileTagElement extends BaseElement {
 	get template() {
 		return html`
-			<a id="${this.id}" class="badge badge-primary text-wrap text-break" href="javascript:void(0)"
+			<a id="${this.id}" class="${this.className} badge badge-primary text-wrap text-break" href="javascript:void(0)"
 				@click=${this.tagClickHandler}>
 				${this.options.name}
 			</a>

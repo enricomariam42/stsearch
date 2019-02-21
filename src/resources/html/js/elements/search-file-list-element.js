@@ -22,7 +22,7 @@ export default class SearchFileListElement extends BaseElement {
 		}
 
 		return html`
-			<div id="${this.id}" class="row">${fileTemplates}</div>
+			<div id="${this.id}" class="${this.className} row">${fileTemplates}</div>
 		`;
 	}
 }
