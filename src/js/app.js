@@ -1,5 +1,4 @@
 import './vendor/bootstrap';
-import './vendor/date-input-polyfill';
 import './vendor/fontawesome';
 import './vendor/formdata-polyfill';
 
