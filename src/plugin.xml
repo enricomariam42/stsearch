@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin name="stsearch" title="STSearch">
+
+	<perspective id="stsearch.perspective" title="${search}" layout-priority="1"
+		resourcebundle="content/stsearch/resources/messages/messages"
+		content-url="content/stsearch/resources/html/index.html">
+	</perspective>
+
+	<static-paths>
+		<static-path url="/stsearch/resources" localFolder="resources" />
+	</static-paths>
+
+</plugin>

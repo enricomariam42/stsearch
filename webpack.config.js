@@ -7,7 +7,6 @@ const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
@@ -19,8 +18,8 @@ module.exports = (env, argv) => {
 
 	return {
 		mode: isProduction ? 'production' : 'development',
-		entry: path.join(__dirname, 'src/js/app.js'),
-		output: {filename: '[name].js', path: dist},
+		entry: path.join(__dirname, 'src/resources/html/js/app.js'),
+		output: {filename: '[name].js', path: `${dist}/resources/html`},
 		devtool: isProduction ? false : 'eval-source-map',
 		optimization: {
 			minimizer: [
@@ -41,7 +40,7 @@ module.exports = (env, argv) => {
 			}),
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
-				template: path.resolve(__dirname, 'src/index.html'),
+				template: path.resolve(__dirname, 'src/resources/html/index.html'),
 				xhtml: true,
 				minify: isProduction ? {
 					minifyJS: true,
@@ -58,20 +57,11 @@ module.exports = (env, argv) => {
 				filename: '[name].css',
 				chunkFilename: '[id].css'
 			}),
-			new SWPrecacheWebpackPlugin({
-				cacheId: pkg.name,
-				filename: 'sw.js',
-				minify: isProduction,
-				staticFileGlobs: [
-					// `${dist}/**/*.{html,css,js,json}`,
-					`${dist}/**/*.{png,gif,jpg,svg}`,
-					`${dist}/**/*.{ttf,eot,woff,woff2}`
-				]
-			}),
 			new CopyWebpackPlugin([
-				{from: 'src/manifest.json'},
-				{from: 'src/robots.txt'},
-				{from: 'images/**/*'}
+				{from: 'src/plugin.xml', to: dist},
+				{from: 'src/plugin.spring.xml', to: dist},
+				{from: 'src/resources/messages', to: `${dist}/resources/messages`},
+				{from: 'src/resources/images', to: `${dist}/resources/images`}
 			], {ignore: ['.gitkeep']})
 		],
 		module: {
@@ -97,11 +87,11 @@ module.exports = (env, argv) => {
 					{loader: 'sass-loader', options: {data: `$env: ${argv.mode};`}}
 				]
 			}, {
-				test: /(\.(ttf|eot|woff|woff2)|-webfont\.svg)$/i,
-				use: {loader: 'file-loader', options: {name: 'fonts/[name].[ext]'}}
+				test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
+				use: {loader: 'file-loader', options: {name: '../fonts/[name].[ext]'}}
 			}, {
 				test: /\.(png|gif|jpg)$/i,
-				use: {loader: 'file-loader', options: {name: 'images/[name].[ext]'}}
+				use: {loader: 'file-loader', options: {name: '../images/[name].[ext]'}}
 			}, {
 				test: /\.svg$/i,
 				exclude: /-webfont\.svg$/i,
@@ -113,13 +103,7 @@ module.exports = (env, argv) => {
 			host: '0.0.0.0',
 			port: 9000,
 			disableHostCheck: true,
-			clientLogLevel: 'info',
-			before: function (app) {
-				app.get('/sw.js', function (req, res) {
-					res.set({'Content-Type': 'application/javascript; charset=utf-8'});
-					res.send('/* SWPrecacheWebpackPlugin does not support Webpack Dev Server */');
-				});
-			}
+			clientLogLevel: 'info'
 		}
 	};
 };
