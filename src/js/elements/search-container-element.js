@@ -61,7 +61,7 @@ export default class SearchContainerElement extends BaseElement {
 			: new EmptyElement();
 
 		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
-		this.searchPaginationElement = pageTotal > 0
+		this.searchPaginationElement = pageTotal > 1
 			? new SearchPaginationElement(null, {
 				pageNumber: this.options.pageNumber,
 				pagePlaces: this.options.pagePlaces,
