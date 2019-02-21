@@ -1,5 +1,6 @@
 import './vendor/bootstrap';
 import './vendor/fontawesome';
+import './vendor/fetch-polyfill';
 import './vendor/formdata-polyfill';
 
 import '../css/app.scss';
