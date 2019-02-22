@@ -21,24 +21,27 @@ export default class SearchFileElement extends BaseElement {
 		];
 
 		return html`
-			<div id="${this.id}" class="${this.className} file-extension-${this.options.extension} col-sm-12 col-lg-6 col-xl-4 mb-3">
+			<div id="${this.id}" class="${this.className}
+				file-extension-${this.options.extension}
+				file-favorite-${this.options.isFavorite ? 'on' : 'off'}
+				col-sm-12 col-lg-6 col-xl-4 mb-3">
 				<div class="card h-100">
 					<div class="card-header">
 						<div class="card-buttons m-n2 float-right">
 							<div class="btn-group">
-								<button type="button" class="btn btn-light btn-sm"
+								<button type="button" class="edit btn btn-light btn-sm"
 									@click=${this.fileEditClickHandler}>
 									<i class="fas fa-edit"></i>
 								</button>
-								<button type="button" class="btn btn-light btn-sm"
+								<button type="button" class="home btn btn-light btn-sm"
 									@click=${this.fileHomeClickHandler}>
 									<i class="fas fa-home"></i>
 								</button>
-								<button type="button" class="btn btn-light btn-sm"
+								<button type="button" class="favorite btn btn-light btn-sm"
 									@click=${this.fileFavoriteClickHandler}>
 									<i class="fas fa-star"></i>
 								</button>
-								<button type="button" class="btn btn-light btn-sm"
+								<button type="button" class="open btn btn-light btn-sm"
 									@click=${this.fileOpenClickHandler}>
 									<i class="fas fa-external-link-alt"></i>
 								</button>
