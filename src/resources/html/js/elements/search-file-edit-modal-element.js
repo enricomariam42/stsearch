@@ -17,17 +17,17 @@ export default class SearchFileEditModalElement extends BaseElement {
 						</div>
 						<div class="modal-body">
 							<div class="row">
-								<div class="col-3">
+								<div class="col-sm-12 col-lg-3 mb-3">
 									<div class="d-flex flex-column justify-content-center align-items-center">
 									${this.options.file.properties.thumbnail ? html`
-										<img class="card-img w-auto mw-100" src="${this.options.file.properties.thumbnail}">
+										<img class="card-img w-auto h-auto" style="max-height: 128px" src="${this.options.file.properties.thumbnail}">
 									` : html`
-										<i class="far fa-image fa-fw w-75 h-auto"></i>
-										<p>No image available</p>
+										<i class="far fa-image fa-fw w-50 h-auto" style="max-height: 128px"></i>
+										<div>No image available</div>
 									`}
 									</div>
 								</div>
-								<div class="col-9">
+								<div class="col-sm-12 col-lg-9">
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">Path</div>
