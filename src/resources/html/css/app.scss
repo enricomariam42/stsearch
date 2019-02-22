@@ -21,11 +21,10 @@ body {
 
 #noty {
 	position: fixed;
-	top: 8em;
+	bottom: 1em;
 	right: 0;
 	padding: 0 1em;
 	width: 100%;
 	max-width: 25em;
 	z-index: 2147483647;
-	@media (max-width: 768px) { top: 15em; }
 }
