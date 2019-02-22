@@ -1,6 +1,13 @@
 export const isProduction = process.env.NODE_ENV === 'production';
 
-export const trigger = (type, ref) => ref.dispatchEvent(new Event(type));
+export const trigger = (type, ref, init = {}) => ref.dispatchEvent(
+	new Event(type, {
+		bubbles: true,
+		cancelable: true,
+		composed: true,
+		...init
+	})
+);
 
 export const toLocaleDateTime = str => {
 	let date = new Date(str);
