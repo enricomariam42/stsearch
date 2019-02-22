@@ -7,7 +7,12 @@ import {isProduction} from '../helpers';
 export default class BaseElement {
 	constructor(container = null, options = {}) {
 		this.container = container;
-		this.options = new Proxy(options, this.proxyHandler);
+
+		/* The following line causes the element to be rendered automatically when the options
+		 * change. It is commented because currently this behavior is not necessary.
+		 */ // this.options = new Proxy(options, this.proxyHandler);
+		this.options = options;
+
 		this.render();
 	}
 
