@@ -13,11 +13,11 @@ export default class SearchFilterFormElement extends BaseElement {
 					<div class="btn-toolbar d-flex">
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-fw fa-search"></i></span>
+								</div>
 								<input name="search-terms" type="search" class="form-control" placeholder="Search..."
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
-								<div class="input-group-append">
-									<button type="submit" class="btn btn-info"><i class="fas fa-fw fa-search"></i></button>
-								</div>
 							</div>
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
