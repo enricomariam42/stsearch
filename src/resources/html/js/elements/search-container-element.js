@@ -2,6 +2,8 @@ import clamp from 'lodash/clamp';
 import assignIn from 'lodash/assignIn';
 import {html} from 'lit-html';
 
+import {noty} from '../vendor/noty';
+
 import RemoteFileMetadata from '../remote-file-metadata';
 import {EMPTY_HIERARCHY} from '../repository';
 
@@ -59,12 +61,15 @@ export default class SearchContainerElement extends BaseElement {
 			},
 			fileHomeCallback: file => {
 				console.log('home', file);
+				noty.info('[TODO] Home');
 			},
 			fileFavoriteCallback: file => {
 				console.log('favorite', file);
+				noty.info('[TODO] Favorite');
 			},
 			fileTagCallback: tag => {
 				console.log('tag', tag);
+				noty.info('[TODO] Tag');
 			}
 		});
 
@@ -89,6 +94,10 @@ export default class SearchContainerElement extends BaseElement {
 
 								this.searchFileEditModalElement.$ref.modal('hide');
 								this.render();
+
+								noty.success('Saved');
+							} else {
+								noty.error('Error saving data');
 							}
 						});
 				}

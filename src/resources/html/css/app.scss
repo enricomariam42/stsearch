@@ -1,17 +1,14 @@
 @import 'utils/variables';
 
 @import '~bootstrap/scss/bootstrap';
+@import "~noty/src/noty";
+@import "~noty/src/themes/bootstrap-v4";
 
 @import 'utils/em';
 @import 'utils/fonts';
 @import 'utils/helpers';
 
 @import 'search-file-element';
-
-html, body {
-	margin: 0;
-	height: 100vh;
-}
 
 body {
 	font-family: $system-sans-serif;
@@ -20,4 +17,15 @@ body {
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+#noty {
+	position: fixed;
+	top: 8em;
+	right: 0;
+	padding: 0 1em;
+	width: 100%;
+	max-width: 25em;
+	z-index: 2147483647;
+	@media (max-width: 768px) { top: 15em; }
 }
