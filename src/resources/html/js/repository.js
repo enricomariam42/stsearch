@@ -1,4 +1,5 @@
 import inRange from 'lodash/inRange';
+import orderBy from 'lodash/orderBy';
 
 import RemoteFileMetadata from './remote-file-metadata';
 
@@ -91,8 +92,8 @@ export default class Repository {
 		})(currentFolder.children, true);
 
 		this._currentFolder = currentFolder;
-		this.nestedFolders = folders;
-		this.nestedFiles = files;
+		this.nestedFolders = this.orderFiles(folders);
+		this.nestedFiles = this.orderFiles(files);
 	}
 
 	/*
@@ -128,6 +129,13 @@ export default class Repository {
 				this._dateMinEpoch, this._dateMaxEpoch
 			)
 		);
+	}
+
+	orderFiles(files) {
+		return orderBy(files, [
+			file => file.properties['file.title'],
+			file => file.name
+		]);
 	}
 
 	get searchTerms() {
