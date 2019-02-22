@@ -1,6 +1,7 @@
 import {html} from 'lit-html';
 
 import {formDataToMap} from '../helpers';
+
 import BaseElement from './base-element';
 
 export default class SearchFileEditModalElement extends BaseElement {

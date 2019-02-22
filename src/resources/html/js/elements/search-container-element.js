@@ -1,8 +1,11 @@
-import clamp from 'lodash/clamp';
 import assignIn from 'lodash/assignIn';
+import clamp from 'lodash/clamp';
+import debounce from 'lodash/debounce';
 import {html} from 'lit-html';
 
 import {noty} from '../vendor/noty';
+
+import {trigger} from '../helpers';
 
 import RemoteFileMetadata from '../remote-file-metadata';
 import {EMPTY_HIERARCHY} from '../repository';
@@ -35,7 +38,10 @@ export default class SearchContainerElement extends BaseElement {
 				this.options.repository.refresh().then(() => {
 					this.render();
 				});
-			}
+			},
+			formFieldChangeCallback: debounce(() => {
+				trigger('submit', this.searchFilterFormElement.ref);
+			}, 200)
 		});
 
 		this.searchFolderListElement = new SearchFolderListElement(null, {
