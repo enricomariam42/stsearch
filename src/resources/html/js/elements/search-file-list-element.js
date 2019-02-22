@@ -13,7 +13,8 @@ export default class SearchFileListElement extends BaseElement {
 					fileEditCallback: this.options.fileEditCallback,
 					fileHomeCallback: this.options.fileHomeCallback,
 					fileFavoriteCallback: this.options.fileFavoriteCallback,
-					fileTagCallback: this.options.fileTagCallback
+					fileTagCallback: this.options.fileTagCallback,
+					fileOpenCallback: this.options.fileOpenCallback
 				});
 				return file.template;
 			});

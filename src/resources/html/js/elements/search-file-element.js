@@ -38,6 +38,10 @@ export default class SearchFileElement extends BaseElement {
 									@click=${this.fileFavoriteClickHandler}>
 									<i class="fas fa-star"></i>
 								</button>
+								<button type="button" class="btn btn-light btn-sm"
+									@click=${this.fileOpenClickHandler}>
+									<i class="fas fa-external-link-alt"></i>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -101,6 +105,19 @@ export default class SearchFileElement extends BaseElement {
 			handleEvent: () => {
 				if (typeof this.options.fileFavoriteCallback === 'function') {
 					this.options.fileFavoriteCallback(this.options);
+				}
+			}
+		};
+	}
+
+	get fileOpenClickHandler() {
+		return {
+			capture: true,
+			passive: true,
+			once: false,
+			handleEvent: () => {
+				if (typeof this.options.fileOpenCallback === 'function') {
+					this.options.fileOpenCallback(this.options);
 				}
 			}
 		};

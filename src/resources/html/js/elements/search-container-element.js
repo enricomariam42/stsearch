@@ -70,6 +70,10 @@ export default class SearchContainerElement extends BaseElement {
 			fileTagCallback: tag => {
 				console.log('tag', tag);
 				noty.info('[TODO] Tag');
+			},
+			fileOpenCallback: file => {
+				console.log('open', file);
+				noty.info('[TODO] Open');
 			}
 		});
 
