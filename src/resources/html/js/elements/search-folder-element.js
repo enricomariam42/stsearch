@@ -5,7 +5,7 @@ import BaseElement from './base-element';
 export default class SearchFolderElement extends BaseElement {
 	get template() {
 		return html`
-			<button id="${this.id}" type="button" class="${this.className} btn btn-light m-1"
+			<button id="${this.id}" type="button" class="${this.className} btn btn-light border m-1"
 				@click=${this.folderClickHandler}>
 				<i class="${this.options.iconClass}"></i>
 				${this.options.name}
