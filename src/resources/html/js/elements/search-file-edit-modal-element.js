@@ -30,7 +30,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">Path</div>
-											<input name="path" type="text" class="form-control" placeholder="Path..." disabled
+											<input name="path" type="text" class="form-control" placeholder="Path..." readonly
 												value="${this.options.file.path}">
 										</label>
 									</div>
