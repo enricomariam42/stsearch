@@ -31,13 +31,12 @@ export default class SearchContainerElement extends BaseElement {
 				this.options.pageNumber = 0;
 				this.render();
 			},
-			formRefreshCallback: () => {
+			formRefreshCallback: async () => {
 				this.options.repository.hierarchy = EMPTY_HIERARCHY;
 				this.render();
 
-				this.options.repository.refresh().then(() => {
-					this.render();
-				});
+				await this.options.repository.refresh();
+				this.render();
 			},
 			formFieldChangeCallback: debounce(() => {
 				trigger('submit', this.searchFilterFormElement.ref);
@@ -69,9 +68,18 @@ export default class SearchContainerElement extends BaseElement {
 				console.log('home', file);
 				noty.info('[TODO] Home');
 			},
-			fileFavoriteCallback: file => {
-				console.log('favorite', file);
-				noty.info('[TODO] Favorite');
+			fileFavoriteCallback: async fileData => {
+				let isFavorite = !fileData.isFavorite;
+				let result = await RemoteFileMetadata.setMetadata({path: fileData.path, isFavorite});
+
+				if (result !== null && result.length > 0) {
+					let file = this.options.repository.fromPath(fileData.path);
+					file.isFavorite = isFavorite;
+
+					this.render();
+				} else {
+					noty.error('Error saving data');
+				}
 			},
 			fileTagCallback: tag => {
 				console.log('tag', tag);
@@ -86,30 +94,23 @@ export default class SearchContainerElement extends BaseElement {
 		this.searchFileEditModalElement = this.currentEditingFile
 			? new SearchFileEditModalElement(null, {
 				file: this.currentEditingFile,
-				formSubmitCallback: data => {
+				formSubmitCallback: async data => {
 					let properties = {
 						'file.title': data.get('title'),
 						'file.description': data.get('description'),
 						thumbnail: data.get('thumbnail')
 					};
+					let result = await RemoteFileMetadata.setMetadata({path: this.currentEditingFile.path, properties});
 
-					RemoteFileMetadata.setMetadata({
-						path: this.currentEditingFile.path,
-						properties
-					})
-						.then(result => {
-							if (result !== null && result.length > 0) {
-								assignIn(this.currentEditingFile.properties, properties);
-								this.currentEditingFile = null;
+					if (result !== null && result.length > 0) {
+						assignIn(this.currentEditingFile.properties, properties);
+						this.currentEditingFile = null;
 
-								this.searchFileEditModalElement.$ref.modal('hide');
-								this.render();
-
-								noty.success('Saved');
-							} else {
-								noty.error('Error saving data');
-							}
-						});
+						this.searchFileEditModalElement.$ref.modal('hide');
+						this.render();
+					} else {
+						noty.error('Error saving data');
+					}
 				}
 			})
 			: new EmptyElement();
