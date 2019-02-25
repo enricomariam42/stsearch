@@ -1,6 +1,6 @@
 import jQuery from 'jquery';
 import uniqueId from 'lodash/uniqueId';
-import {html, render} from 'lit-html';
+import {html, render, directive} from 'lit-html';
 
 import {isProduction} from '../helpers';
 
@@ -90,6 +90,18 @@ export default class BaseElement {
 				return true;
 			}
 		};
+	}
+
+	faTemplate(icon, classes = '') {
+		const xlinkNamespace = 'http://www.w3.org/1999/xlink';
+		const xlinkDirective = directive(value => part => {
+			part.committer.element.setAttributeNS(xlinkNamespace, part.committer.name, value);
+		});
+
+		return html`
+			<svg class="icon ${classes}">
+				<use href="#${icon}" xlink:href="${xlinkDirective(`#${icon}`)}"></use>
+			</svg>`;
 	}
 
 	render() {

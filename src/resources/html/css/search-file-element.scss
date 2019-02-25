@@ -1,41 +1,61 @@
 .search-file-element {
-	> .card {
+	.card {
 		border-left-width: 5px;
 		border-left-style: solid;
 		border-left-color: map-get($theme-colors, unknown);
 	}
 
+	.card-buttons .btn {
+		color: map-get($theme-colors, unknown);
+	}
+
+	&.file-extension-wcdf {
+		.card {
+			border-left-color: map-get($theme-colors, cde);
+		}
+
+		.card-buttons .btn {
+			color: map-get($theme-colors, cde);
+		}
+	}
+
 	&.file-extension-xjpivot {
-		> .card {
+		.card {
 			border-left-color: map-get($theme-colors, stpivot);
+		}
+
+		.card-buttons .btn {
+			color: map-get($theme-colors, stpivot);
 		}
 	}
 
 	&.file-extension-adhoc, &.file-extension-prpt {
-		> .card {
+		.card {
 			border-left-color: map-get($theme-colors, streport);
+		}
+
+		.card-buttons .btn {
+			color: map-get($theme-colors, streport);
 		}
 	}
 
 	&.file-extension-std {
-		> .card {
+		.card {
 			border-left-color: map-get($theme-colors, stdashboard);
+		}
+
+		.card-buttons .btn {
+			color: map-get($theme-colors, stdashboard);
 		}
 	}
 
 	&.file-extension-sta {
-		> .card {
+		.card {
 			border-left-color: map-get($theme-colors, stagile);
 		}
-	}
 
-	&.file-extension-wcdf {
-		> .card {
-			border-left-color: map-get($theme-colors, cde);
+		.card-buttons .btn {
+			color: map-get($theme-colors, stagile);
 		}
-	}
-
-	&.file-favorite-on .btn.favorite {
-		color: map-get($theme-colors, info);
 	}
 }

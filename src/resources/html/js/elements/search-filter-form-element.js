@@ -14,7 +14,9 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-fw fa-search"></i></span>
+									<span class="input-group-text">
+										${this.faTemplate('fas-search')}
+									</span>
 								</div>
 								<input name="search-terms" type="search" class="form-control" placeholder="Search..."
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
@@ -22,36 +24,36 @@ export default class SearchFilterFormElement extends BaseElement {
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
 							<div class="allowed-extensions btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
+								<label class="btn btn-outline-cde active"
+									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
+									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off">
+									${this.faTemplate('fac-tool-cde')}
+								</label>
 								<label class="btn btn-outline-stpivot active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" checked autocomplete="off">
-									<i class="fac fa-fw fa-stpivot"></i>
+									${this.faTemplate('fac-tool-stpivot')}
 								</label>
 								<label class="btn btn-outline-streport active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" checked autocomplete="off">
-									<i class="fac fa-fw fa-streport"></i>
+									${this.faTemplate('fac-tool-streport')}
 								</label>
 								<label class="btn btn-outline-stdashboard active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="std" type="checkbox" checked autocomplete="off">
-									<i class="fac fa-fw fa-stdashboard"></i>
+									${this.faTemplate('fac-tool-stdashboard')}
 								</label>
 								<label class="btn btn-outline-stagile active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="sta" type="checkbox" checked autocomplete="off">
-									<i class="fac fa-fw fa-stagile"></i>
-								</label>
-								<label class="btn btn-outline-cde active"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off">
-									<i class="fac fa-fw fa-cde"></i>
+									${this.faTemplate('fac-tool-stagile')}
 								</label>
 							</div>
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
 								<button type="button" class="btn btn-info"
 									@click=${this.formRefreshHandler}>
-									<i class="fas fa-fw fa-sync"></i>
+									${this.faTemplate('fas-sync')}
 								</button>
 							</div>
 						</div>
@@ -62,12 +64,16 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="far fa-fw fa-calendar-alt"></i></span>
+									<span class="input-group-text">
+										${this.faTemplate('far-calendar-alt')}
+									</span>
 								</div>
 								<input name="date-min" type="date" class="form-control"
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
-									<span class="input-group-text"><i class="fas fa-fw fa-long-arrow-alt-right"></i></span>
+									<span class="input-group-text">
+										${this.faTemplate('fas-long-arrow-alt-right')}
+									</span>
 								</div>
 								<input name="date-max" type="date" class="form-control"
 									@change=${this.formFieldChangeHandlerGenerator('date-max')}>

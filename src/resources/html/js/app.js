@@ -21,7 +21,7 @@ window.addEventListener('load', async () => {
 	});
 
 	let result = await repository.refresh();
-	searchContainerElement.render();
+	setTimeout(() => searchContainerElement.render(), 2000);
 
 	if (!result) {
 		noty.error('Error in data loading');

@@ -7,7 +7,7 @@ export default class SearchFolderElement extends BaseElement {
 		return html`
 			<button id="${this.id}" type="button" class="${this.className} btn btn-light border m-1"
 				@click=${this.folderClickHandler}>
-				<i class="${this.options.iconClass}"></i>
+				${this.faTemplate(this.options.icon, this.options.name ? 'mr-1' : '')}
 				${this.options.name}
 			</button>
 		`;

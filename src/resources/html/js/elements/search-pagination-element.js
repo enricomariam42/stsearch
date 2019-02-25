@@ -40,7 +40,7 @@ export default class SearchPaginationElement extends BaseElement {
 			<li class="page-item ${isFirstPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(0)}>
-					<i class="fas fa-angle-double-left"></i>
+					${this.faTemplate('fas-angle-double-left')}
 				</a>
 			</li>
 		`;
@@ -49,7 +49,7 @@ export default class SearchPaginationElement extends BaseElement {
 			<li class="page-item ${isFirstPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageNumber - 1)}>
-					<i class="fas fa-angle-left"></i>
+					${this.faTemplate('fas-angle-left')}
 				</a>
 			</li>
 		`;
@@ -58,7 +58,7 @@ export default class SearchPaginationElement extends BaseElement {
 			<li class="page-item ${isLastPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageNumber + 1)}>
-					<i class="fas fa-angle-right">
+					${this.faTemplate('fas-angle-right')}
 				</i></a>
 			</li>
 		`;
@@ -67,7 +67,7 @@ export default class SearchPaginationElement extends BaseElement {
 			<li class="page-item ${isLastPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageTotal - 1)}>
-					<i class="fas fa-angle-double-right">
+					${this.faTemplate('fas-angle-double-right')}
 				</i></a>
 			</li>
 		`;
