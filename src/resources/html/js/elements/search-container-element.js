@@ -35,8 +35,12 @@ export default class SearchContainerElement extends BaseElement {
 				this.options.repository.hierarchy = EMPTY_HIERARCHY;
 				this.render();
 
-				await this.options.repository.refresh();
+				let result = await this.options.repository.refresh();
 				this.render();
+
+				if (!result) {
+					noty.error('Error in data loading');
+				}
 			},
 			formFieldChangeCallback: debounce(() => {
 				trigger('submit', this.searchFilterFormElement.ref);
@@ -64,9 +68,18 @@ export default class SearchContainerElement extends BaseElement {
 				this.currentEditingFile = file;
 				this.render();
 			},
-			fileHomeCallback: file => {
-				console.log('home', file);
-				noty.info('[TODO] Home');
+			fileHomeCallback: async fileData => {
+				let isHomeItem = !fileData.isHomeItem;
+				let result = await RemoteFileMetadata.setMetadata({path: fileData.path, isHomeItem});
+
+				if (result !== null && result.length > 0) {
+					let file = this.options.repository.fromPath(fileData.path);
+					file.isHomeItem = isHomeItem;
+
+					this.render();
+				} else {
+					noty.error('Error saving data');
+				}
 			},
 			fileFavoriteCallback: async fileData => {
 				let isFavorite = !fileData.isFavorite;

@@ -6,15 +6,16 @@ export const DEFAULT_SHOW_HIDDEN = 'auto';
 export const DEFAULT_DEPTH = 1;
 
 export default class RemoteFileMetadata {
-	static async getMetadata(path, {locale = DEFAULT_LOCALE, showHidden = DEFAULT_SHOW_HIDDEN, depth = DEFAULT_DEPTH} = {}) {
-		if (!Array.isArray(path)) {
-			path = [path];
+	static async getMetadata(paths, {locale = DEFAULT_LOCALE, showHidden = DEFAULT_SHOW_HIDDEN, depth = DEFAULT_DEPTH} = {}) {
+		if (!Array.isArray(paths)) {
+			paths = [paths];
 		}
 
-		let response = await fetch(`${API_ENDPOINT}/get?${objToSearchParams({locale, showHidden, depth})}`, {
+		let url = `${API_ENDPOINT}/get?${objToSearchParams({locale, showHidden, depth})}`;
+		let response = await fetch(url, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(path)
+			body: JSON.stringify(paths)
 		});
 
 		if (response.status === 200) {
@@ -36,7 +37,8 @@ export default class RemoteFileMetadata {
 			}
 		});
 
-		let response = await fetch(`${API_ENDPOINT}/set?${objToSearchParams({locale})}`, {
+		let url = `${API_ENDPOINT}/set?${objToSearchParams({locale})}`;
+		let response = await fetch(url, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(metadata)
@@ -50,7 +52,7 @@ export default class RemoteFileMetadata {
 	}
 
 	static async getRepository() {
-		let response = await RemoteFileMetadata.getMetadata('/', {depth: -1});
+		let response = await RemoteFileMetadata.getMetadata({fullPath: '/'}, {depth: -1});
 
 		if (Array.isArray(response) && response.length === 1) {
 			return response[0];
