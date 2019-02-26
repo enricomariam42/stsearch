@@ -1,7 +1,7 @@
-import {width, height, ligatures, unicode, svgPathData} from './fa-tool-streport';
+import {width, height, ligatures, unicode, svgPathData} from './fac-tool-stpivot';
 
 export const prefix = 'fac';
-export const iconName = 'file-adhoc';
+export const iconName = 'file-xjpivot';
 export {width, height, ligatures, unicode, svgPathData};
 
 export const definition = {
@@ -10,4 +10,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export {definition as faFileAdhoc};
+export {definition as faFileXjpivot};

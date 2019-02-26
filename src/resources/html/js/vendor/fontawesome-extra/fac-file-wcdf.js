@@ -1,7 +1,7 @@
-import {width, height, ligatures, unicode, svgPathData} from './fa-tool-streport';
+import {width, height, ligatures, unicode, svgPathData} from './fac-tool-cde';
 
 export const prefix = 'fac';
-export const iconName = 'file-prpt';
+export const iconName = 'file-wcdf';
 export {width, height, ligatures, unicode, svgPathData};
 
 export const definition = {
@@ -10,4 +10,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export {definition as faFilePrpt};
+export {definition as faFileWcdf};

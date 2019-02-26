@@ -1,7 +1,7 @@
-import {width, height, ligatures, unicode, svgPathData} from './fa-tool-stagile';
+import {width, height, ligatures, unicode, svgPathData} from './fac-tool-stdashboard';
 
 export const prefix = 'fac';
-export const iconName = 'file-sta';
+export const iconName = 'file-std';
 export {width, height, ligatures, unicode, svgPathData};
 
 export const definition = {
@@ -10,4 +10,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export {definition as faFileSta};
+export {definition as faFileStd};
