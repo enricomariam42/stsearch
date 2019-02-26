@@ -30,24 +30,24 @@ export default class SearchFileElement extends BaseElement {
 					<div class="card-header">
 						<div class="card-buttons">
 							<div class="btn-group m-n2 float-left">
-								<button type="button" class="edit btn btn-light btn-sm" disabled>
+								<button type="button" class="edit btn btn-light" disabled>
 									${this.faTemplate(`fac-file-${this.options.extension}`)}
 								</button>
 							</div>
 							<div class="btn-group m-n2 float-right">
-								<button type="button" class="edit btn btn-light btn-sm"
+								<button type="button" class="edit btn btn-light"
 									@click=${this.fileEditClickHandler}>
 									${this.faTemplate('fas-edit')}
 								</button>
-								<button type="button" class="home btn btn-light btn-sm"
+								<button type="button" class="home btn btn-light"
 									@click=${this.fileHomeClickHandler}>
 									${this.faTemplate(`${this.options.isHomeItem ? 'fas' : 'far'}-home`)}
 								</button>
-								<button type="button" class="favorite btn btn-light btn-sm"
+								<button type="button" class="favorite btn btn-light"
 									@click=${this.fileFavoriteClickHandler}>
 									${this.faTemplate(`${this.options.isFavorite ? 'fas' : 'far'}-star`)}
 								</button>
-								<button type="button" class="open btn btn-light btn-sm"
+								<button type="button" class="open btn btn-light"
 									@click=${this.fileOpenClickHandler}>
 									${this.faTemplate('fas-external-link-alt')}
 								</button>
