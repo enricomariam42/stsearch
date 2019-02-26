@@ -41,7 +41,7 @@ export default class SearchFileElement extends BaseElement {
 								</button>
 								<button type="button" class="home btn btn-light btn-sm"
 									@click=${this.fileHomeClickHandler}>
-									${this.faTemplate('fas-home')}
+									${this.faTemplate(`${this.options.isHomeItem ? 'fas' : 'far'}-home`)}
 								</button>
 								<button type="button" class="favorite btn btn-light btn-sm"
 									@click=${this.fileFavoriteClickHandler}>
@@ -61,13 +61,21 @@ export default class SearchFileElement extends BaseElement {
 								<img class="card-img w-auto mw-100" style="max-height: 128px" src="${this.options.properties.thumbnail}">
 							</div>
 							<div class="col-sm-10 col-lg-8 px-2">
-								<h5 class="card-title">${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}</h5>
-								<p class="card-text">${this.options.properties['file.description']}</p>
+								<h5 class="card-title">
+									${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}
+								</h5>
+								<p class="card-text text-truncate" title="${this.options.properties['file.description']}">
+									${this.options.properties['file.description']}
+								</p>
 							</div>
 						` : html`
 							<div class="col-12 px-2">
-								<h5 class="card-title">${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}</h5>
-								<p class="card-text">${this.options.properties['file.description']}</p>
+								<h5 class="card-title">
+									${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}
+								</h5>
+								<p class="card-text text-truncate" title="${this.options.properties['file.description']}">
+									${this.options.properties['file.description']}
+								</p>
 							</div>
 						`}
 						</div>

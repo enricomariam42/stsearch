@@ -22,10 +22,8 @@ export default class SearchFileEditModalElement extends BaseElement {
 									${this.options.file.properties.thumbnail ? html`
 										<img class="card-img w-auto h-auto" style="max-height: 128px" src="${this.options.file.properties.thumbnail}">
 									` : html`
-										<div class="text-center" style="max-height: 128px">
-											${this.faTemplate('far-image', 'w-50 h-auto')}
-											<div>No image available</div>
-										</div>
+										${this.faTemplate('far-image', 'w-50 h-auto')}
+										<div>No image available</div>
 									`}
 									</div>
 								</div>
