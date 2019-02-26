@@ -5,13 +5,15 @@
 @import "~noty/src/themes/bootstrap-v4";
 
 @import 'utils/em';
-@import 'utils/fonts';
+@import 'utils/system-fonts';
 @import 'utils/helpers';
+
+@import 'fonts/titillium-web';
 
 @import 'search-file-element';
 
 body {
-	font-family: $system-sans-serif;
+	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
 	background-image: url('../../images/background.jpg');
 	background-size: 100% 100%;
