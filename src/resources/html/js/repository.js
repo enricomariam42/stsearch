@@ -1,3 +1,4 @@
+import escapeRegExp from 'lodash/escapeRegExp';
 import inRange from 'lodash/inRange';
 import orderBy from 'lodash/orderBy';
 
@@ -144,7 +145,7 @@ export default class Repository {
 
 	set searchTerms(searchTerms) {
 		this._searchTerms = searchTerms ? searchTerms : DEFAULT_SEARCH_TERMS;
-		this._searchTermsRegex = new RegExp(this._searchTerms, 'i');
+		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
 	}
 
 	get allowedExtensions() {
