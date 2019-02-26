@@ -1,61 +1,28 @@
 .search-file-element {
-	.card {
+	> .card {
 		border-left-width: 5px;
 		border-left-style: solid;
-		border-left-color: map-get($theme-colors, unknown);
-	}
+		border-left-color: map-get($theme-colors, file-unknown);
 
-	.card-buttons .btn {
-		color: map-get($theme-colors, unknown);
-	}
-
-	&.file-extension-wcdf {
-		.card {
-			border-left-color: map-get($theme-colors, cde);
+		> .card-header .btn {
+			color: map-get($theme-colors, file-unknown);
 		}
 
-		.card-buttons .btn {
-			color: map-get($theme-colors, cde);
+		> .card-header .card-buttons .btn:disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
 		}
 	}
 
-	&.file-extension-xjpivot {
-		.card {
-			border-left-color: map-get($theme-colors, stpivot);
-		}
+	@each $extension in wcdf, xjpivot, adhoc, prpt, std, sta {
+		&.file-extension-#{$extension} {
+			> .card {
+				border-left-color: map-get($theme-colors, file-#{$extension});
 
-		.card-buttons .btn {
-			color: map-get($theme-colors, stpivot);
-		}
-	}
-
-	&.file-extension-adhoc, &.file-extension-prpt {
-		.card {
-			border-left-color: map-get($theme-colors, streport);
-		}
-
-		.card-buttons .btn {
-			color: map-get($theme-colors, streport);
-		}
-	}
-
-	&.file-extension-std {
-		.card {
-			border-left-color: map-get($theme-colors, stdashboard);
-		}
-
-		.card-buttons .btn {
-			color: map-get($theme-colors, stdashboard);
-		}
-	}
-
-	&.file-extension-sta {
-		.card {
-			border-left-color: map-get($theme-colors, stagile);
-		}
-
-		.card-buttons .btn {
-			color: map-get($theme-colors, stagile);
+				> .card-header .btn {
+					color: map-get($theme-colors, file-#{$extension});
+				}
+			}
 		}
 	}
 }

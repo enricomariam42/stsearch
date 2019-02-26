@@ -24,27 +24,27 @@ export default class SearchFilterFormElement extends BaseElement {
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
 							<div class="allowed-extensions btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
-								<label class="btn btn-outline-cde active"
+								<label class="btn btn-outline-tool-cde active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off">
 									${this.faTemplate('fac-tool-cde')}
 								</label>
-								<label class="btn btn-outline-stpivot active"
+								<label class="btn btn-outline-tool-stpivot active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" checked autocomplete="off">
 									${this.faTemplate('fac-tool-stpivot')}
 								</label>
-								<label class="btn btn-outline-streport active"
+								<label class="btn btn-outline-tool-streport active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" checked autocomplete="off">
 									${this.faTemplate('fac-tool-streport')}
 								</label>
-								<label class="btn btn-outline-stdashboard active"
+								<label class="btn btn-outline-tool-stdashboard active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="std" type="checkbox" checked autocomplete="off">
 									${this.faTemplate('fac-tool-stdashboard')}
 								</label>
-								<label class="btn btn-outline-stagile active"
+								<label class="btn btn-outline-tool-stagile active"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="sta" type="checkbox" checked autocomplete="off">
 									${this.faTemplate('fac-tool-stagile')}

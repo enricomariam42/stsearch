@@ -23,35 +23,36 @@ export default class SearchFileElement extends BaseElement {
 		return html`
 			<div id="${this.id}" class="${this.className}
 				file-extension-${this.options.extension}
-				file-favorite-${this.options.isFavorite ? 'on' : 'off'}
 				file-recent-${this.options.isRecent ? 'on' : 'off'}
+				file-favorite-${this.options.isFavorite ? 'on' : 'off'}
+				file-home-item-${this.options.isHomeItem ? 'on' : 'off'}
+				file-readonly-${this.options.isReadonly ? 'on' : 'off'}
 				col-sm-12 col-lg-6 col-xl-4 mb-3">
 				<div class="card h-100">
 					<div class="card-header">
-						<div class="card-buttons">
-							<div class="btn-group m-n2 float-left">
-								<button type="button" class="edit btn btn-light" disabled>
-									${this.faTemplate(`fac-file-${this.options.extension}`)}
-								</button>
-							</div>
-							<div class="btn-group m-n2 float-right">
-								<button type="button" class="edit btn btn-light"
-									@click=${this.fileEditClickHandler}>
-									${this.faTemplate('fas-edit')}
-								</button>
-								<button type="button" class="home btn btn-light"
-									@click=${this.fileHomeClickHandler}>
-									${this.faTemplate(`${this.options.isHomeItem ? 'fas' : 'far'}-home`)}
-								</button>
-								<button type="button" class="favorite btn btn-light"
-									@click=${this.fileFavoriteClickHandler}>
-									${this.faTemplate(`${this.options.isFavorite ? 'fas' : 'far'}-star`)}
-								</button>
-								<button type="button" class="open btn btn-light"
-									@click=${this.fileOpenClickHandler}>
-									${this.faTemplate('fas-external-link-alt')}
-								</button>
-							</div>
+						<div class="card-logo btn-group m-n2 float-left">
+							<button type="button" class="btn btn-light" disabled>
+								${this.faTemplate(`fac-file-${this.options.extension}`)}
+							</button>
+						</div>
+						<div class="card-buttons btn-group m-n2 float-right">
+							<button type="button" class="btn btn-light"
+								?disabled=${this.options.isReadonly}
+								@click=${this.fileEditClickHandler}>
+								${this.faTemplate('fas-edit')}
+							</button>
+							<button type="button" class="btn btn-light"
+								@click=${this.fileHomeClickHandler}>
+								${this.faTemplate(`${this.options.isHomeItem ? 'fas' : 'far'}-home`)}
+							</button>
+							<button type="button" class="btn btn-light"
+								@click=${this.fileFavoriteClickHandler}>
+								${this.faTemplate(`${this.options.isFavorite ? 'fas' : 'far'}-star`)}
+							</button>
+							<button type="button" class="btn btn-light"
+								@click=${this.fileOpenClickHandler}>
+								${this.faTemplate('fas-external-link-alt')}
+							</button>
 						</div>
 					</div>
 					<div class="card-body">

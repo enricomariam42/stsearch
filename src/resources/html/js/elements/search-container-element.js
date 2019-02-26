@@ -65,8 +65,10 @@ export default class SearchContainerElement extends BaseElement {
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
 			fileEditCallback: file => {
-				this.currentEditingFile = file;
-				this.render();
+				if (!file.isReadonly) {
+					this.currentEditingFile = file;
+					this.render();
+				}
 			},
 			fileHomeCallback: async fileData => {
 				let isHomeItem = !fileData.isHomeItem;
