@@ -10,6 +10,7 @@ export default class SearchFileListElement extends BaseElement {
 			fileTemplates = this.options.files.map(options => {
 				let file = new SearchFileElement(null, {
 					...options,
+					canAdminister: this.options.canAdminister,
 					fileEditCallback: this.options.fileEditCallback,
 					fileHomeCallback: this.options.fileHomeCallback,
 					fileFavoriteCallback: this.options.fileFavoriteCallback,

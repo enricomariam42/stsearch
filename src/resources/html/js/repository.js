@@ -1,7 +1,7 @@
 import inRange from 'lodash/inRange';
 import orderBy from 'lodash/orderBy';
 
-import RemoteFileMetadata from './remote-file-metadata';
+import RemoteRepositoryAPI from './api/remote-repository-api';
 
 export const DEFAULT_SEARCH_TERMS = '';
 export const DEFAULT_ALLOWED_EXTENSIONS = ['xjpivot', 'adhoc|prpt', 'std', 'sta', 'wcdf'];
@@ -45,7 +45,7 @@ export default class Repository {
 	}
 
 	async refresh() {
-		let hierarchy = await RemoteFileMetadata.getRepository();
+		let hierarchy = await RemoteRepositoryAPI.getRepository();
 		if (hierarchy !== null) {
 			this.hierarchy = hierarchy;
 			return true;

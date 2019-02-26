@@ -41,7 +41,8 @@ export default class SearchFileElement extends BaseElement {
 								@click=${this.fileEditClickHandler}>
 								${this.faTemplate('fas-edit')}
 							</button>
-							<button type="button" class="btn btn-light"
+							<button type="button" class="btn btn-light
+								${this.options.canAdminister ? '' : 'd-none'}"
 								@click=${this.fileHomeClickHandler}>
 								${this.faTemplate(`${this.options.isHomeItem ? 'fas' : 'far'}-home`)}
 							</button>

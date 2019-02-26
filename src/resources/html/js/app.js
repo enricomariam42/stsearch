@@ -7,17 +7,23 @@ import {noty} from './vendor/noty';
 import '../css/app.scss';
 
 import {isProduction} from './helpers';
+
+import RemoteRepositoryAPI from './api/remote-repository-api';
 import Repository from './repository';
+
 import SearchContainerElement from './elements/search-container-element';
 
 window.addEventListener('load', async () => {
-	let container = document.querySelector('#main');
 	let repository = new Repository();
+	let canAdminister = await RemoteRepositoryAPI.canAdminister();
+
+	let container = document.querySelector('#main');
 	let searchContainerElement = new SearchContainerElement(container, {
 		pageNumber: 0,
 		pagePlaces: 5,
 		pageSize: 24,
-		repository
+		repository,
+		canAdminister
 	});
 
 	let result = await repository.refresh();
@@ -28,6 +34,6 @@ window.addEventListener('load', async () => {
 	}
 
 	if (!isProduction) {
-		window.STSearch = {repository, searchContainerElement};
+		window.STSearch = {repository, canAdminister, searchContainerElement};
 	}
 });

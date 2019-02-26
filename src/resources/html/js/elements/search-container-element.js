@@ -7,7 +7,7 @@ import {noty} from '../vendor/noty';
 
 import {trigger} from '../helpers';
 
-import RemoteFileMetadata from '../remote-file-metadata';
+import RemoteRepositoryAPI from '../api/remote-repository-api';
 import {EMPTY_HIERARCHY} from '../repository';
 
 import BaseElement from './base-element';
@@ -64,6 +64,7 @@ export default class SearchContainerElement extends BaseElement {
 		let filesEnd = filesStart + this.options.pageSize;
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
+			canAdminister: this.options.canAdminister,
 			fileEditCallback: file => {
 				if (!file.isReadonly) {
 					this.currentEditingFile = file;
@@ -72,7 +73,7 @@ export default class SearchContainerElement extends BaseElement {
 			},
 			fileHomeCallback: async fileData => {
 				let isHomeItem = !fileData.isHomeItem;
-				let result = await RemoteFileMetadata.setMetadata({path: fileData.path, isHomeItem});
+				let result = await RemoteRepositoryAPI.setMetadata({path: fileData.path, isHomeItem});
 
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(fileData.path);
@@ -85,7 +86,7 @@ export default class SearchContainerElement extends BaseElement {
 			},
 			fileFavoriteCallback: async fileData => {
 				let isFavorite = !fileData.isFavorite;
-				let result = await RemoteFileMetadata.setMetadata({path: fileData.path, isFavorite});
+				let result = await RemoteRepositoryAPI.setMetadata({path: fileData.path, isFavorite});
 
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(fileData.path);
@@ -115,7 +116,7 @@ export default class SearchContainerElement extends BaseElement {
 						'file.description': data.get('description'),
 						thumbnail: data.get('thumbnail')
 					};
-					let result = await RemoteFileMetadata.setMetadata({path: this.currentEditingFile.path, properties});
+					let result = await RemoteRepositoryAPI.setMetadata({path: this.currentEditingFile.path, properties});
 
 					if (result !== null && result.length > 0) {
 						assignIn(this.currentEditingFile.properties, properties);
