@@ -1,5 +1,7 @@
 import {html} from 'lit-html';
 
+import {jsonSafeParse} from '../helpers';
+
 import BaseElement from './base-element';
 import SearchFileTagElement from './search-file-tag-element';
 
@@ -10,20 +12,16 @@ export default class SearchFileElement extends BaseElement {
 	}
 
 	get template() {
-		let tagTemplates = [
-			new SearchFileTagElement(null, {
-				name: 'Example 1',
+		let tagTemplates;
+		if (this.options.properties.tags) {
+			let tags = jsonSafeParse(this.options.properties.tags, []);
+			tagTemplates = tags.map(tag => new SearchFileTagElement(null, {
+				name: tag.value,
 				fileTagCallback: this.options.fileTagCallback
-			}).template,
-			new SearchFileTagElement(null, {
-				name: 'Example 2',
-				fileTagCallback: this.options.fileTagCallback
-			}).template,
-			new SearchFileTagElement(null, {
-				name: 'Example 3',
-				fileTagCallback: this.options.fileTagCallback
-			}).template
-		];
+			}).template);
+		} else {
+			tagTemplates = [];
+		}
 
 		return html`
 			<div id="${this.id}"

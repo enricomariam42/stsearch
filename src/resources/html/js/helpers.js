@@ -34,3 +34,12 @@ export const formDataToMap = formData => {
 };
 
 export const objToSearchParams = obj => new URLSearchParams(obj).toString();
+
+export const jsonSafeParse = (str, defaultValue = null) => {
+	try {
+		return JSON.parse(str);
+	} catch (error) {
+		console.error(error);
+		return defaultValue;
+	}
+};

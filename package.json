@@ -23,6 +23,7 @@
     "@fortawesome/free-brands-svg-icons": "~5.7.2",
     "@fortawesome/free-regular-svg-icons": "~5.7.2",
     "@fortawesome/free-solid-svg-icons": "~5.7.2",
+    "@yaireo/tagify": "~2.13.0",
     "bootstrap": "~4.3.1",
     "formdata-polyfill": "~3.0.15",
     "jquery": "~3.3.1",

@@ -3,6 +3,7 @@ import debounce from 'lodash/debounce';
 import merge from 'lodash/merge';
 import {html} from 'lit-html';
 
+import {Tagify} from '../vendor/tagify';
 import {noty} from '../vendor/noty';
 
 import {trigger} from '../helpers';
@@ -129,7 +130,8 @@ export default class SearchContainerElement extends BaseElement {
 						title: formMap.get('title'),
 						description: formMap.get('description'),
 						properties: {
-							thumbnail: formMap.get('thumbnail')
+							thumbnail: formMap.get('thumbnail'),
+							tags: formMap.get('tags')
 						}
 					};
 					let result = await RemoteRepositoryAPI.setMetadata(metadata);
@@ -177,9 +179,15 @@ export default class SearchContainerElement extends BaseElement {
 		super.render();
 
 		if (this.currentEditingFile) {
+			let tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
+			this.tagify = new Tagify(tagInput);
+
 			this.searchFileEditModalElement.$ref.modal('show');
 			this.searchFileEditModalElement.$ref.one('hide.bs.modal', () => {
 				this.currentEditingFile = null;
+				if (this.tagify) {
+					this.tagify.destroy();
+				}
 			});
 		}
 	}

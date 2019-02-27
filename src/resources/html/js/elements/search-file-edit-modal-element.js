@@ -66,7 +66,8 @@ export default class SearchFileEditModalElement extends BaseElement {
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">Tags</div>
-											<input name="tags" type="text" class="form-control" value="">
+											<input name="tags" type="hidden" class="form-control"
+												value="${this.options.file.properties.tags ? this.options.file.properties.tags : ''}">
 										</label>
 									</div>
 								</div>

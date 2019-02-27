@@ -13,6 +13,13 @@ $env: development !default;
 	margin-left: rem(5);
 }
 
+/* SVG symbol class for Font Awesome */
+.icon {
+	width: 1em;
+	height: 1em;
+	vertical-align: -.125em;
+}
+
 /* Responsive version for sizes (implements twbs/bootstrap#21943) */
 @each $breakpoint in map-keys($grid-breakpoints) {
 	@if $breakpoint != 'xs' {
@@ -27,12 +34,21 @@ $env: development !default;
 	}
 }
 
-.icon {
-	width: 1em;
-	height: 1em;
-	vertical-align: -.125em;
+/* Make Tagify fields display correctly with Bootstrap */
+.form-control.tagify {
+	height: auto;
+	font-size: 15px;
+
+	> tag > div::before {
+		box-shadow: 0 0 0 rem(20) #E5E5E5 inset;
+	}
+
+	> tag:hover:not([readonly]) > div::before {
+		box-shadow: 0 0 0 rem(20) #D3E2E2 inset;
+	}
 }
 
+/* Responsive square box */
 .square-box {
 	position: relative;
 	width: 100%;
