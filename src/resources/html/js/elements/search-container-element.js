@@ -19,6 +19,11 @@ import SearchFileEditModalElement from './search-file-edit-modal-element';
 import SearchPaginationElement from './search-pagination-element';
 
 export default class SearchContainerElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-container-element';
+	}
+
 	get template() {
 		this.searchFilterFormElement = new SearchFilterFormElement(null, {
 			formSubmitCallback: data => {

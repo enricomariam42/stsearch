@@ -4,6 +4,11 @@ import BaseElement from './base-element';
 import SearchFileTagElement from './search-file-tag-element';
 
 export default class SearchFileElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-file-element';
+	}
+
 	get template() {
 		let tagTemplates = [
 			new SearchFileTagElement(null, {

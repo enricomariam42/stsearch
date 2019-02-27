@@ -5,6 +5,11 @@ import {formDataToMap} from '../helpers';
 import BaseElement from './base-element';
 
 export default class SearchFileEditModalElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-file-edit-modal-element';
+	}
+
 	get template() {
 		return html`
 			<form id="${this.id}" class="${this.className} modal" tabindex="-1"

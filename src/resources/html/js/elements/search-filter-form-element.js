@@ -5,6 +5,11 @@ import {formDataToMap} from '../helpers';
 import BaseElement from './base-element';
 
 export default class SearchFilterFormElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-filter-form-element';
+	}
+
 	get template() {
 		return html`
 			<form id="${this.id}" class="${this.className}"

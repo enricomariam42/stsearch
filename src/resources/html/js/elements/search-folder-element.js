@@ -3,6 +3,11 @@ import {html} from 'lit-html';
 import BaseElement from './base-element';
 
 export default class SearchFolderElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-folder-element';
+	}
+
 	get template() {
 		return html`
 			<button id="${this.id}" type="button" class="${this.className} btn btn-light border m-1"

@@ -4,6 +4,11 @@ import {html} from 'lit-html';
 import BaseElement from './base-element';
 
 export default class SearchPaginationElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-pagination-element';
+	}
+
 	get template() {
 		let isFirstPage = this.options.pageNumber < 1;
 		let isLastPage = this.options.pageNumber + 1 >= this.options.pageTotal;

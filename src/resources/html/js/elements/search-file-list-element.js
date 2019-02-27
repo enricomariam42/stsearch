@@ -4,6 +4,11 @@ import BaseElement from './base-element';
 import SearchFileElement from './search-file-element';
 
 export default class SearchFileListElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-file-list-element';
+	}
+
 	get template() {
 		let fileTemplates;
 		if (Array.isArray(this.options.files)) {

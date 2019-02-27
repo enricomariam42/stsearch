@@ -6,6 +6,7 @@ import {isProduction} from '../helpers';
 
 export default class BaseElement {
 	constructor(container = null, options = {}) {
+		this.className = 'base-element';
 		this.container = container;
 
 		/* The following line causes the element to be rendered automatically when the options
@@ -27,21 +28,6 @@ export default class BaseElement {
 		});
 
 		return this.id;
-	}
-
-	get className() {
-		let className = this.constructor.name
-			.replace(/(.+?)([A-Z])/g, '$1-$2')
-			.toLowerCase();
-
-		Object.defineProperty(this, 'className', {
-			enumerable: true,
-			configurable: false,
-			writable: false,
-			value: className
-		});
-
-		return this.className;
 	}
 
 	get template() {

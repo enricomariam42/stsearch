@@ -4,6 +4,11 @@ import BaseElement from './base-element';
 import SearchFolderElement from './search-folder-element';
 
 export default class SearchFolderListElement extends BaseElement {
+	constructor(...args) {
+		super(...args);
+		this.className = 'search-folder-list-element';
+	}
+
 	get template() {
 		let previousFolder;
 		if (this.options.hasParent) {
