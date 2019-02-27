@@ -88,7 +88,7 @@ module.exports = (env, argv) => {
 				]
 			}, {
 				test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
-				use: {loader: 'file-loader', options: {name: '../html/css/fonts/[name].[ext]'}}
+				use: {loader: 'file-loader', options: {name: './fonts/[name].[ext]'}}
 			}, {
 				test: /\.(png|gif|jpg)$/i,
 				use: {loader: 'file-loader', options: {name: '../images/[name].[ext]'}}
