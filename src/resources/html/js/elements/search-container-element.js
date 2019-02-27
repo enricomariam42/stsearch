@@ -1,6 +1,6 @@
-import assignIn from 'lodash/assignIn';
 import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
+import merge from 'lodash/merge';
 import {html} from 'lit-html';
 
 import {noty} from '../vendor/noty';
@@ -70,19 +70,24 @@ export default class SearchContainerElement extends BaseElement {
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
 			canAdminister: this.options.canAdminister,
-			fileEditCallback: file => {
-				if (!file.isReadonly) {
+			fileEditCallback: fileData => {
+				if (!fileData.isReadonly) {
+					let file = this.options.repository.fromPath(fileData.path);
 					this.currentEditingFile = file;
+
 					this.render();
 				}
 			},
 			fileHomeCallback: async fileData => {
-				let isHomeItem = !fileData.isHomeItem;
-				let result = await RemoteRepositoryAPI.setMetadata({path: fileData.path, isHomeItem});
+				let metadata = {
+					path: fileData.path,
+					isHomeItem: !fileData.isHomeItem
+				};
+				let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
 				if (result !== null && result.length > 0) {
-					let file = this.options.repository.fromPath(fileData.path);
-					file.isHomeItem = isHomeItem;
+					let file = this.options.repository.fromPath(metadata.path);
+					merge(file, metadata);
 
 					this.render();
 				} else {
@@ -90,12 +95,15 @@ export default class SearchContainerElement extends BaseElement {
 				}
 			},
 			fileFavoriteCallback: async fileData => {
-				let isFavorite = !fileData.isFavorite;
-				let result = await RemoteRepositoryAPI.setMetadata({path: fileData.path, isFavorite});
+				let metadata = {
+					path: fileData.path,
+					isFavorite: !fileData.isFavorite
+				};
+				let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
 				if (result !== null && result.length > 0) {
-					let file = this.options.repository.fromPath(fileData.path);
-					file.isFavorite = isFavorite;
+					let file = this.options.repository.fromPath(metadata.path);
+					merge(file, metadata);
 
 					this.render();
 				} else {
@@ -115,19 +123,24 @@ export default class SearchContainerElement extends BaseElement {
 		this.searchFileEditModalElement = this.currentEditingFile
 			? new SearchFileEditModalElement(null, {
 				file: this.currentEditingFile,
-				formSubmitCallback: async data => {
-					let properties = {
-						'file.title': data.get('title'),
-						'file.description': data.get('description'),
-						thumbnail: data.get('thumbnail')
+				formSubmitCallback: async formMap => {
+					let metadata = {
+						path: formMap.get('path'),
+						title: formMap.get('title'),
+						description: formMap.get('description'),
+						properties: {
+							thumbnail: formMap.get('thumbnail')
+						}
 					};
-					let result = await RemoteRepositoryAPI.setMetadata({path: this.currentEditingFile.path, properties});
+					let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
 					if (result !== null && result.length > 0) {
-						assignIn(this.currentEditingFile.properties, properties);
-						this.currentEditingFile = null;
+						let file = this.options.repository.fromPath(metadata.path);
+						merge(file, metadata);
 
+						this.currentEditingFile = null;
 						this.searchFileEditModalElement.$ref.modal('hide');
+
 						this.render();
 					} else {
 						noty.error('Error saving data');

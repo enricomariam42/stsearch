@@ -26,13 +26,14 @@ export default class SearchFileElement extends BaseElement {
 		];
 
 		return html`
-			<div id="${this.id}" class="${this.className}
-				file-extension-${this.options.extension}
-				file-recent-${this.options.isRecent ? 'on' : 'off'}
-				file-favorite-${this.options.isFavorite ? 'on' : 'off'}
-				file-home-item-${this.options.isHomeItem ? 'on' : 'off'}
-				file-readonly-${this.options.isReadonly ? 'on' : 'off'}
-				col-sm-12 col-lg-6 col-xl-4 mb-3">
+			<div id="${this.id}"
+				class="${this.className} col-sm-12 col-lg-6 col-xl-4 mb-3
+					file-extension-${this.options.extension}
+					file-recent-${this.options.isRecent ? 'on' : 'off'}
+					file-favorite-${this.options.isFavorite ? 'on' : 'off'}
+					file-home-item-${this.options.isHomeItem ? 'on' : 'off'}
+					file-readonly-${this.options.isReadonly ? 'on' : 'off'}
+				">
 				<div class="card h-100">
 					<div class="card-header">
 						<div class="card-logo btn-group m-n2 float-left">
@@ -63,28 +64,28 @@ export default class SearchFileElement extends BaseElement {
 					</div>
 					<div class="card-body">
 						<div class="row no-gutters">
-						${this.options.properties.thumbnail ? html`
-							<div class="col-sm-2 col-lg-4 mb-2 d-flex justify-content-center align-items-start">
-								<img class="card-img w-auto mw-100" style="max-height: 128px" src="${this.options.properties.thumbnail}">
+							<div class="col-sm-2 col-lg-4 mb-2">
+								<div class="square-box square-box-centered border" style="max-height: 128px; max-width: 128px">
+									<div class="square-box-content p-1 text-muted">
+									${this.options.properties.thumbnail ? html`
+										<img class="card-img" src="${this.options.properties.thumbnail}">
+									` : html`
+										${this.faTemplate('fas-camera-retro', 'w-auto mw-100 h-50')}
+										No image
+									`}
+									</div>
+								</div>
 							</div>
-							<div class="col-sm-10 col-lg-8 px-2">
-								<h5 class="card-title">
-									${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}
-								</h5>
-								<p class="card-text text-truncate" title="${this.options.properties['file.description']}">
-									${this.options.properties['file.description']}
+							<div class="col-sm-10 col-lg-8 px-3">
+								<h5 class="card-title">${this.options.title}</h5>
+								<p class="card-text" title="${this.options.description}">
+								${this.options.description.length > 100 ? html`
+									${this.options.description.substring(0, 100)}...
+								` : html`
+									${this.options.description}
+								`}
 								</p>
 							</div>
-						` : html`
-							<div class="col-12 px-2">
-								<h5 class="card-title">
-									${this.options.properties['file.title'] ? this.options.properties['file.title'] : this.options.name}
-								</h5>
-								<p class="card-text text-truncate" title="${this.options.properties['file.description']}">
-									${this.options.properties['file.description']}
-								</p>
-							</div>
-						`}
 						</div>
 					</div>
 					<div class="card-footer">

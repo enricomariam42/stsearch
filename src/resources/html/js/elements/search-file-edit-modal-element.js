@@ -23,13 +23,15 @@ export default class SearchFileEditModalElement extends BaseElement {
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-sm-12 col-lg-3 mb-3">
-									<div class="d-flex flex-column justify-content-center align-items-center">
-									${this.options.file.properties.thumbnail ? html`
-										<img class="card-img w-auto h-auto" style="max-height: 128px" src="${this.options.file.properties.thumbnail}">
-									` : html`
-										${this.faTemplate('far-image', 'w-50 h-auto')}
-										<div>No image available</div>
-									`}
+									<div class="square-box square-box-centered border" style="max-height: 128px; max-width: 128px">
+										<div class="square-box-content p-1 text-muted">
+										${this.options.file.properties.thumbnail ? html`
+											<img class="card-img" src="${this.options.file.properties.thumbnail}">
+										` : html`
+											${this.faTemplate('fas-camera-retro', 'w-auto mw-100 h-50')}
+											No image
+										`}
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-lg-9">
@@ -44,7 +46,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 										<label class="w-100">
 											<div class="mb-2">Title</div>
 											<input name="title" type="text" class="form-control" placeholder="Title..." maxlength="100"
-												value="${this.options.file.properties['file.title'] ? this.options.file.properties['file.title'] : this.options.file.name}">
+												value="${this.options.file.title}">
 										</label>
 									</div>
 									<div class="form-group">
@@ -58,7 +60,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 										<label class="w-100">
 											<div class="mb-2">Description</div>
 											<textarea name="description" type="text" class="form-control" placeholder="Description..." rows="3" maxlength="500"
-											>${this.options.file.properties['file.description']}</textarea>
+											>${this.options.file.description}</textarea>
 										</label>
 									</div>
 									<div class="form-group">

@@ -32,3 +32,35 @@ $env: development !default;
 	height: 1em;
 	vertical-align: -.125em;
 }
+
+.square-box {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+
+	&:before {
+		display: block;
+		padding-top: 100%;
+		content: '';
+	}
+
+	> .square-box-content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+
+	&.square-box-centered {
+		margin: 0 auto;
+
+		> .square-box-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+	}
+}
