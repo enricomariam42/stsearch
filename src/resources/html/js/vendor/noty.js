@@ -1,4 +1,6 @@
 import Noty from 'noty';
+import 'noty/src/noty.scss';
+import 'noty/src/themes/bootstrap-v4.scss';
 
 export const NOTY_DEFAULTS = {
 	container: '#noty',
