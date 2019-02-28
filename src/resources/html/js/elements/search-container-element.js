@@ -58,8 +58,9 @@ export default class SearchContainerElement extends BaseElement {
 		});
 
 		this.searchFolderListElement = new SearchFolderListElement(null, {
+			currentFolder: this.options.repository.currentFolder,
+			parentFolder: this.options.repository.parentFolder,
 			folders: this.options.repository.nestedFolders,
-			hasParent: this.options.repository.parentFolder !== null,
 			folderUpCallback: () => {
 				this.options.repository.currentFolder = this.options.repository.parentFolder;
 				this.render();

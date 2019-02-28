@@ -10,11 +10,14 @@ export default class SearchFolderElement extends BaseElement {
 
 	get template() {
 		return html`
-			<button id="${this.id}" type="button" class="${this.className} btn btn-light border m-1"
-				@click=${this.folderClickHandler}>
-				${this.faTemplate(this.options.icon, this.options.name ? 'mr-1' : '')}
-				${this.options.name}
-			</button>
+			<div id="${this.id}" class="${this.className} col-sm-6 col-md-4 col-lg-3 col-xl-2 p-1">
+				<button type="button" class="btn btn-light border w-100 text-truncate"
+					title="${this.options.name}"
+					@click=${this.folderClickHandler}>
+					${this.faTemplate('fas-folder', 'mr-1')}
+					${this.options.name}
+				</button>
+			</div>
 		`;
 	}
 

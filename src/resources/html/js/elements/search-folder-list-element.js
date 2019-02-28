@@ -10,22 +10,11 @@ export default class SearchFolderListElement extends BaseElement {
 	}
 
 	get template() {
-		let previousFolder;
-		if (this.options.hasParent) {
-			previousFolder = new SearchFolderElement(null, {
-				icon: 'fas-arrow-left',
-				folderClickCallback: this.options.folderUpCallback
-			});
-		} else {
-			previousFolder = '';
-		}
-
 		let folderTemplates;
 		if (Array.isArray(this.options.folders)) {
 			folderTemplates = this.options.folders.map(options => {
 				let folder = new SearchFolderElement(null, {
 					...options,
-					icon: 'fas-folder',
 					folderClickCallback: this.options.folderDownCallback
 				});
 				return folder.template;
@@ -35,10 +24,41 @@ export default class SearchFolderListElement extends BaseElement {
 		}
 
 		return html`
-			<div id="${this.id}" class="${this.className} m-n1">
-				${previousFolder.template}
-				${folderTemplates}
+			<div id="${this.id}" class="${this.className} row">
+				<div class="col">
+					<div class="row no-gutters mb-2">
+						<div class="col">
+							<div class="input-group input-group-sm">
+								<div class="input-group-prepend">
+									<button class="btn input-group-text" type="button"
+										@click=${this.arrowBackClickHandler}
+										?disabled=${!this.options.parentFolder}>
+										${this.faTemplate('fas-arrow-left')}
+									</button>
+								</div>
+								<input type="text" class="form-control" readonly
+									value="${this.options.currentFolder.path}">
+							</div>
+						</div>
+					</div>
+					<div class="row no-gutters m-n1">
+						${folderTemplates}
+					</div>
+				</div>
 			</div>
 		`;
+	}
+
+	get arrowBackClickHandler() {
+		return {
+			capture: true,
+			passive: true,
+			once: false,
+			handleEvent: () => {
+				if (typeof this.options.folderUpCallback === 'function') {
+					this.options.folderUpCallback(this.options.parentFolder);
+				}
+			}
+		};
 	}
 }
