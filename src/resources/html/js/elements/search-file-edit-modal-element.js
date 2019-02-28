@@ -17,7 +17,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">${this.options.file.properties['file.title']}</h5>
+							<h5 class="modal-title">${this.options.file.title}</h5>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">

@@ -148,7 +148,7 @@ export default class Repository {
 
 	orderFiles(files) {
 		return orderBy(files, [
-			file => file.properties['file.title'],
+			file => file.title,
 			file => file.name
 		]);
 	}

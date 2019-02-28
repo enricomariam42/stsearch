@@ -1,3 +1,5 @@
+import mergeWith from 'lodash/mergeWith';
+
 export const isProduction = process.env.NODE_ENV === 'production';
 
 export const trigger = (type, ref, init = {}) => ref.dispatchEvent(
@@ -13,6 +15,8 @@ export const toLocaleDateTime = str => {
 	let date = new Date(str);
 	return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 };
+
+export const objToSearchParams = obj => new URLSearchParams(obj).toString();
 
 export const formDataToMap = formData => {
 	let formMap = new Map();
@@ -33,7 +37,13 @@ export const formDataToMap = formData => {
 	return formMap;
 };
 
-export const objToSearchParams = obj => new URLSearchParams(obj).toString();
+export const override = (obj, ...srcs) => {
+	return mergeWith(obj, ...srcs, (objValue, srcValue) => {
+		if (Array.isArray(objValue)) {
+			return srcValue;
+		}
+	});
+};
 
 export const safeJSON = {
 	parse: (str, defaultValue = null) => {

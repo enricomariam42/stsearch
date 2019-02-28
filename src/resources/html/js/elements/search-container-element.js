@@ -1,4 +1,3 @@
-import assign from 'lodash/assign';
 import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
 import {html} from 'lit-html';
@@ -6,7 +5,7 @@ import {html} from 'lit-html';
 import {Tagify} from '../vendor/tagify';
 import {noty} from '../vendor/noty';
 
-import {trigger, safeJSON} from '../helpers';
+import {trigger, override, safeJSON} from '../helpers';
 
 import RemoteRepositoryAPI from '../api/remote-repository-api';
 import {EMPTY_HIERARCHY} from '../repository';
@@ -28,14 +27,16 @@ export default class SearchContainerElement extends BaseElement {
 	get template() {
 		this.searchFilterFormElement = new SearchFilterFormElement(null, {
 			formSubmitCallback: formMap => {
-				this.options.repository.searchTerms = formMap.get('search-terms');
-				this.options.repository.searchInTitle = formMap.get('search-in-title') === 'true';
-				this.options.repository.searchInDescription = formMap.get('search-in-description') === 'true';
-				this.options.repository.searchInTags = formMap.get('search-in-tags') === 'true';
-				this.options.repository.allowedExtensions = formMap.get('allowed-extensions');
-				this.options.repository.dateMin = formMap.get('date-min');
-				this.options.repository.dateMax = formMap.get('date-max');
-				this.options.repository.dateProperty = formMap.get('date-property');
+				override(this.options.repository, {
+					searchTerms: formMap.get('search-terms'),
+					searchInTitle: formMap.get('search-in-title') === 'true',
+					searchInDescription: formMap.get('search-in-description') === 'true',
+					searchInTags: formMap.get('search-in-tags') === 'true',
+					allowedExtensions: formMap.get('allowed-extensions'),
+					dateMin: formMap.get('date-min'),
+					dateMax: formMap.get('date-max'),
+					dateProperty: formMap.get('date-property')
+				});
 				this.options.repository.applyFilters();
 				this.options.pageNumber = 0;
 				this.render();
@@ -91,7 +92,7 @@ export default class SearchContainerElement extends BaseElement {
 
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(metadata.path);
-					assign(file, metadata);
+					override(file, metadata);
 
 					this.render();
 				} else {
@@ -107,7 +108,7 @@ export default class SearchContainerElement extends BaseElement {
 
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(metadata.path);
-					assign(file, metadata);
+					override(file, metadata);
 
 					this.render();
 				} else {
@@ -141,7 +142,7 @@ export default class SearchContainerElement extends BaseElement {
 
 					if (result !== null && result.length > 0) {
 						let file = this.options.repository.fromPath(metadata.path);
-						assign(file, metadata);
+						override(file, metadata);
 
 						this.currentEditingFile = null;
 						this.searchFileEditModalElement.$ref.modal('hide');
