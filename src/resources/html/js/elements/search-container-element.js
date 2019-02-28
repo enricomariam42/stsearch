@@ -1,12 +1,12 @@
+import assign from 'lodash/assign';
 import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
-import merge from 'lodash/merge';
 import {html} from 'lit-html';
 
 import {Tagify} from '../vendor/tagify';
 import {noty} from '../vendor/noty';
 
-import {trigger} from '../helpers';
+import {trigger, safeJSON} from '../helpers';
 
 import RemoteRepositoryAPI from '../api/remote-repository-api';
 import {EMPTY_HIERARCHY} from '../repository';
@@ -27,12 +27,15 @@ export default class SearchContainerElement extends BaseElement {
 
 	get template() {
 		this.searchFilterFormElement = new SearchFilterFormElement(null, {
-			formSubmitCallback: data => {
-				this.options.repository.searchTerms = data.get('search-terms');
-				this.options.repository.allowedExtensions = data.get('allowed-extensions');
-				this.options.repository.dateMin = data.get('date-min');
-				this.options.repository.dateMax = data.get('date-max');
-				this.options.repository.dateProperty = data.get('date-property');
+			formSubmitCallback: formMap => {
+				this.options.repository.searchTerms = formMap.get('search-terms');
+				this.options.repository.searchInTitle = formMap.get('search-in-title') === 'true';
+				this.options.repository.searchInDescription = formMap.get('search-in-description') === 'true';
+				this.options.repository.searchInTags = formMap.get('search-in-tags') === 'true';
+				this.options.repository.allowedExtensions = formMap.get('allowed-extensions');
+				this.options.repository.dateMin = formMap.get('date-min');
+				this.options.repository.dateMax = formMap.get('date-max');
+				this.options.repository.dateProperty = formMap.get('date-property');
 				this.options.repository.applyFilters();
 				this.options.pageNumber = 0;
 				this.render();
@@ -88,7 +91,7 @@ export default class SearchContainerElement extends BaseElement {
 
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(metadata.path);
-					merge(file, metadata);
+					assign(file, metadata);
 
 					this.render();
 				} else {
@@ -104,7 +107,7 @@ export default class SearchContainerElement extends BaseElement {
 
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(metadata.path);
-					merge(file, metadata);
+					assign(file, metadata);
 
 					this.render();
 				} else {
@@ -112,8 +115,8 @@ export default class SearchContainerElement extends BaseElement {
 				}
 			},
 			fileTagCallback: tag => {
-				console.log('tag', tag);
-				noty.info('[TODO] Tag');
+				this.searchFilterFormElement.ref['search-terms'].value = tag.value;
+				trigger('submit', this.searchFilterFormElement.ref);
 			},
 			fileOpenCallback: file => {
 				console.log('open', file);
@@ -131,14 +134,14 @@ export default class SearchContainerElement extends BaseElement {
 						description: formMap.get('description'),
 						properties: {
 							thumbnail: formMap.get('thumbnail'),
-							tags: formMap.get('tags')
+							tags: safeJSON.parse(formMap.get('tags'), [])
 						}
 					};
 					let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
 					if (result !== null && result.length > 0) {
 						let file = this.options.repository.fromPath(metadata.path);
-						merge(file, metadata);
+						assign(file, metadata);
 
 						this.currentEditingFile = null;
 						this.searchFileEditModalElement.$ref.modal('hide');

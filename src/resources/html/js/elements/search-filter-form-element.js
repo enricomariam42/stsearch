@@ -22,6 +22,39 @@ export default class SearchFilterFormElement extends BaseElement {
 									<span class="input-group-text">
 										${this.faTemplate('fas-search')}
 									</span>
+									<button type="button" class="btn dropdown-toggle dropdown-toggle-split input-group-text" data-toggle="dropdown"></button>
+									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
+										<div class="dropdown-item p-0">
+											<div class="px-3 pb-1">Search in:</div>
+										</div>
+										<div class="dropdown-item p-0">
+											<div class="btn-group-toggle" data-toggle="buttons">
+												<label class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 active"
+													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
+													<input name="search-in-title" value="true" type="checkbox" checked autocomplete="off">
+													Title
+												</label>
+											</div>
+										</div>
+										<div class="dropdown-item p-0">
+											<div class="btn-group-toggle" data-toggle="buttons">
+												<label class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 active"
+													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
+													<input name="search-in-description" value="true" type="checkbox" checked autocomplete="off">
+													Description
+												</label>
+											</div>
+										</div>
+										<div class="dropdown-item p-0">
+											<div class="btn-group-toggle" data-toggle="buttons">
+												<label class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 active"
+													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
+													<input name="search-in-tags" value="true" type="checkbox" checked autocomplete="off">
+													Tags
+												</label>
+											</div>
+										</div>
+									</div>
 								</div>
 								<input name="search-terms" type="search" class="form-control" placeholder="Search..."
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>

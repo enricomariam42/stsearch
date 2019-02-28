@@ -1,7 +1,5 @@
 import {html} from 'lit-html';
 
-import {jsonSafeParse} from '../helpers';
-
 import BaseElement from './base-element';
 import SearchFileTagElement from './search-file-tag-element';
 
@@ -13,12 +11,13 @@ export default class SearchFileElement extends BaseElement {
 
 	get template() {
 		let tagTemplates;
-		if (this.options.properties.tags) {
-			let tags = jsonSafeParse(this.options.properties.tags, []);
-			tagTemplates = tags.map(tag => new SearchFileTagElement(null, {
-				name: tag.value,
-				fileTagCallback: this.options.fileTagCallback
-			}).template);
+		if (Array.isArray(this.options.properties.tags)) {
+			tagTemplates = this.options.properties.tags.map(tag => {
+				return new SearchFileTagElement(null, {
+					...tag,
+					fileTagCallback: this.options.fileTagCallback
+				}).template;
+			});
 		} else {
 			tagTemplates = [];
 		}

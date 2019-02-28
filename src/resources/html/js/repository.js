@@ -5,6 +5,9 @@ import orderBy from 'lodash/orderBy';
 import RemoteRepositoryAPI from './api/remote-repository-api';
 
 export const DEFAULT_SEARCH_TERMS = '';
+export const DEFAULT_SEARCH_IN_TITLE = true;
+export const DEFAULT_SEARCH_IN_DESCRIPTION = true;
+export const DEFAULT_SEARCH_IN_TAGS = true;
 export const DEFAULT_ALLOWED_EXTENSIONS = ['xjpivot', 'adhoc|prpt', 'std', 'sta', 'wcdf'];
 export const DEFAULT_DATE_MIN = new Date(-8640000000000000);
 export const DEFAULT_DATE_MAX = new Date(8640000000000000);
@@ -77,20 +80,21 @@ export default class Repository {
 	set currentFolder(currentFolder) {
 		let folders = [];
 		let files = [];
+
 		let self = this;
-		(function flatten(children, addFolders) {
+		(function flatten(children, folderDepth = 1) {
 			children.forEach(child => {
 				if (child.isFolder) {
-					if (addFolders) {
+					if (folderDepth > 0) {
 						folders.push(child);
 					}
 
-					flatten(child.children, false);
+					flatten(child.children, folderDepth - 1);
 				} else if (self.isFileFiltered(child)) {
 					files.push(child);
 				}
 			});
-		})(currentFolder.children, true);
+		})(currentFolder.children);
 
 		this._currentFolder = currentFolder;
 		this.nestedFolders = this.orderFiles(folders);
@@ -103,6 +107,9 @@ export default class Repository {
 
 	initializeFilters() {
 		this.searchTerms = DEFAULT_SEARCH_TERMS;
+		this.searchInTitle = DEFAULT_SEARCH_IN_TITLE;
+		this.searchInDescription = DEFAULT_SEARCH_IN_DESCRIPTION;
+		this.searchInTags = DEFAULT_SEARCH_IN_TAGS;
 		this.allowedExtensions = DEFAULT_ALLOWED_EXTENSIONS;
 		this.dateMin = DEFAULT_DATE_MIN;
 		this.dateMax = DEFAULT_DATE_MAX;
@@ -121,10 +128,17 @@ export default class Repository {
 	isFileFiltered(file) {
 		return (
 			this._allowedExtensionsRegex.test(file.extension)
-		) && (
-			this._searchTermsRegex.test(file.properties['file.title']) ||
-			this._searchTermsRegex.test(file.properties['file.description'])
-		) && (
+		) && ((
+			this.searchInTitle &&
+			this._searchTermsRegex.test(file.title)
+		) || (
+			this.searchInDescription &&
+			this._searchTermsRegex.test(file.description)
+		) || (
+			this.searchInTags &&
+			file.properties.tags &&
+			file.properties.tags.some(tag => this._searchTermsExactRegex.test(tag.value))
+		)) && (
 			inRange(
 				new Date(file[this.dateProperty]).getTime(),
 				this._dateMinEpoch, this._dateMaxEpoch
@@ -146,6 +160,7 @@ export default class Repository {
 	set searchTerms(searchTerms) {
 		this._searchTerms = searchTerms ? searchTerms : DEFAULT_SEARCH_TERMS;
 		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
+		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
 	}
 
 	get allowedExtensions() {

@@ -11,11 +11,11 @@ export default class SearchFileTagElement extends BaseElement {
 	get template() {
 		return html`
 			<a id="${this.id}"
-				title="${this.options.name}"
+				title="${this.options.value}"
 				class="${this.className} badge"
 				@click=${this.tagClickHandler}
 				href="javascript:void(0)">
-				${this.options.name}
+				${this.options.value}
 			</a>
 		`;
 	}

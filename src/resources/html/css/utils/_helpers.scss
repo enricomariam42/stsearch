@@ -34,6 +34,31 @@ $env: development !default;
 	}
 }
 
+/* Implementation of a multiselect dropdown */
+.dropdown-menu.dropdown-menu-multiselect > .dropdown-item {
+	&:active, &:hover, &:focus {
+		color: inherit;
+		background-color: transparent;
+	}
+
+	> .btn-group-toggle > .btn {
+		&.btn-link {
+			color: inherit;
+			cursor: pointer;
+		}
+
+		&::before {
+			display: inline-block;
+			width: 1em;
+			content: '';
+		}
+
+		&.active::before {
+			content: '✓';
+		}
+	}
+}
+
 /* Make Tagify fields display correctly with Bootstrap */
 .form-control.tagify {
 	height: auto;

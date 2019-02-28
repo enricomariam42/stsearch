@@ -1,6 +1,6 @@
 import {html} from 'lit-html';
 
-import {formDataToMap} from '../helpers';
+import {formDataToMap, safeJSON} from '../helpers';
 
 import BaseElement from './base-element';
 
@@ -67,7 +67,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 										<label class="w-100">
 											<div class="mb-2">Tags</div>
 											<input name="tags" type="hidden" class="form-control"
-												value="${this.options.file.properties.tags ? this.options.file.properties.tags : ''}">
+												value="${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}">
 										</label>
 									</div>
 								</div>
