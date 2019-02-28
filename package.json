@@ -18,6 +18,7 @@
     "serve:prod": "webpack-dev-server --mode=production"
   },
   "dependencies": {
+    "@appnest/lit-translate": "~1.1.10",
     "@fortawesome/fontawesome-free": "~5.7.2",
     "@fortawesome/fontawesome-svg-core": "~1.2.15",
     "@fortawesome/free-brands-svg-icons": "~5.7.2",
