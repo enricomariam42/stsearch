@@ -1,0 +1,18 @@
+.search-file-tag-element {
+	margin: rem(1);
+	max-width: 100px;
+
+	font-size: 1em;
+	font-weight: 400;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	color: map-get($theme-colors, dark);
+	background-color: map-get($theme-colors, light);
+	border: rem(1) solid lighten(map-get($theme-colors, dark), 60%);
+
+	&:hover {
+		color: inherit;
+		border-color: lighten(map-get($theme-colors, dark), 30%);
+	}
+}

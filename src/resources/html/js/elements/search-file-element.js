@@ -25,7 +25,7 @@ export default class SearchFileElement extends BaseElement {
 
 		return html`
 			<div id="${this.id}"
-				class="${this.className} col-sm-12 col-lg-6 col-xl-4 mb-3
+				class="${this.className} col-lg-6 col-xl-4 mb-3
 					file-extension-${this.options.extension}
 					file-recent-${this.options.isRecent ? 'on' : 'off'}
 					file-favorite-${this.options.isFavorite ? 'on' : 'off'}
@@ -62,7 +62,7 @@ export default class SearchFileElement extends BaseElement {
 					</div>
 					<div class="card-body">
 						<div class="row no-gutters">
-							<div class="col-sm-2 col-lg-4 mb-2">
+							<div class="col-md-2 col-lg-4 p-2">
 								<div class="square-box square-box-centered border" style="max-height: 128px; max-width: 128px">
 									<div class="square-box-content p-1 text-muted">
 									${this.options.properties.thumbnail ? html`
@@ -74,8 +74,14 @@ export default class SearchFileElement extends BaseElement {
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-10 col-lg-8 px-3">
-								<h5 class="card-title">${this.options.title}</h5>
+							<div class="col-md-10 col-lg-8 p-2">
+								<h5 class="card-title" title="${this.options.title}">
+								${this.options.title.length > 40 ? html`
+									${this.options.title.substring(0, 40)}...
+								` : html`
+									${this.options.title}
+								`}
+								</h5>
 								<p class="card-text" title="${this.options.description}">
 								${this.options.description.length > 100 ? html`
 									${this.options.description.substring(0, 100)}...
@@ -85,9 +91,13 @@ export default class SearchFileElement extends BaseElement {
 								</p>
 							</div>
 						</div>
-					</div>
-					<div class="card-footer">
-						<span class="card-tags">${tagTemplates}</span>
+						<div class="row no-gutters">
+							<div class="col p-2">
+								<div class="card-tags">
+									${tagTemplates}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

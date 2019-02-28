@@ -39,12 +39,37 @@ $env: development !default;
 	height: auto;
 	font-size: 15px;
 
+	> tag {
+		max-width: rem(200);
+
+		> div > span {
+			width: 100%;
+			text-overflow: ellipsis;
+		}
+	}
+
+	> tag > div {
+		color: map-get($theme-colors, dark);
+	}
+
 	> tag > div::before {
-		box-shadow: 0 0 0 rem(20) #E5E5E5 inset;
+		box-shadow: 0 0 0 rem(20) map-get($theme-colors, light) inset;
+		border: rem(1) solid lighten(map-get($theme-colors, dark), 60%);
 	}
 
 	> tag:hover:not([readonly]) > div::before {
-		box-shadow: 0 0 0 rem(20) #D3E2E2 inset;
+		box-shadow: 0 0 0 rem(20) map-get($theme-colors, light) inset;
+		border: rem(1) solid lighten(map-get($theme-colors, dark), 30%);
+	}
+
+	> tag > x:hover {
+		background: lighten(map-get($theme-colors, danger), 20%);
+	}
+
+	> tag > x:hover + div::before,
+	> tag.tagify--notAllowed > div::before {
+		box-shadow: 0 0 0 rem(20) lighten(map-get($theme-colors, danger), 40%) inset !important;
+		border: rem(1) solid lighten(map-get($theme-colors, danger), 20%) !important;
 	}
 }
 
