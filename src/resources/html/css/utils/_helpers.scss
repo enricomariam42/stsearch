@@ -25,6 +25,23 @@ label.btn[for] {
 	cursor: pointer;
 }
 
+/* Allow different content depending on button status */
+.btn {
+	&[data-toggle='button'] {
+		&.active > .inactive-content,
+		&:not(.active) > .active-content {
+			display: none;
+		}
+	}
+
+	&[data-toggle='collapse'] {
+		&.collapsed > .expanded-content,
+		&:not(.collapsed) > .collapsed-content {
+			display: none;
+		}
+	}
+}
+
 /* Responsive version for sizes (implements twbs/bootstrap#21943) */
 @each $breakpoint in map-keys($grid-breakpoints) {
 	@if $breakpoint != 'xs' {

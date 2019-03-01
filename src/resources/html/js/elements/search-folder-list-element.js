@@ -26,7 +26,7 @@ export default class SearchFolderListElement extends BaseElement {
 		return html`
 			<div id="${this.id}" class="${this.className} row">
 				<div class="col">
-					<div class="row no-gutters mb-2">
+					<div class="row mb-2">
 						<div class="col">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
@@ -35,14 +35,23 @@ export default class SearchFolderListElement extends BaseElement {
 										?disabled=${!this.options.parentFolder}>
 										${this.faTemplate('fas-arrow-left')}
 									</button>
+									<button class="btn input-group-text" type="button"
+										data-toggle="collapse" href="#${this.id}-folder-container">
+										<span class="expanded-content">${this.faTemplate('fas-eye-slash')}</span>
+										<span class="collapsed-content">${this.faTemplate('fas-eye')}</span>
+									</button>
 								</div>
 								<input type="text" class="form-control" readonly
 									value="${this.options.currentFolder.path}">
 							</div>
 						</div>
 					</div>
-					<div class="row no-gutters m-n1">
-						${folderTemplates}
+					<div class="row mb-0">
+						<div class="col">
+							<div id="${this.id}-folder-container" class="row m-n1 collapse show">
+								${folderTemplates}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
