@@ -11,38 +11,84 @@ export const trigger = (type, ref, init = {}) => ref.dispatchEvent(
 	})
 );
 
-export const toLocaleDateTime = str => {
-	let date = new Date(str);
-	return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-};
-
-export const objToSearchParams = obj => new URLSearchParams(obj).toString();
-
-export const formDataToMap = formData => {
-	let formMap = new Map();
-
-	for (let key of formData.keys()) {
-		let value;
-
-		if (key.endsWith('[]')) {
-			value = formData.getAll(key);
-			key = key.substring(0, key.length - 2);
-		} else {
-			value = formData.get(key);
-		}
-
-		formMap.set(key, value);
-	}
-
-	return formMap;
-};
-
 export const override = (obj, ...srcs) => {
 	return mergeWith(obj, ...srcs, (objValue, srcValue) => {
 		if (Array.isArray(objValue)) {
 			return srcValue;
 		}
 	});
+};
+
+export const toLocaleDateTime = str => {
+	let date = new Date(str);
+	return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+};
+
+export const formData = {
+	objectify: (form, defaultValues = {}) => {
+		let obj = defaultValues;
+
+		for (let key of form.keys()) {
+			if (key.endsWith('[]')) {
+				obj[key.substring(0, key.length - 2)] = form.getAll(key);
+			} else {
+				obj[key] = form.get(key);
+			}
+		}
+
+		return obj;
+	},
+	formify: obj => {
+		let form = new FormData();
+
+		Object.entries(obj).forEach(entry => {
+			let key = entry[0];
+			let value = entry[1];
+
+			if (typeof value === 'string') {
+				form.set(key, value);
+			} else if (Array.isArray(value)) {
+				let arrKey = `${key}[]`;
+				value.forEach(arrValue => {
+					form.append(arrKey, arrValue);
+				});
+			} else {
+				let objValue = safeJSON.stringify(value, value);
+				form.append(key, objValue);
+			}
+		});
+
+		return form;
+	}
+};
+
+export const searchParams = {
+	parse: (str, defaultValues) => {
+		// URLSearchParams and FormData have similar methods.
+		return formData.objectify(new URLSearchParams(str), defaultValues);
+	},
+	stringify: obj => {
+		let params = [];
+
+		Object.entries(obj).forEach(entry => {
+			let key = entry[0];
+			let value = entry[1];
+
+			if (typeof value === 'string') {
+				params.push(`${key}=${encodeURIComponent(value)}`);
+			} else if (Array.isArray(value)) {
+				let arrKey = `${key}[]`;
+				value.forEach(arrValue => {
+					params.push(`${arrKey}=${encodeURIComponent(arrValue)}`);
+				});
+			} else {
+				let objValue = safeJSON.stringify(value, value);
+				params.push(`${key}=${encodeURIComponent(objValue)}`);
+			}
+		});
+
+		return params.join('&');
+	}
 };
 
 export const safeJSON = {

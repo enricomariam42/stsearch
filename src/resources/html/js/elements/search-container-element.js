@@ -26,16 +26,16 @@ export default class SearchContainerElement extends BaseElement {
 
 	get template() {
 		this.searchFilterFormElement = new SearchFilterFormElement(null, {
-			formSubmitCallback: formMap => {
+			formSubmitCallback: formObj => {
 				override(this.options.repository, {
-					searchTerms: formMap.get('search-terms'),
-					searchInTitle: formMap.get('search-in-title') === 'true',
-					searchInDescription: formMap.get('search-in-description') === 'true',
-					searchInTags: formMap.get('search-in-tags') === 'true',
-					allowedExtensions: formMap.get('allowed-extensions'),
-					dateMin: formMap.get('date-min'),
-					dateMax: formMap.get('date-max'),
-					dateProperty: formMap.get('date-property')
+					searchTerms: formObj['search-terms'],
+					searchInTitle: formObj['search-in-title'] === 'true',
+					searchInDescription: formObj['search-in-description'] === 'true',
+					searchInTags: formObj['search-in-tags'] === 'true',
+					allowedExtensions: formObj['allowed-extensions'],
+					dateMin: formObj['date-min'],
+					dateMax: formObj['date-max'],
+					dateProperty: formObj['date-property']
 				});
 				this.options.repository.applyFilters();
 				this.options.pageNumber = 0;
@@ -129,14 +129,14 @@ export default class SearchContainerElement extends BaseElement {
 		this.searchFileEditModalElement = this.currentEditingFile
 			? new SearchFileEditModalElement(null, {
 				file: this.currentEditingFile,
-				formSubmitCallback: async formMap => {
+				formSubmitCallback: async formObj => {
 					let metadata = {
-						path: formMap.get('path'),
-						title: formMap.get('title'),
-						description: formMap.get('description'),
+						path: formObj.path,
+						title: formObj.title,
+						description: formObj.description,
 						properties: {
-							thumbnail: formMap.get('thumbnail'),
-							tags: safeJSON.parse(formMap.get('tags'), [])
+							thumbnail: formObj.thumbnail,
+							tags: safeJSON.parse(formObj.tags, [])
 						}
 					};
 					let result = await RemoteRepositoryAPI.setMetadata(metadata);

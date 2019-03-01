@@ -1,6 +1,8 @@
 import {html} from 'lit-html';
 
-import {formDataToMap} from '../helpers';
+import {formData} from '../helpers';
+
+import DEFAULTS from '../defaults';
 
 import BaseElement from './base-element';
 
@@ -29,27 +31,42 @@ export default class SearchFilterFormElement extends BaseElement {
 										</div>
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
-												<label class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 active"
+												<label
+													class="
+														btn btn-sm btn-link text-left px-3 w-100 rounded-0
+														${DEFAULTS['search-in-title'] ? 'active' : ''}
+													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
-													<input name="search-in-title" value="true" type="checkbox" checked autocomplete="off">
+													<input name="search-in-title" value="true" type="checkbox" autocomplete="off"
+														?checked=${DEFAULTS['search-in-title']}>
 													Title
 												</label>
 											</div>
 										</div>
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
-												<label class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 active"
+												<label
+													class="
+														btn btn-sm btn-link text-left px-3 w-100 rounded-0
+														${DEFAULTS['search-in-description'] ? 'active' : ''}
+													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
-													<input name="search-in-description" value="true" type="checkbox" checked autocomplete="off">
+													<input name="search-in-description" value="true" type="checkbox" autocomplete="off"
+														?checked=${DEFAULTS['search-in-description']}>
 													Description
 												</label>
 											</div>
 										</div>
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
-												<label class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 active"
+												<label
+													class="
+														btn btn-sm btn-link text-left px-3 w-100 rounded-0
+														${DEFAULTS['search-in-tags'] ? 'active' : ''}
+													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
-													<input name="search-in-tags" value="true" type="checkbox" checked autocomplete="off">
+													<input name="search-in-tags" value="true" type="checkbox" autocomplete="off"
+														?checked=${DEFAULTS['search-in-tags']}>
 													Tags
 												</label>
 											</div>
@@ -57,34 +74,60 @@ export default class SearchFilterFormElement extends BaseElement {
 									</div>
 								</div>
 								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" placeholder="Search..."
+									value=${DEFAULTS['search-terms']}
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
 							</div>
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
 							<div class="allowed-extensions btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
-								<label class="btn btn-outline-tool-cde active"
+								<label
+									class="
+										btn btn-outline-tool-cde 
+										${DEFAULTS['allowed-extensions'].includes('wcdf') ? 'active' : ''}
+									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="wcdf" type="checkbox" checked autocomplete="off">
+									<input name="allowed-extensions[]" value="wcdf" type="checkbox" autocomplete="off"
+										?checked=${DEFAULTS['allowed-extensions'].includes('wcdf')}>
 									${this.faTemplate('fac-tool-cde')}
 								</label>
-								<label class="btn btn-outline-tool-stpivot active"
+								<label
+									class="
+										btn btn-outline-tool-stpivot
+										${DEFAULTS['allowed-extensions'].includes('xjpivot') ? 'active' : ''}
+									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" checked autocomplete="off">
+									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" autocomplete="off"
+										?checked=${DEFAULTS['allowed-extensions'].includes('xjpivot')}>
 									${this.faTemplate('fac-tool-stpivot')}
 								</label>
-								<label class="btn btn-outline-tool-streport active"
+								<label
+									class="
+										btn btn-outline-tool-streport
+										${DEFAULTS['allowed-extensions'].includes('adhoc|prpt') ? 'active' : ''}
+									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" checked autocomplete="off">
+									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" autocomplete="off"
+										?checked=${DEFAULTS['allowed-extensions'].includes('adhoc|prpt')}>
 									${this.faTemplate('fac-tool-streport')}
 								</label>
-								<label class="btn btn-outline-tool-stdashboard active"
+								<label
+									class="
+										btn btn-outline-tool-stdashboard
+										${DEFAULTS['allowed-extensions'].includes('std') ? 'active' : ''}
+									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="std" type="checkbox" checked autocomplete="off">
+									<input name="allowed-extensions[]" value="std" type="checkbox" autocomplete="off"
+										?checked=${DEFAULTS['allowed-extensions'].includes('std')}>
 									${this.faTemplate('fac-tool-stdashboard')}
 								</label>
-								<label class="btn btn-outline-tool-stagile active"
+								<label
+									class="
+										btn btn-outline-tool-stagile
+										${DEFAULTS['allowed-extensions'].includes('sta') ? 'active' : ''}
+									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="sta" type="checkbox" checked autocomplete="off">
+									<input name="allowed-extensions[]" value="sta" type="checkbox" autocomplete="off"
+										?checked=${DEFAULTS['allowed-extensions'].includes('sta')}>
 									${this.faTemplate('fac-tool-stagile')}
 								</label>
 							</div>
@@ -107,6 +150,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</label>
 								</div>
 								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control"
+									value=${DEFAULTS['date-min']}
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
 									<label for="${this.id}-date-max" class="btn input-group-text">
@@ -114,6 +158,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</label>
 								</div>
 								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control"
+									value=${DEFAULTS['date-max']}
 									@change=${this.formFieldChangeHandlerGenerator('date-max')}>
 							</div>
 						</div>
@@ -121,8 +166,14 @@ export default class SearchFilterFormElement extends BaseElement {
 							<div class="input-group flex-fill">
 								<select name="date-property" class="custom-select"
 									@change=${this.formFieldChangeHandlerGenerator('date-property')}>
-									<option value="created" selected>Creation date</option>
-									<option value="modified">Modification date</option>
+									<option value="created"
+										?selected=${DEFAULTS['date-property'] === 'created'}>
+										Creation date
+									</option>
+									<option value="modified"
+										?selected=${DEFAULTS['date-property'] === 'modified'}>
+										Modification date
+									</option>
 								</select>
 							</div>
 						</div>
@@ -140,19 +191,19 @@ export default class SearchFilterFormElement extends BaseElement {
 			handleEvent: event => {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
-					let formData = new FormData(event.target);
+					let form = new FormData(event.target);
 
 					// Ensure that the entry exists if the checkbox is not checked.
 					let checkboxes = event.target.querySelectorAll('[type=checkbox], [type=radio]');
 					for (let checkbox of checkboxes) {
 						let name = checkbox.getAttribute('name');
-						if (!formData.has(name)) {
-							formData.set(name, '');
+						if (!form.has(name)) {
+							form.set(name, '');
 						}
 					}
 
-					let formMap = formDataToMap(formData);
-					this.options.formSubmitCallback(formMap);
+					let formObj = formData.objectify(form);
+					this.options.formSubmitCallback(formObj);
 				}
 			}
 		};

@@ -2,16 +2,9 @@ import escapeRegExp from 'lodash/escapeRegExp';
 import inRange from 'lodash/inRange';
 import orderBy from 'lodash/orderBy';
 
-import RemoteRepositoryAPI from './api/remote-repository-api';
+import DEFAULTS from './defaults';
 
-export const DEFAULT_SEARCH_TERMS = '';
-export const DEFAULT_SEARCH_IN_TITLE = true;
-export const DEFAULT_SEARCH_IN_DESCRIPTION = true;
-export const DEFAULT_SEARCH_IN_TAGS = true;
-export const DEFAULT_ALLOWED_EXTENSIONS = ['xjpivot', 'adhoc|prpt', 'std', 'sta', 'wcdf'];
-export const DEFAULT_DATE_MIN = new Date(-8640000000000000);
-export const DEFAULT_DATE_MAX = new Date(8640000000000000);
-export const DEFAULT_DATE_PROPERTY = 'created';
+import RemoteRepositoryAPI from './api/remote-repository-api';
 
 export const EMPTY_HIERARCHY = {path: '/', children: []};
 
@@ -106,14 +99,14 @@ export default class Repository {
 	 */
 
 	initializeFilters() {
-		this.searchTerms = DEFAULT_SEARCH_TERMS;
-		this.searchInTitle = DEFAULT_SEARCH_IN_TITLE;
-		this.searchInDescription = DEFAULT_SEARCH_IN_DESCRIPTION;
-		this.searchInTags = DEFAULT_SEARCH_IN_TAGS;
-		this.allowedExtensions = DEFAULT_ALLOWED_EXTENSIONS;
-		this.dateMin = DEFAULT_DATE_MIN;
-		this.dateMax = DEFAULT_DATE_MAX;
-		this.dateProperty = DEFAULT_DATE_PROPERTY;
+		this.searchInTitle = DEFAULTS['search-in-title'];
+		this.searchInDescription = DEFAULTS['search-in-description'];
+		this.searchInTags = DEFAULTS['search-in-tags'];
+		this.searchTerms = DEFAULTS['search-terms'];
+		this.allowedExtensions = DEFAULTS['allowed-extensions'];
+		this.dateMin = DEFAULTS['date-min'];
+		this.dateMax = DEFAULTS['date-max'];
+		this.dateProperty = DEFAULTS['date-property'];
 	}
 
 	applyFilters() {
@@ -127,23 +120,39 @@ export default class Repository {
 
 	isFileFiltered(file) {
 		return (
+			// The file extension must be in the list of allowed extensions.
 			this._allowedExtensionsRegex.test(file.extension)
 		) && ((
+			// If search in title is enabled, the search terms must appear in the title.
 			this.searchInTitle &&
 			this._searchTermsRegex.test(file.title)
 		) || (
+			// If search in description is enabled, the search terms must appear in the description.
 			this.searchInDescription &&
 			this._searchTermsRegex.test(file.description)
 		) || (
-			this.searchInTags &&
-			file.properties.tags &&
+			// If search in tags is enabled, the search terms must appear in the tags.
+			this.searchInTags && file.properties.tags &&
 			file.properties.tags.some(tag => this._searchTermsExactRegex.test(tag.value))
-		)) && (
+		)) && ((
+			// If the minimum and maximum dates are invalid, the date is not checked.
+			isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch)
+		) || (
+			// If the minimum date is valid but the maximum date is not, check only the minimum date.
+			!isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch) &&
+			new Date(file[this.dateProperty]).getTime() > this._dateMinEpoch
+		) || (
+			// If the maximum date is valid but the minimum date is not, check only the maximum date.
+			isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
+			new Date(file[this.dateProperty]).getTime() < this._dateMaxEpoch
+		) || (
+			// If the minimum and maximum dates are valid, check both.
+			!isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
 			inRange(
 				new Date(file[this.dateProperty]).getTime(),
 				this._dateMinEpoch, this._dateMaxEpoch
 			)
-		);
+		));
 	}
 
 	orderFiles(files) {
@@ -158,7 +167,7 @@ export default class Repository {
 	}
 
 	set searchTerms(searchTerms) {
-		this._searchTerms = searchTerms ? searchTerms : DEFAULT_SEARCH_TERMS;
+		this._searchTerms = searchTerms ? searchTerms : DEFAULTS['search-terms'];
 		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
 		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
 	}
@@ -168,7 +177,7 @@ export default class Repository {
 	}
 
 	set allowedExtensions(allowedExtensions) {
-		this._allowedExtensions = allowedExtensions ? allowedExtensions : DEFAULT_ALLOWED_EXTENSIONS;
+		this._allowedExtensions = allowedExtensions ? allowedExtensions : DEFAULTS['allowed-extensions'];
 		this._allowedExtensionsRegex = new RegExp(`^(?:${this._allowedExtensions.join('|')})$`, 'i');
 	}
 
@@ -177,7 +186,7 @@ export default class Repository {
 	}
 
 	set dateMin(dateMin) {
-		this._dateMin = dateMin ? new Date(dateMin) : DEFAULT_DATE_MIN;
+		this._dateMin = new Date(dateMin ? dateMin : DEFAULTS['date-min']);
 		this._dateMinEpoch = this._dateMin.getTime();
 	}
 
@@ -186,7 +195,7 @@ export default class Repository {
 	}
 
 	set dateMax(dateMax) {
-		this._dateMax = dateMax ? new Date(dateMax) : DEFAULT_DATE_MAX;
+		this._dateMax = new Date(dateMax ? dateMax : DEFAULTS['date-property']);
 		this._dateMaxEpoch = this._dateMax.getTime();
 	}
 }

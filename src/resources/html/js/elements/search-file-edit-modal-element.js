@@ -1,6 +1,6 @@
 import {html} from 'lit-html';
 
-import {formDataToMap, safeJSON} from '../helpers';
+import {formData, safeJSON} from '../helpers';
 
 import BaseElement from './base-element';
 
@@ -91,7 +91,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 			handleEvent: event => {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
-					let formMap = formDataToMap(new FormData(event.target));
+					let formMap = formData.objectify(new FormData(event.target));
 					this.options.formSubmitCallback(formMap);
 				}
 			}

@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 
-import {objToSearchParams, safeJSON} from '../helpers';
+import {searchParams, safeJSON} from '../helpers';
 
 export const FILES_API_ENDPOINT = '../../../../api/repo/files';
 export const FILES_METADATA_API_ENDPOINT = '../../../../plugin/file-metadata/api';
@@ -15,7 +15,7 @@ export default class RemoteRepositoryAPI {
 			paths = [paths];
 		}
 
-		let url = `${FILES_METADATA_API_ENDPOINT}/get?${objToSearchParams({locale, showHidden, depth})}`;
+		let url = `${FILES_METADATA_API_ENDPOINT}/get?${searchParams.stringify({locale, showHidden, depth})}`;
 		let response = await fetch(url, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
@@ -64,7 +64,7 @@ export default class RemoteRepositoryAPI {
 			}
 		});
 
-		let url = `${FILES_METADATA_API_ENDPOINT}/set?${objToSearchParams({locale})}`;
+		let url = `${FILES_METADATA_API_ENDPOINT}/set?${searchParams.stringify({locale})}`;
 		let response = await fetch(url, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
