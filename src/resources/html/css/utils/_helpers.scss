@@ -20,6 +20,11 @@ $env: development !default;
 	vertical-align: -.125em;
 }
 
+/* Change the cursor to a pointer when the label is also a button */
+label.btn[for] {
+	cursor: pointer;
+}
+
 /* Responsive version for sizes (implements twbs/bootstrap#21943) */
 @each $breakpoint in map-keys($grid-breakpoints) {
 	@if $breakpoint != 'xs' {

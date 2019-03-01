@@ -19,9 +19,9 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">
+									<label for="${this.id}-search-terms" class="btn input-group-text">
 										${this.faTemplate('fas-search')}
-									</span>
+									</label>
 									<button type="button" class="btn dropdown-toggle dropdown-toggle-split input-group-text" data-toggle="dropdown"></button>
 									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
 										<div class="dropdown-item p-0">
@@ -56,7 +56,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										</div>
 									</div>
 								</div>
-								<input name="search-terms" type="search" class="form-control" placeholder="Search..."
+								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" placeholder="Search..."
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
 							</div>
 						</div>
@@ -102,18 +102,18 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">
+									<label for="${this.id}-date-min" class="btn input-group-text">
 										${this.faTemplate('far-calendar-alt')}
-									</span>
+									</label>
 								</div>
-								<input name="date-min" type="date" class="form-control"
+								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control"
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
-									<span class="input-group-text">
+									<label for="${this.id}-date-max" class="btn input-group-text">
 										${this.faTemplate('fas-long-arrow-alt-right')}
-									</span>
+									</label>
 								</div>
-								<input name="date-max" type="date" class="form-control"
+								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control"
 									@change=${this.formFieldChangeHandlerGenerator('date-max')}>
 							</div>
 						</div>
