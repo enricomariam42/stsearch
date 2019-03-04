@@ -1,0 +1,13 @@
+.search-banner-element {
+	padding: 0 rem(5);
+	max-height: rem(256);
+	max-width: 100%;
+	border-radius: rem(5);
+
+	> img {
+		display: block;
+		margin: 0 auto;
+		max-height: inherit;
+		max-width: inherit;
+	}
+}

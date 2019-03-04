@@ -12,6 +12,7 @@ import {EMPTY_HIERARCHY} from '../repository';
 
 import BaseElement from './base-element';
 import EmptyElement from './empty-element';
+import SearchBannerElement from './search-banner-element';
 import SearchFilterFormElement from './search-filter-form-element';
 import SearchFolderListElement from './search-folder-list-element';
 import SearchFileListElement from './search-file-list-element';
@@ -26,6 +27,16 @@ export default class SearchContainerElement extends BaseElement {
 	}
 
 	get template() {
+		if (this.options.disableBanner) {
+			this.searchBannerElement = new EmptyElement();
+		} else {
+			this.searchBannerElement = new SearchBannerElement(null, {
+				src: this.options.bannerSrc,
+				title: this.options.bannerTitle,
+				background: this.options.bannerBackground
+			});
+		}
+
 		if (this.options.disableFilters) {
 			this.searchFilterFormElement = new EmptyElement();
 		} else {
@@ -185,6 +196,7 @@ export default class SearchContainerElement extends BaseElement {
 
 		return html`
 			<div id="${this.id}" class="${this.className} container-fluid">
+				<div class="my-4">${this.searchBannerElement.template}</div>
 				<div class="my-4">${this.searchFilterFormElement.template}</div>
 				<div class="my-4">${this.searchFolderListElement.template}</div>
 				<div class="my-4">${this.searchFileListElement.template}</div>

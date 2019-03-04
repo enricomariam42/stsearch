@@ -1,8 +1,12 @@
 import {searchParams, strToBool, strToInt} from './helpers';
 
 const DEFAULTS = searchParams.parse(window.location.search, {
+	'disable-banner': 'true',
 	'disable-filters': 'false',
 	'disable-folders': 'false',
+	'banner-src': '../images/stsearch_128h.png',
+	'banner-title': 'STSearch',
+	'banner-background': 'transparent',
 	'search-in-title': 'true',
 	'search-in-description': 'true',
 	'search-in-tags': 'true',
@@ -18,6 +22,7 @@ const DEFAULTS = searchParams.parse(window.location.search, {
 });
 
 // Transform some string values to the correct type.
+DEFAULTS['disable-banner'] = strToBool(DEFAULTS['disable-banner']);
 DEFAULTS['disable-filters'] = strToBool(DEFAULTS['disable-filters']);
 DEFAULTS['disable-folders'] = strToBool(DEFAULTS['disable-folders']);
 DEFAULTS['search-in-title'] = strToBool(DEFAULTS['search-in-title']);

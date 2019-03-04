@@ -19,8 +19,12 @@ window.addEventListener('load', async () => {
 
 	let container = document.querySelector('#main');
 	let searchContainerElement = new SearchContainerElement(container, {
+		disableBanner: DEFAULTS['disable-banner'],
 		disableFilters: DEFAULTS['disable-filters'],
 		disableFolders: DEFAULTS['disable-folders'],
+		bannerSrc: DEFAULTS['banner-src'],
+		bannerTitle: DEFAULTS['banner-title'],
+		bannerBackground: DEFAULTS['banner-background'],
 		pageNumber: DEFAULTS['page-number'],
 		pagePlaces: DEFAULTS['page-places'],
 		pageSize: DEFAULTS['page-size'],
