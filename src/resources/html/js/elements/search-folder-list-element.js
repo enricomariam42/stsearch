@@ -28,7 +28,7 @@ export default class SearchFolderListElement extends BaseElement {
 				<div class="col">
 					<div class="row mb-2">
 						<div class="col">
-							<div class="input-group input-group-sm">
+							<div class="input-group">
 								<div class="input-group-prepend">
 									<button class="btn input-group-text" type="button"
 										@click=${this.arrowBackClickHandler}
@@ -37,8 +37,8 @@ export default class SearchFolderListElement extends BaseElement {
 									</button>
 									<button class="btn input-group-text" type="button"
 										data-toggle="collapse" href="#${this.id}-folder-container">
-										<span class="expanded-content">${this.faTemplate('fas-eye-slash')}</span>
-										<span class="collapsed-content">${this.faTemplate('fas-eye')}</span>
+										<span class="expanded-content">${this.faTemplate('fas-folder-open')}</span>
+										<span class="collapsed-content">${this.faTemplate('fas-folder')}</span>
 									</button>
 								</div>
 								<input type="text" class="form-control" readonly
