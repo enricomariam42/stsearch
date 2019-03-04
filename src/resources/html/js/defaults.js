@@ -13,7 +13,8 @@ const DEFAULTS = searchParams.parse(window.location.search, {
 	'date-property': 'created',
 	'page-number': '0',
 	'page-places': '5',
-	'page-size': '24'
+	'page-size': '24',
+	'current-folder': '/'
 });
 
 // Transform some string values to the correct type.

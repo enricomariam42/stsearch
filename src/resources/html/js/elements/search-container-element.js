@@ -49,11 +49,12 @@ export default class SearchContainerElement extends BaseElement {
 					this.options.repository.hierarchy = EMPTY_HIERARCHY;
 					this.render();
 
-					let result = await this.options.repository.refresh();
-					this.render();
-
-					if (!result) {
+					let hierarchy = await RemoteRepositoryAPI.getRepository();
+					if (hierarchy === null) {
 						noty.error('Error in data loading');
+					} else {
+						this.options.repository.hierarchy = hierarchy;
+						this.render();
 					}
 				},
 				formFieldChangeCallback: debounce(() => {

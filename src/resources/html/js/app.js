@@ -32,11 +32,22 @@ window.addEventListener('load', async () => {
 	let canAdminister = await RemoteRepositoryAPI.canAdminister();
 	searchContainerElement.options.canAdminister = canAdminister;
 
-	let result = await repository.refresh();
-	searchContainerElement.render();
-
-	if (!result) {
+	let hierarchy = await RemoteRepositoryAPI.getRepository();
+	if (hierarchy === null) {
 		noty.error('Error in data loading');
+	} else {
+		// The property "_hierarchy" is updated to avoid applying the filters twice.
+		repository._hierarchy = hierarchy;
+
+		let currentFolder = repository.fromPath(DEFAULTS['current-folder']);
+		if (currentFolder === null) {
+			repository.currentFolder = hierarchy;
+			noty.error('Folder does not exist');
+		} else {
+			repository.currentFolder = currentFolder;
+		}
+
+		searchContainerElement.render();
 	}
 
 	if (!isProduction) {

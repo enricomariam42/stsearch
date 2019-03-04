@@ -4,8 +4,6 @@ import orderBy from 'lodash/orderBy';
 
 import DEFAULTS from './defaults';
 
-import RemoteRepositoryAPI from './api/remote-repository-api';
-
 export const EMPTY_HIERARCHY = {path: '/', children: []};
 
 export default class Repository {
@@ -39,16 +37,6 @@ export default class Repository {
 		}
 
 		return currentFolder;
-	}
-
-	async refresh() {
-		let hierarchy = await RemoteRepositoryAPI.getRepository();
-		if (hierarchy !== null) {
-			this.hierarchy = hierarchy;
-			return true;
-		}
-
-		return false;
 	}
 
 	get hierarchy() {
