@@ -7,6 +7,8 @@ import '../css/app.scss';
 
 import {isProduction} from './helpers';
 
+import DEFAULTS from './defaults';
+
 import RemoteRepositoryAPI from './api/remote-repository-api';
 import Repository from './repository';
 
@@ -14,16 +16,21 @@ import SearchContainerElement from './elements/search-container-element';
 
 window.addEventListener('load', async () => {
 	let repository = new Repository();
-	let canAdminister = await RemoteRepositoryAPI.canAdminister();
 
 	let container = document.querySelector('#main');
 	let searchContainerElement = new SearchContainerElement(container, {
-		pageNumber: 0,
-		pagePlaces: 5,
-		pageSize: 24,
-		repository,
-		canAdminister
+		disableFilters: DEFAULTS['disable-filters'],
+		disableFolders: DEFAULTS['disable-folders'],
+		pageNumber: DEFAULTS['page-number'],
+		pagePlaces: DEFAULTS['page-places'],
+		pageSize: DEFAULTS['page-size'],
+		canAdminister: false,
+		repository
 	});
+	searchContainerElement.render();
+
+	let canAdminister = await RemoteRepositoryAPI.canAdminister();
+	searchContainerElement.options.canAdminister = canAdminister;
 
 	let result = await repository.refresh();
 	searchContainerElement.render();
@@ -33,6 +40,6 @@ window.addEventListener('load', async () => {
 	}
 
 	if (!isProduction) {
-		window.STSearch = {repository, canAdminister, searchContainerElement};
+		window.STSearch = {DEFAULTS, repository, searchContainerElement};
 	}
 });

@@ -13,8 +13,6 @@ export default class BaseElement {
 		 * change. It is commented because currently this behavior is not necessary.
 		 */ // this.options = new Proxy(options, this.proxyHandler);
 		this.options = options;
-
-		this.render();
 	}
 
 	get id() {

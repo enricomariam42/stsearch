@@ -19,6 +19,9 @@ export const override = (obj, ...srcs) => {
 	});
 };
 
+export const strToBool = str => str === 'true';
+export const strToInt = str => Number.parseInt(str, 10);
+
 export const toLocaleDateTime = str => {
 	let date = new Date(str);
 	return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;

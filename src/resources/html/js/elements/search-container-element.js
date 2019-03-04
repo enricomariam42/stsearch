@@ -5,7 +5,7 @@ import {html} from 'lit-html';
 import {Tagify} from '../vendor/tagify';
 import {noty} from '../vendor/noty';
 
-import {trigger, override, safeJSON} from '../helpers';
+import {trigger, override, strToBool, safeJSON} from '../helpers';
 
 import RemoteRepositoryAPI from '../api/remote-repository-api';
 import {EMPTY_HIERARCHY} from '../repository';
@@ -22,54 +22,63 @@ export default class SearchContainerElement extends BaseElement {
 	constructor(...args) {
 		super(...args);
 		this.className = 'search-container-element';
+		this.currentEditingFile = null;
 	}
 
 	get template() {
-		this.searchFilterFormElement = new SearchFilterFormElement(null, {
-			formSubmitCallback: formObj => {
-				override(this.options.repository, {
-					searchTerms: formObj['search-terms'],
-					searchInTitle: formObj['search-in-title'] === 'true',
-					searchInDescription: formObj['search-in-description'] === 'true',
-					searchInTags: formObj['search-in-tags'] === 'true',
-					allowedExtensions: formObj['allowed-extensions'],
-					dateMin: formObj['date-min'],
-					dateMax: formObj['date-max'],
-					dateProperty: formObj['date-property']
-				});
-				this.options.repository.applyFilters();
-				this.options.pageNumber = 0;
-				this.render();
-			},
-			formRefreshCallback: async () => {
-				this.options.repository.hierarchy = EMPTY_HIERARCHY;
-				this.render();
+		if (this.options.disableFilters) {
+			this.searchFilterFormElement = new EmptyElement();
+		} else {
+			this.searchFilterFormElement = new SearchFilterFormElement(null, {
+				formSubmitCallback: formObj => {
+					override(this.options.repository, {
+						searchTerms: formObj['search-terms'],
+						searchInTitle: strToBool(formObj['search-in-title']),
+						searchInDescription: strToBool(formObj['search-in-description']),
+						searchInTags: strToBool(formObj['search-in-tags']),
+						allowedExtensions: formObj['allowed-extensions'],
+						dateMin: formObj['date-min'],
+						dateMax: formObj['date-max'],
+						dateProperty: formObj['date-property']
+					});
+					this.options.repository.applyFilters();
+					this.options.pageNumber = 0;
+					this.render();
+				},
+				formRefreshCallback: async () => {
+					this.options.repository.hierarchy = EMPTY_HIERARCHY;
+					this.render();
 
-				let result = await this.options.repository.refresh();
-				this.render();
+					let result = await this.options.repository.refresh();
+					this.render();
 
-				if (!result) {
-					noty.error('Error in data loading');
+					if (!result) {
+						noty.error('Error in data loading');
+					}
+				},
+				formFieldChangeCallback: debounce(() => {
+					trigger('submit', this.searchFilterFormElement.ref);
+				}, 200)
+			});
+		}
+
+		if (this.options.disableFolders) {
+			this.searchFolderListElement = new EmptyElement();
+		} else {
+			this.searchFolderListElement = new SearchFolderListElement(null, {
+				currentFolder: this.options.repository.currentFolder,
+				parentFolder: this.options.repository.parentFolder,
+				folders: this.options.repository.nestedFolders,
+				folderUpCallback: () => {
+					this.options.repository.currentFolder = this.options.repository.parentFolder;
+					this.render();
+				},
+				folderDownCallback: folder => {
+					this.options.repository.currentFolder = folder;
+					this.render();
 				}
-			},
-			formFieldChangeCallback: debounce(() => {
-				trigger('submit', this.searchFilterFormElement.ref);
-			}, 200)
-		});
-
-		this.searchFolderListElement = new SearchFolderListElement(null, {
-			currentFolder: this.options.repository.currentFolder,
-			parentFolder: this.options.repository.parentFolder,
-			folders: this.options.repository.nestedFolders,
-			folderUpCallback: () => {
-				this.options.repository.currentFolder = this.options.repository.parentFolder;
-				this.render();
-			},
-			folderDownCallback: folder => {
-				this.options.repository.currentFolder = folder;
-				this.render();
-			}
-		});
+			});
+		}
 
 		let filesStart = this.options.pageNumber * this.options.pageSize;
 		let filesEnd = filesStart + this.options.pageSize;
@@ -126,8 +135,10 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
-		this.searchFileEditModalElement = this.currentEditingFile
-			? new SearchFileEditModalElement(null, {
+		if (this.currentEditingFile === null) {
+			this.searchFileEditModalElement = new EmptyElement();
+		} else {
+			this.searchFileEditModalElement = new SearchFileEditModalElement(null, {
 				file: this.currentEditingFile,
 				formSubmitCallback: async formObj => {
 					let metadata = {
@@ -153,12 +164,14 @@ export default class SearchContainerElement extends BaseElement {
 						noty.error('Error saving data');
 					}
 				}
-			})
-			: new EmptyElement();
+			});
+		}
 
 		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
-		this.searchPaginationElement = pageTotal > 1
-			? new SearchPaginationElement(null, {
+		if (pageTotal < 2) {
+			this.searchPaginationElement = new EmptyElement();
+		} else {
+			this.searchPaginationElement = new SearchPaginationElement(null, {
 				pageNumber: this.options.pageNumber,
 				pagePlaces: this.options.pagePlaces,
 				pageTotal: pageTotal,
@@ -166,8 +179,8 @@ export default class SearchContainerElement extends BaseElement {
 					this.options.pageNumber = clamp(pageNumber, 0, pageTotal);
 					this.render();
 				}
-			})
-			: new EmptyElement();
+			});
+		}
 
 		return html`
 			<div id="${this.id}" class="${this.className} container-fluid">

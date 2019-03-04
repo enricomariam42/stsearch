@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 
-import {searchParams, safeJSON} from '../helpers';
+import {searchParams, strToBool, safeJSON} from '../helpers';
 
 export const FILES_API_ENDPOINT = '../../../../api/repo/files';
 export const FILES_METADATA_API_ENDPOINT = '../../../../plugin/file-metadata/api';
@@ -98,7 +98,7 @@ export default class RemoteRepositoryAPI {
 		});
 
 		if (response.status === 200) {
-			return (await response.text() === 'true');
+			return strToBool(await response.text());
 		}
 
 		return false;
