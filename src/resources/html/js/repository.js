@@ -25,20 +25,20 @@ export default class Repository {
 		}
 
 		let currentPath = '';
-		let currentLocation = this.hierarchy;
-		if (currentLocation.path !== path) {
+		let currentFolder = this.hierarchy;
+		if (currentFolder.path !== path) {
 			for (let i = 0; i < splittedPath.length; i++) {
 				currentPath += splittedPath[i];
-				currentLocation = currentLocation.children.find(child => {
+				currentFolder = currentFolder.children.find(child => {
 					return child.path === currentPath;
 				});
-				if (!currentLocation) {
+				if (!currentFolder) {
 					return null;
 				}
 			}
 		}
 
-		return currentLocation;
+		return currentFolder;
 	}
 
 	async refresh() {
@@ -120,39 +120,40 @@ export default class Repository {
 
 	isFileFiltered(file) {
 		return (
-			// The file extension must be in the list of allowed extensions.
-			this._allowedExtensionsRegex.test(file.extension)
-		) && ((
-			// If search in title is enabled, the search terms must appear in the title.
-			this.searchInTitle &&
-			this._searchTermsRegex.test(file.title)
-		) || (
-			// If search in description is enabled, the search terms must appear in the description.
-			this.searchInDescription &&
-			this._searchTermsRegex.test(file.description)
-		) || (
-			// If search in tags is enabled, the search terms must appear in the tags.
-			this.searchInTags && file.properties.tags &&
-			file.properties.tags.some(tag => this._searchTermsExactRegex.test(tag.value))
-		)) && ((
-			// If the minimum and maximum dates are invalid, the date is not checked.
-			isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch)
-		) || (
-			// If the minimum date is valid but the maximum date is not, check only the minimum date.
-			!isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch) &&
-			new Date(file[this.dateProperty]).getTime() > this._dateMinEpoch
-		) || (
-			// If the maximum date is valid but the minimum date is not, check only the maximum date.
-			isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
-			new Date(file[this.dateProperty]).getTime() < this._dateMaxEpoch
-		) || (
-			// If the minimum and maximum dates are valid, check both.
-			!isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
-			inRange(
-				new Date(file[this.dateProperty]).getTime(),
-				this._dateMinEpoch, this._dateMaxEpoch
+			// EXTENSIONS
+			// ==========
+			( // The file extension must be in the list of allowed extensions.
+				this._allowedExtensionsRegex.test(file.extension)
 			)
-		));
+		) && (
+			// SEARCH TERMS
+			// ============
+			( // If search in title is enabled, the search terms must appear in the title.
+				this.searchInTitle &&
+				this._searchTermsRegex.test(file.title)
+			) || ( // If search in description is enabled, the search terms must appear in the description.
+				this.searchInDescription &&
+				this._searchTermsRegex.test(file.description)
+			) || ( // If search in tags is enabled, the search terms must appear in the tags.
+				this.searchInTags && file.properties.tags &&
+				file.properties.tags.some(tag => this._searchTermsExactRegex.test(tag.value))
+			)
+		) && (
+			// DATE RANGES
+			// ===========
+			( // If the minimum and maximum dates are invalid, the date is not checked.
+				isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch)
+			) || ( // If the minimum date is valid but the maximum date is not, check only the minimum date.
+				!isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch) &&
+				new Date(file[this.dateProperty]).getTime() > this._dateMinEpoch
+			) || ( // If the maximum date is valid but the minimum date is not, check only the maximum date.
+				isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
+				new Date(file[this.dateProperty]).getTime() < this._dateMaxEpoch
+			) || ( // If the minimum and maximum dates are valid, check both.
+				!isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
+				inRange(new Date(file[this.dateProperty]).getTime(), this._dateMinEpoch, this._dateMaxEpoch)
+			)
+		);
 	}
 
 	orderFiles(files) {

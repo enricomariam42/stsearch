@@ -11,6 +11,7 @@ const DEFAULTS = searchParams.parse(window.location.search, {
 	'date-property': 'created'
 });
 
+// Transform some string values to the correct type.
 DEFAULTS['search-in-title'] = DEFAULTS['search-in-title'] === 'true';
 DEFAULTS['search-in-description'] = DEFAULTS['search-in-description'] === 'true';
 DEFAULTS['search-in-tags'] = DEFAULTS['search-in-tags'] === 'true';
