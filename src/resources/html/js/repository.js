@@ -168,7 +168,7 @@ export default class Repository {
 	}
 
 	set searchTerms(searchTerms) {
-		this._searchTerms = searchTerms ? searchTerms : DEFAULTS['search-terms'];
+		this._searchTerms = searchTerms;
 		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
 		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
 	}
@@ -178,7 +178,7 @@ export default class Repository {
 	}
 
 	set allowedExtensions(allowedExtensions) {
-		this._allowedExtensions = allowedExtensions ? allowedExtensions : DEFAULTS['allowed-extensions'];
+		this._allowedExtensions = allowedExtensions;
 		this._allowedExtensionsRegex = new RegExp(`^(?:${this._allowedExtensions.join('|')})$`, 'i');
 	}
 
@@ -187,7 +187,7 @@ export default class Repository {
 	}
 
 	set dateMin(dateMin) {
-		this._dateMin = new Date(dateMin ? dateMin : DEFAULTS['date-min']);
+		this._dateMin = new Date(dateMin);
 		this._dateMinEpoch = this._dateMin.getTime();
 	}
 
@@ -196,7 +196,7 @@ export default class Repository {
 	}
 
 	set dateMax(dateMax) {
-		this._dateMax = new Date(dateMax ? dateMax : DEFAULTS['date-property']);
+		this._dateMax = new Date(dateMax);
 		this._dateMaxEpoch = this._dateMax.getTime();
 	}
 }
