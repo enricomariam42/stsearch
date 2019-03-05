@@ -2,7 +2,7 @@ import escapeRegExp from 'lodash/escapeRegExp';
 import inRange from 'lodash/inRange';
 import orderBy from 'lodash/orderBy';
 
-import DEFAULTS from './defaults';
+import {DEFAULTS} from './defaults';
 
 export const EMPTY_HIERARCHY = {path: '/', children: []};
 

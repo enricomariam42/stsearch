@@ -7,7 +7,7 @@ import '../css/app.scss';
 
 import {isProduction} from './helpers';
 
-import DEFAULTS from './defaults';
+import {DEFAULTS, loadDefaults} from './defaults';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
 import Repository from './repository';
@@ -15,6 +15,9 @@ import Repository from './repository';
 import SearchContainerElement from './elements/search-container-element';
 
 window.addEventListener('load', async () => {
+	// Load default values.
+	await loadDefaults();
+
 	let repository = new Repository();
 
 	let container = document.querySelector('#main');

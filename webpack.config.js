@@ -60,8 +60,9 @@ module.exports = (env, argv) => {
 			new CopyWebpackPlugin([
 				{from: 'src/plugin.xml', to: dist},
 				{from: 'src/plugin.spring.xml', to: dist},
-				{from: 'src/resources/messages', to: `${dist}/resources/messages`},
-				{from: 'src/resources/images', to: `${dist}/resources/images`}
+				{from: 'src/resources/html/presets.json', to: `${dist}/resources/html/`},
+				{from: 'src/resources/messages', to: `${dist}/resources/messages/`},
+				{from: 'src/resources/images', to: `${dist}/resources/images/`}
 			], {ignore: ['.gitkeep']})
 		],
 		module: {

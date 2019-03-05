@@ -2,7 +2,7 @@ import {html} from 'lit-html';
 
 import {formData} from '../helpers';
 
-import DEFAULTS from '../defaults';
+import {DEFAULTS} from '../defaults';
 
 import BaseElement from './base-element';
 
