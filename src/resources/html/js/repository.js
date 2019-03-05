@@ -116,7 +116,9 @@ export default class Repository {
 		) && (
 			// SEARCH TERMS
 			// ============
-			( // If search in title is enabled, the search terms must appear in the title.
+			( // If search terms are empty, the search is omitted.
+				this._searchTerms.length === 0
+			) || ( // If search in title is enabled, the search terms must appear in the title.
 				this.searchInTitle &&
 				this._searchTermsRegex.test(file.title)
 			) || ( // If search in description is enabled, the search terms must appear in the description.
