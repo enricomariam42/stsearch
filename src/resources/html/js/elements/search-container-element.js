@@ -142,8 +142,7 @@ export default class SearchContainerElement extends BaseElement {
 				trigger('submit', this.searchFilterFormElement.ref);
 			},
 			fileOpenCallback: file => {
-				console.log('open', file);
-				noty.info('[TODO] Open');
+				window.open(file.openUrl, `stsearch_${file.id}`);
 			}
 		});
 
