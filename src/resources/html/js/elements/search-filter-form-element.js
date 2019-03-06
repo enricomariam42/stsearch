@@ -149,7 +149,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('far-calendar-alt')}
 									</label>
 								</div>
-								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control"
+								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control" placeholder="yyyy-mm-dd"
 									value=${CONFIG['date-min']}
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
@@ -157,7 +157,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fas-long-arrow-alt-right')}
 									</label>
 								</div>
-								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control"
+								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control" placeholder="yyyy-mm-dd"
 									value=${CONFIG['date-max']}
 									@change=${this.formFieldChangeHandlerGenerator('date-max')}>
 							</div>
