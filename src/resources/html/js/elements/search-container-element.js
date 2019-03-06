@@ -10,7 +10,7 @@ import {trigger, override, strToBool, safeJSON} from '../helpers';
 import {CONFIG} from '../config';
 
 import RemoteRepositoryAPI from '../api/remote-repository-api';
-import {EMPTY_HIERARCHY} from '../repository';
+import {EMPTY_ROOT} from '../repository';
 
 import BaseElement from './base-element';
 import EmptyElement from './empty-element';
@@ -54,14 +54,14 @@ export default class SearchContainerElement extends BaseElement {
 					this.render();
 				},
 				formRefreshCallback: async () => {
-					this.options.repository.hierarchy = EMPTY_HIERARCHY;
+					this.options.repository.root = EMPTY_ROOT;
 					this.render();
 
-					let hierarchy = await RemoteRepositoryAPI.getRepository();
-					if (hierarchy === null) {
+					let root = await RemoteRepositoryAPI.getRepository();
+					if (root === null) {
 						noty.error('Error in data loading');
 					} else {
-						this.options.repository.hierarchy = hierarchy;
+						this.options.repository.root = root;
 						this.render();
 					}
 				},
@@ -77,7 +77,7 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFolderListElement = new SearchFolderListElement(null, {
 				currentFolder: this.options.repository.currentFolder,
 				parentFolder: this.options.repository.parentFolder,
-				folders: this.options.repository.nestedFolders,
+				folders: this.options.repository.folders,
 				folderUpCallback: () => {
 					this.options.repository.currentFolder = this.options.repository.parentFolder;
 					this.render();
@@ -94,7 +94,7 @@ export default class SearchContainerElement extends BaseElement {
 		let filesStart = this.pageNumber * CONFIG['page-size'];
 		let filesEnd = filesStart + CONFIG['page-size'];
 		this.searchFileListElement = new SearchFileListElement(null, {
-			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
+			files: this.options.repository.files.slice(filesStart, filesEnd),
 			fileEditCallback: fileData => {
 				if (!fileData.isReadonly) {
 					let file = this.options.repository.fromPath(fileData.path);
@@ -176,7 +176,7 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFileEditModalElement = new EmptyElement();
 		}
 
-		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / CONFIG['page-size']);
+		let pageTotal = Math.ceil(this.options.repository.files.length / CONFIG['page-size']);
 		if (pageTotal > 1) {
 			this.searchPaginationElement = new SearchPaginationElement(null, {
 				pageNumber: this.pageNumber,

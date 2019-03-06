@@ -4,12 +4,12 @@ import orderBy from 'lodash/orderBy';
 
 import {CONFIG} from './config';
 
-export const EMPTY_HIERARCHY = {path: '/', children: []};
+export const EMPTY_ROOT = {path: '/', children: []};
 
 export default class Repository {
-	constructor(hierarchy = EMPTY_HIERARCHY) {
+	constructor(root = EMPTY_ROOT) {
 		this.initializeFilters();
-		this.hierarchy = hierarchy;
+		this.root = root;
 	}
 
 	splitPath(path = '') {
@@ -23,7 +23,7 @@ export default class Repository {
 		}
 
 		let currentPath = '';
-		let currentFolder = this.hierarchy;
+		let currentFolder = this.root;
 		if (currentFolder.path !== path) {
 			for (let i = 0; i < splittedPath.length; i++) {
 				currentPath += splittedPath[i];
@@ -39,13 +39,13 @@ export default class Repository {
 		return currentFolder;
 	}
 
-	get hierarchy() {
-		return this._hierarchy;
+	get root() {
+		return this._root;
 	}
 
-	set hierarchy(hierarchy) {
-		this._hierarchy = hierarchy;
-		this.currentFolder = hierarchy;
+	set root(root) {
+		this._root = root;
+		this.currentFolder = root;
 	}
 
 	get parentFolder() {
@@ -77,9 +77,9 @@ export default class Repository {
 			});
 		})(currentFolder.children);
 
+		this.folders = this.orderFiles(folders);
+		this.files = this.orderFiles(files);
 		this._currentFolder = currentFolder;
-		this.nestedFolders = this.orderFiles(folders);
-		this.nestedFiles = this.orderFiles(files);
 	}
 
 	/*

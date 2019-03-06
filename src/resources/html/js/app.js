@@ -24,16 +24,16 @@ window.addEventListener('load', async () => {
 	let searchContainerElement = new SearchContainerElement(container, {repository});
 	searchContainerElement.render();
 
-	let hierarchy = await RemoteRepositoryAPI.getRepository();
-	if (hierarchy === null) {
+	let root = await RemoteRepositoryAPI.getRepository();
+	if (root === null) {
 		noty.error('Error in data loading');
 	} else {
-		// The property "_hierarchy" is updated to avoid applying the filters twice.
-		repository._hierarchy = hierarchy;
+		// The property "_root" is updated to avoid applying the filters twice.
+		repository._root = root;
 
 		let currentFolder = repository.fromPath(CONFIG['current-folder']);
 		if (currentFolder === null) {
-			repository.currentFolder = hierarchy;
+			repository.currentFolder = root;
 			noty.error('Folder does not exist');
 		} else {
 			repository.currentFolder = currentFolder;
