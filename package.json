@@ -1,13 +1,26 @@
 {
   "private": true,
   "name": "stsearch",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "maven": {
+    "group": "com.stratebi.pentaho",
+    "repository": {
+      "snapshot": {
+        "id": "stratebi-snapshot",
+        "url": "https://repo.stratebi.com/repository/stratebi-mvn-snapshot"
+      },
+      "release": {
+        "id": "stratebi-releases",
+        "url": "https://repo.stratebi.com/repository/stratebi-mvn-releases"
+      }
+    }
+  },
   "engines": {
     "node": ">=8"
   },
   "scripts": {
     "lint": "eslint .",
-    "build": "npm run build:dev && npm run build:prod",
+    "build": "npm run build:dev",
     "build:dev": "webpack --display-reasons",
     "build:prod": "webpack --display-reasons --mode=production",
     "watch": "npm run watch:dev",
@@ -15,7 +28,10 @@
     "watch:prod": "webpack --display-reasons --watch --mode=production",
     "serve": "npm run serve:dev",
     "serve:dev": "webpack-dev-server",
-    "serve:prod": "webpack-dev-server --mode=production"
+    "serve:prod": "webpack-dev-server --mode=production",
+    "deploy": "npm run deploy:dev",
+    "deploy:dev": "node ./scripts/mvn-deploy.js",
+    "deploy:prod": "NODE_ENV=production node ./scripts/mvn-deploy.js"
   },
   "dependencies": {
     "@appnest/lit-translate": "~1.1.10",
@@ -38,6 +54,7 @@
     "@babel/core": "~7.3.4",
     "@babel/plugin-proposal-class-properties": "~7.3.4",
     "@babel/preset-env": "~7.3.4",
+    "archiver": "~3.0.0",
     "autoprefixer": "~9.4.10",
     "babel-loader": "~8.0.5",
     "chai": "~4.2.0",

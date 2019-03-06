@@ -1,16 +1,48 @@
 stages:
+  - lint
   - build
+  - deploy
 
-build:
+before_script:
+  - npm install
+
+cache:
+  paths:
+    - node_modules/
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
+
+build:develop:
   stage: build
   script:
-    - npm install
-    - npm run lint
-    - npm run build
+    - npm run build:dev
   artifacts:
-    expire_in: 1 week
+    expire_in: 1 hour
     paths:
       - dist/
-  cache:
+
+build:production:
+  stage: build
+  script:
+    - npm run build:prod
+  artifacts:
+    expire_in: 1 hour
     paths:
-      - node_modules/
+      - dist/
+  only:
+    - /^v([0-9]+\.)+[0-9]$/
+
+deploy:develop:
+  stage: deploy
+  script:
+    - npm run deploy:dev
+
+deploy:production:
+  stage: deploy
+  script:
+    - npm run deploy:prod
+  only:
+    - /^v([0-9]+\.)+[0-9]$/
