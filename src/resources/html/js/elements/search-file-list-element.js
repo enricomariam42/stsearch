@@ -12,17 +12,15 @@ export default class SearchFileListElement extends BaseElement {
 	get template() {
 		let fileTemplates;
 		if (Array.isArray(this.options.files)) {
-			fileTemplates = this.options.files.map(options => {
-				let file = new SearchFileElement(null, {
-					...options,
-					canAdminister: this.options.canAdminister,
+			fileTemplates = this.options.files.map(file => {
+				return new SearchFileElement(null, {
+					file,
 					fileEditCallback: this.options.fileEditCallback,
 					fileHomeCallback: this.options.fileHomeCallback,
 					fileFavoriteCallback: this.options.fileFavoriteCallback,
 					fileTagCallback: this.options.fileTagCallback,
 					fileOpenCallback: this.options.fileOpenCallback
-				});
-				return file.template;
+				}).template;
 			});
 		} else {
 			fileTemplates = [];

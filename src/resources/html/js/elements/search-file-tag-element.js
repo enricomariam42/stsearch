@@ -11,11 +11,11 @@ export default class SearchFileTagElement extends BaseElement {
 	get template() {
 		return html`
 			<a id="${this.id}"
-				title="${this.options.value}"
+				title="${this.options.tag.value}"
 				class="${this.className} badge"
 				@click=${this.tagClickHandler}
 				href="javascript:void(0)">
-				${this.options.value}
+				${this.options.tag.value}
 			</a>
 		`;
 	}
@@ -27,7 +27,7 @@ export default class SearchFileTagElement extends BaseElement {
 			once: false,
 			handleEvent: () => {
 				if (typeof this.options.fileTagCallback === 'function') {
-					this.options.fileTagCallback(this.options);
+					this.options.fileTagCallback(this.options.tag);
 				}
 			}
 		};

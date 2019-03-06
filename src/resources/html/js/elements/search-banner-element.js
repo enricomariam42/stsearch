@@ -1,5 +1,7 @@
 import {html} from 'lit-html';
 
+import {CONFIG} from '../config';
+
 import BaseElement from './base-element';
 
 export default class SearchBannerElement extends BaseElement {
@@ -11,9 +13,9 @@ export default class SearchBannerElement extends BaseElement {
 	get template() {
 		return html`
 			<div id="${this.id}" class="${this.className}"
-				style="background-color: ${this.options.background}"
-				title="${this.options.title}">
-				<img src="${this.options.src}">
+				style="background-color: ${CONFIG['banner-background']}"
+				title="${CONFIG['banner-title']}">
+				<img src="${CONFIG['banner-src']}">
 			</div>
 		`;
 	}

@@ -2,7 +2,7 @@ import escapeRegExp from 'lodash/escapeRegExp';
 import inRange from 'lodash/inRange';
 import orderBy from 'lodash/orderBy';
 
-import {DEFAULTS} from './defaults';
+import {CONFIG} from './config';
 
 export const EMPTY_HIERARCHY = {path: '/', children: []};
 
@@ -87,14 +87,14 @@ export default class Repository {
 	 */
 
 	initializeFilters() {
-		this.searchInTitle = DEFAULTS['search-in-title'];
-		this.searchInDescription = DEFAULTS['search-in-description'];
-		this.searchInTags = DEFAULTS['search-in-tags'];
-		this.searchTerms = DEFAULTS['search-terms'];
-		this.allowedExtensions = DEFAULTS['allowed-extensions'];
-		this.dateMin = DEFAULTS['date-min'];
-		this.dateMax = DEFAULTS['date-max'];
-		this.dateProperty = DEFAULTS['date-property'];
+		this.searchInTitle = CONFIG['search-in-title'];
+		this.searchInDescription = CONFIG['search-in-description'];
+		this.searchInTags = CONFIG['search-in-tags'];
+		this.searchTerms = CONFIG['search-terms'];
+		this.allowedExtensions = CONFIG['allowed-extensions'];
+		this.dateMin = CONFIG['date-min'];
+		this.dateMax = CONFIG['date-max'];
+		this.dateProperty = CONFIG['date-property'];
 	}
 
 	applyFilters() {

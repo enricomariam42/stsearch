@@ -2,7 +2,7 @@ import {html} from 'lit-html';
 
 import {formData} from '../helpers';
 
-import {DEFAULTS} from '../defaults';
+import {CONFIG} from '../config';
 
 import BaseElement from './base-element';
 
@@ -34,11 +34,11 @@ export default class SearchFilterFormElement extends BaseElement {
 												<label
 													class="
 														btn btn-sm btn-link text-left px-3 w-100 rounded-0
-														${DEFAULTS['search-in-title'] ? 'active' : ''}
+														${CONFIG['search-in-title'] ? 'active' : ''}
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
 													<input name="search-in-title" value="true" type="checkbox" autocomplete="off"
-														?checked=${DEFAULTS['search-in-title']}>
+														?checked=${CONFIG['search-in-title']}>
 													Title
 												</label>
 											</div>
@@ -48,11 +48,11 @@ export default class SearchFilterFormElement extends BaseElement {
 												<label
 													class="
 														btn btn-sm btn-link text-left px-3 w-100 rounded-0
-														${DEFAULTS['search-in-description'] ? 'active' : ''}
+														${CONFIG['search-in-description'] ? 'active' : ''}
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
 													<input name="search-in-description" value="true" type="checkbox" autocomplete="off"
-														?checked=${DEFAULTS['search-in-description']}>
+														?checked=${CONFIG['search-in-description']}>
 													Description
 												</label>
 											</div>
@@ -62,11 +62,11 @@ export default class SearchFilterFormElement extends BaseElement {
 												<label
 													class="
 														btn btn-sm btn-link text-left px-3 w-100 rounded-0
-														${DEFAULTS['search-in-tags'] ? 'active' : ''}
+														${CONFIG['search-in-tags'] ? 'active' : ''}
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
 													<input name="search-in-tags" value="true" type="checkbox" autocomplete="off"
-														?checked=${DEFAULTS['search-in-tags']}>
+														?checked=${CONFIG['search-in-tags']}>
 													Tags
 												</label>
 											</div>
@@ -74,7 +74,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</div>
 								</div>
 								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" placeholder="Search..."
-									value=${DEFAULTS['search-terms']}
+									value=${CONFIG['search-terms']}
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
 							</div>
 						</div>
@@ -83,51 +83,51 @@ export default class SearchFilterFormElement extends BaseElement {
 								<label
 									class="
 										btn btn-outline-tool-cde 
-										${DEFAULTS['allowed-extensions'].includes('wcdf') ? 'active' : ''}
+										${CONFIG['allowed-extensions'].includes('wcdf') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="wcdf" type="checkbox" autocomplete="off"
-										?checked=${DEFAULTS['allowed-extensions'].includes('wcdf')}>
+										?checked=${CONFIG['allowed-extensions'].includes('wcdf')}>
 									${this.faTemplate('fac-tool-cde')}
 								</label>
 								<label
 									class="
 										btn btn-outline-tool-stpivot
-										${DEFAULTS['allowed-extensions'].includes('xjpivot') ? 'active' : ''}
+										${CONFIG['allowed-extensions'].includes('xjpivot') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" autocomplete="off"
-										?checked=${DEFAULTS['allowed-extensions'].includes('xjpivot')}>
+										?checked=${CONFIG['allowed-extensions'].includes('xjpivot')}>
 									${this.faTemplate('fac-tool-stpivot')}
 								</label>
 								<label
 									class="
 										btn btn-outline-tool-streport
-										${DEFAULTS['allowed-extensions'].includes('adhoc|prpt') ? 'active' : ''}
+										${CONFIG['allowed-extensions'].includes('adhoc|prpt') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" autocomplete="off"
-										?checked=${DEFAULTS['allowed-extensions'].includes('adhoc|prpt')}>
+										?checked=${CONFIG['allowed-extensions'].includes('adhoc|prpt')}>
 									${this.faTemplate('fac-tool-streport')}
 								</label>
 								<label
 									class="
 										btn btn-outline-tool-stdashboard
-										${DEFAULTS['allowed-extensions'].includes('std') ? 'active' : ''}
+										${CONFIG['allowed-extensions'].includes('std') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="std" type="checkbox" autocomplete="off"
-										?checked=${DEFAULTS['allowed-extensions'].includes('std')}>
+										?checked=${CONFIG['allowed-extensions'].includes('std')}>
 									${this.faTemplate('fac-tool-stdashboard')}
 								</label>
 								<label
 									class="
 										btn btn-outline-tool-stagile
-										${DEFAULTS['allowed-extensions'].includes('sta') ? 'active' : ''}
+										${CONFIG['allowed-extensions'].includes('sta') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="sta" type="checkbox" autocomplete="off"
-										?checked=${DEFAULTS['allowed-extensions'].includes('sta')}>
+										?checked=${CONFIG['allowed-extensions'].includes('sta')}>
 									${this.faTemplate('fac-tool-stagile')}
 								</label>
 							</div>
@@ -150,7 +150,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</label>
 								</div>
 								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control"
-									value=${DEFAULTS['date-min']}
+									value=${CONFIG['date-min']}
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
 									<label for="${this.id}-date-max" class="btn input-group-text">
@@ -158,7 +158,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</label>
 								</div>
 								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control"
-									value=${DEFAULTS['date-max']}
+									value=${CONFIG['date-max']}
 									@change=${this.formFieldChangeHandlerGenerator('date-max')}>
 							</div>
 						</div>
@@ -167,11 +167,11 @@ export default class SearchFilterFormElement extends BaseElement {
 								<select name="date-property" class="custom-select"
 									@change=${this.formFieldChangeHandlerGenerator('date-property')}>
 									<option value="created"
-										?selected=${DEFAULTS['date-property'] === 'created'}>
+										?selected=${CONFIG['date-property'] === 'created'}>
 										Creation date
 									</option>
 									<option value="modified"
-										?selected=${DEFAULTS['date-property'] === 'modified'}>
+										?selected=${CONFIG['date-property'] === 'modified'}>
 										Modification date
 									</option>
 								</select>

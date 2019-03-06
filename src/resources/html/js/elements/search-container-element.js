@@ -7,6 +7,8 @@ import {noty} from '../vendor/noty';
 
 import {trigger, override, strToBool, safeJSON} from '../helpers';
 
+import {CONFIG} from '../config';
+
 import RemoteRepositoryAPI from '../api/remote-repository-api';
 import {EMPTY_HIERARCHY} from '../repository';
 
@@ -24,22 +26,17 @@ export default class SearchContainerElement extends BaseElement {
 		super(...args);
 		this.className = 'search-container-element';
 		this.currentEditingFile = null;
+		this.pageNumber = 0;
 	}
 
 	get template() {
-		if (this.options.disableBanner) {
-			this.searchBannerElement = new EmptyElement();
+		if (CONFIG['enable-banner']) {
+			this.searchBannerElement = new SearchBannerElement(null);
 		} else {
-			this.searchBannerElement = new SearchBannerElement(null, {
-				src: this.options.bannerSrc,
-				title: this.options.bannerTitle,
-				background: this.options.bannerBackground
-			});
+			this.searchBannerElement = new EmptyElement();
 		}
 
-		if (this.options.disableFilters) {
-			this.searchFilterFormElement = new EmptyElement();
-		} else {
+		if (CONFIG['enable-filters']) {
 			this.searchFilterFormElement = new SearchFilterFormElement(null, {
 				formSubmitCallback: formObj => {
 					override(this.options.repository, {
@@ -53,7 +50,7 @@ export default class SearchContainerElement extends BaseElement {
 						dateProperty: formObj['date-property']
 					});
 					this.options.repository.applyFilters();
-					this.options.pageNumber = 0;
+					this.pageNumber = 0;
 					this.render();
 				},
 				formRefreshCallback: async () => {
@@ -72,11 +69,11 @@ export default class SearchContainerElement extends BaseElement {
 					trigger('submit', this.searchFilterFormElement.ref);
 				}, 200)
 			});
+		} else {
+			this.searchFilterFormElement = new EmptyElement();
 		}
 
-		if (this.options.disableFolders) {
-			this.searchFolderListElement = new EmptyElement();
-		} else {
+		if (CONFIG['enable-folders']) {
 			this.searchFolderListElement = new SearchFolderListElement(null, {
 				currentFolder: this.options.repository.currentFolder,
 				parentFolder: this.options.repository.parentFolder,
@@ -90,13 +87,14 @@ export default class SearchContainerElement extends BaseElement {
 					this.render();
 				}
 			});
+		} else {
+			this.searchFolderListElement = new EmptyElement();
 		}
 
-		let filesStart = this.options.pageNumber * this.options.pageSize;
-		let filesEnd = filesStart + this.options.pageSize;
+		let filesStart = this.pageNumber * CONFIG['page-size'];
+		let filesEnd = filesStart + CONFIG['page-size'];
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.nestedFiles.slice(filesStart, filesEnd),
-			canAdminister: this.options.canAdminister,
 			fileEditCallback: fileData => {
 				if (!fileData.isReadonly) {
 					let file = this.options.repository.fromPath(fileData.path);
@@ -146,9 +144,7 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
-		if (this.currentEditingFile === null) {
-			this.searchFileEditModalElement = new EmptyElement();
-		} else {
+		if (this.currentEditingFile) {
 			this.searchFileEditModalElement = new SearchFileEditModalElement(null, {
 				file: this.currentEditingFile,
 				formSubmitCallback: async formObj => {
@@ -176,21 +172,22 @@ export default class SearchContainerElement extends BaseElement {
 					}
 				}
 			});
+		} else {
+			this.searchFileEditModalElement = new EmptyElement();
 		}
 
-		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / this.options.pageSize);
-		if (pageTotal < 2) {
-			this.searchPaginationElement = new EmptyElement();
-		} else {
+		let pageTotal = Math.ceil(this.options.repository.nestedFiles.length / CONFIG['page-size']);
+		if (pageTotal > 1) {
 			this.searchPaginationElement = new SearchPaginationElement(null, {
-				pageNumber: this.options.pageNumber,
-				pagePlaces: this.options.pagePlaces,
+				pageNumber: this.pageNumber,
 				pageTotal: pageTotal,
 				pageChangeCallback: pageNumber => {
-					this.options.pageNumber = clamp(pageNumber, 0, pageTotal);
+					this.pageNumber = clamp(pageNumber, 0, pageTotal);
 					this.render();
 				}
 			});
+		} else {
+			this.searchPaginationElement = new EmptyElement();
 		}
 
 		return html`
