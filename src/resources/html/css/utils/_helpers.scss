@@ -21,7 +21,7 @@ $env: development !default;
 }
 
 /* Change the cursor to a pointer when the label is also a button */
-label.btn[for] {
+label.btn {
 	cursor: pointer;
 }
 
