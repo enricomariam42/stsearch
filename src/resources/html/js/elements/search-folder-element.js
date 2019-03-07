@@ -28,6 +28,10 @@ export default class SearchFolderElement extends BaseElement {
 			once: false,
 			handleEvent: () => {
 				if (typeof this.options.folderClickCallback === 'function') {
+					if (document.activeElement) {
+						document.activeElement.blur();
+					}
+
 					this.options.folderClickCallback(this.options);
 				}
 			}
