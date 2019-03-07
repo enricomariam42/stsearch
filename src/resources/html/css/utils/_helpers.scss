@@ -82,9 +82,16 @@ label.btn[for] {
 }
 
 /* Make Tagify fields display correctly with Bootstrap */
-.form-control.tagify {
+.tagify.form-control {
 	height: auto;
 	font-size: 15px;
+
+	&.tagify--focus {
+		color: $input-focus-color;
+		background-color: $input-focus-bg;
+		border-color: $input-focus-border-color;
+		box-shadow: $input-focus-box-shadow;
+	}
 
 	> tag {
 		max-width: rem(200);
