@@ -13,7 +13,7 @@ export default class SearchFileElement extends BaseElement {
 
 	get template() {
 		let tagTemplates;
-		if (Array.isArray(this.options.file.properties.tags)) {
+		if (CONFIG['enable-file-tags'] && Array.isArray(this.options.file.properties.tags)) {
 			tagTemplates = this.options.file.properties.tags.map(tag => {
 				return new SearchFileTagElement(null, {
 					tag,
@@ -41,23 +41,31 @@ export default class SearchFileElement extends BaseElement {
 							</button>
 						</div>
 						<div class="card-buttons btn-group m-n2 float-right">
-							<button type="button" class="btn btn-light ${CONFIG['show-file-edit-button'] ? '' : 'd-none'}"
-								?disabled=${this.options.file.isReadonly}
-								@click=${this.fileEditClickHandler}>
-								${this.faTemplate('fas-edit')}
-							</button>
-							<button type="button" class="btn btn-light ${CONFIG['show-file-home-button'] ? '' : 'd-none'}"
-								@click=${this.fileHomeClickHandler}>
-								${this.faTemplate(`${this.options.file.isHomeItem ? 'fas' : 'far'}-home`)}
-							</button>
-							<button type="button" class="btn btn-light ${CONFIG['show-file-favorite-button'] ? '' : 'd-none'}"
-								@click=${this.fileFavoriteClickHandler}>
-								${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
-							</button>
-							<button type="button" class="btn btn-light ${CONFIG['show-file-open-button'] ? '' : 'd-none'}"
-								@click=${this.fileOpenClickHandler}>
-								${this.faTemplate('fas-external-link-alt')}
-							</button>
+							${CONFIG['enable-file-edit'] ? html`
+								<button type="button" class="btn btn-light"
+									?disabled=${this.options.file.isReadonly}
+									@click=${this.fileEditClickHandler}>
+									${this.faTemplate('fas-edit')}
+								</button>
+							` : ''}
+							${CONFIG['enable-file-home'] ? html`
+								<button type="button" class="btn btn-light"
+									@click=${this.fileHomeClickHandler}>
+									${this.faTemplate(`${this.options.file.isHomeItem ? 'fas' : 'far'}-home`)}
+								</button>
+							` : ''}
+							${CONFIG['enable-file-favorite'] ? html`
+								<button type="button" class="btn btn-light"
+									@click=${this.fileFavoriteClickHandler}>
+									${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
+								</button>
+							` : ''}
+							${CONFIG['enable-file-open'] ? html`
+								<button type="button" class="btn btn-light"
+									@click=${this.fileOpenClickHandler}>
+									${this.faTemplate('fas-external-link-alt')}
+								</button>
+							` : ''}
 						</div>
 					</div>
 					<div class="card-body">

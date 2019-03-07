@@ -3,6 +3,11 @@
     "enable-banner": "false",
     "enable-filters": "true",
     "enable-folders": "true",
+    "enable-file-tags": "true",
+    "enable-file-edit": "true",
+    "enable-file-home": "true",
+    "enable-file-favorite": "true",
+    "enable-file-open": "true",
     "banner-src": "../images/stsearch_128h.png",
     "banner-title": "STSearch",
     "banner-background": "transparent",
@@ -16,10 +21,6 @@
     "date-property": "created",
     "page-places": "5",
     "page-size": "24",
-    "current-folder": "/",
-    "show-file-edit-button": "true",
-    "show-file-home-button": "true",
-    "show-file-favorite-button": "true",
-    "show-file-open-button": "true"
+    "current-folder": "/"
   }
 }

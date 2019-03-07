@@ -21,20 +21,21 @@ export const loadConfig = async () => {
 		CONFIG['enable-banner'] = strToBool(CONFIG['enable-banner']);
 		CONFIG['enable-filters'] = strToBool(CONFIG['enable-filters']);
 		CONFIG['enable-folders'] = strToBool(CONFIG['enable-folders']);
+		CONFIG['enable-file-tags'] = strToBool(CONFIG['enable-file-tags']);
+		CONFIG['enable-file-edit'] = strToBool(CONFIG['enable-file-edit']);
+		CONFIG['enable-file-home'] = strToBool(CONFIG['enable-file-home']);
+		CONFIG['enable-file-favorite'] = strToBool(CONFIG['enable-file-favorite']);
+		CONFIG['enable-file-open'] = strToBool(CONFIG['enable-file-open']);
 		CONFIG['search-in-title'] = strToBool(CONFIG['search-in-title']);
 		CONFIG['search-in-description'] = strToBool(CONFIG['search-in-description']);
 		CONFIG['search-in-tags'] = strToBool(CONFIG['search-in-tags']);
 		CONFIG['page-places'] = strToInt(CONFIG['page-places']);
 		CONFIG['page-size'] = strToInt(CONFIG['page-size']);
-		CONFIG['show-file-edit-button'] = strToBool(CONFIG['show-file-edit-button']);
-		CONFIG['show-file-home-button'] = strToBool(CONFIG['show-file-home-button']);
-		CONFIG['show-file-favorite-button'] = strToBool(CONFIG['show-file-favorite-button']);
-		CONFIG['show-file-open-button'] = strToBool(CONFIG['show-file-open-button']);
 
-		// If "show-file-home-button" is true, check if the user really has permission.
-		if (CONFIG['show-file-home-button']) {
+		// If "enable-file-home" is true, check if the user really has permission.
+		if (CONFIG['enable-file-home']) {
 			let canAdminister = await RemoteRepositoryAPI.canAdminister();
-			CONFIG['show-file-home-button'] = canAdminister;
+			CONFIG['enable-file-home'] = canAdminister;
 		}
 	}
 };
