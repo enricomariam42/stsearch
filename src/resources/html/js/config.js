@@ -29,6 +29,7 @@ export const loadConfig = async () => {
 		CONFIG['search-in-title'] = strToBool(CONFIG['search-in-title']);
 		CONFIG['search-in-description'] = strToBool(CONFIG['search-in-description']);
 		CONFIG['search-in-tags'] = strToBool(CONFIG['search-in-tags']);
+		CONFIG['max-tags'] = strToInt(CONFIG['max-tags']);
 		CONFIG['page-places'] = strToInt(CONFIG['page-places']);
 		CONFIG['page-size'] = strToInt(CONFIG['page-size']);
 

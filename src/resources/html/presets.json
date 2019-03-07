@@ -19,6 +19,7 @@
     "date-min": "",
     "date-max": "",
     "date-property": "created",
+    "max-tags": "10",
     "page-places": "5",
     "page-size": "24",
     "current-folder": "/"

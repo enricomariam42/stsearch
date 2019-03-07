@@ -207,7 +207,7 @@ export default class SearchContainerElement extends BaseElement {
 
 		if (this.currentEditingFile) {
 			let tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
-			this.tagify = new Tagify(tagInput, {maxTags: 10});
+			this.tagify = new Tagify(tagInput, {maxTags: CONFIG['max-tags']});
 
 			this.searchFileEditModalElement.$ref.modal('show');
 			this.searchFileEditModalElement.$ref.one('hide.bs.modal', () => {
