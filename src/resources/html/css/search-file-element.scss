@@ -7,6 +7,16 @@
 		> .card-header .btn {
 			font-size: 1.1rem;
 			color: map-get($theme-colors, file-unknown);
+
+			&:hover:not(:disabled) {
+				opacity: 0.75;
+				border-color: transparent;
+				background-color: transparent;
+			}
+
+			&:focus {
+				box-shadow: $input-focus-box-shadow;
+			}
 		}
 
 		> .card-header .card-buttons .btn:disabled {

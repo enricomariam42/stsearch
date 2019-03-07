@@ -10,13 +10,11 @@ export default class SearchFileTagElement extends BaseElement {
 
 	get template() {
 		return html`
-			<a id="${this.id}"
+			<button id="${this.id}" class="${this.className} btn btn-light"
 				title="${this.options.tag.value}"
-				class="${this.className} badge"
-				@click=${this.tagClickHandler}
-				href="javascript:void(0)">
+				@click=${this.tagClickHandler}>
 				${this.options.tag.value}
-			</a>
+			</button>
 		`;
 	}
 

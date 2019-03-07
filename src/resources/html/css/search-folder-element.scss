@@ -1,0 +1,13 @@
+.search-folder-element {
+	> .btn {
+		border: $border-width solid darken($border-color, 5%);
+
+		&:hover:not(:disabled) {
+			border-color: darken($border-color, 15%);
+		}
+	
+		&:focus {
+			box-shadow: $input-focus-box-shadow;
+		}
+	}
+}
