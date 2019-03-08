@@ -21,10 +21,12 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<label for="${this.id}-search-terms" class="btn input-group-text">
+									<label for="${this.id}-search-terms" class="btn btn-icon-primary input-group-text">
 										${this.faTemplate('fas-search')}
 									</label>
-									<button type="button" class="btn dropdown-toggle dropdown-toggle-split input-group-text" data-toggle="dropdown"></button>
+									<button type="button" class="btn btn-icon-primary input-group-text dropdown-toggle-split" data-toggle="dropdown">
+										${this.faTemplate('fas-caret-down')}
+									</button>
 									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
 										<div class="dropdown-item p-0">
 											<div class="px-3 pb-1">Search in:</div>
@@ -145,7 +147,7 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<label for="${this.id}-date-min" class="btn input-group-text">
+									<label for="${this.id}-date-min" class="btn btn-icon-primary input-group-text">
 										${this.faTemplate('far-calendar-alt')}
 									</label>
 								</div>
@@ -153,7 +155,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									value=${CONFIG['date-min']}
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
-									<label for="${this.id}-date-max" class="btn input-group-text">
+									<label for="${this.id}-date-max" class="btn btn-icon-primary input-group-text">
 										${this.faTemplate('fas-long-arrow-alt-right')}
 									</label>
 								</div>

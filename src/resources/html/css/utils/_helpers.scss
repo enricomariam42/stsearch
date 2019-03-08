@@ -42,6 +42,13 @@ label.btn {
 	}
 }
 
+/* Allow different color for the button icon */
+@each $color, $value in $theme-colors {
+	.btn-icon-#{$color}:not(:disabled) .icon {
+		color: map-get($theme-colors, $color);
+	}
+}
+
 /* Responsive version for sizes (implements twbs/bootstrap#21943) */
 @each $breakpoint in map-keys($grid-breakpoints) {
 	@if $breakpoint != 'xs' {

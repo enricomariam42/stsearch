@@ -22,6 +22,7 @@ export const icons = [
 	require('@fortawesome/free-solid-svg-icons/faArrowLeft'),
 	require('@fortawesome/free-solid-svg-icons/faArrowRight'),
 	require('@fortawesome/free-solid-svg-icons/faCameraRetro'),
+	require('@fortawesome/free-solid-svg-icons/faCaretDown'),
 	require('@fortawesome/free-solid-svg-icons/faEdit'),
 	require('@fortawesome/free-solid-svg-icons/faExternalLinkAlt'),
 	require('@fortawesome/free-solid-svg-icons/faFolder'),
