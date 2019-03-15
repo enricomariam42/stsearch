@@ -50,11 +50,13 @@ export default class SearchFileEditModalElement extends BaseElement {
 										</label>
 									</div>
 									<div class="form-group">
-										<label class="w-100">
+										<div class="w-100">
 											<div class="mb-2">Image</div>
-											<input name="thumbnail" type="text" class="form-control" placeholder="https://" maxlength="200"
-												value="${this.options.file.properties.thumbnail ? this.options.file.properties.thumbnail : ''}">
-										</label>
+											<div class="custom-file">
+												<input name="thumbnail" type="file" class="custom-file-input">
+												<span class="custom-file-label">Choose file</span>
+											</div>
+										</div>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
@@ -91,8 +93,10 @@ export default class SearchFileEditModalElement extends BaseElement {
 			handleEvent: event => {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
-					let formMap = formData.objectify(new FormData(event.target));
-					this.options.formSubmitCallback(formMap);
+					let form = new FormData(event.target);
+
+					let formObj = formData.objectify(form);
+					this.options.formSubmitCallback(formObj);
 				}
 			}
 		};

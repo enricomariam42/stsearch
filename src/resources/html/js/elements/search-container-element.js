@@ -2,10 +2,11 @@ import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
 import {html} from 'lit-html';
 
+import bsCustomFileInput from 'bs-custom-file-input';
 import {Tagify} from '../vendor/tagify';
 import {noty} from '../vendor/noty';
 
-import {trigger, override, strToBool, safeJSON} from '../helpers';
+import {trigger, override, imageToDataURI, strToBool, safeJSON} from '../helpers';
 
 import {CONFIG} from '../config';
 
@@ -108,8 +109,8 @@ export default class SearchContainerElement extends BaseElement {
 					path: fileData.path,
 					isHomeItem: !fileData.isHomeItem
 				};
-				let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
+				let result = await RemoteRepositoryAPI.setMetadata(metadata);
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
@@ -124,8 +125,8 @@ export default class SearchContainerElement extends BaseElement {
 					path: fileData.path,
 					isFavorite: !fileData.isFavorite
 				};
-				let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
+				let result = await RemoteRepositoryAPI.setMetadata(metadata);
 				if (result !== null && result.length > 0) {
 					let file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
@@ -153,12 +154,23 @@ export default class SearchContainerElement extends BaseElement {
 						title: formObj.title,
 						description: formObj.description,
 						properties: {
-							thumbnail: formObj.thumbnail,
 							tags: safeJSON.parse(formObj.tags, [])
 						}
 					};
-					let result = await RemoteRepositoryAPI.setMetadata(metadata);
 
+					// Thumbnail must be converted to a data URI.
+					if (formObj.thumbnail.size > 0) {
+						try {
+							let dataURI = await imageToDataURI(formObj.thumbnail);
+							metadata.properties.thumbnail = dataURI;
+						} catch (error) {
+							noty.error('Invalid image');
+							console.error(error);
+							return;
+						}
+					}
+
+					let result = await RemoteRepositoryAPI.setMetadata(metadata);
 					if (result !== null && result.length > 0) {
 						let file = this.options.repository.fromPath(metadata.path);
 						override(file, metadata);
@@ -206,6 +218,9 @@ export default class SearchContainerElement extends BaseElement {
 		super.render();
 
 		if (this.currentEditingFile) {
+			// Make Bootstrap custom file input dynamic.
+			bsCustomFileInput.init('input[name="thumbnail"]');
+
 			let tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
 			this.tagify = new Tagify(tagInput, {maxTags: CONFIG['max-tags']});
 

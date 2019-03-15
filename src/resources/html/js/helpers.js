@@ -1,3 +1,4 @@
+import Compressor from 'compressorjs';
 import mergeWith from 'lodash/mergeWith';
 
 export const isProduction = process.env.NODE_ENV === 'production';
@@ -17,6 +18,35 @@ export const override = (obj, ...srcs) => {
 			return srcValue;
 		}
 	});
+};
+
+export const compressImage = async (file, options = {}) => {
+	return new Promise((resolve, reject) => {
+		/* eslint-disable-next-line no-new */
+		new Compressor(file, {
+			strict: true,
+			checkOrientation: false,
+			maxWidth: 512,
+			maxHeight: 512,
+			quality: 0.4,
+			...options,
+			success: result => resolve(result),
+			error: error => reject(error)
+		});
+	});
+};
+
+export const fileToDataURI = async file => {
+	return new Promise((resolve, reject) => {
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.addEventListener('load', () => resolve(reader.result));
+		reader.addEventListener('error', error => reject(error));
+	});
+};
+
+export const imageToDataURI = file => {
+	return compressImage(file).then(file => fileToDataURI(file));
 };
 
 export const strToBool = str => str === 'true';

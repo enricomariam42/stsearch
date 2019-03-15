@@ -54,15 +54,18 @@ export default class RemoteRepositoryAPI {
 		metadata = cloneDeep(metadata);
 
 		// Transform "metadata" object.
-		metadata.forEach(child => {
+		for await (const child of metadata) {
 			// "properties" must be defined.
 			if (typeof child.properties === 'undefined') {
 				child.properties = {};
-			// "properties.tags" must be converted to string.
-			} else if (Array.isArray(child.properties.tags)) {
-				child.properties.tags = safeJSON.stringify(child.properties.tags, '[]');
 			}
-		});
+
+			// "properties.tags" must be converted to string.
+			if (Array.isArray(child.properties.tags)) {
+				let strTags = safeJSON.stringify(child.properties.tags, '[]');
+				child.properties.tags = strTags;
+			}
+		}
 
 		let url = `${FILES_METADATA_API_ENDPOINT}/set?${searchParams.stringify({locale})}`;
 		let response = await fetch(url, {
