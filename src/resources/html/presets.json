@@ -43,6 +43,7 @@
   "category": {
     "enable-banner": "true",
     "enable-filters": "false",
+    "enable-folders": "false",
     "enable-file-tags": "false",
     "enable-file-edit": "false",
     "search-in-title": "false",
