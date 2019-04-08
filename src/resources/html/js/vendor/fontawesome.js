@@ -1,18 +1,7 @@
 import {library, dom} from '@fortawesome/fontawesome-svg-core';
 
 export const icons = [
-	require('./fontawesome-extra/fac-file-adhoc'),
-	require('./fontawesome-extra/fac-file-prpt'),
-	require('./fontawesome-extra/fac-file-sta'),
-	require('./fontawesome-extra/fac-file-std'),
-	require('./fontawesome-extra/fac-file-wcdf'),
-	require('./fontawesome-extra/fac-file-xjpivot'),
-	require('./fontawesome-extra/fac-tool-cde'),
-	require('./fontawesome-extra/fac-tool-stagile'),
-	require('./fontawesome-extra/fac-tool-stdashboard'),
-	require('./fontawesome-extra/fac-tool-stpivot'),
-	require('./fontawesome-extra/fac-tool-streport'),
-	require('./fontawesome-extra/far-home'),
+	/* eslint-disable global-require */
 	require('@fortawesome/free-regular-svg-icons/faCalendarAlt'),
 	require('@fortawesome/free-regular-svg-icons/faStar'),
 	require('@fortawesome/free-solid-svg-icons/faAngleDoubleLeft'),
@@ -33,7 +22,20 @@ export const icons = [
 	require('@fortawesome/free-solid-svg-icons/faMapMarkedAlt'),
 	require('@fortawesome/free-solid-svg-icons/faSearch'),
 	require('@fortawesome/free-solid-svg-icons/faStar'),
-	require('@fortawesome/free-solid-svg-icons/faSync')
+	require('@fortawesome/free-solid-svg-icons/faSync'),
+	require('./fontawesome-extra/fac-file-adhoc'),
+	require('./fontawesome-extra/fac-file-prpt'),
+	require('./fontawesome-extra/fac-file-sta'),
+	require('./fontawesome-extra/fac-file-std'),
+	require('./fontawesome-extra/fac-file-wcdf'),
+	require('./fontawesome-extra/fac-file-xjpivot'),
+	require('./fontawesome-extra/fac-tool-cde'),
+	require('./fontawesome-extra/fac-tool-stagile'),
+	require('./fontawesome-extra/fac-tool-stdashboard'),
+	require('./fontawesome-extra/fac-tool-stpivot'),
+	require('./fontawesome-extra/fac-tool-streport'),
+	require('./fontawesome-extra/far-home')
+	/* eslint-enable */
 ];
 
 export const container = document.createElement('div');
@@ -42,7 +44,7 @@ document.body.append(container);
 
 icons.forEach(icon => {
 	library.add(icon.definition);
-	let symbol = document.createElement('i');
+	const symbol = document.createElement('i');
 	symbol.dataset.faSymbol = `${icon.prefix}-${icon.iconName}`;
 	symbol.classList.add(icon.prefix, `fa-${icon.iconName}`, 'fa-fw');
 	container.append(symbol);

@@ -5,8 +5,8 @@ export const iconName = 'file-prpt';
 export {width, height, ligatures, unicode, svgPathData};
 
 export const definition = {
-	prefix: prefix,
-	iconName: iconName,
+	prefix,
+	iconName,
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 

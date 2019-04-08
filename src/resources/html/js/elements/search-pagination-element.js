@@ -12,8 +12,8 @@ export default class SearchPaginationElement extends BaseElement {
 	}
 
 	get template() {
-		let isFirstPage = this.options.pageNumber < 1;
-		let isLastPage = this.options.pageNumber + 1 >= this.options.pageTotal;
+		const isFirstPage = this.options.pageNumber < 1;
+		const isLastPage = this.options.pageNumber + 1 >= this.options.pageTotal;
 
 		let pageNumberStart = this.options.pageNumber - Math.floor(CONFIG['page-places'] / 2);
 		let pageNumberEnd = pageNumberStart + CONFIG['page-places'];
@@ -28,10 +28,10 @@ export default class SearchPaginationElement extends BaseElement {
 			pageNumberEnd = this.options.pageTotal;
 		}
 
-		let pageNumberTemplates = [];
+		const pageNumberTemplates = [];
 		for (let n = pageNumberStart; n < pageNumberEnd; n++) {
-			let isActive = n === this.options.pageNumber;
-			let displayNumber = n + 1;
+			const isActive = n === this.options.pageNumber;
+			const displayNumber = n + 1;
 
 			pageNumberTemplates.push(html`
 				<li class="page-item ${isActive ? 'active' : ''}">
@@ -43,7 +43,7 @@ export default class SearchPaginationElement extends BaseElement {
 			`);
 		}
 
-		let pageFirstTemplate = html`
+		const pageFirstTemplate = html`
 			<li class="page-item ${isFirstPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(0)}>
@@ -52,7 +52,7 @@ export default class SearchPaginationElement extends BaseElement {
 			</li>
 		`;
 
-		let pagePreviousTemplate = html`
+		const pagePreviousTemplate = html`
 			<li class="page-item ${isFirstPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageNumber - 1)}>
@@ -61,7 +61,7 @@ export default class SearchPaginationElement extends BaseElement {
 			</li>
 		`;
 
-		let pageNextTemplate = html`
+		const pageNextTemplate = html`
 			<li class="page-item ${isLastPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageNumber + 1)}>
@@ -70,7 +70,7 @@ export default class SearchPaginationElement extends BaseElement {
 			</li>
 		`;
 
-		let pageLastTemplate = html`
+		const pageLastTemplate = html`
 			<li class="page-item ${isLastPage ? 'disabled' : ''}">
 				<a class="page-link" href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageTotal - 1)}>

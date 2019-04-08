@@ -193,18 +193,18 @@ export default class SearchFilterFormElement extends BaseElement {
 			handleEvent: event => {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
-					let form = new FormData(event.target);
+					const form = new FormData(event.target);
 
 					// Ensure that the entry exists if the checkbox is not checked.
-					let checkboxes = event.target.querySelectorAll('[type=checkbox], [type=radio]');
-					for (let checkbox of checkboxes) {
-						let name = checkbox.getAttribute('name');
+					const checkboxes = event.target.querySelectorAll('[type=checkbox], [type=radio]');
+					for (const checkbox of checkboxes) {
+						const name = checkbox.getAttribute('name');
 						if (!form.has(name)) {
 							form.set(name, '');
 						}
 					}
 
-					let formObj = formData.objectify(form);
+					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);
 				}
 			}

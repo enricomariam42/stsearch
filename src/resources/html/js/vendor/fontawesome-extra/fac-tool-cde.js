@@ -5,8 +5,8 @@ export const iconName = 'tool-cde';
 export {width, height, ligatures, unicode, svgPathData};
 
 export const definition = {
-	prefix: prefix,
-	iconName: iconName,
+	prefix,
+	iconName,
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 

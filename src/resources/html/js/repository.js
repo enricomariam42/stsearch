@@ -17,7 +17,7 @@ export default class Repository {
 	}
 
 	fromPath(path = '') {
-		let splittedPath = this.splitPath(path);
+		const splittedPath = this.splitPath(path);
 		if (!splittedPath) {
 			return null;
 		}
@@ -59,10 +59,10 @@ export default class Repository {
 	}
 
 	set currentFolder(currentFolder) {
-		let folders = [];
-		let files = [];
+		const folders = [];
+		const files = [];
 
-		let self = this;
+		const self = this;
 		(function flatten(children, folderDepth = 1) {
 			children.forEach(child => {
 				if (child.isFolder) {
@@ -147,15 +147,15 @@ export default class Repository {
 			// DATE RANGES
 			// ===========
 			( // If the minimum and maximum dates are invalid, the date is not checked.
-				isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch)
+				Number.isNaN(this._dateMinEpoch) && Number.isNaN(this._dateMaxEpoch)
 			) || ( // If the minimum date is valid but the maximum date is not, check only the minimum date.
-				!isNaN(this._dateMinEpoch) && isNaN(this._dateMaxEpoch) &&
+				!Number.isNaN(this._dateMinEpoch) && Number.isNaN(this._dateMaxEpoch) &&
 				new Date(file[this.dateProperty]).getTime() > this._dateMinEpoch
 			) || ( // If the maximum date is valid but the minimum date is not, check only the maximum date.
-				isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
+				Number.isNaN(this._dateMinEpoch) && !Number.isNaN(this._dateMaxEpoch) &&
 				new Date(file[this.dateProperty]).getTime() < this._dateMaxEpoch
 			) || ( // If the minimum and maximum dates are valid, check both.
-				!isNaN(this._dateMinEpoch) && !isNaN(this._dateMaxEpoch) &&
+				!Number.isNaN(this._dateMinEpoch) && !Number.isNaN(this._dateMaxEpoch) &&
 				inRange(new Date(file[this.dateProperty]).getTime(), this._dateMinEpoch, this._dateMaxEpoch)
 			)
 		);

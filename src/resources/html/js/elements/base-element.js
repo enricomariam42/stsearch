@@ -8,15 +8,11 @@ export default class BaseElement {
 	constructor(container = null, options = {}) {
 		this.className = 'base-element';
 		this.container = container;
-
-		/* The following line causes the element to be rendered automatically when the options
-		 * change. It is commented because currently this behavior is not necessary.
-		 */ // this.options = new Proxy(options, this.proxyHandler);
 		this.options = options;
 	}
 
 	get id() {
-		let id = uniqueId(`${this.className}-`);
+		const id = uniqueId(`${this.className}-`);
 
 		Object.defineProperty(this, 'id', {
 			enumerable: true,
@@ -33,7 +29,7 @@ export default class BaseElement {
 	}
 
 	get ref() {
-		let ref = document.querySelector(`#${this.id}`);
+		const ref = document.querySelector(`#${this.id}`);
 
 		if (ref !== null) {
 			Object.defineProperty(this, 'ref', {
@@ -50,7 +46,7 @@ export default class BaseElement {
 	}
 
 	get $ref() {
-		let $ref = jQuery(this.ref);
+		const $ref = jQuery(this.ref);
 
 		if ($ref.length > 0) {
 			Object.defineProperty(this, '$ref', {
@@ -64,16 +60,6 @@ export default class BaseElement {
 		}
 
 		return null;
-	}
-
-	get proxyHandler() {
-		return {
-			set: (obj, prop, value) => {
-				obj[prop] = value;
-				this.render();
-				return true;
-			}
-		};
 	}
 
 	faTemplate(icon, classes = '') {
@@ -91,12 +77,14 @@ export default class BaseElement {
 	render() {
 		if (this.container !== null) {
 			if (!isProduction) {
+				/* eslint-disable-next-line no-console */
 				console.time(`render (${this.id})`);
 			}
 
 			render(this.template, this.container);
 
 			if (!isProduction) {
+				/* eslint-disable-next-line no-console */
 				console.timeEnd(`render (${this.id})`);
 			}
 

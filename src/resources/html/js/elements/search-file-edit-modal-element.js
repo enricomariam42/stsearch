@@ -93,9 +93,9 @@ export default class SearchFileEditModalElement extends BaseElement {
 			handleEvent: event => {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
-					let form = new FormData(event.target);
+					const form = new FormData(event.target);
 
-					let formObj = formData.objectify(form);
+					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);
 				}
 			}

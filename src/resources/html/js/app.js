@@ -1,7 +1,7 @@
 import './vendor/bootstrap';
 import './vendor/fontawesome';
 import './vendor/unfetch';
-import {noty} from './vendor/noty';
+import Noty from './vendor/noty';
 
 import '../css/app.scss';
 
@@ -18,23 +18,23 @@ window.addEventListener('load', async () => {
 	// Load config from presets.
 	await loadConfig();
 
-	let repository = new Repository();
-	let container = document.querySelector('#main');
+	const repository = new Repository();
+	const container = document.querySelector('#main');
 
-	let searchContainerElement = new SearchContainerElement(container, {repository});
+	const searchContainerElement = new SearchContainerElement(container, {repository});
 	searchContainerElement.render();
 
-	let root = await RemoteRepositoryAPI.getRepository();
+	const root = await RemoteRepositoryAPI.getRepository();
 	if (root === null) {
-		noty.error('Error in data loading');
+		Noty.error('Error in data loading');
 	} else {
 		// The property "_root" is updated to avoid applying the filters twice.
 		repository._root = root;
 
-		let currentFolder = repository.fromPath(CONFIG['current-folder']);
+		const currentFolder = repository.fromPath(CONFIG['current-folder']);
 		if (currentFolder === null) {
 			repository.currentFolder = root;
-			noty.error('Folder does not exist');
+			Noty.error('Folder does not exist');
 		} else {
 			repository.currentFolder = currentFolder;
 		}

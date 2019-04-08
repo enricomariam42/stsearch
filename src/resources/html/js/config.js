@@ -6,7 +6,7 @@ export const CONFIG = {};
 export const PRESETS = {};
 
 export const loadConfig = async () => {
-	let response = await fetch('./presets.json', {
+	const response = await fetch('./presets.json', {
 		method: 'GET',
 		headers: {'Content-Type': 'application/json'}
 	});
@@ -14,7 +14,7 @@ export const loadConfig = async () => {
 	if (response.status === 200) {
 		override(PRESETS, await response.json());
 
-		let paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
+		const paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
 		override(CONFIG, PRESETS.default, PRESETS[paramsConfig.preset], paramsConfig);
 
 		// Transform some string values to the correct type.
@@ -37,7 +37,7 @@ export const loadConfig = async () => {
 
 		// If "enable-file-home" is true, check if the user really has permission.
 		if (CONFIG['enable-file-home']) {
-			let canAdminister = await RemoteRepositoryAPI.canAdminister();
+			const canAdminister = await RemoteRepositoryAPI.canAdminister();
 			CONFIG['enable-file-home'] = canAdminister;
 		}
 	}

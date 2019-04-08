@@ -12,18 +12,19 @@ export const DEFAULT_DEPTH = 1;
 export default class RemoteRepositoryAPI {
 	static async getMetadata(paths, {locale = DEFAULT_LOCALE, showHidden = DEFAULT_SHOW_HIDDEN, depth = DEFAULT_DEPTH} = {}) {
 		if (!Array.isArray(paths)) {
+			/* eslint-disable-next-line no-param-reassign */
 			paths = [paths];
 		}
 
-		let url = `${FILES_METADATA_API_ENDPOINT}/get?${searchParams.stringify({locale, showHidden, depth})}`;
-		let response = await fetch(url, {
+		const url = `${FILES_METADATA_API_ENDPOINT}/get?${searchParams.stringify({locale, showHidden, depth})}`;
+		const response = await fetch(url, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(paths)
 		});
 
 		if (response.status === 200) {
-			let metadata = await response.json();
+			const metadata = await response.json();
 
 			// Transform "metadata" object.
 			(function transform(children) {
@@ -47,10 +48,12 @@ export default class RemoteRepositoryAPI {
 
 	static async setMetadata(metadata, {locale = DEFAULT_LOCALE} = {}) {
 		if (!Array.isArray(metadata)) {
+			/* eslint-disable-next-line no-param-reassign */
 			metadata = [metadata];
 		}
 
 		// Clone "metadata" object to avoid mutating the original.
+		/* eslint-disable-next-line no-param-reassign */
 		metadata = cloneDeep(metadata);
 
 		// Transform "metadata" object.
@@ -62,20 +65,20 @@ export default class RemoteRepositoryAPI {
 
 			// "properties.tags" must be converted to string.
 			if (Array.isArray(child.properties.tags)) {
-				let strTags = safeJSON.stringify(child.properties.tags, '[]');
+				const strTags = safeJSON.stringify(child.properties.tags, '[]');
 				child.properties.tags = strTags;
 			}
 		}
 
-		let url = `${FILES_METADATA_API_ENDPOINT}/set?${searchParams.stringify({locale})}`;
-		let response = await fetch(url, {
+		const url = `${FILES_METADATA_API_ENDPOINT}/set?${searchParams.stringify({locale})}`;
+		const response = await fetch(url, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(metadata)
 		});
 
 		if (response.status === 200) {
-			let result = await response.json();
+			const result = await response.json();
 
 			return result;
 		}
@@ -84,7 +87,7 @@ export default class RemoteRepositoryAPI {
 	}
 
 	static async getRepository() {
-		let response = await RemoteRepositoryAPI.getMetadata({fullPath: '/'}, {depth: -1});
+		const response = await RemoteRepositoryAPI.getMetadata({fullPath: '/'}, {depth: -1});
 
 		if (Array.isArray(response) && response.length === 1) {
 			return response[0];
@@ -94,8 +97,8 @@ export default class RemoteRepositoryAPI {
 	}
 
 	static async canAdminister() {
-		let url = `${FILES_API_ENDPOINT}/canAdminister`;
-		let response = await fetch(url, {
+		const url = `${FILES_API_ENDPOINT}/canAdminister`;
+		const response = await fetch(url, {
 			method: 'GET',
 			headers: {'Content-Type': 'text/plain'}
 		});

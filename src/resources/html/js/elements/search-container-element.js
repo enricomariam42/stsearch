@@ -3,8 +3,8 @@ import debounce from 'lodash/debounce';
 import {html} from 'lit-html';
 
 import bsCustomFileInput from 'bs-custom-file-input';
-import {Tagify} from '../vendor/tagify';
-import {noty} from '../vendor/noty';
+import Tagify from '../vendor/tagify';
+import Noty from '../vendor/noty';
 
 import {trigger, override, imageToDataURI, strToBool, safeJSON} from '../helpers';
 
@@ -58,9 +58,9 @@ export default class SearchContainerElement extends BaseElement {
 					this.options.repository.root = EMPTY_ROOT;
 					this.render();
 
-					let root = await RemoteRepositoryAPI.getRepository();
+					const root = await RemoteRepositoryAPI.getRepository();
 					if (root === null) {
-						noty.error('Error in data loading');
+						Noty.error('Error in data loading');
 					} else {
 						this.options.repository.root = root;
 						this.render();
@@ -92,48 +92,48 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFolderListElement = new EmptyElement();
 		}
 
-		let filesStart = this.pageNumber * CONFIG['page-size'];
-		let filesEnd = filesStart + CONFIG['page-size'];
+		const filesStart = this.pageNumber * CONFIG['page-size'];
+		const filesEnd = filesStart + CONFIG['page-size'];
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.files.slice(filesStart, filesEnd),
 			fileEditCallback: fileData => {
 				if (!fileData.isReadonly) {
-					let file = this.options.repository.fromPath(fileData.path);
+					const file = this.options.repository.fromPath(fileData.path);
 					this.currentEditingFile = file;
 
 					this.render();
 				}
 			},
 			fileHomeCallback: async fileData => {
-				let metadata = {
+				const metadata = {
 					path: fileData.path,
 					isHomeItem: !fileData.isHomeItem
 				};
 
-				let result = await RemoteRepositoryAPI.setMetadata(metadata);
+				const result = await RemoteRepositoryAPI.setMetadata(metadata);
 				if (result !== null && result.length > 0) {
-					let file = this.options.repository.fromPath(metadata.path);
+					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
 
 					this.render();
 				} else {
-					noty.error('Error saving data');
+					Noty.error('Error saving data');
 				}
 			},
 			fileFavoriteCallback: async fileData => {
-				let metadata = {
+				const metadata = {
 					path: fileData.path,
 					isFavorite: !fileData.isFavorite
 				};
 
-				let result = await RemoteRepositoryAPI.setMetadata(metadata);
+				const result = await RemoteRepositoryAPI.setMetadata(metadata);
 				if (result !== null && result.length > 0) {
-					let file = this.options.repository.fromPath(metadata.path);
+					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
 
 					this.render();
 				} else {
-					noty.error('Error saving data');
+					Noty.error('Error saving data');
 				}
 			},
 			fileTagCallback: tag => {
@@ -149,7 +149,7 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFileEditModalElement = new SearchFileEditModalElement(null, {
 				file: this.currentEditingFile,
 				formSubmitCallback: async formObj => {
-					let metadata = {
+					const metadata = {
 						path: formObj.path,
 						title: formObj.title,
 						description: formObj.description,
@@ -161,18 +161,18 @@ export default class SearchContainerElement extends BaseElement {
 					// Thumbnail must be converted to a data URI.
 					if (formObj.thumbnail.size > 0) {
 						try {
-							let dataURI = await imageToDataURI(formObj.thumbnail);
+							const dataURI = await imageToDataURI(formObj.thumbnail);
 							metadata.properties.thumbnail = dataURI;
 						} catch (error) {
-							noty.error('Invalid image');
+							Noty.error('Invalid image');
 							console.error(error);
 							return;
 						}
 					}
 
-					let result = await RemoteRepositoryAPI.setMetadata(metadata);
+					const result = await RemoteRepositoryAPI.setMetadata(metadata);
 					if (result !== null && result.length > 0) {
-						let file = this.options.repository.fromPath(metadata.path);
+						const file = this.options.repository.fromPath(metadata.path);
 						override(file, metadata);
 
 						this.currentEditingFile = null;
@@ -180,7 +180,7 @@ export default class SearchContainerElement extends BaseElement {
 
 						this.render();
 					} else {
-						noty.error('Error saving data');
+						Noty.error('Error saving data');
 					}
 				}
 			});
@@ -188,11 +188,11 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFileEditModalElement = new EmptyElement();
 		}
 
-		let pageTotal = Math.ceil(this.options.repository.files.length / CONFIG['page-size']);
+		const pageTotal = Math.ceil(this.options.repository.files.length / CONFIG['page-size']);
 		if (pageTotal > 1) {
 			this.searchPaginationElement = new SearchPaginationElement(null, {
 				pageNumber: this.pageNumber,
-				pageTotal: pageTotal,
+				pageTotal,
 				pageChangeCallback: pageNumber => {
 					this.pageNumber = clamp(pageNumber, 0, pageTotal);
 					this.render();
@@ -221,7 +221,7 @@ export default class SearchContainerElement extends BaseElement {
 			// Make Bootstrap custom file input dynamic.
 			bsCustomFileInput.init('input[name="thumbnail"]');
 
-			let tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
+			const tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
 			this.tagify = new Tagify(tagInput, {maxTags: CONFIG['max-tags']});
 
 			this.searchFileEditModalElement.$ref.modal('show');

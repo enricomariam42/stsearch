@@ -10,7 +10,7 @@ export const NOTY_DEFAULTS = {
 	closeWith: ['click']
 };
 
-export const noty = {
+export default {
 	alert: (text, config) => new Noty({...NOTY_DEFAULTS, ...config, type: 'alert', text}).show(),
 	success: (text, config) => new Noty({...NOTY_DEFAULTS, ...config, type: 'success', text}).show(),
 	error: (text, config) => new Noty({...NOTY_DEFAULTS, ...config, type: 'error', text}).show(),

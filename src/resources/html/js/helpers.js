@@ -17,6 +17,8 @@ export const override = (obj, ...srcs) => {
 		if (Array.isArray(objValue)) {
 			return srcValue;
 		}
+
+		return undefined;
 	});
 };
 
@@ -38,7 +40,7 @@ export const compressImage = async (file, options = {}) => {
 
 export const fileToDataURI = async file => {
 	return new Promise((resolve, reject) => {
-		let reader = new FileReader();
+		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.addEventListener('load', () => resolve(reader.result));
 		reader.addEventListener('error', error => reject(error));
@@ -46,82 +48,15 @@ export const fileToDataURI = async file => {
 };
 
 export const imageToDataURI = file => {
-	return compressImage(file).then(file => fileToDataURI(file));
+	return compressImage(file).then(compressedFile => fileToDataURI(compressedFile));
 };
 
 export const strToBool = str => str === 'true';
 export const strToInt = str => Number.parseInt(str, 10);
 
 export const toLocaleDateTime = str => {
-	let date = new Date(str);
+	const date = new Date(str);
 	return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-};
-
-export const formData = {
-	objectify: (form, defaultValues = {}) => {
-		let obj = defaultValues;
-
-		for (let key of form.keys()) {
-			if (key.endsWith('[]')) {
-				obj[key.substring(0, key.length - 2)] = form.getAll(key);
-			} else {
-				obj[key] = form.get(key);
-			}
-		}
-
-		return obj;
-	},
-	formify: obj => {
-		let form = new FormData();
-
-		Object.entries(obj).forEach(entry => {
-			let key = entry[0];
-			let value = entry[1];
-
-			if (typeof value === 'string') {
-				form.set(key, value);
-			} else if (Array.isArray(value)) {
-				let arrKey = `${key}[]`;
-				value.forEach(arrValue => {
-					form.append(arrKey, arrValue);
-				});
-			} else {
-				let objValue = safeJSON.stringify(value, value);
-				form.append(key, objValue);
-			}
-		});
-
-		return form;
-	}
-};
-
-export const searchParams = {
-	parse: (str, defaultValues) => {
-		// URLSearchParams and FormData have similar methods.
-		return formData.objectify(new URLSearchParams(str), defaultValues);
-	},
-	stringify: obj => {
-		let params = [];
-
-		Object.entries(obj).forEach(entry => {
-			let key = entry[0];
-			let value = entry[1];
-
-			if (typeof value === 'string') {
-				params.push(`${key}=${encodeURIComponent(value)}`);
-			} else if (Array.isArray(value)) {
-				let arrKey = `${key}[]`;
-				value.forEach(arrValue => {
-					params.push(`${arrKey}=${encodeURIComponent(arrValue)}`);
-				});
-			} else {
-				let objValue = safeJSON.stringify(value, value);
-				params.push(`${key}=${encodeURIComponent(objValue)}`);
-			}
-		});
-
-		return params.join('&');
-	}
 };
 
 export const safeJSON = {
@@ -142,5 +77,72 @@ export const safeJSON = {
 		}
 
 		return defaultValue;
+	}
+};
+
+export const formData = {
+	objectify: (form, defaultValues = {}) => {
+		const obj = defaultValues;
+
+		for (const key of form.keys()) {
+			if (key.endsWith('[]')) {
+				obj[key.substring(0, key.length - 2)] = form.getAll(key);
+			} else {
+				obj[key] = form.get(key);
+			}
+		}
+
+		return obj;
+	},
+	formify: obj => {
+		const form = new FormData();
+
+		Object.entries(obj).forEach(entry => {
+			const key = entry[0];
+			const value = entry[1];
+
+			if (typeof value === 'string') {
+				form.set(key, value);
+			} else if (Array.isArray(value)) {
+				const arrKey = `${key}[]`;
+				value.forEach(arrValue => {
+					form.append(arrKey, arrValue);
+				});
+			} else {
+				const objValue = safeJSON.stringify(value, value);
+				form.append(key, objValue);
+			}
+		});
+
+		return form;
+	}
+};
+
+export const searchParams = {
+	parse: (str, defaultValues) => {
+		// URLSearchParams and FormData have similar methods.
+		return formData.objectify(new URLSearchParams(str), defaultValues);
+	},
+	stringify: obj => {
+		const params = [];
+
+		Object.entries(obj).forEach(entry => {
+			const key = entry[0];
+			const value = entry[1];
+
+			if (typeof value === 'string') {
+				params.push(`${key}=${encodeURIComponent(value)}`);
+			} else if (Array.isArray(value)) {
+				const arrKey = `${key}[]`;
+				value.forEach(arrValue => {
+					params.push(`${arrKey}=${encodeURIComponent(arrValue)}`);
+				});
+			} else {
+				const objValue = safeJSON.stringify(value, value);
+				params.push(`${key}=${encodeURIComponent(objValue)}`);
+			}
+		});
+
+		return params.join('&');
 	}
 };

@@ -13,7 +13,7 @@ export default class SearchFolderListElement extends BaseElement {
 		let folderTemplates;
 		if (Array.isArray(this.options.folders)) {
 			folderTemplates = this.options.folders.map(options => {
-				let folder = new SearchFolderElement(null, {
+				const folder = new SearchFolderElement(null, {
 					...options,
 					folderClickCallback: this.options.folderDownCallback
 				});

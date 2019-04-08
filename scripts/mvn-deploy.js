@@ -2,8 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const spawn = require('child_process').spawn;
+const {spawn} = require('child_process');
 
+/* eslint-disable-next-line import/no-extraneous-dependencies */
 const archiver = require('archiver');
 
 const pkg = require('../package.json');
@@ -19,7 +20,7 @@ zipArchiver.pipe(zipStream);
 zipArchiver.directory(zipDir, pkg.name);
 
 zipStream.on('close', () => {
-	let mvn = spawn('mvn', [
+	const mvn = spawn('mvn', [
 		'deploy:deploy-file',
 		'-Dpackaging=zip',
 		`-Dfile=${zipPath}`,
@@ -31,6 +32,7 @@ zipStream.on('close', () => {
 	]);
 
 	mvn.stdout.on('data', data => {
+		/* eslint-disable-next-line no-console */
 		console.log(data.toString());
 	});
 
