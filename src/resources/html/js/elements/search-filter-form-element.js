@@ -75,7 +75,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										</div>
 									</div>
 								</div>
-								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" placeholder="Search..."
+								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" autofocus
+									placeholder="Search..."
 									value=${CONFIG['search-terms']}
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
 							</div>
@@ -84,7 +85,7 @@ export default class SearchFilterFormElement extends BaseElement {
 							<div class="allowed-extensions btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
 								<label
 									class="
-										btn btn-outline-tool-cde 
+										btn btn-outline-tool-cde
 										${CONFIG['allowed-extensions'].includes('wcdf') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
@@ -151,7 +152,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('far-calendar-alt')}
 									</label>
 								</div>
-								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control" placeholder="yyyy-mm-dd"
+								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control"
+									placeholder="yyyy-mm-dd"
 									value=${CONFIG['date-min']}
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
 								<div class="input-group-prepend input-group-append">
@@ -159,7 +161,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fas-long-arrow-alt-right')}
 									</label>
 								</div>
-								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control" placeholder="yyyy-mm-dd"
+								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control"
+									placeholder="yyyy-mm-dd"
 									value=${CONFIG['date-max']}
 									@change=${this.formFieldChangeHandlerGenerator('date-max')}>
 							</div>

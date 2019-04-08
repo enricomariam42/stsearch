@@ -38,14 +38,16 @@ export default class SearchFileEditModalElement extends BaseElement {
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">Path</div>
-											<input name="path" type="text" class="form-control" placeholder="Path..." readonly
+											<input name="path" type="text" class="form-control" readonly
+												placeholder="Path..."
 												value="${this.options.file.path}">
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">Title</div>
-											<input name="title" type="text" class="form-control" placeholder="Title..." maxlength="100"
+											<input name="title" type="text" class="form-control" maxlength="100"
+												placeholder="Title..."
 												value="${this.options.file.title}">
 										</label>
 									</div>
@@ -61,7 +63,8 @@ export default class SearchFileEditModalElement extends BaseElement {
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">Description</div>
-											<textarea name="description" type="text" class="form-control" placeholder="Description..." rows="3" maxlength="500"
+											<textarea name="description" type="text" class="form-control" rows="3" maxlength="500"
+											placeholder="Description..."
 											>${this.options.file.description}</textarea>
 										</label>
 									</div>
