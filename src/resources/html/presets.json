@@ -33,7 +33,7 @@
     "enable-file-tags": "false",
     "enable-file-edit": "false",
     "enable-file-home": "false",
-    "enable-file-favorite": "false",
+    "enable-file-favorite": "true",
     "enable-file-open": "true",
     "filter-favorites": "true"
   },
