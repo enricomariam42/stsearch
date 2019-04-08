@@ -72,7 +72,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 										<label class="w-100">
 											<div class="mb-2">Tags</div>
 											<input name="tags" type="hidden" class="form-control"
-												value="${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}">
+												value="${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '') : ''}">
 										</label>
 									</div>
 								</div>
