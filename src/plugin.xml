@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin name="stsearch" title="STSearch">
 
-	<perspective id="stsearch.perspective" title="${search}" layout-priority="1"
+	<perspective id="search.perspective" title="${search}" layout-priority="1"
 		resourcebundle="content/stsearch/resources/messages/messages"
 		content-url="content/stsearch/resources/html/index.html">
+	</perspective>
+
+	<perspective id="favorites.perspective" title="${favorites}" layout-priority="1"
+		resourcebundle="content/stsearch/resources/messages/messages"
+		content-url="content/stsearch/resources/html/index.html?preset=favorites">
+	</perspective>
+
+	<perspective id="recents.perspective" title="${recents}" layout-priority="1"
+		resourcebundle="content/stsearch/resources/messages/messages"
+		content-url="content/stsearch/resources/html/index.html?preset=recents">
 	</perspective>
 
 	<static-paths>

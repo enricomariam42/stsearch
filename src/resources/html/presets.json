@@ -15,6 +15,8 @@
     "search-in-description": "true",
     "search-in-tags": "true",
     "search-terms": "",
+    "filter-favorites": "false",
+    "filter-recents": "false",
     "allowed-extensions": ["wcdf", "xjpivot", "adhoc|prpt", "std", "sta"],
     "date-min": "",
     "date-max": "",
@@ -23,5 +25,27 @@
     "page-places": "5",
     "page-size": "24",
     "current-folder": "/"
+  },
+  "favorites": {
+    "enable-banner": "false",
+    "enable-filters": "false",
+    "enable-folders": "false",
+    "enable-file-tags": "false",
+    "enable-file-edit": "false",
+    "enable-file-home": "false",
+    "enable-file-favorite": "false",
+    "enable-file-open": "true",
+    "filter-favorites": "true"
+  },
+  "recents": {
+    "enable-banner": "false",
+    "enable-filters": "false",
+    "enable-folders": "false",
+    "enable-file-tags": "false",
+    "enable-file-edit": "false",
+    "enable-file-home": "false",
+    "enable-file-favorite": "false",
+    "enable-file-open": "true",
+    "filter-recents": "true"
   }
 }

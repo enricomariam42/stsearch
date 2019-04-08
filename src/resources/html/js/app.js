@@ -5,14 +5,14 @@ import {noty} from './vendor/noty';
 
 import '../css/app.scss';
 
-import {isProduction} from './helpers';
-
 import {CONFIG, loadConfig} from './config';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
 import Repository from './repository';
 
 import SearchContainerElement from './elements/search-container-element';
+
+window.STSearch = {};
 
 window.addEventListener('load', async () => {
 	// Load config from presets.
@@ -42,7 +42,7 @@ window.addEventListener('load', async () => {
 		searchContainerElement.render();
 	}
 
-	if (!isProduction) {
-		window.STSearch = {CONFIG, repository, searchContainerElement};
-	}
+	window.STSearch.config = CONFIG;
+	window.STSearch.repository = repository;
+	window.STSearch.ref = searchContainerElement;
 });

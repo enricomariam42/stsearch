@@ -15,7 +15,7 @@ export const loadConfig = async () => {
 		override(PRESETS, await response.json());
 
 		let paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
-		override(CONFIG, PRESETS[paramsConfig.preset], paramsConfig);
+		override(CONFIG, PRESETS.default, PRESETS[paramsConfig.preset], paramsConfig);
 
 		// Transform some string values to the correct type.
 		CONFIG['enable-banner'] = strToBool(CONFIG['enable-banner']);
@@ -29,6 +29,8 @@ export const loadConfig = async () => {
 		CONFIG['search-in-title'] = strToBool(CONFIG['search-in-title']);
 		CONFIG['search-in-description'] = strToBool(CONFIG['search-in-description']);
 		CONFIG['search-in-tags'] = strToBool(CONFIG['search-in-tags']);
+		CONFIG['filter-favorites'] = strToBool(CONFIG['filter-favorites']);
+		CONFIG['filter-recents'] = strToBool(CONFIG['filter-recents']);
 		CONFIG['max-tags'] = strToInt(CONFIG['max-tags']);
 		CONFIG['page-places'] = strToInt(CONFIG['page-places']);
 		CONFIG['page-size'] = strToInt(CONFIG['page-size']);

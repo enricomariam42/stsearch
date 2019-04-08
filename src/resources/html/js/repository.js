@@ -91,6 +91,8 @@ export default class Repository {
 		this.searchInDescription = CONFIG['search-in-description'];
 		this.searchInTags = CONFIG['search-in-tags'];
 		this.searchTerms = CONFIG['search-terms'];
+		this.filterFavorites = CONFIG['filter-favorites'];
+		this.filterRecents = CONFIG['filter-recents'];
 		this.allowedExtensions = CONFIG['allowed-extensions'];
 		this.dateMin = CONFIG['date-min'];
 		this.dateMax = CONFIG['date-max'];
@@ -106,8 +108,21 @@ export default class Repository {
 		this.applyFilters();
 	}
 
+	/* eslint-disable-next-line complexity */
 	isFileFiltered(file) {
 		return (
+			// FAVORITES
+			// =========
+			( // If this filter is true, the file must be marked as favorite.
+				!this.filterFavorites || (this.filterFavorites && file.isFavorite)
+			)
+		) && (
+			// RECENTS
+			// =======
+			( // If this filter is true, the file must be marked as recent.
+				!this.filterRecents || (this.filterRecents && file.isRecent)
+			)
+		) && (
 			// EXTENSIONS
 			// ==========
 			( // The file extension must be in the list of allowed extensions.
