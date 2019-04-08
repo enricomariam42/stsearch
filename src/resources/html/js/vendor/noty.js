@@ -1,4 +1,4 @@
-import Noty from 'noty';
+import Noty from 'noty/lib/noty';
 import 'noty/src/noty.scss';
 import 'noty/src/themes/bootstrap-v4.scss';
 
