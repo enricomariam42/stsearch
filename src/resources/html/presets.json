@@ -27,25 +27,25 @@
     "current-folder": "/"
   },
   "favorites": {
-    "enable-banner": "false",
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
     "enable-file-edit": "false",
-    "enable-file-home": "false",
-    "enable-file-favorite": "true",
-    "enable-file-open": "true",
     "filter-favorites": "true"
   },
   "recents": {
-    "enable-banner": "false",
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
     "enable-file-edit": "false",
-    "enable-file-home": "false",
-    "enable-file-favorite": "false",
-    "enable-file-open": "true",
     "filter-recents": "true"
+  },
+  "category": {
+    "enable-banner": "true",
+    "enable-filters": "false",
+    "enable-file-tags": "false",
+    "enable-file-edit": "false",
+    "search-in-title": "false",
+    "search-in-description": "false"
   }
 }
