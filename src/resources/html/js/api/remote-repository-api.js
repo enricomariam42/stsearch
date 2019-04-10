@@ -87,7 +87,9 @@ export default class RemoteRepositoryAPI {
 	}
 
 	static async getRepository() {
+		document.body.classList.add('loading');
 		const response = await RemoteRepositoryAPI.getMetadata({fullPath: '/'}, {depth: -1});
+		document.body.classList.remove('loading');
 
 		if (Array.isArray(response) && response.length === 1) {
 			return response[0];

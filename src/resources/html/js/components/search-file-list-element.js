@@ -27,7 +27,16 @@ export default class SearchFileListElement extends BaseElement {
 		}
 
 		return html`
-			<div id="${this.id}" class="${this.className} row">${fileTemplates}</div>
+			<div id="${this.id}" class="${this.className} row">
+				${fileTemplates.length > 0 ? html`
+					${fileTemplates}
+				` : html`
+					<div class="empty">
+						${this.faTemplate('fas-search', 'empty-icon')}
+						<div class="empty-text">No search results found</div>
+					</div>
+				`}
+			</div>
 		`;
 	}
 }
