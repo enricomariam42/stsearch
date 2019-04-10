@@ -53,6 +53,11 @@ window.addEventListener('load', async () => {
 			repository.applyFilters();
 			searchContainerElement.render();
 		},
+		doFocus: () => {
+			const inputSelector = '.search-filter-form-element input[name="search-terms"]';
+			const inputElement = searchContainerElement.ref.querySelector(inputSelector);
+			if (inputElement) inputElement.focus();
+		},
 		doRefresh: async () => {
 			const refreshedRoot = await RemoteRepositoryAPI.getRepository();
 			if (refreshedRoot !== null) {
