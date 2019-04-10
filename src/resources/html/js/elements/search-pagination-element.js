@@ -1,7 +1,7 @@
 import clamp from 'lodash/clamp';
 import {html} from 'lit-html';
 
-import {CONFIG} from '../config';
+import config from '../config';
 
 import BaseElement from './base-element';
 
@@ -15,16 +15,16 @@ export default class SearchPaginationElement extends BaseElement {
 		const isFirstPage = this.options.pageNumber < 1;
 		const isLastPage = this.options.pageNumber + 1 >= this.options.pageTotal;
 
-		let pageNumberStart = this.options.pageNumber - Math.floor(CONFIG['page-places'] / 2);
-		let pageNumberEnd = pageNumberStart + CONFIG['page-places'];
+		let pageNumberStart = this.options.pageNumber - Math.floor(config.pagePlaces / 2);
+		let pageNumberEnd = pageNumberStart + config.pagePlaces;
 
 		if (pageNumberStart < 1) {
 			pageNumberStart = 0;
-			pageNumberEnd = clamp(CONFIG['page-places'], 0, this.options.pageTotal);
+			pageNumberEnd = clamp(config.pagePlaces, 0, this.options.pageTotal);
 		}
 
 		if (pageNumberEnd > this.options.pageTotal) {
-			pageNumberStart = clamp(this.options.pageTotal - CONFIG['page-places'], 0, this.options.pageTotal);
+			pageNumberStart = clamp(this.options.pageTotal - config.pagePlaces, 0, this.options.pageTotal);
 			pageNumberEnd = this.options.pageTotal;
 		}
 

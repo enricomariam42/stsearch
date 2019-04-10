@@ -1,6 +1,6 @@
 import {html} from 'lit-html';
 
-import {CONFIG} from '../config';
+import config from '../config';
 
 import BaseElement from './base-element';
 import SearchFileTagElement from './search-file-tag-element';
@@ -13,7 +13,7 @@ export default class SearchFileElement extends BaseElement {
 
 	get template() {
 		let tagTemplates;
-		if (CONFIG['enable-file-tags'] && Array.isArray(this.options.file.properties.tags)) {
+		if (config.enableFileTags && Array.isArray(this.options.file.properties.tags)) {
 			tagTemplates = this.options.file.properties.tags.map(tag => {
 				return new SearchFileTagElement(null, {
 					tag,
@@ -41,26 +41,26 @@ export default class SearchFileElement extends BaseElement {
 							</button>
 						</div>
 						<div class="card-buttons btn-group m-n2 float-right">
-							${CONFIG['enable-file-edit'] ? html`
+							${config.enableFileEdit ? html`
 								<button type="button" class="btn btn-light"
 									?disabled=${this.options.file.isReadonly}
 									@click=${this.fileEditClickHandler}>
 									${this.faTemplate('fas-edit')}
 								</button>
 							` : ''}
-							${CONFIG['enable-file-home'] ? html`
+							${config.enableFileHome ? html`
 								<button type="button" class="btn btn-light"
 									@click=${this.fileHomeClickHandler}>
 									${this.faTemplate(`${this.options.file.isHomeItem ? 'fas' : 'far'}-home`)}
 								</button>
 							` : ''}
-							${CONFIG['enable-file-favorite'] ? html`
+							${config.enableFileFavorite ? html`
 								<button type="button" class="btn btn-light"
 									@click=${this.fileFavoriteClickHandler}>
 									${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
 								</button>
 							` : ''}
-							${CONFIG['enable-file-open'] ? html`
+							${config.enableFileOpen ? html`
 								<button type="button" class="btn btn-light"
 									@click=${this.fileOpenClickHandler}>
 									${this.faTemplate('fas-external-link-alt')}

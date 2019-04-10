@@ -1,44 +1,95 @@
+import escapeRegExp from 'lodash/escapeRegExp';
+
 import {searchParams, override, strToBool, strToInt} from './helpers';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
 
-export const CONFIG = {};
-export const PRESETS = {};
+const CONFIG = {};
+const PRESETS = {};
 
-export const loadConfig = async () => {
-	const response = await fetch('./presets.json', {
-		method: 'GET',
-		headers: {'Content-Type': 'application/json'}
-	});
+class Config {
+	loadConfig = async () => {
+		const response = await fetch('./presets.json', {
+			method: 'GET',
+			headers: {'Content-Type': 'application/json'}
+		});
 
-	if (response.status === 200) {
-		override(PRESETS, await response.json());
+		if (response.status === 200) {
+			override(PRESETS, await response.json());
 
-		const paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
-		override(CONFIG, PRESETS.default, PRESETS[paramsConfig.preset], paramsConfig);
+			const paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
+			override(CONFIG, PRESETS.default, PRESETS[paramsConfig.preset], paramsConfig);
 
-		// Transform some string values to the correct type.
-		CONFIG['enable-banner'] = strToBool(CONFIG['enable-banner']);
-		CONFIG['enable-filters'] = strToBool(CONFIG['enable-filters']);
-		CONFIG['enable-folders'] = strToBool(CONFIG['enable-folders']);
-		CONFIG['enable-file-tags'] = strToBool(CONFIG['enable-file-tags']);
-		CONFIG['enable-file-edit'] = strToBool(CONFIG['enable-file-edit']);
-		CONFIG['enable-file-home'] = strToBool(CONFIG['enable-file-home']);
-		CONFIG['enable-file-favorite'] = strToBool(CONFIG['enable-file-favorite']);
-		CONFIG['enable-file-open'] = strToBool(CONFIG['enable-file-open']);
-		CONFIG['search-in-title'] = strToBool(CONFIG['search-in-title']);
-		CONFIG['search-in-description'] = strToBool(CONFIG['search-in-description']);
-		CONFIG['search-in-tags'] = strToBool(CONFIG['search-in-tags']);
-		CONFIG['filter-favorites'] = strToBool(CONFIG['filter-favorites']);
-		CONFIG['filter-recents'] = strToBool(CONFIG['filter-recents']);
-		CONFIG['max-tags'] = strToInt(CONFIG['max-tags']);
-		CONFIG['page-places'] = strToInt(CONFIG['page-places']);
-		CONFIG['page-size'] = strToInt(CONFIG['page-size']);
+			this.enableBanner = strToBool(CONFIG['enable-banner']);
+			this.enableFilters = strToBool(CONFIG['enable-filters']);
+			this.enableFolders = strToBool(CONFIG['enable-folders']);
+			this.enableFileTags = strToBool(CONFIG['enable-file-tags']);
+			this.enableFileEdit = strToBool(CONFIG['enable-file-edit']);
+			this.enableFileHome = strToBool(CONFIG['enable-file-home']);
+			this.enableFileFavorite = strToBool(CONFIG['enable-file-favorite']);
+			this.enableFileOpen = strToBool(CONFIG['enable-file-open']);
+			this.bannerSrc = CONFIG['banner-src'];
+			this.bannerTitle = CONFIG['banner-title'];
+			this.bannerBackground = CONFIG['banner-background'];
+			this.searchInTitle = strToBool(CONFIG['search-in-title']);
+			this.searchInDescription = strToBool(CONFIG['search-in-description']);
+			this.searchInTags = strToBool(CONFIG['search-in-tags']);
+			this.searchTerms = CONFIG['search-terms'];
+			this.filterFavorites = strToBool(CONFIG['filter-favorites']);
+			this.filterRecents = strToBool(CONFIG['filter-recents']);
+			this.allowedExtensions = CONFIG['allowed-extensions'];
+			this.dateMin = CONFIG['date-min'];
+			this.dateMax = CONFIG['date-max'];
+			this.dateProperty = CONFIG['date-property'];
+			this.maxTags = strToInt(CONFIG['max-tags']);
+			this.pagePlaces = strToInt(CONFIG['page-places']);
+			this.pageSize = strToInt(CONFIG['page-size']);
+			this.currentFolder = CONFIG['current-folder'];
 
-		// If "enable-file-home" is true, check if the user really has permission.
-		if (CONFIG['enable-file-home']) {
-			const canAdminister = await RemoteRepositoryAPI.canAdminister();
-			CONFIG['enable-file-home'] = canAdminister;
+			// If "enableFileHome" is true, check if the user really has permission.
+			if (this.enableFileHome) {
+				const canAdminister = await RemoteRepositoryAPI.canAdminister();
+				this.enableFileHome = canAdminister;
+			}
 		}
 	}
-};
+
+	get searchTerms() {
+		return this._searchTerms;
+	}
+
+	set searchTerms(searchTerms) {
+		this._searchTerms = searchTerms;
+		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
+		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
+	}
+
+	get allowedExtensions() {
+		return this._allowedExtensions;
+	}
+
+	set allowedExtensions(allowedExtensions) {
+		this._allowedExtensions = allowedExtensions;
+		this._allowedExtensionsRegex = new RegExp(`^(?:${this._allowedExtensions.join('|')})$`, 'i');
+	}
+
+	get dateMin() {
+		return this._dateMin;
+	}
+
+	set dateMin(dateMin) {
+		this._dateMin = new Date(dateMin);
+		this._dateMinEpoch = this._dateMin.getTime();
+	}
+
+	get dateMax() {
+		return this._dateMax;
+	}
+
+	set dateMax(dateMax) {
+		this._dateMax = new Date(dateMax);
+		this._dateMaxEpoch = this._dateMax.getTime();
+	}
+}
+
+export default new Config();

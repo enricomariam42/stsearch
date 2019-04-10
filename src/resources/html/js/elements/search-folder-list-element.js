@@ -42,7 +42,7 @@ export default class SearchFolderListElement extends BaseElement {
 									</button>
 								</div>
 								<input type="text" class="form-control" readonly
-									value="${this.options.currentFolder.path}">
+									.value=${this.options.currentFolder.path}>
 							</div>
 						</div>
 					</div>

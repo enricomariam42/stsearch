@@ -8,7 +8,7 @@ import Noty from '../vendor/noty';
 
 import {trigger, override, imageToDataURI, strToBool, safeJSON} from '../helpers';
 
-import {CONFIG} from '../config';
+import config from '../config';
 
 import RemoteRepositoryAPI from '../api/remote-repository-api';
 import {EMPTY_ROOT} from '../repository';
@@ -31,16 +31,16 @@ export default class SearchContainerElement extends BaseElement {
 	}
 
 	get template() {
-		if (CONFIG['enable-banner']) {
+		if (config.enableBanner) {
 			this.searchBannerElement = new SearchBannerElement(null);
 		} else {
 			this.searchBannerElement = new EmptyElement();
 		}
 
-		if (CONFIG['enable-filters']) {
+		if (config.enableFilters) {
 			this.searchFilterFormElement = new SearchFilterFormElement(null, {
 				formSubmitCallback: formObj => {
-					override(this.options.repository, {
+					override(config, {
 						searchTerms: formObj['search-terms'],
 						searchInTitle: strToBool(formObj['search-in-title']),
 						searchInDescription: strToBool(formObj['search-in-description']),
@@ -74,7 +74,7 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFilterFormElement = new EmptyElement();
 		}
 
-		if (CONFIG['enable-folders']) {
+		if (config.enableFolders) {
 			this.searchFolderListElement = new SearchFolderListElement(null, {
 				currentFolder: this.options.repository.currentFolder,
 				parentFolder: this.options.repository.parentFolder,
@@ -92,8 +92,8 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFolderListElement = new EmptyElement();
 		}
 
-		const filesStart = this.pageNumber * CONFIG['page-size'];
-		const filesEnd = filesStart + CONFIG['page-size'];
+		const filesStart = this.pageNumber * config.pageSize;
+		const filesEnd = filesStart + config.pageSize;
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.files.slice(filesStart, filesEnd),
 			fileEditCallback: fileData => {
@@ -188,7 +188,7 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchFileEditModalElement = new EmptyElement();
 		}
 
-		const pageTotal = Math.ceil(this.options.repository.files.length / CONFIG['page-size']);
+		const pageTotal = Math.ceil(this.options.repository.files.length / config.pageSize);
 		if (pageTotal > 1) {
 			this.searchPaginationElement = new SearchPaginationElement(null, {
 				pageNumber: this.pageNumber,
@@ -222,7 +222,7 @@ export default class SearchContainerElement extends BaseElement {
 			bsCustomFileInput.init('input[name="thumbnail"]');
 
 			const tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
-			this.tagify = new Tagify(tagInput, {maxTags: CONFIG['max-tags']});
+			this.tagify = new Tagify(tagInput, {maxTags: config.maxTags});
 
 			this.searchFileEditModalElement.$ref.modal('show');
 			this.searchFileEditModalElement.$ref.one('hide.bs.modal', () => {

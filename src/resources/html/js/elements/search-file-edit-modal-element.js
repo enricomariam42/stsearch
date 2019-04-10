@@ -40,7 +40,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 											<div class="mb-2">Path</div>
 											<input name="path" type="text" class="form-control" readonly
 												placeholder="Path..."
-												value="${this.options.file.path}">
+												.value=${this.options.file.path}>
 										</label>
 									</div>
 									<div class="form-group">
@@ -48,7 +48,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 											<div class="mb-2">Title</div>
 											<input name="title" type="text" class="form-control" maxlength="100"
 												placeholder="Title..."
-												value="${this.options.file.title}">
+												.value=${this.options.file.title}>
 										</label>
 									</div>
 									<div class="form-group">
@@ -72,7 +72,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 										<label class="w-100">
 											<div class="mb-2">Tags</div>
 											<input name="tags" type="hidden" class="form-control"
-												value="${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}">
+												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}>
 										</label>
 									</div>
 								</div>
