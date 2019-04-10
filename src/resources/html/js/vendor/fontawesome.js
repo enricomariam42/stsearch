@@ -23,18 +23,18 @@ export const icons = [
 	require('@fortawesome/free-solid-svg-icons/faSearch'),
 	require('@fortawesome/free-solid-svg-icons/faStar'),
 	require('@fortawesome/free-solid-svg-icons/faSync'),
-	require('./fontawesome-extra/fac-file-adhoc'),
-	require('./fontawesome-extra/fac-file-prpt'),
-	require('./fontawesome-extra/fac-file-sta'),
-	require('./fontawesome-extra/fac-file-std'),
-	require('./fontawesome-extra/fac-file-wcdf'),
-	require('./fontawesome-extra/fac-file-xjpivot'),
-	require('./fontawesome-extra/fac-tool-cde'),
-	require('./fontawesome-extra/fac-tool-stagile'),
-	require('./fontawesome-extra/fac-tool-stdashboard'),
-	require('./fontawesome-extra/fac-tool-stpivot'),
-	require('./fontawesome-extra/fac-tool-streport'),
-	require('./fontawesome-extra/far-home')
+	require('./fontawesome/faFileAdhoc'),
+	require('./fontawesome/faFilePrpt'),
+	require('./fontawesome/faFileSta'),
+	require('./fontawesome/faFileStd'),
+	require('./fontawesome/faFileWcdf'),
+	require('./fontawesome/faFileXjpivot'),
+	require('./fontawesome/faHome'),
+	require('./fontawesome/faToolCde'),
+	require('./fontawesome/faToolStagile'),
+	require('./fontawesome/faToolStdashboard'),
+	require('./fontawesome/faToolStpivot'),
+	require('./fontawesome/faToolStreport')
 	/* eslint-enable */
 ];
 
