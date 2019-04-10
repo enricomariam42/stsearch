@@ -1,4 +1,6 @@
+import camelCase from 'lodash/camelCase';
 import escapeRegExp from 'lodash/escapeRegExp';
+import isString from 'lodash/isString';
 
 import {searchParams, override, strToBool, strToInt} from './helpers';
 
@@ -20,31 +22,14 @@ class Config {
 			const paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
 			override(CONFIG, PRESETS.default, PRESETS[paramsConfig.preset], paramsConfig);
 
-			this.enableBanner = strToBool(CONFIG['enable-banner']);
-			this.enableFilters = strToBool(CONFIG['enable-filters']);
-			this.enableFolders = strToBool(CONFIG['enable-folders']);
-			this.enableFileTags = strToBool(CONFIG['enable-file-tags']);
-			this.enableFileEdit = strToBool(CONFIG['enable-file-edit']);
-			this.enableFileHome = strToBool(CONFIG['enable-file-home']);
-			this.enableFileFavorite = strToBool(CONFIG['enable-file-favorite']);
-			this.enableFileOpen = strToBool(CONFIG['enable-file-open']);
-			this.bannerSrc = CONFIG['banner-src'];
-			this.bannerTitle = CONFIG['banner-title'];
-			this.bannerBackground = CONFIG['banner-background'];
-			this.searchInTitle = strToBool(CONFIG['search-in-title']);
-			this.searchInDescription = strToBool(CONFIG['search-in-description']);
-			this.searchInTags = strToBool(CONFIG['search-in-tags']);
-			this.searchTerms = CONFIG['search-terms'];
-			this.filterFavorites = strToBool(CONFIG['filter-favorites']);
-			this.filterRecents = strToBool(CONFIG['filter-recents']);
-			this.allowedExtensions = CONFIG['allowed-extensions'];
-			this.dateMin = CONFIG['date-min'];
-			this.dateMax = CONFIG['date-max'];
-			this.dateProperty = CONFIG['date-property'];
-			this.maxTags = strToInt(CONFIG['max-tags']);
-			this.pagePlaces = strToInt(CONFIG['page-places']);
-			this.pageSize = strToInt(CONFIG['page-size']);
-			this.currentFolder = CONFIG['current-folder'];
+			this._originalConfig = {};
+			for (const key in CONFIG) {
+				if (Object.prototype.hasOwnProperty.call(CONFIG, key)) {
+					const camelCaseKey = camelCase(key);
+					this[camelCaseKey] = CONFIG[key];
+					this._originalConfig[camelCaseKey] = CONFIG[key];
+				}
+			}
 
 			// If "enableFileHome" is true, check if the user really has permission.
 			if (this.enableFileHome) {
@@ -52,6 +37,143 @@ class Config {
 				this.enableFileHome = canAdminister;
 			}
 		}
+	}
+
+	resetConfig() {
+		override(this, this._originalConfig);
+	}
+
+	get enableBanner() {
+		return this._enableBanner;
+	}
+
+	set enableBanner(enableBanner) {
+		this._enableBanner = isString(enableBanner)
+			? strToBool(enableBanner)
+			: enableBanner;
+	}
+
+	get enableFilters() {
+		return this._enableFilters;
+	}
+
+	set enableFilters(enableFilters) {
+		this._enableFilters = isString(enableFilters)
+			? strToBool(enableFilters)
+			: enableFilters;
+	}
+
+	get enableFolders() {
+		return this._enableFolders;
+	}
+
+	set enableFolders(enableFolders) {
+		this._enableFolders = isString(enableFolders)
+			? strToBool(enableFolders)
+			: enableFolders;
+	}
+
+	get enableFileTags() {
+		return this._enableFileTags;
+	}
+
+	set enableFileTags(enableFileTags) {
+		this._enableFileTags = isString(enableFileTags)
+			? strToBool(enableFileTags)
+			: enableFileTags;
+	}
+
+	get enableFileEdit() {
+		return this._enableFileEdit;
+	}
+
+	set enableFileEdit(enableFileEdit) {
+		this._enableFileEdit = isString(enableFileEdit)
+			? strToBool(enableFileEdit)
+			: enableFileEdit;
+	}
+
+	get enableFileHome() {
+		return this._enableFileHome;
+	}
+
+	set enableFileHome(enableFileHome) {
+		this._enableFileHome = isString(enableFileHome)
+			? strToBool(enableFileHome)
+			: enableFileHome;
+	}
+
+	get enableFileFavorite() {
+		return this._enableFileFavorite;
+	}
+
+	set enableFileFavorite(enableFileFavorite) {
+		this._enableFileFavorite = isString(enableFileFavorite)
+			? strToBool(enableFileFavorite)
+			: enableFileFavorite;
+	}
+
+	get enableFileOpen() {
+		return this._enableFileOpen;}
+
+	set enableFileOpen(enableFileOpen) {
+		this._enableFileOpen = isString(enableFileOpen)
+			? strToBool(enableFileOpen)
+			: enableFileOpen;
+	}
+
+	get bannerSrc() {
+		return this._bannerSrc;
+	}
+
+	set bannerSrc(bannerSrc) {
+		this._bannerSrc = bannerSrc;
+	}
+
+	get bannerTitle() {
+		return this._bannerTitle;
+	}
+
+	set bannerTitle(bannerTitle) {
+		this._bannerTitle = bannerTitle;
+	}
+
+	get bannerBackground() {
+		return this._bannerBackground;
+	}
+
+	set bannerBackground(bannerBackground) {
+		this._bannerBackground = bannerBackground;
+	}
+
+	get searchInTitle() {
+		return this._searchInTitle;
+	}
+
+	set searchInTitle(searchInTitle) {
+		this._searchInTitle = isString(searchInTitle)
+			? strToBool(searchInTitle)
+			: searchInTitle;
+	}
+
+	get searchInDescription() {
+		return this._searchInDescription;
+	}
+
+	set searchInDescription(searchInDescription) {
+		this._searchInDescription = isString(searchInDescription)
+			? strToBool(searchInDescription)
+			: searchInDescription;
+	}
+
+	get searchInTags() {
+		return this._searchInTags;
+	}
+
+	set searchInTags(searchInTags) {
+		this._searchInTags = isString(searchInTags)
+			? strToBool(searchInTags)
+			: searchInTags;
 	}
 
 	get searchTerms() {
@@ -62,6 +184,26 @@ class Config {
 		this._searchTerms = searchTerms;
 		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
 		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
+	}
+
+	get filterFavorites() {
+		return this._filterFavorites;
+	}
+
+	set filterFavorites(filterFavorites) {
+		this._filterFavorites = isString(filterFavorites)
+			? strToBool(filterFavorites)
+			: filterFavorites;
+	}
+
+	get filterRecents() {
+		return this._filterRecents;
+	}
+
+	set filterRecents(filterRecents) {
+		this._filterRecents = isString(filterRecents)
+			? strToBool(filterRecents)
+			: filterRecents;
 	}
 
 	get allowedExtensions() {
@@ -89,6 +231,52 @@ class Config {
 	set dateMax(dateMax) {
 		this._dateMax = new Date(dateMax);
 		this._dateMaxEpoch = this._dateMax.getTime();
+	}
+
+	get dateProperty() {
+		return this._dateProperty;
+	}
+
+	set dateProperty(dateProperty) {
+		this._dateProperty = dateProperty;
+	}
+
+	get maxTags() {
+		return this._maxTags;
+	}
+
+	set maxTags(maxTags) {
+		this._maxTags = isString(maxTags)
+			? strToInt(maxTags)
+			: maxTags;
+	}
+
+	get pagePlaces() {
+		return this._pagePlaces;
+	}
+
+	set pagePlaces(pagePlaces) {
+		this._pagePlaces = isString(pagePlaces)
+			? strToInt(pagePlaces)
+			: pagePlaces;
+	}
+
+	get pageSize() {
+		return this._pageSize;
+	}
+
+	set pageSize(pageSize) {
+		this._pageSize = isString(pageSize)
+			? strToInt(pageSize)
+			: pageSize;
+	}
+
+	get currentFolder() {
+		return this._currentFolder;
+	}
+
+	set currentFolder(currentFolder) {
+		this._currentFolder = currentFolder;
 	}
 }
 

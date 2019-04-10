@@ -48,6 +48,11 @@ window.addEventListener('load', async () => {
 			repository.applyFilters();
 			searchContainerElement.render();
 		},
+		resetConfig: () => {
+			config.resetConfig();
+			repository.applyFilters();
+			searchContainerElement.render();
+		},
 		doSearch: searchTerms => {
 			config.searchTerms = searchTerms;
 			repository.applyFilters();
