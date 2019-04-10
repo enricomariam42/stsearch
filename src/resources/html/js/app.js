@@ -10,7 +10,7 @@ import config from './config';
 import RemoteRepositoryAPI from './api/remote-repository-api';
 import Repository from './repository';
 
-import SearchContainerElement from './elements/search-container-element';
+import SearchContainerElement from './components/search-container-element';
 
 window.addEventListener('load', async () => {
 	// Load config from presets.
