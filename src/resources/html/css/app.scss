@@ -12,8 +12,6 @@
 @import 'search-file-list-element';
 @import 'search-file-tag-element';
 @import 'search-folder-element';
-@import 'search-folder-list-element';
-@import 'search-pagination-element';
 
 body {
 	font-family: 'Titillium Web', $system-sans-serif;
@@ -22,6 +20,7 @@ body {
 }
 
 body.loading {
+	> * { display: none !important; }
 	@include loading();
 }
 
