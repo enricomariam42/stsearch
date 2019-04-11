@@ -9,6 +9,6 @@ export default class EmptyElement extends BaseElement {
 	}
 
 	get template() {
-		return html``;
+		return html`<div id="${this.id}" class="${this.className}"></div>`;
 	}
 }
