@@ -5,7 +5,7 @@
 		&:hover:not(:disabled) {
 			border-color: darken($border-color, 15%);
 		}
-	
+
 		&:focus {
 			box-shadow: $input-focus-box-shadow;
 		}

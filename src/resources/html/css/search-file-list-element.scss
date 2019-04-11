@@ -1,18 +1,20 @@
-.search-file-list-element > .empty {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	margin-top: rem(40);
-	color: lighten(map-get($theme-colors, dark), 20%);
+.search-file-list-element {
+	> .empty {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: rem(40);
+		color: lighten(map-get($theme-colors, dark), 20%);
 
-	.empty-icon {
-		margin-bottom: rem(20);
-		font-size: rem(80);
+		.empty-icon {
+			margin-bottom: rem(20);
+			font-size: rem(80);
+		}
 	}
 }
 
-body.loading .search-file-list-element > .empty {
+body.loading .search-file-list-element {
 	display: none !important;
 }

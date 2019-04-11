@@ -11,7 +11,6 @@ import {trigger, override, imageToDataURI, strToBool, safeJSON} from '../helpers
 import config from '../config';
 
 import RemoteRepositoryAPI from '../api/remote-repository-api';
-import {EMPTY_ROOT} from '../repository';
 
 import BaseElement from './base-element';
 import EmptyElement from './empty-element';
@@ -55,9 +54,6 @@ export default class SearchContainerElement extends BaseElement {
 					this.render();
 				},
 				formRefreshCallback: async () => {
-					this.options.repository.root = EMPTY_ROOT;
-					this.render();
-
 					const root = await RemoteRepositoryAPI.getRepository();
 					if (root === null) {
 						Noty.error('Error in data loading');

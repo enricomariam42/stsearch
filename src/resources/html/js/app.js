@@ -5,8 +5,6 @@ import Noty from './vendor/noty';
 
 import '../css/app.scss';
 
-import {override} from './helpers';
-
 import config from './config';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
