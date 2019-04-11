@@ -1,0 +1,38 @@
+@mixin loading() {
+	&::before, &::after {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 20000;
+		font-size: rem(30);
+		color: lighten(map-get($theme-colors, dark), 40%);
+		content: '\25CB';
+		will-change: transform, color;
+	}
+
+	&::before {
+		z-index: 100000;
+		background-color: rgba(map-get($theme-colors, light), 0.6);
+		animation: pulse 1s infinite ease-in-out;
+		@keyframes pulse {
+			0% { transform: scale(1); }
+			50% { transform: scale(4); color: transparent; }
+			100% { transform: scale(1); }
+		}
+	}
+
+	&::after {
+		z-index: 100001;
+		animation: pulse-rev 1s infinite ease-in-out;
+		@keyframes pulse-rev {
+			0% { transform: scale(4); }
+			50% { transform: scale(1); color: transparent; }
+			100% { transform: scale(4); }
+		}
+	}
+}
