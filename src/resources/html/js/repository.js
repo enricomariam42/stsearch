@@ -53,8 +53,8 @@ export default class Repository {
 		this._currentFolder = currentFolder;
 	}
 
-	applyFilters() {
-		this.currentFolder = this._currentFolder;
+	applyFilters(folder = this._currentFolder) {
+		this.currentFolder = folder;
 	}
 
 	/* eslint-disable-next-line complexity */

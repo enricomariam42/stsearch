@@ -1,4 +1,5 @@
 import camelCase from 'lodash/camelCase';
+import cloneDeep from 'lodash/cloneDeep';
 import escapeRegExp from 'lodash/escapeRegExp';
 import isString from 'lodash/isString';
 
@@ -6,41 +7,37 @@ import {searchParams, override, strToBool, strToInt} from './helpers';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
 
-const CONFIG = {};
-const PRESETS = {};
-
 class Config {
-	loadConfig = async () => {
+	constructor() {
+		this._initialConfig = {};
+	}
+
+	async load() {
 		const response = await fetch('./presets.json', {
 			method: 'GET',
 			headers: {'Content-Type': 'application/json'}
 		});
 
 		if (response.status === 200) {
-			override(PRESETS, await response.json());
+			const presets = await response.json();
+			const params = searchParams.parse(window.location.search, {preset: 'default'});
 
-			const paramsConfig = searchParams.parse(window.location.search, {preset: 'default'});
-			override(CONFIG, PRESETS.default, PRESETS[paramsConfig.preset], paramsConfig);
+			override(this._initialConfig, presets.default, presets[params.preset], params);
 
-			this._originalConfig = {};
-			for (const key in CONFIG) {
-				if (Object.prototype.hasOwnProperty.call(CONFIG, key)) {
-					const camelCaseKey = camelCase(key);
-					this[camelCaseKey] = CONFIG[key];
-					this._originalConfig[camelCaseKey] = CONFIG[key];
-				}
-			}
-
-			// If "enableFileHome" is true, check if the user really has permission.
-			if (this.enableFileHome) {
+			// If "enable-file-home" is true, check if the user really has permission.
+			if (this._initialConfig['enable-file-home']) {
 				const canAdminister = await RemoteRepositoryAPI.canAdminister();
-				this.enableFileHome = canAdminister;
+				this._initialConfig['enable-file-home'] = canAdminister;
 			}
+
+			this.reset();
 		}
 	}
 
-	resetConfig() {
-		override(this, this._originalConfig);
+	reset() {
+		for (const [key, value] of Object.entries(this._initialConfig)) {
+			this[camelCase(key)] = cloneDeep(value);
+		}
 	}
 
 	get enableBanner() {
@@ -220,8 +217,9 @@ class Config {
 	}
 
 	set dateMin(dateMin) {
-		this._dateMin = new Date(dateMin);
-		this._dateMinEpoch = this._dateMin.getTime();
+		this._dateMin = dateMin;
+		this._dateMinDate = new Date(dateMin);
+		this._dateMinEpoch = this._dateMinDate.getTime();
 	}
 
 	get dateMax() {
@@ -229,8 +227,9 @@ class Config {
 	}
 
 	set dateMax(dateMax) {
-		this._dateMax = new Date(dateMax);
-		this._dateMaxEpoch = this._dateMax.getTime();
+		this._dateMax = dateMax;
+		this._dateMaxDate = new Date(dateMax);
+		this._dateMaxEpoch = this._dateMaxDate.getTime();
 	}
 
 	get dateProperty() {
@@ -269,14 +268,6 @@ class Config {
 		this._pageSize = isString(pageSize)
 			? strToInt(pageSize)
 			: pageSize;
-	}
-
-	get currentFolder() {
-		return this._currentFolder;
-	}
-
-	set currentFolder(currentFolder) {
-		this._currentFolder = currentFolder;
 	}
 }
 

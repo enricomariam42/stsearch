@@ -5,6 +5,8 @@ import Noty from './vendor/noty';
 
 import '../css/app.scss';
 
+import {override} from './helpers';
+
 import config from './config';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
@@ -13,8 +15,8 @@ import Repository from './repository';
 import SearchContainerElement from './components/search-container-element';
 
 window.addEventListener('load', async () => {
-	// Load config from presets.
-	await config.loadConfig();
+	// Load config from parameters and presets.
+	await config.load();
 
 	const repository = new Repository();
 	const container = document.querySelector('#main');
@@ -23,39 +25,30 @@ window.addEventListener('load', async () => {
 	searchContainerElement.render();
 
 	const root = await RemoteRepositoryAPI.getRepository();
-	if (root === null) {
-		Noty.error('Error in data loading');
-	} else {
-		// The property "_root" is updated to avoid applying the filters twice.
-		repository._root = root;
-
-		const currentFolder = repository.fromPath(config.currentFolder);
-		if (currentFolder === null) {
-			repository.currentFolder = root;
-			Noty.error('Folder does not exist');
-		} else {
-			repository.currentFolder = currentFolder;
-		}
-
+	if (root !== null) {
+		repository.root = root;
 		searchContainerElement.render();
+	} else {
+		Noty.error('Error in data loading');
 	}
 
 	window.STSearch = {
 		config,
 		repository,
 		applyConfig: newConfig => {
-			Object.assign(config, newConfig);
-			repository.applyFilters();
+			override(config, newConfig);
+			repository.applyFilters(repository.root);
 			searchContainerElement.render();
 		},
 		resetConfig: () => {
-			config.resetConfig();
-			repository.applyFilters();
+			config.reset();
+			repository.applyFilters(repository.root);
 			searchContainerElement.render();
 		},
-		doSearch: searchTerms => {
+		doSearch: (searchTerms, reset = false) => {
+			if (reset) config.reset();
 			config.searchTerms = searchTerms;
-			repository.applyFilters();
+			repository.applyFilters(reset ? repository.root : undefined);
 			searchContainerElement.render();
 		},
 		doFocus: () => {
