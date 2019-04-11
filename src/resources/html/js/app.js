@@ -51,10 +51,10 @@ window.addEventListener('load', async () => {
 			repository.applyFilters(reset ? repository.root : undefined);
 			searchContainerElement.render();
 		},
-		doFocus: () => {
-			const inputSelector = '.search-filter-form-element input[name="search-terms"]';
-			const inputElement = searchContainerElement.ref.querySelector(inputSelector);
-			if (inputElement) inputElement.focus();
+		doFocus: (fieldName = 'search-terms') => {
+			const formRef = searchContainerElement.searchFilterFormElement.ref;
+			const fieldRef = formRef.querySelector(`[name="${fieldName}"]`);
+			if (fieldRef) fieldRef.focus();
 		},
 		doRefresh: async () => {
 			if (!document.body.classList.contains('loading')) {
