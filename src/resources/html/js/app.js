@@ -57,14 +57,19 @@ window.addEventListener('load', async () => {
 			if (inputElement) inputElement.focus();
 		},
 		doRefresh: async () => {
-			const refreshedRoot = await RemoteRepositoryAPI.getRepository();
-			if (refreshedRoot !== null) {
-				repository.root = refreshedRoot;
-				searchContainerElement.render();
-				return true;
+			if (!document.body.classList.contains('loading')) {
+				const refreshedRoot = await RemoteRepositoryAPI.getRepository();
+				if (refreshedRoot !== null) {
+					repository.root = refreshedRoot;
+					searchContainerElement.render();
+					return true;
+				}
 			}
 
 			return false;
+		},
+		isLoading: () => {
+			return document.body.classList.contains('loading');
 		}
 	};
 });
