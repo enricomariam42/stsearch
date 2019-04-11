@@ -16,7 +16,7 @@ import SearchContainerElement from './components/search-container-element';
 
 window.addEventListener('load', async () => {
 	// Load config from parameters and presets.
-	await config.load();
+	await config.loadConfig();
 
 	const repository = new Repository();
 	const container = document.querySelector('#main');
@@ -35,18 +35,23 @@ window.addEventListener('load', async () => {
 	window.STSearch = {
 		config,
 		repository,
-		applyConfig: newConfig => {
-			override(config, newConfig);
+		applyConfig: (newConfig, reset = false) => {
+			config.applyConfig(newConfig, reset);
+			repository.applyFilters(repository.root);
+			searchContainerElement.render();
+		},
+		applyPreset: (preset, reset = true) => {
+			config.applyPreset(preset, reset);
 			repository.applyFilters(repository.root);
 			searchContainerElement.render();
 		},
 		resetConfig: () => {
-			config.reset();
+			config.resetConfig();
 			repository.applyFilters(repository.root);
 			searchContainerElement.render();
 		},
 		doSearch: (searchTerms, reset = false) => {
-			if (reset) config.reset();
+			if (reset) config.resetConfig();
 			config.searchTerms = searchTerms;
 			repository.applyFilters(reset ? repository.root : undefined);
 			searchContainerElement.render();

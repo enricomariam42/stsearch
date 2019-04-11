@@ -9,20 +9,21 @@ import RemoteRepositoryAPI from './api/remote-repository-api';
 
 class Config {
 	constructor() {
+		this._presets = {};
 		this._initialConfig = {};
 	}
 
-	async load() {
+	async loadConfig() {
 		const response = await fetch('./presets.json', {
 			method: 'GET',
 			headers: {'Content-Type': 'application/json'}
 		});
 
 		if (response.status === 200) {
-			const presets = await response.json();
+			this._presets = await response.json();
 			const params = searchParams.parse(window.location.search, {preset: 'default'});
 
-			override(this._initialConfig, presets.default, presets[params.preset], params);
+			override(this._initialConfig, this._presets.default, this._presets[params.preset], params);
 
 			// If "enable-file-home" is true, check if the user really has permission.
 			if (this._initialConfig['enable-file-home']) {
@@ -30,11 +31,25 @@ class Config {
 				this._initialConfig['enable-file-home'] = canAdminister;
 			}
 
-			this.reset();
+			this.resetConfig();
 		}
 	}
 
-	reset() {
+	applyConfig(config, reset = false) {
+		if (reset) this.resetConfig();
+		for (const [key, value] of Object.entries(config)) {
+			this[camelCase(key)] = cloneDeep(value);
+		}
+	}
+
+	applyPreset(preset, reset = true) {
+		if (reset) this.resetConfig();
+		for (const [key, value] of Object.entries(this._presets[preset])) {
+			this[camelCase(key)] = cloneDeep(value);
+		}
+	}
+
+	resetConfig() {
 		for (const [key, value] of Object.entries(this._initialConfig)) {
 			this[camelCase(key)] = cloneDeep(value);
 		}
