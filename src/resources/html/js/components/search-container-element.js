@@ -217,20 +217,24 @@ export default class SearchContainerElement extends BaseElement {
 	render() {
 		super.render();
 
-		if (this.currentEditingFile) {
-			// Make Bootstrap custom file input dynamic.
-			bsCustomFileInput.init('input[name="thumbnail"]');
+		if (this.currentEditingFile && !this.searchFileEditModalElement.opened) {
+			const modalFormSelector = `.${this.searchFileEditModalElement.className}`;
+			const thumbnailInputSelector = `${modalFormSelector} input[name="thumbnail"]`;
+			const tagsInputSelector = `${modalFormSelector} input[name="tags"]`;
+			const tagsInputElement = document.querySelector(tagsInputSelector);
+			let tagsInputTagify = null;
 
-			const tagInput = this.searchFileEditModalElement.ref.querySelector('input[name="tags"]');
-			this.tagify = new Tagify(tagInput, {maxTags: config.maxTags});
-
-			this.searchFileEditModalElement.$ref.modal('show');
-			this.searchFileEditModalElement.$ref.one('hide.bs.modal', () => {
-				this.currentEditingFile = null;
-				if (this.tagify) {
-					this.tagify.destroy();
-				}
-			});
+			this.searchFileEditModalElement.$ref
+				.one('show.bs.modal', () => {
+					tagsInputTagify = new Tagify(tagsInputElement, {maxTags: config.maxTags});
+					bsCustomFileInput.init(thumbnailInputSelector, modalFormSelector);
+				})
+				.one('hide.bs.modal', () => {
+					tagsInputTagify.destroy();
+					bsCustomFileInput.destroy(thumbnailInputSelector, modalFormSelector);
+					this.currentEditingFile = null;
+				})
+				.modal('show');
 		}
 	}
 }
