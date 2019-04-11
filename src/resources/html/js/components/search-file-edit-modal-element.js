@@ -104,4 +104,8 @@ export default class SearchFileEditModalElement extends BaseElement {
 			}
 		};
 	}
+
+	get opened() {
+		return this.ref.classList.contains('show');
+	}
 }
