@@ -40,7 +40,7 @@ export default class SearchFilterFormElement extends BaseElement {
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
 													<input name="search-in-title" value="true" type="checkbox" autocomplete="off"
-														?checked=${config.searchInTitle}>
+														.checked=${config.searchInTitle}>
 													Title
 												</label>
 											</div>
@@ -54,7 +54,7 @@ export default class SearchFilterFormElement extends BaseElement {
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
 													<input name="search-in-description" value="true" type="checkbox" autocomplete="off"
-														?checked=${config.searchInDescription}>
+														.checked=${config.searchInDescription}>
 													Description
 												</label>
 											</div>
@@ -68,7 +68,7 @@ export default class SearchFilterFormElement extends BaseElement {
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
 													<input name="search-in-tags" value="true" type="checkbox" autocomplete="off"
-														?checked=${config.searchInTags}>
+														.checked=${config.searchInTags}>
 													Tags
 												</label>
 											</div>
@@ -90,7 +90,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="wcdf" type="checkbox" autocomplete="off"
-										?checked=${config.allowedExtensions.includes('wcdf')}>
+										.checked=${config.allowedExtensions.includes('wcdf')}>
 									${this.faTemplate('fac-tool-cde')}
 								</label>
 								<label
@@ -100,7 +100,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" autocomplete="off"
-										?checked=${config.allowedExtensions.includes('xjpivot')}>
+										.checked=${config.allowedExtensions.includes('xjpivot')}>
 									${this.faTemplate('fac-tool-stpivot')}
 								</label>
 								<label
@@ -110,7 +110,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" autocomplete="off"
-										?checked=${config.allowedExtensions.includes('adhoc|prpt')}>
+										.checked=${config.allowedExtensions.includes('adhoc|prpt')}>
 									${this.faTemplate('fac-tool-streport')}
 								</label>
 								<label
@@ -120,7 +120,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="std" type="checkbox" autocomplete="off"
-										?checked=${config.allowedExtensions.includes('std')}>
+										.checked=${config.allowedExtensions.includes('std')}>
 									${this.faTemplate('fac-tool-stdashboard')}
 								</label>
 								<label
@@ -130,7 +130,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="sta" type="checkbox" autocomplete="off"
-										?checked=${config.allowedExtensions.includes('sta')}>
+										.checked=${config.allowedExtensions.includes('sta')}>
 									${this.faTemplate('fac-tool-stagile')}
 								</label>
 							</div>
@@ -172,11 +172,11 @@ export default class SearchFilterFormElement extends BaseElement {
 								<select name="date-property" class="custom-select"
 									@change=${this.formFieldChangeHandlerGenerator('date-property')}>
 									<option value="created"
-										?selected=${config.dateProperty === 'created'}>
+										.selected=${config.dateProperty === 'created'}>
 										Creation date
 									</option>
 									<option value="modified"
-										?selected=${config.dateProperty === 'modified'}>
+										.selected=${config.dateProperty === 'modified'}>
 										Modification date
 									</option>
 								</select>
