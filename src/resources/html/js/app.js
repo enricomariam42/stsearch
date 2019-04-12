@@ -30,49 +30,58 @@ window.addEventListener('load', async () => {
 		Noty.error('Error in data loading');
 	}
 
-	window.STSearch = {
-		config,
-		repository,
-		applyConfig: (newConfig, reset = false) => {
-			config.applyConfig(newConfig, reset);
-			repository.applyFilters(repository.root);
-			searchContainerElement.render();
-		},
-		applyPreset: (preset, reset = true) => {
-			config.applyPreset(preset, reset);
-			repository.applyFilters(repository.root);
-			searchContainerElement.render();
-		},
-		resetConfig: () => {
-			config.resetConfig();
-			repository.applyFilters(repository.root);
-			searchContainerElement.render();
-		},
-		doSearch: (searchTerms, reset = false) => {
-			if (reset) config.resetConfig();
-			config.searchTerms = searchTerms;
-			repository.applyFilters(reset ? repository.root : undefined);
-			searchContainerElement.render();
-		},
-		doFocus: (fieldName = 'search-terms') => {
-			const formRef = searchContainerElement.searchFilterFormElement.ref;
-			const fieldRef = formRef.querySelector(`[name="${fieldName}"]`);
-			if (fieldRef) fieldRef.focus();
-		},
-		doRefresh: async () => {
-			if (!document.body.classList.contains('loading')) {
-				const refreshedRoot = await RemoteRepositoryAPI.getRepository();
-				if (refreshedRoot !== null) {
-					repository.root = refreshedRoot;
-					searchContainerElement.render();
-					return true;
-				}
-			}
+	const STSearch = {config, repository};
 
-			return false;
-		},
-		isLoading: () => {
-			return document.body.classList.contains('loading');
-		}
+	STSearch.applyConfig = (newConfig, reset = false) => {
+		config.applyConfig(newConfig, reset);
+		repository.applyFilters(repository.root);
+		searchContainerElement.render();
+		return STSearch;
 	};
+
+	STSearch.applyPreset = (preset, reset = true) => {
+		config.applyPreset(preset, reset);
+		repository.applyFilters(repository.root);
+		searchContainerElement.render();
+		return STSearch;
+	};
+
+	STSearch.resetConfig = () => {
+		config.resetConfig();
+		repository.applyFilters(repository.root);
+		searchContainerElement.render();
+		return STSearch;
+	};
+
+	STSearch.isLoading = () => {
+		return document.body.classList.contains('loading');
+	};
+
+	STSearch.doSearch = (searchTerms, reset = false) => {
+		if (reset) config.resetConfig();
+		config.searchTerms = searchTerms;
+		repository.applyFilters(reset ? repository.root : undefined);
+		searchContainerElement.render();
+		return STSearch;
+	};
+
+	STSearch.doFocus = (fieldName = 'search-terms') => {
+		const formRef = searchContainerElement.searchFilterFormElement.ref;
+		const fieldRef = formRef.querySelector(`[name="${fieldName}"]`);
+		if (fieldRef) fieldRef.focus();
+		return STSearch;
+	};
+
+	STSearch.doRefresh = async () => {
+		if (!STSearch.isLoading()) {
+			const refreshedRoot = await RemoteRepositoryAPI.getRepository();
+			if (refreshedRoot !== null) {
+				repository.root = refreshedRoot;
+				searchContainerElement.render();
+			}
+		}
+		return STSearch;
+	};
+
+	window.STSearch = STSearch;
 });
