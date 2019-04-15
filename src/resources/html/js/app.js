@@ -22,13 +22,14 @@ window.addEventListener('load', async () => {
 	const searchContainerElement = new SearchContainerElement(container, {repository});
 	searchContainerElement.render();
 
-	const root = await RemoteRepositoryAPI.getRepository();
-	if (root !== null) {
-		repository.root = root;
-		searchContainerElement.render();
-	} else {
-		Noty.error('Error in data loading');
-	}
+	RemoteRepositoryAPI.getRepository()
+		.then(root => {
+			repository.root = root;
+			searchContainerElement.render();
+		})
+		.catch(() => {
+			Noty.error('Error in data loading');
+		});
 
 	const STSearch = {config, repository};
 
