@@ -52,13 +52,11 @@ export default class SearchFileEditModalElement extends BaseElement {
 										</label>
 									</div>
 									<div class="form-group">
-										<div class="w-100">
-											<div class="mb-2">Image</div>
-											<div class="custom-file">
-												<input name="thumbnail" type="file" class="custom-file-input">
-												<span class="custom-file-label">Choose file</span>
-											</div>
-										</div>
+										<label class="w-100">
+											<div class="mb-2">Tags</div>
+											<input name="tags" type="hidden" class="form-control"
+												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}>
+										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
@@ -69,11 +67,13 @@ export default class SearchFileEditModalElement extends BaseElement {
 										</label>
 									</div>
 									<div class="form-group">
-										<label class="w-100">
-											<div class="mb-2">Tags</div>
-											<input name="tags" type="hidden" class="form-control"
-												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}>
-										</label>
+										<div class="w-100">
+											<div class="mb-2">Image</div>
+											<div class="custom-file">
+												<input name="thumbnail" type="file" class="custom-file-input">
+												<span class="custom-file-label">Choose file</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
