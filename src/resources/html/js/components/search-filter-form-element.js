@@ -86,53 +86,61 @@ export default class SearchFilterFormElement extends BaseElement {
 								<label
 									class="
 										btn btn-outline-tool-cde
-										${config.allowedExtensions.includes('wcdf') ? 'active' : ''}
+										${config._allowedExtensionsSet.has('wcdf') ? 'active' : ''}
 									"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" value="wcdf" type="checkbox" autocomplete="off"
-										.checked=${config.allowedExtensions.includes('wcdf')}>
+										.checked=${config._allowedExtensionsSet.has('wcdf')}>
 									${this.faTemplate('fac-tool-cde')}
 								</label>
-								<label
-									class="
-										btn btn-outline-tool-stpivot
-										${config.allowedExtensions.includes('xjpivot') ? 'active' : ''}
-									"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="xjpivot" type="checkbox" autocomplete="off"
-										.checked=${config.allowedExtensions.includes('xjpivot')}>
-									${this.faTemplate('fac-tool-stpivot')}
-								</label>
-								<label
-									class="
-										btn btn-outline-tool-streport
-										${config.allowedExtensions.includes('adhoc|prpt') ? 'active' : ''}
-									"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" autocomplete="off"
-										.checked=${config.allowedExtensions.includes('adhoc|prpt')}>
-									${this.faTemplate('fac-tool-streport')}
-								</label>
-								<label
-									class="
-										btn btn-outline-tool-stdashboard
-										${config.allowedExtensions.includes('std') ? 'active' : ''}
-									"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="std" type="checkbox" autocomplete="off"
-										.checked=${config.allowedExtensions.includes('std')}>
-									${this.faTemplate('fac-tool-stdashboard')}
-								</label>
-								<label
-									class="
-										btn btn-outline-tool-stagile
-										${config.allowedExtensions.includes('sta') ? 'active' : ''}
-									"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" value="sta" type="checkbox" autocomplete="off"
-										.checked=${config.allowedExtensions.includes('sta')}>
-									${this.faTemplate('fac-tool-stagile')}
-								</label>
+								${config._installedPluginsSet.has('stpivot') ? html`
+									<label
+										class="
+											btn btn-outline-tool-stpivot
+											${config._allowedExtensionsSet.has('xjpivot') ? 'active' : ''}
+										"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
+										<input name="allowed-extensions[]" value="xjpivot" type="checkbox" autocomplete="off"
+											.checked=${config._allowedExtensionsSet.has('xjpivot')}>
+										${this.faTemplate('fac-tool-stpivot')}
+									</label>
+								` : ''}
+								${config._installedPluginsSet.has('streport') ? html`
+									<label
+										class="
+											btn btn-outline-tool-streport
+											${config._allowedExtensionsSet.has('adhoc|prpt') ? 'active' : ''}
+										"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
+										<input name="allowed-extensions[]" value="adhoc|prpt" type="checkbox" autocomplete="off"
+											.checked=${config._allowedExtensionsSet.has('adhoc|prpt')}>
+										${this.faTemplate('fac-tool-streport')}
+									</label>
+								` : ''}
+								${config._installedPluginsSet.has('stdashboard') ? html`
+									<label
+										class="
+											btn btn-outline-tool-stdashboard
+											${config._allowedExtensionsSet.has('std') ? 'active' : ''}
+										"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
+										<input name="allowed-extensions[]" value="std" type="checkbox" autocomplete="off"
+											.checked=${config._allowedExtensionsSet.has('std')}>
+										${this.faTemplate('fac-tool-stdashboard')}
+									</label>
+								` : ''}
+								${config._installedPluginsSet.has('stagile') ? html`
+									<label
+										class="
+											btn btn-outline-tool-stagile
+											${config._allowedExtensionsSet.has('sta') ? 'active' : ''}
+										"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
+										<input name="allowed-extensions[]" value="sta" type="checkbox" autocomplete="off"
+											.checked=${config._allowedExtensionsSet.has('sta')}>
+										${this.faTemplate('fac-tool-stagile')}
+									</label>
+								` : ''}
 							</div>
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
 								<button type="button" class="btn btn-info"

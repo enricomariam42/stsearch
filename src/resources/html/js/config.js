@@ -4,7 +4,9 @@ import escapeRegExp from 'lodash/escapeRegExp';
 import fetch from 'unfetch';
 import isString from 'lodash/isString';
 
+import extensionMap from './helpers/biserver/plugins/extensionMap';
 import getCanAdminister from './helpers/biserver/getCanAdminister';
+import getInstalledPlugins from './helpers/biserver/getInstalledPlugins';
 import override from './helpers/override';
 import searchParams from './helpers/searchParams';
 import strToBool from './helpers/strToBool';
@@ -28,8 +30,25 @@ class Config {
 
 			override(this._initialConfig, this._presets.default, this._presets[params.preset], params);
 
-			// If "enable-file-global" is true, check if the user really has permission.
-			if (this._initialConfig['enable-file-global']) {
+			// If "installed-plugins" is not defined, retrieve installed plugins.
+			if (typeof this._initialConfig['installed-plugins'] === 'undefined') {
+				const installedPlugins = await getInstalledPlugins();
+				this._initialConfig['installed-plugins'] = installedPlugins;
+			}
+
+			// If "allowed-extensions" is not defined, define it according to the installed plugins.
+			if (typeof this._initialConfig['allowed-extensions'] === 'undefined') {
+				const allowedExtensions = ['wcdf'];
+				this._initialConfig['installed-plugins'].forEach(plugin => {
+					if (extensionMap.has(plugin)) {
+						allowedExtensions.push(extensionMap.get(plugin));
+					}
+				});
+				this._initialConfig['allowed-extensions'] = allowedExtensions;
+			}
+
+			// If "enable-file-global" is "true", check if the user really has permission.
+			if (this._initialConfig['enable-file-global'] === 'true') {
 				const canAdminister = await getCanAdminister();
 				this._initialConfig['enable-file-global'] = canAdminister;
 			}
@@ -56,6 +75,15 @@ class Config {
 		for (const [key, value] of Object.entries(this._initialConfig)) {
 			this[camelCase(key)] = cloneDeep(value);
 		}
+	}
+
+	get installedPlugins() {
+		return this._installedPlugins;
+	}
+
+	set installedPlugins(installedPlugins) {
+		this._installedPlugins = installedPlugins;
+		this._installedPluginsSet = new Set(installedPlugins);
 	}
 
 	get enableBanner() {
@@ -237,6 +265,7 @@ class Config {
 
 	set allowedExtensions(allowedExtensions) {
 		this._allowedExtensions = allowedExtensions;
+		this._allowedExtensionsSet = new Set(allowedExtensions);
 		this._allowedExtensionsRegex = new RegExp(`^(?:${this._allowedExtensions.join('|')})$`, 'i');
 	}
 

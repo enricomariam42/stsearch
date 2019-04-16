@@ -18,7 +18,6 @@
     "search-terms": "",
     "filter-favorites": "false",
     "filter-recents": "false",
-    "allowed-extensions": ["wcdf", "xjpivot", "adhoc|prpt", "std", "sta"],
     "date-min": "",
     "date-max": "",
     "date-property": "created",
