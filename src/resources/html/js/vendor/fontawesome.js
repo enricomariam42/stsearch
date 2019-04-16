@@ -16,7 +16,6 @@ const iconImports = [
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faFolder'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faFolderOpen'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faGlobe'),
-	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faHome'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faLongArrowAltLeft'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faLongArrowAltRight'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faMapMarkedAlt'),
@@ -35,7 +34,8 @@ const iconImports = [
 	import(/* webpackChunkName: "fa" */ './fontawesome/facToolStpivot'),
 	import(/* webpackChunkName: "fa" */ './fontawesome/facToolStreport'),
 	import(/* webpackChunkName: "fa" */ './fontawesome/falGlobe'),
-	import(/* webpackChunkName: "fa" */ './fontawesome/farHome')
+	import(/* webpackChunkName: "fa" */ './fontawesome/farHomeAlt'),
+	import(/* webpackChunkName: "fa" */ './fontawesome/fasHomeAlt')
 ];
 
 (async () => {

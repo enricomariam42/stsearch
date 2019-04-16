@@ -30,6 +30,7 @@ export default class SearchFileElement extends BaseElement {
 					file-extension-${this.options.file.extension}
 					file-recent-${this.options.file.isRecent ? 'on' : 'off'}
 					file-favorite-${this.options.file.isFavorite ? 'on' : 'off'}
+					file-global-item-${this.options.file.isGlobalItem ? 'on' : 'off'}
 					file-home-item-${this.options.file.isHomeItem ? 'on' : 'off'}
 					file-readonly-${this.options.file.isReadonly ? 'on' : 'off'}
 				">
@@ -48,10 +49,16 @@ export default class SearchFileElement extends BaseElement {
 									${this.faTemplate('fas-edit')}
 								</button>
 							` : ''}
+							${config.enableFileGlobal ? html`
+								<button type="button" class="btn btn-light"
+									@click=${this.fileGlobalClickHandler}>
+									${this.faTemplate(`${this.options.file.isGlobalItem ? 'fas' : 'fal'}-globe`)}
+								</button>
+							` : ''}
 							${config.enableFileHome ? html`
 								<button type="button" class="btn btn-light"
 									@click=${this.fileHomeClickHandler}>
-									${this.faTemplate(`${this.options.file.isHomeItem ? 'fas' : 'far'}-home`)}
+									${this.faTemplate(`${this.options.file.isHomeItem ? 'fas' : 'far'}-home-alt`)}
 								</button>
 							` : ''}
 							${config.enableFileFavorite ? html`
@@ -120,6 +127,19 @@ export default class SearchFileElement extends BaseElement {
 			handleEvent: () => {
 				if (typeof this.options.fileEditCallback === 'function') {
 					this.options.fileEditCallback(this.options.file);
+				}
+			}
+		};
+	}
+
+	get fileGlobalClickHandler() {
+		return {
+			capture: true,
+			passive: true,
+			once: false,
+			handleEvent: () => {
+				if (typeof this.options.fileGlobalCallback === 'function') {
+					this.options.fileGlobalCallback(this.options.file);
 				}
 			}
 		};

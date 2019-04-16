@@ -100,6 +100,22 @@ export default class SearchContainerElement extends BaseElement {
 					this.render();
 				}
 			},
+			fileGlobalCallback: async fileData => {
+				const metadata = {
+					path: fileData.path,
+					isGlobalItem: !fileData.isGlobalItem
+				};
+
+				const result = await RemoteRepositoryAPI.setMetadata(metadata);
+				if (result !== null && result.length > 0) {
+					const file = this.options.repository.fromPath(metadata.path);
+					override(file, metadata);
+
+					this.render();
+				} else {
+					Noty.error('Error saving data');
+				}
+			},
 			fileHomeCallback: async fileData => {
 				const metadata = {
 					path: fileData.path,

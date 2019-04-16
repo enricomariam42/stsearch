@@ -25,10 +25,10 @@ class Config {
 
 			override(this._initialConfig, this._presets.default, this._presets[params.preset], params);
 
-			// If "enable-file-home" is true, check if the user really has permission.
-			if (this._initialConfig['enable-file-home']) {
+			// If "enable-file-global" is true, check if the user really has permission.
+			if (this._initialConfig['enable-file-global']) {
 				const canAdminister = await RemoteRepositoryAPI.canAdminister();
-				this._initialConfig['enable-file-home'] = canAdminister;
+				this._initialConfig['enable-file-global'] = canAdminister;
 			}
 
 			this.resetConfig();
@@ -103,6 +103,16 @@ class Config {
 		this._enableFileEdit = isString(enableFileEdit)
 			? strToBool(enableFileEdit)
 			: enableFileEdit;
+	}
+
+	get enableFileGlobal() {
+		return this._enableFileGlobal;
+	}
+
+	set enableFileGlobal(enableFileGlobal) {
+		this._enableFileGlobal = isString(enableFileGlobal)
+			? strToBool(enableFileGlobal)
+			: enableFileGlobal;
 	}
 
 	get enableFileHome() {

@@ -16,6 +16,7 @@ export default class SearchFileListElement extends BaseElement {
 				return new SearchFileElement(null, {
 					file,
 					fileEditCallback: this.options.fileEditCallback,
+					fileGlobalCallback: this.options.fileGlobalCallback,
 					fileHomeCallback: this.options.fileHomeCallback,
 					fileFavoriteCallback: this.options.fileFavoriteCallback,
 					fileTagCallback: this.options.fileTagCallback,

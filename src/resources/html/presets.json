@@ -5,6 +5,7 @@
     "enable-folders": "true",
     "enable-file-tags": "true",
     "enable-file-edit": "true",
+    "enable-file-global": "true",
     "enable-file-home": "true",
     "enable-file-favorite": "true",
     "enable-file-open": "true",
