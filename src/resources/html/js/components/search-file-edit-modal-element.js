@@ -38,7 +38,6 @@ export default class SearchFileEditModalElement extends BaseElement {
 								<div class="col-sm-12 col-lg-9">
 									<div class="form-group">
 										<label class="w-100">
-											<div class="mb-2">Path</div>
 											<input name="path" type="text" class="form-control" readonly
 												placeholder="Path..."
 												.value=${this.options.file.path}>
