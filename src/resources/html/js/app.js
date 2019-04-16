@@ -1,13 +1,12 @@
-import './vendor/bootstrap';
-import './vendor/fontawesome';
-import './vendor/unfetch';
-import Noty from './vendor/noty';
-
 import '../css/app.scss';
 
-import config from './config';
+import './vendor/bootstrap';
+import './vendor/fontawesome';
+import Noty from './vendor/noty';
 
-import RemoteRepositoryAPI from './api/remote-repository-api';
+import getRepository from './helpers/biserver/getRepository';
+
+import config from './config';
 import Repository from './repository';
 
 import SearchContainerElement from './components/search-container-element';
@@ -22,7 +21,7 @@ window.addEventListener('load', async () => {
 	const searchContainerElement = new SearchContainerElement(container, {repository});
 	searchContainerElement.render();
 
-	RemoteRepositoryAPI.getRepository()
+	getRepository()
 		.then(root => {
 			repository.root = root;
 			searchContainerElement.render();
@@ -75,7 +74,7 @@ window.addEventListener('load', async () => {
 
 	STSearch.doRefresh = async () => {
 		if (!STSearch.isLoading()) {
-			const refreshedRoot = await RemoteRepositoryAPI.getRepository();
+			const refreshedRoot = await getRepository();
 			if (refreshedRoot !== null) {
 				repository.root = refreshedRoot;
 				searchContainerElement.render();

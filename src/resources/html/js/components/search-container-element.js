@@ -2,19 +2,19 @@ import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
 import {html} from 'lit-html';
 
-import bsCustomFileInput from 'bs-custom-file-input';
+import bsCustomFileInput from '../vendor/bs-custom-file-input';
 import Tagify from '../vendor/tagify';
 import Noty from '../vendor/noty';
 
+import getRepository from '../helpers/biserver/getRepository';
 import imageToDataURI from '../helpers/imageToDataURI';
 import override from '../helpers/override';
 import safeJSON from '../helpers/safeJSON';
+import setMetadata from '../helpers/biserver/setMetadata';
 import strToBool from '../helpers/strToBool';
 import trigger from '../helpers/trigger';
 
 import config from '../config';
-
-import RemoteRepositoryAPI from '../api/remote-repository-api';
 
 import BaseElement from './base-element';
 import EmptyElement from './empty-element';
@@ -58,7 +58,7 @@ export default class SearchContainerElement extends BaseElement {
 					this.render();
 				},
 				formRefreshCallback: async () => {
-					const root = await RemoteRepositoryAPI.getRepository();
+					const root = await getRepository();
 					if (root === null) {
 						Noty.error('Error in data loading');
 					} else {
@@ -110,7 +110,7 @@ export default class SearchContainerElement extends BaseElement {
 					isGlobalItem: !fileData.isGlobalItem
 				};
 
-				const result = await RemoteRepositoryAPI.setMetadata(metadata);
+				const result = await setMetadata(metadata);
 				if (result !== null && result.length > 0) {
 					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
@@ -126,7 +126,7 @@ export default class SearchContainerElement extends BaseElement {
 					isHomeItem: !fileData.isHomeItem
 				};
 
-				const result = await RemoteRepositoryAPI.setMetadata(metadata);
+				const result = await setMetadata(metadata);
 				if (result !== null && result.length > 0) {
 					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
@@ -142,7 +142,7 @@ export default class SearchContainerElement extends BaseElement {
 					isFavorite: !fileData.isFavorite
 				};
 
-				const result = await RemoteRepositoryAPI.setMetadata(metadata);
+				const result = await setMetadata(metadata);
 				if (result !== null && result.length > 0) {
 					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
@@ -186,7 +186,7 @@ export default class SearchContainerElement extends BaseElement {
 						}
 					}
 
-					const result = await RemoteRepositoryAPI.setMetadata(metadata);
+					const result = await setMetadata(metadata);
 					if (result !== null && result.length > 0) {
 						const file = this.options.repository.fromPath(metadata.path);
 						override(file, metadata);

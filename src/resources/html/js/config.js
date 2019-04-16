@@ -1,14 +1,14 @@
 import camelCase from 'lodash/camelCase';
 import cloneDeep from 'lodash/cloneDeep';
 import escapeRegExp from 'lodash/escapeRegExp';
+import fetch from 'unfetch';
 import isString from 'lodash/isString';
 
+import getCanAdminister from './helpers/biserver/getCanAdminister';
 import override from './helpers/override';
 import searchParams from './helpers/searchParams';
 import strToBool from './helpers/strToBool';
 import strToInt from './helpers/strToInt';
-
-import RemoteRepositoryAPI from './api/remote-repository-api';
 
 class Config {
 	constructor() {
@@ -30,7 +30,7 @@ class Config {
 
 			// If "enable-file-global" is true, check if the user really has permission.
 			if (this._initialConfig['enable-file-global']) {
-				const canAdminister = await RemoteRepositoryAPI.canAdminister();
+				const canAdminister = await getCanAdminister();
 				this._initialConfig['enable-file-global'] = canAdminister;
 			}
 
