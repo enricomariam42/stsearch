@@ -1,6 +1,7 @@
 import {html} from 'lit-html';
 
-import {formData, safeJSON} from '../helpers';
+import formData from '../helpers/formData';
+import safeJSON from '../helpers/safeJSON';
 
 import BaseElement from './base-element';
 

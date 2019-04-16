@@ -1,6 +1,6 @@
 import {html} from 'lit-html';
 
-import {formData} from '../helpers';
+import formData from '../helpers/formData';
 
 import config from '../config';
 

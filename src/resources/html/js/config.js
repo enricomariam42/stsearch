@@ -3,7 +3,10 @@ import cloneDeep from 'lodash/cloneDeep';
 import escapeRegExp from 'lodash/escapeRegExp';
 import isString from 'lodash/isString';
 
-import {searchParams, override, strToBool, strToInt} from './helpers';
+import override from './helpers/override';
+import searchParams from './helpers/searchParams';
+import strToBool from './helpers/strToBool';
+import strToInt from './helpers/strToInt';
 
 import RemoteRepositoryAPI from './api/remote-repository-api';
 

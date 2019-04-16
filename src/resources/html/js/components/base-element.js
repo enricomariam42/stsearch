@@ -2,7 +2,7 @@ import jQuery from 'jquery';
 import uniqueId from 'lodash/uniqueId';
 import {html, render, directive} from 'lit-html';
 
-import {isProduction} from '../helpers';
+import isProduction from '../helpers/isProduction';
 
 export default class BaseElement {
 	constructor(container = null, options = {}) {

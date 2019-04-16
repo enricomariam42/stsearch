@@ -1,6 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep';
 
-import {searchParams, strToBool, safeJSON} from '../helpers';
+import safeJSON from '../helpers/safeJSON';
+import searchParams from '../helpers/searchParams';
+import strToBool from '../helpers/strToBool';
 
 export const FILES_API_ENDPOINT = '../../../../api/repo/files';
 export const FILES_METADATA_API_ENDPOINT = '../../../../plugin/file-metadata/api';
