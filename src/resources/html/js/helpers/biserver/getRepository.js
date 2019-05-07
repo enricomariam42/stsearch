@@ -1,9 +1,9 @@
 import getMetadata from './getMetadata';
 
-export default async () => {
+export default async ({locale = 'default', depth = -1} = {}) => {
 	document.body.classList.add('loading');
 
-	const response = await getMetadata({fullPath: '/'}, {depth: -1});
+	const response = await getMetadata({fullPath: '/'}, {locale, depth});
 
 	document.body.classList.remove('loading');
 
