@@ -60,6 +60,18 @@ export default class Repository {
 	/* eslint-disable-next-line complexity */
 	isFileFiltered(file) {
 		return (
+			// GLOBAL
+			// =========
+			( // If this filter is true, the file must be marked as global item.
+				!config.filterGlobal || (config.filterGlobal && file.isGlobalItem)
+			)
+		) && (
+			// HOME
+			// =========
+			( // If this filter is true, the file must be marked as home item.
+				!config.filterHome || (config.filterHome && file.isHomeItem)
+			)
+		) && (
 			// FAVORITES
 			// =========
 			( // If this filter is true, the file must be marked as favorite.

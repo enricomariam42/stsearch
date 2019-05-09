@@ -239,6 +239,26 @@ class Config {
 		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
 	}
 
+	get filterGlobal() {
+		return this._filterGlobal;
+	}
+
+	set filterGlobal(filterGlobal) {
+		this._filterGlobal = isString(filterGlobal)
+			? strToBool(filterGlobal)
+			: filterGlobal;
+	}
+
+	get filterHome() {
+		return this._filterHome;
+	}
+
+	set filterHome(filterHome) {
+		this._filterHome = isString(filterHome)
+			? strToBool(filterHome)
+			: filterHome;
+	}
+
 	get filterFavorites() {
 		return this._filterFavorites;
 	}

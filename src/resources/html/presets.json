@@ -16,6 +16,8 @@
     "search-in-description": "true",
     "search-in-tags": "true",
     "search-terms": "",
+    "filter-global": "false",
+    "filter-home": "false",
     "filter-favorites": "false",
     "filter-recents": "false",
     "date-min": "",
@@ -24,6 +26,20 @@
     "max-tags": "10",
     "page-places": "5",
     "page-size": "24"
+  },
+  "global": {
+    "enable-filters": "false",
+    "enable-folders": "false",
+    "enable-file-tags": "false",
+    "enable-file-edit": "false",
+    "filter-global": "true"
+  },
+  "home": {
+    "enable-filters": "false",
+    "enable-folders": "false",
+    "enable-file-tags": "false",
+    "enable-file-edit": "false",
+    "filter-home": "true"
   },
   "favorites": {
     "enable-filters": "false",
