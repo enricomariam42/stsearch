@@ -6,6 +6,7 @@ import bsCustomFileInput from '../vendor/bs-custom-file-input';
 import Tagify from '../vendor/tagify';
 import Noty from '../vendor/noty';
 
+import dispatchCustomEvent from '../helpers/dispatchCustomEvent';
 import getRepository from '../helpers/biserver/getRepository';
 import imageToDataURI from '../helpers/imageToDataURI';
 import override from '../helpers/override';
@@ -114,6 +115,10 @@ export default class SearchContainerElement extends BaseElement {
 				if (result !== null && result.length > 0) {
 					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
+					dispatchCustomEvent('stsearch-set-metadata', {
+						detail: file,
+						target: window.parent
+					});
 
 					this.render();
 				} else {
@@ -130,6 +135,10 @@ export default class SearchContainerElement extends BaseElement {
 				if (result !== null && result.length > 0) {
 					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
+					dispatchCustomEvent('stsearch-set-metadata', {
+						detail: file,
+						target: window.parent
+					});
 
 					this.render();
 				} else {
@@ -146,6 +155,10 @@ export default class SearchContainerElement extends BaseElement {
 				if (result !== null && result.length > 0) {
 					const file = this.options.repository.fromPath(metadata.path);
 					override(file, metadata);
+					dispatchCustomEvent('stsearch-set-metadata', {
+						detail: file,
+						target: window.parent
+					});
 
 					this.render();
 				} else {
@@ -190,6 +203,10 @@ export default class SearchContainerElement extends BaseElement {
 					if (result !== null && result.length > 0) {
 						const file = this.options.repository.fromPath(metadata.path);
 						override(file, metadata);
+						dispatchCustomEvent('stsearch-set-metadata', {
+							detail: file,
+							target: window.parent
+						});
 
 						this.currentEditingFile = null;
 						this.searchFileEditModalElement.$ref.modal('hide');
