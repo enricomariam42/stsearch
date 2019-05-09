@@ -82,7 +82,71 @@ export default class SearchFilterFormElement extends BaseElement {
 							</div>
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
-							<div class="allowed-extensions btn-group btn-group-toggle flex-fill mr-2" data-toggle="buttons">
+							<div class="btn-group btn-group-toggle flex-fill mr-2">
+								<button type="button" class="btn btn-primary" data-toggle="dropdown">
+									${this.faTemplate('fas-tasks')}
+								</button>
+								<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
+									<div class="dropdown-item p-0">
+										<div class="px-3 pb-1">Must be in:</div>
+									</div>
+									<div class="dropdown-item p-0">
+										<div class="btn-group-toggle" data-toggle="buttons">
+											<label
+												class="
+													btn btn-sm btn-link text-left px-3 w-100 rounded-0
+													${config.filterGlobal ? 'active' : ''}
+												"
+												@click=${this.formFieldChangeHandlerGenerator('filter-global')}>
+												<input name="filter-global" value="true" type="checkbox" autocomplete="off"
+													.checked=${config.filterGlobal}>
+												Global
+											</label>
+										</div>
+									</div>
+									<div class="dropdown-item p-0">
+										<div class="btn-group-toggle" data-toggle="buttons">
+											<label
+												class="
+													btn btn-sm btn-link text-left px-3 w-100 rounded-0
+													${config.filterHome ? 'active' : ''}
+												"
+												@click=${this.formFieldChangeHandlerGenerator('filter-home')}>
+												<input name="filter-home" value="true" type="checkbox" autocomplete="off"
+													.checked=${config.filterHome}>
+												Home
+											</label>
+										</div>
+									</div>
+									<div class="dropdown-item p-0">
+										<div class="btn-group-toggle" data-toggle="buttons">
+											<label
+												class="
+													btn btn-sm btn-link text-left px-3 w-100 rounded-0
+													${config.filterFavorites ? 'active' : ''}
+												"
+												@click=${this.formFieldChangeHandlerGenerator('filter-favorites')}>
+												<input name="filter-favorites" value="true" type="checkbox" autocomplete="off"
+													.checked=${config.filterFavorites}>
+												Favorites
+											</label>
+										</div>
+									</div>
+									<div class="dropdown-item p-0">
+										<div class="btn-group-toggle" data-toggle="buttons">
+											<label
+												class="
+													btn btn-sm btn-link text-left px-3 w-100 rounded-0
+													${config.filterRecents ? 'active' : ''}
+												"
+												@click=${this.formFieldChangeHandlerGenerator('filter-recents')}>
+												<input name="filter-recents" value="true" type="checkbox" autocomplete="off"
+													.checked=${config.filterRecents}>
+												Recents
+											</label>
+										</div>
+									</div>
+								</div>
 								<label
 									class="
 										btn btn-outline-tool-cde

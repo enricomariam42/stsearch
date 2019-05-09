@@ -22,6 +22,7 @@ const iconImports = [
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faSearch'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faStar'),
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faSync'),
+	import(/* webpackChunkName: "fa" */ '@fortawesome/free-solid-svg-icons/faTasks'),
 	import(/* webpackChunkName: "fa" */ './fontawesome/facFileAdhoc'),
 	import(/* webpackChunkName: "fa" */ './fontawesome/facFilePrpt'),
 	import(/* webpackChunkName: "fa" */ './fontawesome/facFileSta'),
