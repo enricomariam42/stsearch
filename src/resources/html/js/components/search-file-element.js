@@ -30,8 +30,8 @@ export default class SearchFileElement extends BaseElement {
 					file-extension-${this.options.file.extension}
 					file-recent-${this.options.file.isRecent ? 'on' : 'off'}
 					file-favorite-${this.options.file.isFavorite ? 'on' : 'off'}
-					file-global-item-${this.options.file.isGlobalItem ? 'on' : 'off'}
-					file-home-item-${this.options.file.isHomeItem ? 'on' : 'off'}
+					file-global-${this.options.file.isGlobal ? 'on' : 'off'}
+					file-home-${this.options.file.isHome ? 'on' : 'off'}
 					file-readonly-${this.options.file.isReadonly ? 'on' : 'off'}
 				">
 				<div class="card h-100">
@@ -52,13 +52,13 @@ export default class SearchFileElement extends BaseElement {
 							${config.enableFileGlobal ? html`
 								<button type="button" class="btn btn-light"
 									@click=${this.fileGlobalClickHandler}>
-									${this.faTemplate(`${this.options.file.isGlobalItem ? 'fas' : 'fal'}-globe`)}
+									${this.faTemplate(`${this.options.file.isGlobal ? 'fas' : 'fal'}-globe`)}
 								</button>
 							` : ''}
 							${config.enableFileHome ? html`
 								<button type="button" class="btn btn-light"
 									@click=${this.fileHomeClickHandler}>
-									${this.faTemplate(`${this.options.file.isHomeItem ? 'fas' : 'far'}-home-alt`)}
+									${this.faTemplate(`${this.options.file.isHome ? 'fas' : 'far'}-home-alt`)}
 								</button>
 							` : ''}
 							${config.enableFileFavorite ? html`

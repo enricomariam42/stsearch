@@ -112,7 +112,7 @@ export default class SearchContainerElement extends BaseElement {
 			fileGlobalCallback: async fileData => {
 				const metadata = {
 					path: fileData.path,
-					isGlobalItem: !fileData.isGlobalItem
+					isGlobal: !fileData.isGlobal
 				};
 
 				const result = await setMetadata(metadata);
@@ -132,7 +132,7 @@ export default class SearchContainerElement extends BaseElement {
 			fileHomeCallback: async fileData => {
 				const metadata = {
 					path: fileData.path,
-					isHomeItem: !fileData.isHomeItem
+					isHome: !fileData.isHome
 				};
 
 				const result = await setMetadata(metadata);

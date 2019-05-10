@@ -62,14 +62,14 @@ export default class Repository {
 		return (
 			// GLOBAL
 			// =========
-			( // If this filter is true, the file must be marked as global item.
-				!config.filterGlobal || (config.filterGlobal && file.isGlobalItem)
+			( // If this filter is true, the file must be marked as global.
+				!config.filterGlobal || (config.filterGlobal && file.isGlobal)
 			)
 		) && (
 			// HOME
 			// =========
-			( // If this filter is true, the file must be marked as home item.
-				!config.filterHome || (config.filterHome && file.isHomeItem)
+			( // If this filter is true, the file must be marked as home.
+				!config.filterHome || (config.filterHome && file.isHome)
 			)
 		) && (
 			// FAVORITES
