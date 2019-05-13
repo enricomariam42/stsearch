@@ -25,6 +25,11 @@ label.btn {
 	cursor: pointer;
 }
 
+/* Prevent clicking inactive buttons */
+.btn.btn-inactive {
+	pointer-events: none;
+}
+
 /* Allow different content depending on button status */
 .btn {
 	&[data-toggle='button'] {
@@ -113,7 +118,7 @@ label.btn {
 
 		> div > span {
 			width: 100%;
-	
+
 			&[contenteditable] {
 				text-overflow: clip;
 			}
