@@ -25,7 +25,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 							<div class="row">
 								<div class="col-sm-12 col-lg-3 mb-3">
 									<div class="square-box square-box-centered border" style="max-height: 128px; max-width: 128px">
-										<div class="square-box-content p-1 text-muted">
+										<div class="square-box-content p-1 bg-light text-muted">
 										${this.options.file.properties.thumbnail ? html`
 											<img class="card-img" src="${this.options.file.properties.thumbnail}">
 										` : html`
