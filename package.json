@@ -34,7 +34,7 @@
     "deploy:prod": "NODE_ENV=production node ./scripts/mvn-deploy.js"
   },
   "dependencies": {
-    "@appnest/lit-translate": "~1.1.15",
+    "@appnest/lit-translate": "~1.1.16",
     "@fortawesome/fontawesome-free": "~5.8.2",
     "@fortawesome/fontawesome-svg-core": "~1.2.18",
     "@fortawesome/free-brands-svg-icons": "~5.8.2",
@@ -60,7 +60,7 @@
     "archiver": "~3.0.0",
     "autoprefixer": "~9.5.1",
     "babel-eslint": "~10.0.1",
-    "babel-loader": "~8.0.5",
+    "babel-loader": "~8.0.6",
     "chai": "~4.2.0",
     "clean-webpack-plugin": "~2.0.2",
     "copy-webpack-plugin": "~5.0.3",
