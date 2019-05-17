@@ -36,39 +36,37 @@ export default class SearchFileElement extends BaseElement {
 				">
 				<div class="card h-100">
 					<div class="card-header">
-						<div class="card-logo btn-group m-n2 float-left">
-							<button type="button" class="btn btn-light btn-inactive">
+						<div class="card-buttons btn-group d-flex flex-fill flex-wrap justify-content-end m-n2">
+							<button type="button" class="btn btn-light btn-inactive d-none d-sm-inline flex-fill text-left">
 								${this.faTemplate(`fac-file-${this.options.file.extension}`)}
 							</button>
-						</div>
-						<div class="card-buttons btn-group m-n2 float-right">
 							${config.enableFileEdit ? html`
-								<button type="button" class="btn btn-light"
+								<button type="button" class="btn btn-light flex-grow-0"
 									?disabled=${this.options.file.isReadonly}
 									@click=${this.fileEditClickHandler}>
 									${this.faTemplate('fas-edit')}
 								</button>
 							` : ''}
 							${config.enableFileGlobal ? html`
-								<button type="button" class="btn btn-light"
+								<button type="button" class="btn btn-light flex-grow-0"
 									@click=${this.fileGlobalClickHandler}>
 									${this.faTemplate(`${this.options.file.isGlobal ? 'fas' : 'fal'}-globe`)}
 								</button>
 							` : ''}
 							${config.enableFileHome ? html`
-								<button type="button" class="btn btn-light"
+								<button type="button" class="btn btn-light flex-grow-0"
 									@click=${this.fileHomeClickHandler}>
 									${this.faTemplate(`${this.options.file.isHome ? 'fas' : 'far'}-home-alt`)}
 								</button>
 							` : ''}
 							${config.enableFileFavorite ? html`
-								<button type="button" class="btn btn-light"
+								<button type="button" class="btn btn-light flex-grow-0"
 									@click=${this.fileFavoriteClickHandler}>
 									${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
 								</button>
 							` : ''}
 							${config.enableFileOpen ? html`
-								<button type="button" class="btn btn-light"
+								<button type="button" class="btn btn-light flex-grow-0"
 									@click=${this.fileOpenClickHandler}>
 									${this.faTemplate('fas-external-link-alt')}
 								</button>

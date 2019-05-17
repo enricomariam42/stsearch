@@ -18,7 +18,7 @@ export default class SearchFilterFormElement extends BaseElement {
 				@submit=${this.formSubmitHandler}>
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
-						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
+						<div class="flex-grow-5 mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<label for="${this.id}-search-terms" class="btn btn-icon-primary input-group-text">
@@ -81,8 +81,8 @@ export default class SearchFilterFormElement extends BaseElement {
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
 							</div>
 						</div>
-						<div class="d-flex flex-row w-100 w-md-auto">
-							<div class="btn-group btn-group-toggle flex-fill mr-2">
+						<div class="d-flex flex-fill flex-wrap w-100 w-md-auto mx-n1 mb-n1">
+							<div class="btn-group btn-group-toggle flex-grow-5 mx-1 mb-1">
 								<button type="button" class="btn btn-primary" data-toggle="dropdown">
 									${this.faTemplate('fas-tasks')}
 								</button>
@@ -206,7 +206,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</label>
 								` : ''}
 							</div>
-							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							<div class="btn-group btn-group-toggle flex-fill mx-1 mb-1" data-toggle="buttons">
 								<button type="button" class="btn btn-info"
 									@click=${this.formRefreshHandler}>
 									${this.faTemplate('fas-sync')}
