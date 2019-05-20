@@ -2,6 +2,7 @@ import '../css/app.scss';
 
 import './vendor/bootstrap';
 import './vendor/fontawesome';
+import cloneDeep from 'lodash/cloneDeep';
 import Noty from './vendor/noty';
 
 import getRepository from './helpers/biserver/getRepository';
@@ -21,8 +22,8 @@ window.addEventListener('load', async () => {
 	const searchContainerElement = new SearchContainerElement(container, {repository});
 	searchContainerElement.render();
 
-	if ('stsearch_repository' in window.parent) {
-		repository.root = window.parent.stsearch_repository;
+	if ('stsearch_initial_repository' in window.parent) {
+		repository.root = cloneDeep(window.parent.stsearch_initial_repository);
 		searchContainerElement.render();
 	} else {
 		getRepository()
