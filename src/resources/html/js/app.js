@@ -21,14 +21,19 @@ window.addEventListener('load', async () => {
 	const searchContainerElement = new SearchContainerElement(container, {repository});
 	searchContainerElement.render();
 
-	getRepository()
-		.then(root => {
-			repository.root = root;
-			searchContainerElement.render();
-		})
-		.catch(() => {
-			Noty.error('Error in data loading');
-		});
+	if ('stsearch_repository' in window.parent) {
+		repository.root = window.parent.stsearch_repository;
+		searchContainerElement.render();
+	} else {
+		getRepository()
+			.then(root => {
+				repository.root = root;
+				searchContainerElement.render();
+			})
+			.catch(() => {
+				Noty.error('Error in data loading');
+			});
+	}
 
 	const STSearch = {config, repository};
 
