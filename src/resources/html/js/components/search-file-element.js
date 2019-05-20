@@ -44,7 +44,7 @@ export default class SearchFileElement extends BaseElement {
 								<button type="button" class="btn btn-light flex-grow-0"
 									?disabled=${this.options.file.isReadonly}
 									@click=${this.fileEditClickHandler}>
-									${this.faTemplate('fas-edit')}
+									${this.faTemplate('fas-pencil-alt')}
 								</button>
 							` : ''}
 							${config.enableFileGlobal ? html`
@@ -68,7 +68,7 @@ export default class SearchFileElement extends BaseElement {
 							${config.enableFileOpen ? html`
 								<button type="button" class="btn btn-light flex-grow-0"
 									@click=${this.fileOpenClickHandler}>
-									${this.faTemplate('fas-external-link-alt')}
+									${this.faTemplate('fas-link')}
 								</button>
 							` : ''}
 						</div>
