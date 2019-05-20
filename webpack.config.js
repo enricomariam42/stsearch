@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
 	return {
 		mode: isProduction ? 'production' : 'development',
 		entry: path.join(__dirname, 'src/resources/html/js/app.js'),
-		output: {filename: '[name].js', path: `${dist}/resources/html`},
+		output: {filename: '[name].[hash].js', path: `${dist}/resources/html`},
 		devtool: isProduction ? false : 'eval-source-map',
 		optimization: {
 			minimizer: [
@@ -55,8 +55,8 @@ module.exports = (env, argv) => {
 				} : false
 			}),
 			new MiniCssExtractPlugin({
-				filename: '[name].css',
-				chunkFilename: '[id].css'
+				filename: '[name].[hash].css',
+				chunkFilename: '[id].[hash].css'
 			}),
 			new CopyWebpackPlugin([
 				{from: 'src/plugin.xml', to: dist},
@@ -90,10 +90,10 @@ module.exports = (env, argv) => {
 				]
 			}, {
 				test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
-				use: {loader: 'file-loader', options: {name: './fonts/[name].[ext]'}}
+				use: {loader: 'file-loader', options: {name: './fonts/[name].[hash].[ext]'}}
 			}, {
 				test: /\.(png|gif|jpg)$/i,
-				use: {loader: 'file-loader', options: {name: '../images/[name].[ext]'}}
+				use: {loader: 'file-loader', options: {name: '../images/[name].[hash].[ext]'}}
 			}, {
 				test: /\.svg$/i,
 				exclude: /-webfont\.svg$/i,
