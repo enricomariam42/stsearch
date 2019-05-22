@@ -46,17 +46,16 @@
     "compressorjs": "~1.0.5",
     "jquery": "~3.4.1",
     "lit-element": "~2.1.0",
-    "lit-html": "~1.0.0",
+    "lit-html": "~1.1.0",
     "lodash": "~4.17.11",
     "noty": "~v3.2.0-beta",
     "popper.js": "~1.15.0",
     "unfetch": "~4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.4.4",
-    "@babel/plugin-proposal-class-properties": "~7.4.4",
+    "@babel/core": "~7.4.5",
     "@babel/plugin-syntax-dynamic-import": "~7.2.0",
-    "@babel/preset-env": "~7.4.4",
+    "@babel/preset-env": "~7.4.5",
     "archiver": "~3.0.0",
     "autoprefixer": "~9.5.1",
     "babel-eslint": "~10.0.1",
@@ -69,6 +68,7 @@
     "eslint": "~5.16.0",
     "eslint-config-airbnb-base": "~13.1.0",
     "eslint-config-prettier": "~4.3.0",
+    "eslint-config-zant": "~3.0.0",
     "eslint-plugin-import": "~2.17.2",
     "exports-loader": "~0.7.0",
     "html-webpack-plugin": "~3.2.0",
@@ -81,16 +81,15 @@
     "svg-url-loader": "~2.3.2",
     "svgo-loader": "~2.2.0",
     "terser-webpack-plugin": "~1.2.4",
-    "webpack": "~4.31.0",
+    "webpack": "~4.32.1",
     "webpack-cli": "~3.3.2",
-    "webpack-dev-server": "~3.3.1"
+    "webpack-dev-server": "~3.4.1"
   },
   "babel": {
     "presets": [
       "@babel/preset-env"
     ],
     "plugins": [
-      "@babel/plugin-proposal-class-properties",
       "@babel/plugin-syntax-dynamic-import"
     ]
   },
