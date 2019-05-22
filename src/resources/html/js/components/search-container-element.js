@@ -1,6 +1,7 @@
 import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
 import {html} from 'lit-html';
+import {get} from "@appnest/lit-translate";
 
 import bsCustomFileInput from '../vendor/bs-custom-file-input';
 import Tagify from '../vendor/tagify';
@@ -65,7 +66,7 @@ export default class SearchContainerElement extends BaseElement {
 				formRefreshCallback: async () => {
 					const root = await getRepository();
 					if (root === null) {
-						Noty.error('Error in data loading');
+						Noty.error(get('notifications.errorLoadingData'));
 					} else {
 						this.options.repository.root = root;
 						this.render();
@@ -126,7 +127,7 @@ export default class SearchContainerElement extends BaseElement {
 
 					this.render();
 				} else {
-					Noty.error('Error saving data');
+					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
 			fileHomeCallback: async fileData => {
@@ -146,7 +147,7 @@ export default class SearchContainerElement extends BaseElement {
 
 					this.render();
 				} else {
-					Noty.error('Error saving data');
+					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
 			fileFavoriteCallback: async fileData => {
@@ -166,7 +167,7 @@ export default class SearchContainerElement extends BaseElement {
 
 					this.render();
 				} else {
-					Noty.error('Error saving data');
+					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
 			fileTagCallback: tag => {
@@ -197,7 +198,7 @@ export default class SearchContainerElement extends BaseElement {
 							const dataURI = await imageToDataURI(formObj.thumbnail);
 							metadata.properties.thumbnail = dataURI;
 						} catch (error) {
-							Noty.error('Invalid image');
+							Noty.error(get('notifications.invalidImage'));
 							console.error(error);
 							return;
 						}
@@ -217,7 +218,7 @@ export default class SearchContainerElement extends BaseElement {
 
 						this.render();
 					} else {
-						Noty.error('Error saving data');
+						Noty.error(get('notifications.errorSavingData'));
 					}
 				}
 			});

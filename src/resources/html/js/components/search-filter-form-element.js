@@ -1,4 +1,5 @@
 import {html} from 'lit-html';
+import {translate} from '@appnest/lit-translate';
 
 import formData from '../helpers/formData';
 
@@ -29,7 +30,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</button>
 									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
 										<div class="dropdown-item p-0">
-											<div class="px-3 pb-1">Search in:</div>
+											<div class="px-3 pb-1">${translate('search-filter-form.searchIn')}</div>
 										</div>
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
@@ -41,7 +42,7 @@ export default class SearchFilterFormElement extends BaseElement {
 													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
 													<input name="search-in-title" value="true" type="checkbox" autocomplete="off"
 														.checked=${config.searchInTitle}>
-													Title
+													${translate('search-filter-form.searchInTitle')}
 												</label>
 											</div>
 										</div>
@@ -55,8 +56,8 @@ export default class SearchFilterFormElement extends BaseElement {
 													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
 													<input name="search-in-description" value="true" type="checkbox" autocomplete="off"
 														.checked=${config.searchInDescription}>
-													Description
-												</label>
+													${translate('search-filter-form.searchInDescription')}
+													</label>
 											</div>
 										</div>
 										<div class="dropdown-item p-0">
@@ -69,14 +70,14 @@ export default class SearchFilterFormElement extends BaseElement {
 													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
 													<input name="search-in-tags" value="true" type="checkbox" autocomplete="off"
 														.checked=${config.searchInTags}>
-													Tags
-												</label>
+													${translate('search-filter-form.searchInTags')}
+													</label>
 											</div>
 										</div>
 									</div>
 								</div>
 								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" autofocus
-									placeholder="Search..."
+									placeholder="${translate('search-filter-form.search.placeholder')}"
 									.value=${config.searchTerms}
 									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
 							</div>
@@ -88,7 +89,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								</button>
 								<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
 									<div class="dropdown-item p-0">
-										<div class="px-3 pb-1">Must be in:</div>
+										<div class="px-3 pb-1">${translate('search-filter-form.mustBeIn')}</div>
 									</div>
 									<div class="dropdown-item p-0">
 										<div class="btn-group-toggle" data-toggle="buttons">
@@ -100,7 +101,7 @@ export default class SearchFilterFormElement extends BaseElement {
 												@click=${this.formFieldChangeHandlerGenerator('filter-global')}>
 												<input name="filter-global" value="true" type="checkbox" autocomplete="off"
 													.checked=${config.filterGlobal}>
-												Global
+												${translate('search-filter-form.mustBeInGlobal')}
 											</label>
 										</div>
 									</div>
@@ -114,7 +115,7 @@ export default class SearchFilterFormElement extends BaseElement {
 												@click=${this.formFieldChangeHandlerGenerator('filter-home')}>
 												<input name="filter-home" value="true" type="checkbox" autocomplete="off"
 													.checked=${config.filterHome}>
-												Home
+												${translate('search-filter-form.mustBeInHome')}
 											</label>
 										</div>
 									</div>
@@ -128,7 +129,7 @@ export default class SearchFilterFormElement extends BaseElement {
 												@click=${this.formFieldChangeHandlerGenerator('filter-favorites')}>
 												<input name="filter-favorites" value="true" type="checkbox" autocomplete="off"
 													.checked=${config.filterFavorites}>
-												Favorites
+												${translate('search-filter-form.mustBeInFavorites')}
 											</label>
 										</div>
 									</div>
@@ -142,7 +143,7 @@ export default class SearchFilterFormElement extends BaseElement {
 												@click=${this.formFieldChangeHandlerGenerator('filter-recents')}>
 												<input name="filter-recents" value="true" type="checkbox" autocomplete="off"
 													.checked=${config.filterRecents}>
-												Recents
+												${translate('search-filter-form.mustBeInRecents')}
 											</label>
 										</div>
 									</div>
@@ -245,11 +246,11 @@ export default class SearchFilterFormElement extends BaseElement {
 									@change=${this.formFieldChangeHandlerGenerator('date-property')}>
 									<option value="created"
 										.selected=${config.dateProperty === 'created'}>
-										Creation date
+										${translate('search-filter-form.creationDate')}
 									</option>
 									<option value="modified"
 										.selected=${config.dateProperty === 'modified'}>
-										Modification date
+										${translate('search-filter-form.modificationDate')}
 									</option>
 								</select>
 							</div>

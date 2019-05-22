@@ -1,4 +1,5 @@
 import {html} from 'lit-html';
+import {translate} from '@appnest/lit-translate';
 
 import BaseElement from './base-element';
 import SearchFileElement from './search-file-element';
@@ -34,7 +35,7 @@ export default class SearchFileListElement extends BaseElement {
 				` : html`
 					<div class="empty">
 						${this.faTemplate('fas-search', 'empty-icon')}
-						<div class="empty-text">No search results found</div>
+						<div class="empty-text">${translate('search-file-list.noResultsFound')}</div>
 					</div>
 				`}
 			</div>

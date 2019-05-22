@@ -1,8 +1,11 @@
 import '../css/app.scss';
 
+import cloneDeep from 'lodash/cloneDeep';
+import {get} from "@appnest/lit-translate";
+
 import './vendor/bootstrap';
 import './vendor/fontawesome';
-import cloneDeep from 'lodash/cloneDeep';
+import './vendor/lit-translate';
 import Noty from './vendor/noty';
 
 import getRepository from './helpers/biserver/getRepository';
@@ -32,7 +35,7 @@ window.addEventListener('load', async () => {
 				searchContainerElement.render();
 			})
 			.catch(() => {
-				Noty.error('Error in data loading');
+				Noty.error(get('notifications.errorLoadingData'));
 			});
 	}
 

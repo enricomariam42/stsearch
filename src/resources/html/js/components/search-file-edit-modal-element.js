@@ -1,4 +1,5 @@
 import {html} from 'lit-html';
+import {translate} from '@appnest/lit-translate';
 
 import formData from '../helpers/formData';
 import safeJSON from '../helpers/safeJSON';
@@ -39,39 +40,36 @@ export default class SearchFileEditModalElement extends BaseElement {
 									<div class="form-group">
 										<label class="w-100">
 											<input name="path" type="text" class="form-control" readonly
-												placeholder="Path..."
 												.value=${this.options.file.path}>
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
-											<div class="mb-2">Title</div>
+											<div class="mb-2">${translate('search-file-edit-modal.title.label')}</div>
 											<input name="title" type="text" class="form-control" maxlength="100"
-												placeholder="Title..."
 												.value=${this.options.file.title}>
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
-											<div class="mb-2">Tags</div>
+											<div class="mb-2">${translate('search-file-edit-modal.tags.label')}</div>
 											<input name="tags" type="hidden" class="form-control"
 												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}>
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
-											<div class="mb-2">Description</div>
+											<div class="mb-2">${translate('search-file-edit-modal.description.label')}</div>
 											<textarea name="description" type="text" class="form-control" rows="3" maxlength="500"
-											placeholder="Description..."
 											>${this.options.file.description}</textarea>
 										</label>
 									</div>
 									<div class="form-group">
 										<div class="w-100">
-											<div class="mb-2">Image</div>
+											<div class="mb-2">${translate('search-file-edit-modal.image.label')}</div>
 											<div class="custom-file">
 												<input name="thumbnail" type="file" class="custom-file-input">
-												<span class="custom-file-label">Choose file</span>
+												<span class="custom-file-label"></span>
 											</div>
 										</div>
 									</div>
@@ -79,8 +77,8 @@ export default class SearchFileEditModalElement extends BaseElement {
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-primary">Ok</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">${translate('search-file-edit-modal.cancel')}</button>
+							<button type="submit" class="btn btn-primary">${translate('search-file-edit-modal.ok')}</button>
 						</div>
 					</div>
 				</div>

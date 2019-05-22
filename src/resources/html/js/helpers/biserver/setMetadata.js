@@ -1,5 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import fetch from 'unfetch';
+import {get} from "@appnest/lit-translate";
 
 import getContextPath from './getContextPath';
 import isDemo from '../isDemo';
@@ -16,8 +17,8 @@ export default async (metadata, {locale = 'default'} = {}) => {
 
 	// Mock metadata update in demo environment.
 	if (isDemo) {
-		Noty.warning('Data will not persist in demo environment');
-		return metadata.map(entry => ({ fullPath: entry.path }));
+		Noty.warning(get('notifications.dataWillNotPersistInDemoEnv'));
+		return metadata.map(entry => ({fullPath: entry.path}));
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {

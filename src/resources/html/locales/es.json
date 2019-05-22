@@ -1,0 +1,34 @@
+{
+  "search-file-edit-modal": {
+    "path": { "label": "Ruta", "placeholder": "Ruta..." },
+    "title": { "label": "Título", "placeholder": "Título..." },
+    "tags": { "label": "Etiquetas", "placeholder": "Etiquetas..." },
+    "description": { "label": "Descripción", "placeholder": "Descripción..." },
+    "image": { "label": "Imagen", "placeholder": "Imagen..." },
+    "cancel": "Cancelar",
+    "ok": "Ok"
+  },
+  "search-file-list": {
+    "noResultsFound": "No se han encontrado resultados"
+  },
+  "search-filter-form": {
+    "search": { "label": "Buscar", "placeholder": "Buscar..." },
+    "searchIn": "Buscar en:",
+    "searchInTitle": "Título",
+    "searchInDescription": "Descripción",
+    "searchInTags": "Etiquetas",
+    "mustBeIn": "Debe estar en:",
+    "mustBeInGlobal": "Global",
+    "mustBeInHome": "Inicio",
+    "mustBeInFavorites": "Favoritos",
+    "mustBeInRecents": "Recientes",
+    "creationDate": "Fecha de creación",
+    "modificationDate": "Fecha de modificación"
+  },
+  "notifications": {
+    "errorLoadingData": "Error cargando datos",
+    "errorSavingData": "Error guardando datos",
+    "invalidImage": "Image inválida",
+    "dataWillNotPersistInDemoEnv": "Los datos no persistirán en el entorno de demostración"
+  }
+}
