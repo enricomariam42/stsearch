@@ -59,22 +59,22 @@ class Config {
 
 	applyConfig(config, reset = false) {
 		if (reset) this.resetConfig();
-		for (const [key, value] of Object.entries(config)) {
+		Object.entries(config).forEach(([key, value]) => {
 			this[camelCase(key)] = cloneDeep(value);
-		}
+		});
 	}
 
 	applyPreset(preset, reset = true) {
 		if (reset) this.resetConfig();
-		for (const [key, value] of Object.entries(this._presets[preset])) {
+		Object.entries(this._presets[preset]).forEach(([key, value]) => {
 			this[camelCase(key)] = cloneDeep(value);
-		}
+		});
 	}
 
 	resetConfig() {
-		for (const [key, value] of Object.entries(this._initialConfig)) {
+		Object.entries(this._initialConfig).forEach(([key, value]) => {
 			this[camelCase(key)] = cloneDeep(value);
-		}
+		});
 	}
 
 	get installedPlugins() {

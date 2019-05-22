@@ -272,12 +272,12 @@ export default class SearchFilterFormElement extends BaseElement {
 
 					// Ensure that the entry exists if the checkbox is not checked.
 					const checkboxes = event.target.querySelectorAll('[type=checkbox], [type=radio]');
-					for (const checkbox of checkboxes) {
+					checkboxes.forEach(checkbox => {
 						const name = checkbox.getAttribute('name');
 						if (!form.has(name)) {
 							form.set(name, '');
 						}
-					}
+					});
 
 					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);

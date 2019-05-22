@@ -144,9 +144,12 @@ export default class Repository {
 		if (currentFolder.path !== path) {
 			for (let i = 0; i < splittedPath.length; i++) {
 				currentPath += splittedPath[i];
-				currentFolder = currentFolder.children.find(child => {
-					return child.path === currentPath;
-				});
+				for (let j = 0; j < currentFolder.children.length; j++) {
+					if (currentFolder.children[j].path === currentPath) {
+						currentFolder = currentFolder.children[j];
+						break;
+					}
+				}
 				if (!currentFolder) {
 					return null;
 				}

@@ -30,6 +30,7 @@ export default async (metadata, {locale = 'default'} = {}) => {
 	metadata = cloneDeep(metadata);
 
 	// Transform "metadata" object.
+	// eslint-disable-next-line no-restricted-syntax
 	for await (const child of metadata) {
 		// "properties" must be defined.
 		if (typeof child.properties === 'undefined') {
