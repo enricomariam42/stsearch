@@ -21,12 +21,12 @@ class Config {
 	async loadConfig() {
 		const response = await fetch('./presets.json', {
 			method: 'GET',
-			headers: {'Content-Type': 'application/json'}
+			headers: { 'Content-Type': 'application/json' }
 		});
 
 		if (response.status === 200) {
 			this._presets = await response.json();
-			const params = searchParams.parse(window.location.search, {preset: 'default'});
+			const params = searchParams.parse(window.location.search, { preset: 'default' });
 
 			override(this._initialConfig, this._presets.default, this._presets[params.preset], params);
 

@@ -1,5 +1,5 @@
-import {html} from 'lit-html';
-import {translate} from '@appnest/lit-translate';
+import { html } from 'lit-html';
+import { translate } from '@appnest/lit-translate';
 
 import formData from '../helpers/formData';
 

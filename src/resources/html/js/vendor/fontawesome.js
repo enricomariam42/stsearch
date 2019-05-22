@@ -1,4 +1,4 @@
-import {library, dom} from '@fortawesome/fontawesome-svg-core';
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
 const iconImports = [
 	import(/* webpackChunkName: "fa" */ '@fortawesome/free-regular-svg-icons/faCalendarAlt'),
@@ -53,5 +53,5 @@ const iconImports = [
 		library.add(icon.definition);
 	});
 
-	dom.i2svg({node: container});
+	dom.i2svg({ node: container });
 })();

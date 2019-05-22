@@ -1,5 +1,5 @@
 import getFaUnicodeCharacter from './getUnicodeCharacter';
-import {svgPathData} from './facToolStreport';
+import { svgPathData } from './facToolStreport';
 
 export const prefix = 'fac';
 export const iconName = 'file-prpt';
@@ -7,7 +7,7 @@ export const width = 1200;
 export const height = 1200;
 export const ligatures = [];
 export const unicode = getFaUnicodeCharacter();
-export {svgPathData};
+export { svgPathData };
 
 export const definition = {
 	prefix,
@@ -15,4 +15,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export {definition as faFilePrpt};
+export { definition as faFilePrpt };

@@ -1,5 +1,5 @@
 import clamp from 'lodash/clamp';
-import {html} from 'lit-html';
+import { html } from 'lit-html';
 
 import config from '../config';
 

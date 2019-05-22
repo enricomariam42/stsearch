@@ -20,7 +20,7 @@ const getContextPath = async () => {
 		}
 	}
 
-	console.warn(`Falling back to default context path`);
+	console.warn('Falling back to default context path');
 	return '/pentaho/';
 };
 

@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const {spawn} = require('child_process');
+const { spawn } = require('child_process');
 
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 const archiver = require('archiver');

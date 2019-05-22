@@ -14,4 +14,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export {definition as faToolStreport};
+export { definition as faToolStreport };

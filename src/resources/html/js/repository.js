@@ -3,7 +3,7 @@ import orderBy from 'lodash/orderBy';
 
 import config from './config';
 
-export const EMPTY_ROOT = {path: '/', children: []};
+export const EMPTY_ROOT = { path: '/', children: [] };
 
 export default class Repository {
 	constructor(root = EMPTY_ROOT) {

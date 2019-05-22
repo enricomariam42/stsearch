@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import fetch from 'unfetch';
-import {get} from "@appnest/lit-translate";
+import { get } from '@appnest/lit-translate';
 
 import getContextPath from './getContextPath';
 import isDemo from '../isDemo';
@@ -9,7 +9,7 @@ import searchParams from '../searchParams';
 
 import Noty from '../../vendor/noty';
 
-export default async (metadata, {locale = 'default'} = {}) => {
+export default async (metadata, { locale = 'default' } = {}) => {
 	if (!Array.isArray(metadata)) {
 		/* eslint-disable-next-line no-param-reassign */
 		metadata = [metadata];
@@ -18,7 +18,7 @@ export default async (metadata, {locale = 'default'} = {}) => {
 	// Mock metadata update in demo environment.
 	if (isDemo) {
 		Noty.warning(get('notifications.dataWillNotPersistInDemoEnv'));
-		return metadata.map(entry => ({fullPath: entry.path}));
+		return metadata.map(entry => ({ fullPath: entry.path }));
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
@@ -47,11 +47,11 @@ export default async (metadata, {locale = 'default'} = {}) => {
 
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}plugin/file-metadata/api/set?${searchParams.stringify(
-		{locale}
+		{ locale }
 	)}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(metadata)
 	});
 

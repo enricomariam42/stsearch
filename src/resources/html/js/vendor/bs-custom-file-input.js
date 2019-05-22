@@ -1,1 +1,1 @@
-export {default} from 'bs-custom-file-input';
+export { default } from 'bs-custom-file-input';

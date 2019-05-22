@@ -1,4 +1,4 @@
-import {html} from 'lit-html';
+import { html } from 'lit-html';
 
 import BaseElement from './base-element';
 import SearchFolderElement from './search-folder-element';

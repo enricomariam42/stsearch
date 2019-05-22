@@ -1,7 +1,7 @@
 import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
-import {html} from 'lit-html';
-import {get} from "@appnest/lit-translate";
+import { html } from 'lit-html';
+import { get } from '@appnest/lit-translate';
 
 import bsCustomFileInput from '../vendor/bs-custom-file-input';
 import Tagify from '../vendor/tagify';
@@ -264,7 +264,7 @@ export default class SearchContainerElement extends BaseElement {
 
 			this.searchFileEditModalElement.$ref
 				.one('show.bs.modal', () => {
-					tagsInputTagify = new Tagify(tagsInputElement, {maxTags: config.maxTags});
+					tagsInputTagify = new Tagify(tagsInputElement, { maxTags: config.maxTags });
 					bsCustomFileInput.init(thumbnailInputSelector, modalFormSelector);
 				})
 				.one('hide.bs.modal', () => {

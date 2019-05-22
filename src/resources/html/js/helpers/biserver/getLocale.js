@@ -19,6 +19,6 @@ export default async () => {
 		}
 	}
 
-	console.warn(`Falling back to default locale`);
+	console.warn('Falling back to default locale');
 	return 'en';
 };

@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
 	return {
 		mode: isProduction ? 'production' : 'development',
 		entry: path.join(__dirname, 'src/resources/html/js/app.js'),
-		output: {filename: '[name].[hash].js', path: `${dist}/resources/html`},
+		output: { filename: '[name].[hash].js', path: `${dist}/resources/html` },
 		devtool: isProduction ? false : 'eval-source-map',
 		optimization: {
 			minimizer: [
@@ -59,24 +59,24 @@ module.exports = (env, argv) => {
 				chunkFilename: '[id].[hash].css'
 			}),
 			new CopyWebpackPlugin([
-				{from: 'src/plugin.xml', to: dist},
-				{from: 'src/plugin.spring.xml', to: dist},
-				{from: 'src/resources/html/presets.json', to: `${dist}/resources/html/`},
-				{from: 'src/resources/messages', to: `${dist}/resources/messages/`},
-				{from: 'src/resources/images', to: `${dist}/resources/images/`}
-			], {ignore: ['.gitkeep']})
+				{ from: 'src/plugin.xml', to: dist },
+				{ from: 'src/plugin.spring.xml', to: dist },
+				{ from: 'src/resources/html/presets.json', to: `${dist}/resources/html/` },
+				{ from: 'src/resources/messages', to: `${dist}/resources/messages/` },
+				{ from: 'src/resources/images', to: `${dist}/resources/images/` }
+			], { ignore: ['.gitkeep'] })
 		],
 		module: {
 			rules: [{
 				test: /\.js$/i,
 				exclude: /node_modules/,
-				use: {loader: 'babel-loader'}
+				use: { loader: 'babel-loader' }
 			}, {
 				test: /\.(css|scss)$/i,
 				use: [
-					{loader: MiniCssExtractPlugin.loader},
-					{loader: 'css-loader'},
-					{loader: 'postcss-loader', options: {plugins: [
+					{ loader: MiniCssExtractPlugin.loader },
+					{ loader: 'css-loader' },
+					{ loader: 'postcss-loader', options: { plugins: [
 						autoprefixer(),
 						...(isProduction ? [cssnano({
 							preset: ['default', {
@@ -85,15 +85,15 @@ module.exports = (env, argv) => {
 								}
 							}]
 						})] : [])
-					]}},
-					{loader: 'sass-loader', options: {data: `$env: ${argv.mode};`}}
+					] } },
+					{ loader: 'sass-loader', options: { data: `$env: ${argv.mode};` } }
 				]
 			}, {
 				test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
-				use: {loader: 'file-loader', options: {name: './fonts/[name].[hash].[ext]'}}
+				use: { loader: 'file-loader', options: { name: './fonts/[name].[hash].[ext]' } }
 			}, {
 				test: /\.(png|gif|jpg)$/i,
-				use: {loader: 'file-loader', options: {name: '../images/[name].[hash].[ext]'}}
+				use: { loader: 'file-loader', options: { name: '../images/[name].[hash].[ext]' } }
 			}, {
 				test: /\.svg$/i,
 				exclude: /-webfont\.svg$/i,

@@ -4,7 +4,7 @@ import getContextPath from './getContextPath';
 import safeJSON from '../safeJSON';
 import searchParams from '../searchParams';
 
-export default async (paths, {locale = 'default', depth = 1} = {}) => {
+export default async (paths, { locale = 'default', depth = 1 } = {}) => {
 	if (!Array.isArray(paths)) {
 		/* eslint-disable-next-line no-param-reassign */
 		paths = [paths];
@@ -17,11 +17,11 @@ export default async (paths, {locale = 'default', depth = 1} = {}) => {
 
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}plugin/file-metadata/api/get?${searchParams.stringify(
-		{locale, depth}
+		{ locale, depth }
 	)}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(paths)
 	});
 

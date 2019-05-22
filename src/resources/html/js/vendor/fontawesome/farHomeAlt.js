@@ -14,4 +14,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export {definition as faHomeAlt};
+export { definition as faHomeAlt };

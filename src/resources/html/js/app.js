@@ -1,7 +1,7 @@
 import '../css/app.scss';
 
 import cloneDeep from 'lodash/cloneDeep';
-import {get} from "@appnest/lit-translate";
+import { get } from '@appnest/lit-translate';
 
 import './vendor/bootstrap';
 import './vendor/fontawesome';
@@ -22,7 +22,7 @@ window.addEventListener('load', async () => {
 	const repository = new Repository();
 	const container = document.querySelector('#main');
 
-	const searchContainerElement = new SearchContainerElement(container, {repository});
+	const searchContainerElement = new SearchContainerElement(container, { repository });
 	searchContainerElement.render();
 
 	if ('stsearch_initial_repository' in window.parent) {
@@ -39,7 +39,7 @@ window.addEventListener('load', async () => {
 			});
 	}
 
-	const STSearch = {config, repository};
+	const STSearch = { config, repository };
 
 	STSearch.applyConfig = (newConfig, reset = false) => {
 		config.applyConfig(newConfig, reset);
