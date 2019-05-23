@@ -15,9 +15,6 @@
       }
     }
   },
-  "engines": {
-    "node": ">=8"
-  },
   "scripts": {
     "lint": "eslint --fix ./",
     "build": "npm run build:dev",
