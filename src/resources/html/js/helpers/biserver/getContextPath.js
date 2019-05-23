@@ -24,8 +24,8 @@ const getContextPath = async () => {
 	return '/pentaho/';
 };
 
-export default async (...args) => {
-	if (contextPathPromise === null) {
+export default async (useCache = true, ...args) => {
+	if (contextPathPromise === null || !useCache) {
 		contextPathPromise = getContextPath(...args);
 	}
 	return contextPathPromise;

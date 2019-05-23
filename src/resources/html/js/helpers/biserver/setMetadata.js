@@ -3,13 +3,14 @@ import fetch from 'unfetch';
 import { get } from '@appnest/lit-translate';
 
 import getContextPath from './getContextPath';
+import getLocale from './getLocale';
 import isDemo from '../isDemo';
 import safeJSON from '../safeJSON';
 import searchParams from '../searchParams';
 
 import Noty from '../../vendor/noty';
 
-export default async (metadata, { locale = 'default' } = {}) => {
+export default async (metadata, { locale = getLocale() } = {}) => {
 	if (!Array.isArray(metadata)) {
 		metadata = [metadata];
 	}
@@ -18,6 +19,11 @@ export default async (metadata, { locale = 'default' } = {}) => {
 	if (isDemo) {
 		Noty.warning(get('notifications.dataWillNotPersistInDemoEnv'));
 		return metadata.map(entry => ({ fullPath: entry.path }));
+	}
+
+	// If "locale" is a promise, resolve it.
+	if (locale instanceof Promise) {
+		locale = await locale;
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
