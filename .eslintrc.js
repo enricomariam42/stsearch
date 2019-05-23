@@ -1,6 +1,6 @@
 module.exports = {
 	parser: 'babel-eslint',
-	extends: ['zant', 'prettier'],
+	extends: ['hectorm'],
 	plugins: ['import'],
 	env: {
 		browser: true
