@@ -6,12 +6,10 @@ import searchParams from '../searchParams';
 
 export default async (paths, { locale = 'default', depth = 1 } = {}) => {
 	if (!Array.isArray(paths)) {
-		/* eslint-disable-next-line no-param-reassign */
 		paths = [paths];
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
-		/* eslint-disable-next-line no-param-reassign */
 		locale = 'default';
 	}
 

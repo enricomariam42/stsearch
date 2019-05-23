@@ -4,7 +4,6 @@ export default {
 	objectify: (form, defaultValues = {}) => {
 		const obj = defaultValues;
 
-		// eslint-disable-next-line no-restricted-syntax
 		for (const key of form.keys()) {
 			if (key.endsWith('[]')) {
 				obj[key.substring(0, key.length - 2)] = form.getAll(key);

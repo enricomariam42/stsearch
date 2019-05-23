@@ -11,7 +11,6 @@ import Noty from '../../vendor/noty';
 
 export default async (metadata, { locale = 'default' } = {}) => {
 	if (!Array.isArray(metadata)) {
-		/* eslint-disable-next-line no-param-reassign */
 		metadata = [metadata];
 	}
 
@@ -22,16 +21,13 @@ export default async (metadata, { locale = 'default' } = {}) => {
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
-		/* eslint-disable-next-line no-param-reassign */
 		locale = 'default';
 	}
 
 	// Clone "metadata" object to avoid mutating the original.
-	/* eslint-disable-next-line no-param-reassign */
 	metadata = cloneDeep(metadata);
 
 	// Transform "metadata" object.
-	// eslint-disable-next-line no-restricted-syntax
 	for await (const child of metadata) {
 		// "properties" must be defined.
 		if (typeof child.properties === 'undefined') {

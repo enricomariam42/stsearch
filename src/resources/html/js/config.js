@@ -167,7 +167,8 @@ class Config {
 	}
 
 	get enableFileOpen() {
-		return this._enableFileOpen;}
+		return this._enableFileOpen;
+	}
 
 	set enableFileOpen(enableFileOpen) {
 		this._enableFileOpen = isString(enableFileOpen)

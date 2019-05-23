@@ -57,7 +57,6 @@ export default class Repository {
 		this.currentFolder = folder;
 	}
 
-	/* eslint-disable-next-line complexity */
 	isFileFiltered(file) {
 		return (
 			// GLOBAL
@@ -95,14 +94,14 @@ export default class Repository {
 			( // If search terms are empty, the search is omitted.
 				config._searchTerms.length === 0
 			) || ( // If search in title is enabled, the search terms must appear in the title.
-				config.searchInTitle &&
-				config._searchTermsRegex.test(file.title)
+				config.searchInTitle
+				&& config._searchTermsRegex.test(file.title)
 			) || ( // If search in description is enabled, the search terms must appear in the description.
-				config.searchInDescription &&
-				config._searchTermsRegex.test(file.description)
+				config.searchInDescription
+				&& config._searchTermsRegex.test(file.description)
 			) || ( // If search in tags is enabled, the search terms must appear in the tags.
-				config.searchInTags && file.properties.tags &&
-				file.properties.tags.some(tag => config._searchTermsExactRegex.test(tag.value))
+				config.searchInTags && file.properties.tags
+				&& file.properties.tags.some(tag => config._searchTermsExactRegex.test(tag.value))
 			)
 		) && (
 			// DATE RANGES
@@ -110,14 +109,14 @@ export default class Repository {
 			( // If the minimum and maximum dates are invalid, the date is not checked.
 				Number.isNaN(config._dateMinEpoch) && Number.isNaN(config._dateMaxEpoch)
 			) || ( // If the minimum date is valid but the maximum date is not, check only the minimum date.
-				!Number.isNaN(config._dateMinEpoch) && Number.isNaN(config._dateMaxEpoch) &&
-				new Date(file[config.dateProperty]).getTime() > config._dateMinEpoch
+				!Number.isNaN(config._dateMinEpoch) && Number.isNaN(config._dateMaxEpoch)
+				&& new Date(file[config.dateProperty]).getTime() > config._dateMinEpoch
 			) || ( // If the maximum date is valid but the minimum date is not, check only the maximum date.
-				Number.isNaN(config._dateMinEpoch) && !Number.isNaN(config._dateMaxEpoch) &&
-				new Date(file[config.dateProperty]).getTime() < config._dateMaxEpoch
+				Number.isNaN(config._dateMinEpoch) && !Number.isNaN(config._dateMaxEpoch)
+				&& new Date(file[config.dateProperty]).getTime() < config._dateMaxEpoch
 			) || ( // If the minimum and maximum dates are valid, check both.
-				!Number.isNaN(config._dateMinEpoch) && !Number.isNaN(config._dateMaxEpoch) &&
-				inRange(new Date(file[config.dateProperty]).getTime(), config._dateMinEpoch, config._dateMaxEpoch)
+				!Number.isNaN(config._dateMinEpoch) && !Number.isNaN(config._dateMaxEpoch)
+				&& inRange(new Date(file[config.dateProperty]).getTime(), config._dateMinEpoch, config._dateMaxEpoch)
 			)
 		);
 	}
