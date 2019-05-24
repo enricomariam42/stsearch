@@ -25,7 +25,7 @@
 		}
 	}
 
-	@each $extension in wcdf, xjpivot, adhoc, prpt, std, sta {
+	@each $extension in wcdf, pdf, url, xjpivot, adhoc, prpt, std, sta {
 		&.file-extension-#{$extension} {
 			> .card {
 				border-left-color: map-get($theme-colors, file-#{$extension});

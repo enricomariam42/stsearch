@@ -25,6 +25,8 @@ $theme-colors: map-merge($theme-colors, (
 $theme-colors: map-merge($theme-colors, (
 	"file-unknown": map-get($theme-colors, tool-unknown),
 	"file-wcdf": map-get($theme-colors, tool-cde),
+	"file-pdf": map-get($theme-colors, tool-cde),
+	"file-url": map-get($theme-colors, tool-cde),
 	"file-xjpivot": map-get($theme-colors, tool-stpivot),
 	"file-adhoc": map-get($theme-colors, tool-streport),
 	"file-prpt": map-get($theme-colors, tool-streport),

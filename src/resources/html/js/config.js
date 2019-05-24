@@ -38,7 +38,7 @@ class Config {
 
 			// If "allowed-extensions" is not defined, define it according to the installed plugins.
 			if (typeof this._initialConfig['allowed-extensions'] === 'undefined') {
-				const allowedExtensions = ['wcdf'];
+				const allowedExtensions = [extensionMap.get('cde')];
 				this._initialConfig['installed-plugins'].forEach(plugin => {
 					if (extensionMap.has(plugin)) {
 						allowedExtensions.push(extensionMap.get(plugin));

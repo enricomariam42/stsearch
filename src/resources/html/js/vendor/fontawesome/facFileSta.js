@@ -1,14 +1,10 @@
+import { width, height, ligatures, svgPathData } from './facToolStagile';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
-import { svgPathData } from './facToolStagile';
 
+export { width, height, ligatures, svgPathData };
 export const prefix = 'fac';
 export const iconName = 'file-sta';
-export const width = 1200;
-export const height = 1200;
-export const ligatures = [];
 export const unicode = getFaUnicodeCharacter();
-export { svgPathData };
-
 export const definition = {
 	prefix,
 	iconName,
