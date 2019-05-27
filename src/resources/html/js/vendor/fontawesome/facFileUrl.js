@@ -1,4 +1,4 @@
-import { width, height, ligatures, svgPathData } from '@fortawesome/free-solid-svg-icons/faAnchor';
+import { width, height, ligatures, svgPathData } from '@fortawesome/free-solid-svg-icons/faExternalLinkAlt';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
 
 export { width, height, ligatures, svgPathData };
