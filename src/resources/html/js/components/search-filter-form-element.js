@@ -85,7 +85,7 @@ export default class SearchFilterFormElement extends BaseElement {
 						</div>
 						<div class="d-flex flex-fill flex-wrap w-100 w-md-auto mx-n1 mb-n1">
 							<div class="btn-group btn-group-toggle flex-grow-5 mx-1 mb-1">
-								<button type="button" class="btn btn-primary" data-toggle="dropdown">
+								<button type="button" class="btn btn-secondary" data-toggle="dropdown">
 									${this.faTemplate('fas-tasks')}
 								</button>
 								<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">

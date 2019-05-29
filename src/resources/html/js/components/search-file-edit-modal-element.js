@@ -77,7 +77,7 @@ export default class SearchFileEditModalElement extends BaseElement {
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">${translate('search-file-edit-modal.cancel')}</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">${translate('search-file-edit-modal.cancel')}</button>
 							<button type="submit" class="btn btn-primary">${translate('search-file-edit-modal.ok')}</button>
 						</div>
 					</div>
