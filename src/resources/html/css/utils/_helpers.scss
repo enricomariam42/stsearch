@@ -54,6 +54,17 @@ label.btn {
 	}
 }
 
+/* Fix hover style on active btn-outline-* buttons */
+@each $color, $value in $theme-colors {
+	$hover-background: darken(map-get($theme-colors, $color), 5%);
+	$hover-border: darken(map-get($theme-colors, $color), 10%);
+	.btn-outline-#{$color}.active:hover {
+		color: color-yiq($hover-background) !important;
+		@include gradient-bg($hover-background !important);
+		border-color: $hover-border !important;
+	}
+}
+
 /* Responsive version for sizes (implements twbs/bootstrap#21943) */
 @each $breakpoint in map-keys($grid-breakpoints) {
 	@if $breakpoint != 'xs' {
