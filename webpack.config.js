@@ -1,7 +1,7 @@
 const path = require('path');
 
 const autoprefixer = require('autoprefixer');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const cssnano = require('cssnano');
 const Fiber = require('fibers');
