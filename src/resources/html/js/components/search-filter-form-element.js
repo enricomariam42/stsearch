@@ -42,7 +42,8 @@ export default class SearchFilterFormElement extends BaseElement {
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
 													<input name="search-in-title" value="true" type="checkbox" autocomplete="off"
-														.checked=${config.searchInTitle}>
+														.checked=${config.searchInTitle}
+														@keyup=${this.formButtonCheckboxKeyupHandler}>
 													${translate('search-filter-form.searchInTitle')}
 												</label>
 											</div>
@@ -56,7 +57,8 @@ export default class SearchFilterFormElement extends BaseElement {
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
 													<input name="search-in-description" value="true" type="checkbox" autocomplete="off"
-														.checked=${config.searchInDescription}>
+														.checked=${config.searchInDescription}
+														@keyup=${this.formButtonCheckboxKeyupHandler}>
 													${translate('search-filter-form.searchInDescription')}
 													</label>
 											</div>
@@ -70,7 +72,8 @@ export default class SearchFilterFormElement extends BaseElement {
 													"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
 													<input name="search-in-tags" value="true" type="checkbox" autocomplete="off"
-														.checked=${config.searchInTags}>
+														.checked=${config.searchInTags}
+														@keyup=${this.formButtonCheckboxKeyupHandler}>
 													${translate('search-filter-form.searchInTags')}
 													</label>
 											</div>
@@ -84,7 +87,7 @@ export default class SearchFilterFormElement extends BaseElement {
 							</div>
 						</div>
 						<div class="d-flex flex-fill flex-wrap w-100 w-md-auto mx-n1 mb-n1">
-							<div class="btn-group btn-group-toggle flex-grow-5 mx-1 mb-1">
+							<div class="btn-group btn-group-toggle flex-grow-5 mx-1 mb-1" data-toggle="buttons">
 								<button type="button" class="btn btn-secondary" data-toggle="dropdown">
 									${this.faTemplate('fas-tasks')}
 								</button>
@@ -93,7 +96,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										<div class="px-3 pb-1">${translate('search-filter-form.mustBeIn')}</div>
 									</div>
 									<div class="dropdown-item p-0">
-										<div class="btn-group-toggle" data-toggle="buttons">
+										<div class="btn-group-toggle">
 											<label
 												class="
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
@@ -101,13 +104,14 @@ export default class SearchFilterFormElement extends BaseElement {
 												"
 												@click=${this.formFieldChangeHandlerGenerator('filter-global')}>
 												<input name="filter-global" value="true" type="checkbox" autocomplete="off"
-													.checked=${config.filterGlobal}>
+													.checked=${config.filterGlobal}
+													@keyup=${this.formButtonCheckboxKeyupHandler}>
 												${translate('search-filter-form.mustBeInGlobal')}
 											</label>
 										</div>
 									</div>
 									<div class="dropdown-item p-0">
-										<div class="btn-group-toggle" data-toggle="buttons">
+										<div class="btn-group-toggle">
 											<label
 												class="
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
@@ -115,13 +119,14 @@ export default class SearchFilterFormElement extends BaseElement {
 												"
 												@click=${this.formFieldChangeHandlerGenerator('filter-home')}>
 												<input name="filter-home" value="true" type="checkbox" autocomplete="off"
-													.checked=${config.filterHome}>
+													.checked=${config.filterHome}
+													@keyup=${this.formButtonCheckboxKeyupHandler}>
 												${translate('search-filter-form.mustBeInHome')}
 											</label>
 										</div>
 									</div>
 									<div class="dropdown-item p-0">
-										<div class="btn-group-toggle" data-toggle="buttons">
+										<div class="btn-group-toggle">
 											<label
 												class="
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
@@ -129,13 +134,14 @@ export default class SearchFilterFormElement extends BaseElement {
 												"
 												@click=${this.formFieldChangeHandlerGenerator('filter-favorites')}>
 												<input name="filter-favorites" value="true" type="checkbox" autocomplete="off"
-													.checked=${config.filterFavorites}>
+													.checked=${config.filterFavorites}
+													@keyup=${this.formButtonCheckboxKeyupHandler}>
 												${translate('search-filter-form.mustBeInFavorites')}
 											</label>
 										</div>
 									</div>
 									<div class="dropdown-item p-0">
-										<div class="btn-group-toggle" data-toggle="buttons">
+										<div class="btn-group-toggle">
 											<label
 												class="
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
@@ -143,7 +149,8 @@ export default class SearchFilterFormElement extends BaseElement {
 												"
 												@click=${this.formFieldChangeHandlerGenerator('filter-recents')}>
 												<input name="filter-recents" value="true" type="checkbox" autocomplete="off"
-													.checked=${config.filterRecents}>
+													.checked=${config.filterRecents}
+													@keyup=${this.formButtonCheckboxKeyupHandler}>
 												${translate('search-filter-form.mustBeInRecents')}
 											</label>
 										</div>
@@ -157,7 +164,8 @@ export default class SearchFilterFormElement extends BaseElement {
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 										.checked=${config._allowedExtensionsSet.has(extensionMap.get('cde'))}
-										.value="${extensionMap.get('cde')}">
+										.value="${extensionMap.get('cde')}"
+										@keyup=${this.formButtonCheckboxKeyupHandler}>
 										${this.faTemplate('fac-tool-cde')}
 								</label>
 								${config._installedPluginsSet.has('stpivot') ? html`
@@ -169,7 +177,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stpivot'))}
-											.value="${extensionMap.get('stpivot')}">
+											.value="${extensionMap.get('stpivot')}"
+											@keyup=${this.formButtonCheckboxKeyupHandler}>
 										${this.faTemplate('fac-tool-stpivot')}
 									</label>
 								` : ''}
@@ -182,7 +191,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('streport'))}
-											.value="${extensionMap.get('streport')}">
+											.value="${extensionMap.get('streport')}"
+											@keyup=${this.formButtonCheckboxKeyupHandler}>
 										${this.faTemplate('fac-tool-streport')}
 									</label>
 								` : ''}
@@ -195,7 +205,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stdashboard'))}
-											.value="${extensionMap.get('stdashboard')}">
+											.value="${extensionMap.get('stdashboard')}"
+											@keyup=${this.formButtonCheckboxKeyupHandler}>
 										${this.faTemplate('fac-tool-stdashboard')}
 									</label>
 								` : ''}
@@ -208,7 +219,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stagile'))}
-											.value="${extensionMap.get('stagile')}">
+											.value="${extensionMap.get('stagile')}"
+											@keyup=${this.formButtonCheckboxKeyupHandler}>
 										${this.faTemplate('fac-tool-stagile')}
 									</label>
 								` : ''}
@@ -317,5 +329,13 @@ export default class SearchFilterFormElement extends BaseElement {
 				}
 			}
 		};
+	}
+
+	formButtonCheckboxKeyupHandler(event) {
+		// The checked state for checkbox and radio buttons is only updated via click event on the button.
+		// https://getbootstrap.com/docs/4.3/components/buttons/#checkbox-and-radio-buttons
+		if (event.code === 'Space') {
+			event.target.parentElement.click();
+		}
 	}
 }
