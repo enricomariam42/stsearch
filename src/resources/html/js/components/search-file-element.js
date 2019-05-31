@@ -37,7 +37,7 @@ export default class SearchFileElement extends BaseElement {
 				<div class="card h-100">
 					<div class="card-header">
 						<div class="card-buttons btn-group d-flex flex-fill flex-wrap justify-content-end m-n2">
-							<button type="button" class="btn btn-light btn-inactive d-none d-sm-inline flex-fill text-left">
+							<button type="button" class="btn btn-light btn-inactive d-none d-sm-inline flex-fill text-left" tabindex="-1">
 								${this.faTemplate(`fac-file-${this.options.file.extension}`)}
 							</button>
 							${config.enableFileEdit ? html`
