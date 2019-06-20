@@ -20,6 +20,11 @@ $env: development !default;
 	vertical-align: -.125em;
 }
 
+/* Add pointer cursor */
+.pointer {
+	cursor: pointer;
+}
+
 /* Change the cursor to a pointer when the label is also a button */
 label.btn {
 	cursor: pointer;

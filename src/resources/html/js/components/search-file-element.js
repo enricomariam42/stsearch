@@ -76,7 +76,8 @@ export default class SearchFileElement extends BaseElement {
 					<div class="card-body">
 						<div class="row no-gutters">
 							<div class="col-md-2 col-lg-4 p-2">
-								<div class="square-box square-box-centered border" style="max-height: 128px; max-width: 128px">
+								<div class="square-box square-box-centered border pointer" style="max-height: 128px; max-width: 128px"
+									@click=${this.fileOpenClickHandler}>
 									<div class="square-box-content p-1 bg-light text-muted">
 									${this.options.file.properties.thumbnail ? html`
 										<img class="card-img" src="${this.options.file.properties.thumbnail}">
