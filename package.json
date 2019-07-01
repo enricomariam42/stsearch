@@ -6,8 +6,8 @@
     "group": "com.stratebi.pentaho",
     "repository": {
       "snapshot": {
-        "id": "stratebi-snapshot",
-        "url": "https://repo.stratebi.com/repository/stratebi-mvn-snapshot"
+        "id": "stratebi-snapshots",
+        "url": "https://repo.stratebi.com/repository/stratebi-mvn-snapshots"
       },
       "release": {
         "id": "stratebi-releases",
