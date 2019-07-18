@@ -26,10 +26,10 @@ $theme-colors: map-merge($theme-colors, (
 	"file-other": map-get($theme-colors, tool-other),
 	"file-pdf": map-get($theme-colors, tool-other),
 	"file-url": map-get($theme-colors, tool-other),
+	"file-prpt": map-get($theme-colors, tool-other),
 	"file-wcdf": map-get($theme-colors, tool-cde),
 	"file-xjpivot": map-get($theme-colors, tool-stpivot),
 	"file-adhoc": map-get($theme-colors, tool-streport),
-	"file-prpt": map-get($theme-colors, tool-streport),
 	"file-std": map-get($theme-colors, tool-stdashboard),
 	"file-sta": map-get($theme-colors, tool-stagile)
 ));
