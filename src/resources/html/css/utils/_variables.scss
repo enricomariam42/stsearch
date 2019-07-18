@@ -13,7 +13,7 @@ $theme-colors: (
 
 /* Tool colors */
 $theme-colors: map-merge($theme-colors, (
-	"tool-unknown": #7b7b7b,
+	"tool-other": #5C6BC0,
 	"tool-cde": #955cc1,
 	"tool-stpivot": #9aa210,
 	"tool-streport": #e67e22,
@@ -23,10 +23,10 @@ $theme-colors: map-merge($theme-colors, (
 
 /* File colors */
 $theme-colors: map-merge($theme-colors, (
-	"file-unknown": map-get($theme-colors, tool-unknown),
+	"file-other": map-get($theme-colors, tool-other),
+	"file-pdf": map-get($theme-colors, tool-other),
+	"file-url": map-get($theme-colors, tool-other),
 	"file-wcdf": map-get($theme-colors, tool-cde),
-	"file-pdf": map-get($theme-colors, tool-cde),
-	"file-url": map-get($theme-colors, tool-cde),
 	"file-xjpivot": map-get($theme-colors, tool-stpivot),
 	"file-adhoc": map-get($theme-colors, tool-streport),
 	"file-prpt": map-get($theme-colors, tool-streport),

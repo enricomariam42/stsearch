@@ -158,6 +158,18 @@ export default class SearchFilterFormElement extends BaseElement {
 								</div>
 								<label
 									class="
+										btn btn-outline-tool-other
+										${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}
+									"
+									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
+									<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+										.checked=${config._allowedExtensionsSet.has(extensionMap.get('other'))}
+										.value="${extensionMap.get('other')}"
+										@keyup=${this.formButtonCheckboxKeyupHandler}>
+										${this.faTemplate('fac-tool-other')}
+								</label>
+								<label
+									class="
 										btn btn-outline-tool-cde
 										${config._allowedExtensionsSet.has(extensionMap.get('cde')) ? 'active' : ''}
 									"
