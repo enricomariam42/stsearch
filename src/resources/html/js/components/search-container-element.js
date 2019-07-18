@@ -188,7 +188,9 @@ export default class SearchContainerElement extends BaseElement {
 						title: formObj.title,
 						description: formObj.description,
 						properties: {
-							tags: safeJSON.parse(formObj.tags, [])
+							tags: formObj.tags.length > 0
+								? safeJSON.parse(formObj.tags, [])
+								: []
 						}
 					};
 
