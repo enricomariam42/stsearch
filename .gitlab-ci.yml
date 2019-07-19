@@ -37,7 +37,7 @@ build:production:
     paths:
       - dist/
   only:
-    - /^v([0-9]+\.)+[0-9]$/
+    - /^v([0-9]+\.)+[0-9]+$/
 
 deploy:develop:
   stage: deploy
@@ -49,4 +49,4 @@ deploy:production:
   script:
     - npm run deploy:prod
   only:
-    - /^v([0-9]+\.)+[0-9]$/
+    - /^v([0-9]+\.)+[0-9]+$/
