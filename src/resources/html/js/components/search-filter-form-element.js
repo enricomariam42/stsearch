@@ -334,7 +334,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									</label>
 								` : ''}
 							</div>
-							<div class="btn-group btn-group-toggle flex-fill mx-1 mb-1" data-toggle="buttons">
+							<div class="btn-group flex-fill mx-1 mb-1">
 								<button
 									type="button"
 									class="btn btn-info"
