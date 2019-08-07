@@ -14,8 +14,12 @@ export default class SearchFileEditModalElement extends BaseElement {
 
 	get template() {
 		return html`
-			<form id="${this.id}" class="${this.className} modal" tabindex="-1"
-				@submit=${this.formSubmitHandler}>
+			<form
+				id="${this.id}"
+				class="${this.className} modal"
+				@submit=${this.formSubmitHandler}
+				tabindex="-1"
+			>
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -39,28 +43,47 @@ export default class SearchFileEditModalElement extends BaseElement {
 								<div class="col-sm-12 col-lg-9">
 									<div class="form-group">
 										<label class="w-100">
-											<input name="path" type="text" class="form-control" readonly
-												.value=${this.options.file.path}>
+											<input
+												name="path"
+												type="text"
+												class="form-control"
+												.value=${this.options.file.path}
+												readonly
+											>
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">${translate('search-file-edit-modal.title.label')}</div>
-											<input name="title" type="text" class="form-control" maxlength="100"
-												.value=${this.options.file.title}>
+											<input
+												name="title"
+												type="text"
+												class="form-control"
+												maxlength="100"
+												.value=${this.options.file.title}
+											>
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">${translate('search-file-edit-modal.tags.label')}</div>
-											<input name="tags" type="hidden" class="form-control"
-												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}>
+											<input
+												name="tags"
+												type="hidden"
+												class="form-control"
+												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}
+											>
 										</label>
 									</div>
 									<div class="form-group">
 										<label class="w-100">
 											<div class="mb-2">${translate('search-file-edit-modal.description.label')}</div>
-											<textarea name="description" type="text" class="form-control" rows="3" maxlength="500"
+											<textarea
+												name="description"
+												type="text"
+												class="form-control"
+												rows="3"
+												maxlength="500"
 											>${this.options.file.description}</textarea>
 										</label>
 									</div>

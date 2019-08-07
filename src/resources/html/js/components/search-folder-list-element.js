@@ -30,19 +30,29 @@ export default class SearchFolderListElement extends BaseElement {
 						<div class="col">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<button class="btn btn-icon-primary input-group-text" type="button"
+									<button
+										type="button"
+										class="btn btn-icon-primary input-group-text"
 										@click=${this.arrowBackClickHandler}
-										?disabled=${!this.options.parentFolder}>
+										?disabled=${!this.options.parentFolder}
+									>
 										${this.faTemplate('fas-arrow-left')}
 									</button>
-									<button class="btn btn-icon-primary input-group-text" type="button"
-										data-toggle="collapse" href="#${this.id}-folder-container">
+									<button
+										type="button"
+										class="btn btn-icon-primary input-group-text"
+										data-toggle="collapse" href="#${this.id}-folder-container"
+									>
 										<span class="expanded-content">${this.faTemplate('fas-folder-open')}</span>
 										<span class="collapsed-content">${this.faTemplate('fas-folder')}</span>
 									</button>
 								</div>
-								<input type="text" class="form-control" readonly
-									.value=${this.options.currentFolder.path}>
+								<input
+									type="text"
+									class="form-control"
+									.value=${this.options.currentFolder.path}
+									readonly
+								>
 							</div>
 						</div>
 					</div>

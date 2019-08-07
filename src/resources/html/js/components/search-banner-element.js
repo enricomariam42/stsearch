@@ -12,9 +12,12 @@ export default class SearchBannerElement extends BaseElement {
 
 	get template() {
 		return html`
-			<div id="${this.id}" class="${this.className}"
+			<div
+				id="${this.id}"
+				class="${this.className}"
 				style="background-color: ${config.bannerBackground}"
-				title="${config.bannerTitle}">
+				title="${config.bannerTitle}"
+			>
 				<img src="${config.bannerSrc}">
 			</div>
 		`;

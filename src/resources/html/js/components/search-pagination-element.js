@@ -35,8 +35,11 @@ export default class SearchPaginationElement extends BaseElement {
 
 			pageNumberTemplates.push(html`
 				<li class="page-item ${isActive ? 'active' : ''}">
-					<a class="page-link" href="javascript:void(0)"
-						@click=${this.pageClickHandlerGenerator(n)}>
+					<a
+						class="page-link"
+						href="javascript:void(0)"
+						@click=${this.pageClickHandlerGenerator(n)}
+					>
 						${displayNumber}
 					</a>
 				</li>
@@ -45,8 +48,11 @@ export default class SearchPaginationElement extends BaseElement {
 
 		const pageFirstTemplate = html`
 			<li class="page-item ${isFirstPage ? 'disabled' : ''}">
-				<a class="page-link" href="javascript:void(0)"
-					@click=${this.pageClickHandlerGenerator(0)}>
+				<a
+					class="page-link"
+					href="javascript:void(0)"
+					@click=${this.pageClickHandlerGenerator(0)}
+				>
 					${this.faTemplate('fas-angle-double-left')}
 				</a>
 			</li>
@@ -54,8 +60,11 @@ export default class SearchPaginationElement extends BaseElement {
 
 		const pagePreviousTemplate = html`
 			<li class="page-item ${isFirstPage ? 'disabled' : ''}">
-				<a class="page-link" href="javascript:void(0)"
-					@click=${this.pageClickHandlerGenerator(this.options.pageNumber - 1)}>
+				<a
+					class="page-link"
+					href="javascript:void(0)"
+					@click=${this.pageClickHandlerGenerator(this.options.pageNumber - 1)}
+				>
 					${this.faTemplate('fas-angle-left')}
 				</a>
 			</li>
@@ -63,8 +72,11 @@ export default class SearchPaginationElement extends BaseElement {
 
 		const pageNextTemplate = html`
 			<li class="page-item ${isLastPage ? 'disabled' : ''}">
-				<a class="page-link" href="javascript:void(0)"
-					@click=${this.pageClickHandlerGenerator(this.options.pageNumber + 1)}>
+				<a
+					class="page-link"
+					href="javascript:void(0)"
+					@click=${this.pageClickHandlerGenerator(this.options.pageNumber + 1)}
+				>
 					${this.faTemplate('fas-angle-right')}
 				</i></a>
 			</li>
@@ -72,8 +84,11 @@ export default class SearchPaginationElement extends BaseElement {
 
 		const pageLastTemplate = html`
 			<li class="page-item ${isLastPage ? 'disabled' : ''}">
-				<a class="page-link" href="javascript:void(0)"
-					@click=${this.pageClickHandlerGenerator(this.options.pageTotal - 1)}>
+				<a
+					class="page-link"
+					href="javascript:void(0)"
+					@click=${this.pageClickHandlerGenerator(this.options.pageTotal - 1)}
+				>
 					${this.faTemplate('fas-angle-double-right')}
 				</i></a>
 			</li>

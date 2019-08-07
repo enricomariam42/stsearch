@@ -25,7 +25,8 @@ export default class SearchFileElement extends BaseElement {
 		}
 
 		return html`
-			<div id="${this.id}"
+			<div
+				id="${this.id}"
 				class="${this.className} col-lg-6 col-xl-4 mb-3
 					file-extension-${this.options.file.extension}
 					file-recent-${this.options.file.isRecent ? 'on' : 'off'}
@@ -33,7 +34,8 @@ export default class SearchFileElement extends BaseElement {
 					file-global-${this.options.file.isGlobal ? 'on' : 'off'}
 					file-home-${this.options.file.isHome ? 'on' : 'off'}
 					file-readonly-${this.options.file.isReadonly ? 'on' : 'off'}
-				">
+				"
+			>
 				<div class="card h-100">
 					<div class="card-header">
 						<div class="card-buttons btn-group d-flex flex-fill flex-wrap justify-content-end m-n2">
@@ -41,33 +43,48 @@ export default class SearchFileElement extends BaseElement {
 								${this.faTemplate(`fac-file-${this.options.file.extension}`)}
 							</button>
 							${config.enableFileEdit ? html`
-								<button type="button" class="btn btn-light flex-grow-0"
+								<button
+									type="button"
+									class="btn btn-light flex-grow-0"
 									?disabled=${this.options.file.isReadonly}
-									@click=${this.fileEditClickHandler}>
+									@click=${this.fileEditClickHandler}
+								>
 									${this.faTemplate('fas-pencil-alt')}
 								</button>
 							` : ''}
 							${config.enableFileGlobal ? html`
-								<button type="button" class="btn btn-light flex-grow-0"
-									@click=${this.fileGlobalClickHandler}>
+								<button
+									type="button"
+									class="btn btn-light flex-grow-0"
+									@click=${this.fileGlobalClickHandler}
+								>
 									${this.faTemplate(`${this.options.file.isGlobal ? 'fas' : 'fal'}-globe`)}
 								</button>
 							` : ''}
 							${config.enableFileHome ? html`
-								<button type="button" class="btn btn-light flex-grow-0"
-									@click=${this.fileHomeClickHandler}>
+								<button
+									type="button"
+									class="btn btn-light flex-grow-0"
+									@click=${this.fileHomeClickHandler}
+								>
 									${this.faTemplate(`${this.options.file.isHome ? 'fas' : 'far'}-home-alt`)}
 								</button>
 							` : ''}
 							${config.enableFileFavorite ? html`
-								<button type="button" class="btn btn-light flex-grow-0"
-									@click=${this.fileFavoriteClickHandler}>
+								<button
+									type="button"
+									class="btn btn-light flex-grow-0"
+									@click=${this.fileFavoriteClickHandler}
+								>
 									${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
 								</button>
 							` : ''}
 							${config.enableFileOpen ? html`
-								<button type="button" class="btn btn-light flex-grow-0"
-									@click=${this.fileOpenClickHandler}>
+								<button
+									type="button"
+									class="btn btn-light flex-grow-0"
+									@click=${this.fileOpenClickHandler}
+								>
 									${this.faTemplate('fas-link')}
 								</button>
 							` : ''}
@@ -76,8 +93,11 @@ export default class SearchFileElement extends BaseElement {
 					<div class="card-body">
 						<div class="row no-gutters">
 							<div class="col-md-2 col-lg-4 p-2">
-								<div class="square-box square-box-centered border pointer" style="max-height: 128px; max-width: 128px"
-									@click=${this.fileOpenClickHandler}>
+								<div
+									class="square-box square-box-centered border pointer"
+									style="max-height: 128px; max-width: 128px"
+									@click=${this.fileOpenClickHandler}
+								>
 									<div class="square-box-content p-1 bg-light text-muted">
 									${this.options.file.properties.thumbnail ? html`
 										<img class="card-img" src="${this.options.file.properties.thumbnail}">

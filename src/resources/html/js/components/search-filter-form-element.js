@@ -16,8 +16,11 @@ export default class SearchFilterFormElement extends BaseElement {
 
 	get template() {
 		return html`
-			<form id="${this.id}" class="${this.className}"
-				@submit=${this.formSubmitHandler}>
+			<form
+				id="${this.id}"
+				class="${this.className}"
+				@submit=${this.formSubmitHandler}
+			>
 				<div class="form-group">
 					<div class="btn-toolbar d-flex">
 						<div class="flex-grow-5 mb-3 mb-md-0 mr-0 mr-md-2">
@@ -26,8 +29,12 @@ export default class SearchFilterFormElement extends BaseElement {
 									<label for="${this.id}-search-terms" class="btn btn-icon-primary input-group-text">
 										${this.faTemplate('fas-search')}
 									</label>
-									<button type="button" class="btn btn-icon-primary input-group-text dropdown-toggle-split" data-toggle="dropdown"
-										title="${translate('search-filter-form.searchIn')}">
+									<button
+										type="button"
+										data-toggle="dropdown"
+										class="btn btn-icon-primary input-group-text dropdown-toggle-split"
+										title="${translate('search-filter-form.searchIn')}"
+									>
 										${this.faTemplate('fas-caret-down')}
 									</button>
 									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
@@ -41,10 +48,16 @@ export default class SearchFilterFormElement extends BaseElement {
 														btn btn-sm btn-link text-left px-3 w-100 rounded-0
 														${config.searchInTitle ? 'active' : ''}
 													"
-													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}>
-													<input name="search-in-title" value="true" type="checkbox" autocomplete="off"
+													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}
+												>
+													<input
+														name="search-in-title"
+														type="checkbox"
+														value="true"
 														.checked=${config.searchInTitle}
-														@keyup=${this.formButtonCheckboxKeyupHandler}>
+														@keyup=${this.formButtonCheckboxKeyupHandler}
+														autocomplete="off"
+													>
 													${translate('search-filter-form.searchInTitle')}
 												</label>
 											</div>
@@ -56,10 +69,16 @@ export default class SearchFilterFormElement extends BaseElement {
 														btn btn-sm btn-link text-left px-3 w-100 rounded-0
 														${config.searchInDescription ? 'active' : ''}
 													"
-													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}>
-													<input name="search-in-description" value="true" type="checkbox" autocomplete="off"
+													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}
+												>
+													<input
+														name="search-in-description"
+														type="checkbox"
+														value="true"
 														.checked=${config.searchInDescription}
-														@keyup=${this.formButtonCheckboxKeyupHandler}>
+														@keyup=${this.formButtonCheckboxKeyupHandler}
+														autocomplete="off"
+													>
 													${translate('search-filter-form.searchInDescription')}
 													</label>
 											</div>
@@ -71,26 +90,42 @@ export default class SearchFilterFormElement extends BaseElement {
 														btn btn-sm btn-link text-left px-3 w-100 rounded-0
 														${config.searchInTags ? 'active' : ''}
 													"
-													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}>
-													<input name="search-in-tags" value="true" type="checkbox" autocomplete="off"
+													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}
+												>
+													<input
+														name="search-in-tags"
+														type="checkbox"
+														value="true"
 														.checked=${config.searchInTags}
-														@keyup=${this.formButtonCheckboxKeyupHandler}>
+														@keyup=${this.formButtonCheckboxKeyupHandler}
+														autocomplete="off"
+													>
 													${translate('search-filter-form.searchInTags')}
 													</label>
 											</div>
 										</div>
 									</div>
 								</div>
-								<input id="${this.id}-search-terms" name="search-terms" type="search" class="form-control" autofocus
+								<input
+									id="${this.id}-search-terms"
+									name="search-terms"
+									type="search"
+									class="form-control"
 									placeholder="${translate('search-filter-form.search.placeholder')}"
 									.value=${config.searchTerms}
-									@input=${this.formFieldChangeHandlerGenerator('search-terms')}>
+									@input=${this.formFieldChangeHandlerGenerator('search-terms')}
+									autofocus
+								>
 							</div>
 						</div>
 						<div class="d-flex flex-fill flex-wrap w-100 w-md-auto mx-n1 mb-n1">
 							<div class="btn-group btn-group-toggle flex-grow-5 mx-1 mb-1" data-toggle="buttons">
-								<button type="button" class="btn btn-secondary" data-toggle="dropdown"
-									title="${translate('search-filter-form.mustBeIn')}">
+								<button
+									type="button"
+									data-toggle="dropdown"
+									class="btn btn-secondary"
+									title="${translate('search-filter-form.mustBeIn')}"
+								>
 									${this.faTemplate('fas-tasks')}
 								</button>
 								<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
@@ -104,10 +139,16 @@ export default class SearchFilterFormElement extends BaseElement {
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
 													${config.filterGlobal ? 'active' : ''}
 												"
-												@click=${this.formFieldChangeHandlerGenerator('filter-global')}>
-												<input name="filter-global" value="true" type="checkbox" autocomplete="off"
+												@click=${this.formFieldChangeHandlerGenerator('filter-global')}
+											>
+												<input
+													name="filter-global"
+													type="checkbox"
+													value="true"
 													.checked=${config.filterGlobal}
-													@keyup=${this.formButtonCheckboxKeyupHandler}>
+													@keyup=${this.formButtonCheckboxKeyupHandler}
+													autocomplete="off"
+												>
 												${translate('search-filter-form.mustBeInGlobal')}
 											</label>
 										</div>
@@ -119,10 +160,16 @@ export default class SearchFilterFormElement extends BaseElement {
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
 													${config.filterHome ? 'active' : ''}
 												"
-												@click=${this.formFieldChangeHandlerGenerator('filter-home')}>
-												<input name="filter-home" value="true" type="checkbox" autocomplete="off"
+												@click=${this.formFieldChangeHandlerGenerator('filter-home')}
+											>
+												<input
+													name="filter-home"
+													type="checkbox"
+													value="true"
 													.checked=${config.filterHome}
-													@keyup=${this.formButtonCheckboxKeyupHandler}>
+													@keyup=${this.formButtonCheckboxKeyupHandler}
+													autocomplete="off"
+												>
 												${translate('search-filter-form.mustBeInHome')}
 											</label>
 										</div>
@@ -134,10 +181,16 @@ export default class SearchFilterFormElement extends BaseElement {
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
 													${config.filterFavorites ? 'active' : ''}
 												"
-												@click=${this.formFieldChangeHandlerGenerator('filter-favorites')}>
-												<input name="filter-favorites" value="true" type="checkbox" autocomplete="off"
+												@click=${this.formFieldChangeHandlerGenerator('filter-favorites')}
+											>
+												<input
+													name="filter-favorites"
+													type="checkbox"
+													value="true"
 													.checked=${config.filterFavorites}
-													@keyup=${this.formButtonCheckboxKeyupHandler}>
+													@keyup=${this.formButtonCheckboxKeyupHandler}
+													autocomplete="off"
+												>
 												${translate('search-filter-form.mustBeInFavorites')}
 											</label>
 										</div>
@@ -149,10 +202,16 @@ export default class SearchFilterFormElement extends BaseElement {
 													btn btn-sm btn-link text-left px-3 w-100 rounded-0
 													${config.filterRecents ? 'active' : ''}
 												"
-												@click=${this.formFieldChangeHandlerGenerator('filter-recents')}>
-												<input name="filter-recents" value="true" type="checkbox" autocomplete="off"
+												@click=${this.formFieldChangeHandlerGenerator('filter-recents')}
+											>
+												<input
+													name="filter-recents"
+													type="checkbox"
+													value="true"
 													.checked=${config.filterRecents}
-													@keyup=${this.formButtonCheckboxKeyupHandler}>
+													@keyup=${this.formButtonCheckboxKeyupHandler}
+													autocomplete="off"
+												>
 												${translate('search-filter-form.mustBeInRecents')}
 											</label>
 										</div>
@@ -164,11 +223,16 @@ export default class SearchFilterFormElement extends BaseElement {
 										${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}
 									"
 									title="${translate('search-filter-form.extensionsOther')}"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+								>
+									<input
+										name="allowed-extensions[]"
+										type="checkbox"
 										.checked=${config._allowedExtensionsSet.has(extensionMap.get('other'))}
 										.value="${extensionMap.get('other')}"
-										@keyup=${this.formButtonCheckboxKeyupHandler}>
+										@keyup=${this.formButtonCheckboxKeyupHandler}
+										autocomplete="off"
+									>
 										${this.faTemplate('fac-tool-other')}
 								</label>
 								<label
@@ -177,11 +241,16 @@ export default class SearchFilterFormElement extends BaseElement {
 										${config._allowedExtensionsSet.has(extensionMap.get('cde')) ? 'active' : ''}
 									"
 									title="${translate('search-filter-form.extensionsCde')}"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-									<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+								>
+									<input
+										name="allowed-extensions[]"
+										type="checkbox"
 										.checked=${config._allowedExtensionsSet.has(extensionMap.get('cde'))}
 										.value="${extensionMap.get('cde')}"
-										@keyup=${this.formButtonCheckboxKeyupHandler}>
+										@keyup=${this.formButtonCheckboxKeyupHandler}
+										autocomplete="off"
+									>
 										${this.faTemplate('fac-tool-cde')}
 								</label>
 								${config._installedPluginsSet.has('stpivot') ? html`
@@ -191,11 +260,16 @@ export default class SearchFilterFormElement extends BaseElement {
 											${config._allowedExtensionsSet.has(extensionMap.get('stpivot')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStpivot')}"
-										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stpivot'))}
 											.value="${extensionMap.get('stpivot')}"
-											@keyup=${this.formButtonCheckboxKeyupHandler}>
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
 										${this.faTemplate('fac-tool-stpivot')}
 									</label>
 								` : ''}
@@ -206,11 +280,16 @@ export default class SearchFilterFormElement extends BaseElement {
 											${config._allowedExtensionsSet.has(extensionMap.get('streport')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStreport')}"
-										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('streport'))}
 											.value="${extensionMap.get('streport')}"
-											@keyup=${this.formButtonCheckboxKeyupHandler}>
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
 										${this.faTemplate('fac-tool-streport')}
 									</label>
 								` : ''}
@@ -221,11 +300,16 @@ export default class SearchFilterFormElement extends BaseElement {
 											${config._allowedExtensionsSet.has(extensionMap.get('stdashboard')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStdashboard')}"
-										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stdashboard'))}
 											.value="${extensionMap.get('stdashboard')}"
-											@keyup=${this.formButtonCheckboxKeyupHandler}>
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
 										${this.faTemplate('fac-tool-stdashboard')}
 									</label>
 								` : ''}
@@ -236,19 +320,27 @@ export default class SearchFilterFormElement extends BaseElement {
 											${config._allowedExtensionsSet.has(extensionMap.get('stagile')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStagile')}"
-										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
-										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stagile'))}
 											.value="${extensionMap.get('stagile')}"
-											@keyup=${this.formButtonCheckboxKeyupHandler}>
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
 										${this.faTemplate('fac-tool-stagile')}
 									</label>
 								` : ''}
 							</div>
 							<div class="btn-group btn-group-toggle flex-fill mx-1 mb-1" data-toggle="buttons">
-								<button type="button" class="btn btn-info"
+								<button
+									type="button"
+									class="btn btn-info"
 									title="${translate('search-filter-form.refresh')}"
-									@click=${this.formRefreshHandler}>
+									@click=${this.formRefreshHandler}
+								>
 									${this.faTemplate('fas-sync')}
 								</button>
 							</div>
@@ -264,31 +356,48 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('far-calendar-alt')}
 									</label>
 								</div>
-								<input id="${this.id}-date-min" name="date-min" type="date" class="form-control"
+								<input
+									id="${this.id}-date-min"
+									name="date-min"
+									type="date"
+									class="form-control"
 									placeholder="yyyy-mm-dd"
 									.value=${config.dateMin}
-									@change=${this.formFieldChangeHandlerGenerator('date-min')}>
+									@change=${this.formFieldChangeHandlerGenerator('date-min')}
+								>
 								<div class="input-group-prepend input-group-append">
 									<label for="${this.id}-date-max" class="btn btn-icon-primary input-group-text">
 										${this.faTemplate('fas-long-arrow-alt-right')}
 									</label>
 								</div>
-								<input id="${this.id}-date-max" name="date-max" type="date" class="form-control"
+								<input
+									id="${this.id}-date-max"
+									name="date-max"
+									type="date"
+									class="form-control"
 									placeholder="yyyy-mm-dd"
 									.value=${config.dateMax}
-									@change=${this.formFieldChangeHandlerGenerator('date-max')}>
+									@change=${this.formFieldChangeHandlerGenerator('date-max')}
+								>
 							</div>
 						</div>
 						<div class="d-flex flex-row w-100 w-md-auto">
 							<div class="input-group flex-fill">
-								<select name="date-property" class="custom-select"
-									@change=${this.formFieldChangeHandlerGenerator('date-property')}>
-									<option value="created"
-										.selected=${config.dateProperty === 'created'}>
+								<select
+									name="date-property"
+									class="custom-select"
+									@change=${this.formFieldChangeHandlerGenerator('date-property')}
+								>
+									<option
+										value="created"
+										.selected=${config.dateProperty === 'created'}
+									>
 										${translate('search-filter-form.creationDate')}
 									</option>
-									<option value="modified"
-										.selected=${config.dateProperty === 'modified'}>
+									<option
+										value="modified"
+										.selected=${config.dateProperty === 'modified'}
+									>
 										${translate('search-filter-form.modificationDate')}
 									</option>
 								</select>
