@@ -23,7 +23,14 @@
     "mustBeInFavorites": "Favoritos",
     "mustBeInRecents": "Recientes",
     "creationDate": "Fecha de creación",
-    "modificationDate": "Fecha de modificación"
+    "modificationDate": "Fecha de modificación",
+    "extensionsOther": "Documentos y archivos de Report Designer",
+    "extensionsCde": "Archivos de Community Dashboard Editor (CDE)",
+    "extensionsStpivot": "Archivos de STPivot",
+    "extensionsStreport": "Archivos de STReport",
+    "extensionsStdashboard": "Archivos de STDashboard",
+    "extensionsStagile": "Archivos de STAgile",
+    "refresh": "Recargar"
   },
   "notifications": {
     "errorLoadingData": "Error cargando datos",

@@ -26,7 +26,8 @@ export default class SearchFilterFormElement extends BaseElement {
 									<label for="${this.id}-search-terms" class="btn btn-icon-primary input-group-text">
 										${this.faTemplate('fas-search')}
 									</label>
-									<button type="button" class="btn btn-icon-primary input-group-text dropdown-toggle-split" data-toggle="dropdown">
+									<button type="button" class="btn btn-icon-primary input-group-text dropdown-toggle-split" data-toggle="dropdown"
+										title="${translate('search-filter-form.searchIn')}">
 										${this.faTemplate('fas-caret-down')}
 									</button>
 									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
@@ -88,7 +89,8 @@ export default class SearchFilterFormElement extends BaseElement {
 						</div>
 						<div class="d-flex flex-fill flex-wrap w-100 w-md-auto mx-n1 mb-n1">
 							<div class="btn-group btn-group-toggle flex-grow-5 mx-1 mb-1" data-toggle="buttons">
-								<button type="button" class="btn btn-secondary" data-toggle="dropdown">
+								<button type="button" class="btn btn-secondary" data-toggle="dropdown"
+									title="${translate('search-filter-form.mustBeIn')}">
 									${this.faTemplate('fas-tasks')}
 								</button>
 								<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
@@ -161,6 +163,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										btn btn-outline-tool-other
 										${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}
 									"
+									title="${translate('search-filter-form.extensionsOther')}"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 										.checked=${config._allowedExtensionsSet.has(extensionMap.get('other'))}
@@ -173,6 +176,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										btn btn-outline-tool-cde
 										${config._allowedExtensionsSet.has(extensionMap.get('cde')) ? 'active' : ''}
 									"
+									title="${translate('search-filter-form.extensionsCde')}"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 									<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 										.checked=${config._allowedExtensionsSet.has(extensionMap.get('cde'))}
@@ -186,6 +190,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											btn btn-outline-tool-stpivot
 											${config._allowedExtensionsSet.has(extensionMap.get('stpivot')) ? 'active' : ''}
 										"
+										title="${translate('search-filter-form.extensionsStpivot')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stpivot'))}
@@ -200,6 +205,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											btn btn-outline-tool-streport
 											${config._allowedExtensionsSet.has(extensionMap.get('streport')) ? 'active' : ''}
 										"
+										title="${translate('search-filter-form.extensionsStreport')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('streport'))}
@@ -214,6 +220,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											btn btn-outline-tool-stdashboard
 											${config._allowedExtensionsSet.has(extensionMap.get('stdashboard')) ? 'active' : ''}
 										"
+										title="${translate('search-filter-form.extensionsStdashboard')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stdashboard'))}
@@ -228,6 +235,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											btn btn-outline-tool-stagile
 											${config._allowedExtensionsSet.has(extensionMap.get('stagile')) ? 'active' : ''}
 										"
+										title="${translate('search-filter-form.extensionsStagile')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}>
 										<input name="allowed-extensions[]" type="checkbox" autocomplete="off"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stagile'))}
@@ -239,6 +247,7 @@ export default class SearchFilterFormElement extends BaseElement {
 							</div>
 							<div class="btn-group btn-group-toggle flex-fill mx-1 mb-1" data-toggle="buttons">
 								<button type="button" class="btn btn-info"
+									title="${translate('search-filter-form.refresh')}"
 									@click=${this.formRefreshHandler}>
 									${this.faTemplate('fas-sync')}
 								</button>

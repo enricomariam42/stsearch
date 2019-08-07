@@ -23,7 +23,14 @@
     "mustBeInFavorites": "Favorites",
     "mustBeInRecents": "Revents",
     "creationDate": "Creation date",
-    "modificationDate": "Modification date"
+    "modificationDate": "Modification date",
+    "extensionsOther": "Documents and Report Designer files",
+    "extensionsCde": "Community Dashboard Editor (CDE) files",
+    "extensionsStpivot": "STPivot files",
+    "extensionsStreport": "STReport files",
+    "extensionsStdashboard": "STDashboard files",
+    "extensionsStagile": "STAgile files",
+    "refresh": "Refresh"
   },
   "notifications": {
     "errorLoadingData": "Error loading data",
