@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@appnest/lit-translate": "~1.1.16",
+    "@babel/runtime": "~7.5.5",
     "@fortawesome/fontawesome-free": "~5.10.1",
     "@fortawesome/fontawesome-svg-core": "~1.2.21",
     "@fortawesome/free-brands-svg-icons": "~5.10.1",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@babel/core": "~7.5.5",
     "@babel/plugin-syntax-dynamic-import": "~7.2.0",
+    "@babel/plugin-transform-runtime": "~7.5.5",
     "@babel/preset-env": "~7.5.5",
     "archiver": "~3.1.1",
     "autoprefixer": "~9.6.1",
@@ -86,7 +88,8 @@
       "@babel/preset-env"
     ],
     "plugins": [
-      "@babel/plugin-syntax-dynamic-import"
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-transform-runtime"
     ]
   },
   "browserslist": [
