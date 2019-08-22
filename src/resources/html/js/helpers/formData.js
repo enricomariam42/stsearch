@@ -4,6 +4,8 @@ export default {
 	objectify: (form, defaultValues = {}) => {
 		const obj = defaultValues;
 
+		// TODO: remove when eslint/eslint#12117 is fixed.
+		// eslint-disable-next-line no-unused-vars
 		for (const key of form.keys()) {
 			if (key.endsWith('[]')) {
 				obj[key.substring(0, key.length - 2)] = form.getAll(key);
