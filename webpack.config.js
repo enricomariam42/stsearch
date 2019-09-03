@@ -27,11 +27,7 @@ module.exports = (env, argv) => {
 			minimizer: [
 				new TerserPlugin({
 					parallel: true,
-					terserOptions: {
-						output: {
-							comments: false
-						}
-					}
+					terserOptions: { output: { comments: false } }
 				})
 			]
 		},
@@ -68,10 +64,7 @@ module.exports = (env, argv) => {
 				[
 					{ from: 'src/plugin.xml', to: dist },
 					{ from: 'src/plugin.spring.xml', to: dist },
-					{
-						from: 'src/resources/html/presets.json',
-						to: `${dist}/resources/html/`
-					},
+					{ from: 'src/resources/html/presets.json', to: `${dist}/resources/html/` },
 					{ from: 'src/resources/messages', to: `${dist}/resources/messages/` },
 					{ from: 'src/resources/images', to: `${dist}/resources/images/` }
 				],
@@ -96,18 +89,7 @@ module.exports = (env, argv) => {
 								plugins: [
 									autoprefixer(),
 									...ifProduction(
-										[
-											cssnano({
-												preset: [
-													'default',
-													{
-														discardComments: {
-															removeAll: true
-														}
-													}
-												]
-											})
-										],
+										[cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })],
 										[]
 									)
 								]
@@ -117,8 +99,8 @@ module.exports = (env, argv) => {
 							loader: 'sass-loader',
 							options: {
 								implementation: sass,
-								fiber: Fiber,
-								data: `$env: ${argv.mode};`
+								sassOptions: { fiber: Fiber },
+								prependData: `$env: ${argv.mode};`
 							}
 						}
 					]
