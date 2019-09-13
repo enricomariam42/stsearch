@@ -34,8 +34,6 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 	metadata = cloneDeep(metadata);
 
 	// Transform "metadata" object.
-	// TODO: remove when eslint/eslint#12117 is fixed.
-	// eslint-disable-next-line no-unused-vars
 	for await (const child of metadata) {
 		// "properties" must be defined.
 		if (typeof child.properties === 'undefined') {
