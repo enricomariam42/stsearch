@@ -1,52 +1,75 @@
 stages:
-  - lint
-  - build
-  - deploy
+  - "build"
+  - "deploy"
 
-variables:
-  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
+.variables: &variables
+  MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
 
-cache:
+.artifacts: &artifacts
+  expire_in: "15 mins"
   paths:
-    - .m2/
-    - node_modules/
+    - "./dist/"
 
-before_script:
-  - npm install
+.cache: &cache
+  key: "${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "./.m2/"
+    - "./node_modules/"
 
-lint:
-  stage: lint
-  script:
-    - npm run lint
+.regex:
+  # Semantic Versioning 2.0.0 regex (from: https://github.com/npm/node-semver/).
+  - &regex_version "/^v?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][a-zA-Z0-9-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$/"
 
 build:develop:
-  stage: build
+  stage: "build"
+  variables:
+    <<: *variables
   script:
-    - npm run build:dev
+    - "npm install"
+    - "npm run lint"
+    - "npm run build:dev"
   artifacts:
-    expire_in: 1 hour
-    paths:
-      - dist/
+    <<: *artifacts
+  cache:
+    <<: *cache
+  except:
+    - *regex_version
 
-build:production:
-  stage: build
+build:release:
+  stage: "build"
+  variables:
+    <<: *variables
   script:
-    - npm run build:prod
+    - "npm install"
+    - "npm run lint"
+    - "npm run build:prod"
   artifacts:
-    expire_in: 1 hour
-    paths:
-      - dist/
+    <<: *artifacts
+  cache:
+    <<: *cache
   only:
-    - /^v([0-9]+\.)+[0-9]+$/
+    - *regex_version
 
-deploy:develop:
-  stage: deploy
+deploy:develop:mvn:
+  stage: "deploy"
+  variables:
+    <<: *variables
   script:
-    - npm run deploy:dev
+    - "npm install"
+    - "npm run deploy:dev"
+  cache:
+    <<: *cache
+  except:
+    - *regex_version
 
-deploy:production:
-  stage: deploy
+deploy:release:mvn:
+  stage: "deploy"
+  variables:
+    <<: *variables
   script:
-    - npm run deploy:prod
+    - "npm install"
+    - "npm run deploy:prod"
+  cache:
+    <<: *cache
   only:
-    - /^v([0-9]+\.)+[0-9]+$/
+    - *regex_version
