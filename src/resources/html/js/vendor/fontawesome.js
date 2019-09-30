@@ -31,6 +31,7 @@ export const faIcons = new Set();
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faSync'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faTasks'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileAdhoc'),
+		import(/* webpackMode: "eager" */ './fontawesome/facFileCsv'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileOther'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFilePdf'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFilePrpt'),
