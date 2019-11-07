@@ -126,14 +126,14 @@ class Config {
 			: enableFileTags;
 	}
 
-	get enableFileEdit() {
-		return this._enableFileEdit;
+	get enableFileForm() {
+		return this._enableFileForm;
 	}
 
-	set enableFileEdit(enableFileEdit) {
-		this._enableFileEdit = isString(enableFileEdit)
-			? strToBool(enableFileEdit)
-			: enableFileEdit;
+	set enableFileForm(enableFileForm) {
+		this._enableFileForm = isString(enableFileForm)
+			? strToBool(enableFileForm)
+			: enableFileForm;
 	}
 
 	get enableFileGlobal() {

@@ -4,7 +4,7 @@
     "enable-filters": "true",
     "enable-folders": "true",
     "enable-file-tags": "true",
-    "enable-file-edit": "true",
+    "enable-file-form": "true",
     "enable-file-global": "true",
     "enable-file-home": "true",
     "enable-file-favorite": "true",
@@ -31,28 +31,28 @@
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-edit": "false",
+    "enable-file-form": "false",
     "filter-global": "true"
   },
   "home": {
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-edit": "false",
+    "enable-file-form": "false",
     "filter-home": "true"
   },
   "favorites": {
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-edit": "false",
+    "enable-file-form": "false",
     "filter-favorites": "true"
   },
   "recents": {
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-edit": "false",
+    "enable-file-form": "false",
     "filter-recents": "true"
   },
   "category": {
@@ -60,7 +60,7 @@
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-edit": "false",
+    "enable-file-form": "false",
     "search-in-title": "false",
     "search-in-description": "false"
   }

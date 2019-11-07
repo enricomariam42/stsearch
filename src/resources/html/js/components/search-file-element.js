@@ -47,14 +47,14 @@ export default class SearchFileElement extends BaseElement {
 							<button type="button" class="btn btn-light btn-inactive d-none d-sm-inline flex-fill text-left" tabindex="-1">
 								${this.faTemplate(facIconName)}
 							</button>
-							${config.enableFileEdit ? html`
+							${config.enableFileForm ? html`
 								<button
 									type="button"
 									class="btn btn-light flex-grow-0"
 									?disabled=${this.options.file.isReadonly}
-									@click=${this.fileEditClickHandler}
+									@click=${this.fileFormClickHandler}
 								>
-									${this.faTemplate('fas-pencil-alt')}
+									${this.faTemplate('fas-list')}
 								</button>
 							` : ''}
 							${config.enableFileGlobal ? html`
@@ -143,14 +143,14 @@ export default class SearchFileElement extends BaseElement {
 		`;
 	}
 
-	get fileEditClickHandler() {
+	get fileFormClickHandler() {
 		return {
 			capture: true,
 			passive: true,
 			once: false,
 			handleEvent: () => {
-				if (typeof this.options.fileEditCallback === 'function') {
-					this.options.fileEditCallback(this.options.file);
+				if (typeof this.options.fileFormCallback === 'function') {
+					this.options.fileFormCallback(this.options.file);
 				}
 			}
 		};

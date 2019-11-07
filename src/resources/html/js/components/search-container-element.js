@@ -24,14 +24,14 @@ import SearchBannerElement from './search-banner-element';
 import SearchFilterFormElement from './search-filter-form-element';
 import SearchFolderListElement from './search-folder-list-element';
 import SearchFileListElement from './search-file-list-element';
-import SearchFileEditModalElement from './search-file-edit-modal-element';
+import SearchFileFormModalElement from './search-file-form-modal-element';
 import SearchPaginationElement from './search-pagination-element';
 
 export default class SearchContainerElement extends BaseElement {
 	constructor(...args) {
 		super(...args);
 		this.className = 'search-container-element';
-		this.currentEditingFile = null;
+		this.currentFormFile = null;
 		this.pageNumber = 0;
 	}
 
@@ -102,10 +102,10 @@ export default class SearchContainerElement extends BaseElement {
 		const filesEnd = filesStart + config.pageSize;
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.files.slice(filesStart, filesEnd),
-			fileEditCallback: fileData => {
+			fileFormCallback: fileData => {
 				if (!fileData.isReadonly) {
 					const file = this.options.repository.fromPath(fileData.path);
-					this.currentEditingFile = file;
+					this.currentFormFile = file;
 
 					this.render();
 				}
@@ -179,9 +179,9 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
-		if (this.currentEditingFile) {
-			this.searchFileEditModalElement = new SearchFileEditModalElement(null, {
-				file: this.currentEditingFile,
+		if (this.currentFormFile) {
+			this.searchFileFormModalElement = new SearchFileFormModalElement(null, {
+				file: this.currentFormFile,
 				formSubmitCallback: async formObj => {
 					const metadata = {
 						path: formObj.path,
@@ -215,8 +215,8 @@ export default class SearchContainerElement extends BaseElement {
 							target: window.parent
 						});
 
-						this.currentEditingFile = null;
-						this.searchFileEditModalElement.$ref.modal('hide');
+						this.currentFormFile = null;
+						this.searchFileFormModalElement.$ref.modal('hide');
 
 						this.render();
 					} else {
@@ -225,7 +225,7 @@ export default class SearchContainerElement extends BaseElement {
 				}
 			});
 		} else {
-			this.searchFileEditModalElement = new EmptyElement();
+			this.searchFileFormModalElement = new EmptyElement();
 		}
 
 		const pageTotal = Math.ceil(this.options.repository.files.length / config.pageSize);
@@ -248,7 +248,7 @@ export default class SearchContainerElement extends BaseElement {
 				<div class="my-4">${this.searchFilterFormElement.template}</div>
 				<div class="my-4">${this.searchFolderListElement.template}</div>
 				<div class="my-4">${this.searchFileListElement.template}</div>
-				<div class="my-4">${this.searchFileEditModalElement.template}</div>
+				<div class="my-4">${this.searchFileFormModalElement.template}</div>
 				<div class="my-4">${this.searchPaginationElement.template}</div>
 			</div>
 		`;
@@ -257,14 +257,14 @@ export default class SearchContainerElement extends BaseElement {
 	render() {
 		super.render();
 
-		if (this.currentEditingFile && !this.searchFileEditModalElement.opened) {
-			const modalFormSelector = `.${this.searchFileEditModalElement.className}`;
+		if (this.currentFormFile && !this.searchFileFormModalElement.opened) {
+			const modalFormSelector = `.${this.searchFileFormModalElement.className}`;
 			const thumbnailInputSelector = `${modalFormSelector} input[name="thumbnail"]`;
 			const tagsInputSelector = `${modalFormSelector} input[name="tags"]`;
 			const tagsInputElement = document.querySelector(tagsInputSelector);
 			let tagsInputTagify = null;
 
-			this.searchFileEditModalElement.$ref
+			this.searchFileFormModalElement.$ref
 				.one('show.bs.modal', () => {
 					tagsInputTagify = new Tagify(tagsInputElement, { maxTags: config.maxTags });
 					bsCustomFileInput.init(thumbnailInputSelector, modalFormSelector);
@@ -272,7 +272,7 @@ export default class SearchContainerElement extends BaseElement {
 				.one('hide.bs.modal', () => {
 					tagsInputTagify.destroy();
 					bsCustomFileInput.destroy(thumbnailInputSelector, modalFormSelector);
-					this.currentEditingFile = null;
+					this.currentFormFile = null;
 				})
 				.modal('show');
 		}

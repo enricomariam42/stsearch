@@ -1,5 +1,5 @@
 {
-  "search-file-edit-modal": {
+  "search-file-form-modal": {
     "path": { "label": "Path", "placeholder": "Path..." },
     "title": { "label": "Title", "placeholder": "Title..." },
     "tags": { "label": "Tags", "placeholder": "Tags..." },

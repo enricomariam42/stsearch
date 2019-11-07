@@ -16,7 +16,7 @@ export default class SearchFileListElement extends BaseElement {
 			fileTemplates = this.options.files.map(file => {
 				return new SearchFileElement(null, {
 					file,
-					fileEditCallback: this.options.fileEditCallback,
+					fileFormCallback: this.options.fileFormCallback,
 					fileGlobalCallback: this.options.fileGlobalCallback,
 					fileHomeCallback: this.options.fileHomeCallback,
 					fileFavoriteCallback: this.options.fileFavoriteCallback,

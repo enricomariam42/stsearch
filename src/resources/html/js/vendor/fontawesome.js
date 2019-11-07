@@ -22,6 +22,7 @@ export const faIcons = new Set();
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faFolderOpen'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faGlobe'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faLink'),
+		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faList'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faLongArrowAltLeft'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faLongArrowAltRight'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faMapMarkedAlt'),
