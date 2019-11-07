@@ -84,13 +84,14 @@ export default class SearchFileElement extends BaseElement {
 									${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
 								</button>
 							` : ''}
-							${config.enableFileOpen ? html`
+							${config.enableFileEdit ? html`
 								<button
 									type="button"
 									class="btn btn-light flex-grow-0"
-									@click=${this.fileOpenClickHandler}
+									?disabled=${this.options.file.isReadonly || !this.options.file.editUrl}
+									@click=${this.fileEditClickHandler}
 								>
-									${this.faTemplate('fas-link')}
+									${this.faTemplate('fas-pencil-alt')}
 								</button>
 							` : ''}
 						</div>
@@ -98,8 +99,8 @@ export default class SearchFileElement extends BaseElement {
 					<div class="card-body">
 						<div class="row no-gutters">
 							<div class="col-md-2 col-lg-4 p-2">
-								<div
-									class="square-box square-box-centered border pointer"
+								<button
+									class="d-block square-box square-box-centered border"
 									style="max-height: 128px; max-width: 128px"
 									@click=${this.fileOpenClickHandler}
 								>
@@ -111,7 +112,7 @@ export default class SearchFileElement extends BaseElement {
 										No image
 									`}
 									</div>
-								</div>
+								</button>
 							</div>
 							<div class="col-md-10 col-lg-8 p-2">
 								<h5 class="card-title" title="${this.options.file.title}">
@@ -203,6 +204,19 @@ export default class SearchFileElement extends BaseElement {
 			handleEvent: () => {
 				if (typeof this.options.fileOpenCallback === 'function') {
 					this.options.fileOpenCallback(this.options.file);
+				}
+			}
+		};
+	}
+
+	get fileEditClickHandler() {
+		return {
+			capture: true,
+			passive: true,
+			once: false,
+			handleEvent: () => {
+				if (typeof this.options.fileEditCallback === 'function') {
+					this.options.fileEditCallback(this.options.file);
 				}
 			}
 		};

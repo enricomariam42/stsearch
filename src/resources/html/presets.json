@@ -9,6 +9,7 @@
     "enable-file-home": "true",
     "enable-file-favorite": "true",
     "enable-file-open": "true",
+    "enable-file-edit": "true",
     "banner-src": "../images/stsearch_128h.png",
     "banner-title": "STSearch",
     "banner-background": "transparent",
@@ -31,28 +32,24 @@
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-form": "false",
     "filter-global": "true"
   },
   "home": {
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-form": "false",
     "filter-home": "true"
   },
   "favorites": {
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-form": "false",
     "filter-favorites": "true"
   },
   "recents": {
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-form": "false",
     "filter-recents": "true"
   },
   "category": {
@@ -60,7 +57,6 @@
     "enable-filters": "false",
     "enable-folders": "false",
     "enable-file-tags": "false",
-    "enable-file-form": "false",
     "search-in-title": "false",
     "search-in-description": "false"
   }

@@ -175,7 +175,10 @@ export default class SearchContainerElement extends BaseElement {
 				trigger('submit', this.searchFilterFormElement.ref);
 			},
 			fileOpenCallback: file => {
-				window.open(file.openUrl, `stsearch_${file.id}`);
+				window.open(file.openUrl, `stsearch_open_${file.id}`, 'noopener');
+			},
+			fileEditCallback: file => {
+				window.open(file.editUrl, `stsearch_edit_${file.id}`, 'noopener');
 			}
 		});
 

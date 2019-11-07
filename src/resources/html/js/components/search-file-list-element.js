@@ -21,7 +21,8 @@ export default class SearchFileListElement extends BaseElement {
 					fileHomeCallback: this.options.fileHomeCallback,
 					fileFavoriteCallback: this.options.fileFavoriteCallback,
 					fileTagCallback: this.options.fileTagCallback,
-					fileOpenCallback: this.options.fileOpenCallback
+					fileOpenCallback: this.options.fileOpenCallback,
+					fileEditCallback: this.options.fileEditCallback
 				}).template;
 			});
 		} else {

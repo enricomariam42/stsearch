@@ -176,6 +176,16 @@ class Config {
 			: enableFileOpen;
 	}
 
+	get enableFileEdit() {
+		return this._enableFileEdit;
+	}
+
+	set enableFileEdit(enableFileEdit) {
+		this._enableFileEdit = isString(enableFileEdit)
+			? strToBool(enableFileEdit)
+			: enableFileEdit;
+	}
+
 	get bannerSrc() {
 		return this._bannerSrc;
 	}
