@@ -82,15 +82,15 @@ export default class SearchContainerElement extends BaseElement {
 
 		if (config.enableFolders) {
 			this.searchFolderListElement = new SearchFolderListElement(null, {
-				currentFolder: this.options.repository.currentFolder,
-				parentFolder: this.options.repository.parentFolder,
+				current: this.options.repository.current,
+				parent: this.options.repository.parent,
 				folders: this.options.repository.folders,
 				folderUpCallback: () => {
-					this.options.repository.currentFolder = this.options.repository.parentFolder;
+					this.options.repository.current = this.options.repository.parent;
 					this.render();
 				},
 				folderDownCallback: folder => {
-					this.options.repository.currentFolder = folder;
+					this.options.repository.current = folder;
 					this.render();
 				}
 			});

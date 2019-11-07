@@ -34,7 +34,7 @@ export default class SearchFolderListElement extends BaseElement {
 										type="button"
 										class="btn btn-icon-primary input-group-text"
 										@click=${this.arrowBackClickHandler}
-										?disabled=${!this.options.parentFolder}
+										?disabled=${!this.options.parent}
 									>
 										${this.faTemplate('fas-arrow-left')}
 									</button>
@@ -50,7 +50,7 @@ export default class SearchFolderListElement extends BaseElement {
 								<input
 									type="text"
 									class="form-control"
-									.value=${this.options.currentFolder.path}
+									.value=${this.options.current.path}
 									readonly
 								>
 							</div>
@@ -75,7 +75,7 @@ export default class SearchFolderListElement extends BaseElement {
 			once: false,
 			handleEvent: () => {
 				if (typeof this.options.folderUpCallback === 'function') {
-					this.options.folderUpCallback(this.options.parentFolder);
+					this.options.folderUpCallback(this.options.parent);
 				}
 			}
 		};

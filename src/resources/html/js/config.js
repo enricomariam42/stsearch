@@ -357,6 +357,14 @@ class Config {
 			? strToInt(pageSize)
 			: pageSize;
 	}
+
+	get formFile() {
+		return this._formFile;
+	}
+
+	set formFile(formFile) {
+		this._formFile = formFile;
+	}
 }
 
 export default new Config();

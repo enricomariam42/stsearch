@@ -27,17 +27,26 @@ window.addEventListener('load', async () => {
 
 	if ('stsearch_initial_repository' in window.parent) {
 		repository.root = cloneDeep(window.parent.stsearch_initial_repository);
-		searchContainerElement.render();
 	} else {
-		getRepository()
-			.then(root => {
-				repository.root = root;
-				searchContainerElement.render();
-			})
-			.catch(() => {
-				Noty.error(get('notifications.errorLoadingData'));
-			});
+		try {
+			repository.root = await getRepository();
+		} catch (err) {
+			Noty.error(get('notifications.errorLoadingData'));
+			console.error(err);
+		}
 	}
+
+	if (config.formFile) {
+		const formFile = repository.fromId(config.formFile);
+		if (formFile && !formFile.isFolder) {
+			searchContainerElement.currentFormFile = formFile;
+		}
+	}
+
+	searchContainerElement.render();
+
+	// Public API
+	// ==========
 
 	const STSearch = { config, repository };
 

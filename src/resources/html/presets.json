@@ -26,7 +26,8 @@
     "date-property": "created",
     "max-tags": "10",
     "page-places": "5",
-    "page-size": "24"
+    "page-size": "24",
+    "form-file": ""
   },
   "global": {
     "enable-filters": "false",

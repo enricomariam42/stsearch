@@ -16,105 +16,115 @@ export default class Repository {
 
 	set root(root) {
 		this._root = root;
-		this.currentFolder = root;
+		this.current = root;
 	}
 
-	get parentFolder() {
-		return this.currentFolder.parent
-			? this.fromPath(this.currentFolder.parent)
+	get current() {
+		return this._current;
+	}
+
+	set current(current) {
+		const files = [];
+		const folders = current.children.filter(node => node.isFolder);
+
+		const stack = [current];
+
+		while (stack.length > 0) {
+			const node = stack.pop();
+			if (node.isFolder) {
+				for (let i = 0; i < node.children.length; i++) {
+					stack.push(node.children[i]);
+				}
+			} else if (this.isFileFiltered(node)) {
+				files.push(node);
+			}
+		}
+
+		this._files = this.orderFiles(files);
+		this._folders = this.orderFiles(folders);
+
+		this._current = current;
+	}
+
+	get parent() {
+		return this.current.parent
+			? this.fromPath(this.current.parent)
 			: null;
 	}
 
-	get currentFolder() {
-		return this._currentFolder;
+	get files() {
+		return this._files;
 	}
 
-	set currentFolder(currentFolder) {
-		const folders = [];
-		const files = [];
-
-		const self = this;
-		(function flatten(children, folderDepth = 1) {
-			children.forEach(child => {
-				if (child.isFolder) {
-					if (folderDepth > 0) {
-						folders.push(child);
-					}
-
-					flatten(child.children, folderDepth - 1);
-				} else if (self.isFileFiltered(child)) {
-					files.push(child);
-				}
-			});
-		})(currentFolder.children);
-
-		this.folders = this.orderFiles(folders);
-		this.files = this.orderFiles(files);
-		this._currentFolder = currentFolder;
+	get folders() {
+		return this._folders;
 	}
 
-	applyFilters(folder = this._currentFolder) {
-		this.currentFolder = folder;
+	applyFilters(folder = this.current) {
+		this.current = folder;
 	}
 
 	isFileFiltered(file) {
 		return (
 			// GLOBAL
-			// =========
-			( // If this filter is true, the file must be marked as global.
-				!config.filterGlobal || (config.filterGlobal && file.isGlobal)
-			)
+			// ======
+			// If this filter is true, the file must be marked as global.
+			!config.filterGlobal || (config.filterGlobal && file.isGlobal)
 		) && (
 			// HOME
-			// =========
-			( // If this filter is true, the file must be marked as home.
-				!config.filterHome || (config.filterHome && file.isHome)
-			)
+			// ====
+			// If this filter is true, the file must be marked as home.
+			!config.filterHome || (config.filterHome && file.isHome)
 		) && (
 			// FAVORITES
 			// =========
-			( // If this filter is true, the file must be marked as favorite.
-				!config.filterFavorites || (config.filterFavorites && file.isFavorite)
-			)
+			// If this filter is true, the file must be marked as favorite.
+			!config.filterFavorites || (config.filterFavorites && file.isFavorite)
 		) && (
 			// RECENTS
 			// =======
-			( // If this filter is true, the file must be marked as recent.
-				!config.filterRecents || (config.filterRecents && file.isRecent)
-			)
+			// If this filter is true, the file must be marked as recent.
+			!config.filterRecents || (config.filterRecents && file.isRecent)
 		) && (
 			// EXTENSIONS
 			// ==========
-			( // The file extension must be in the list of allowed extensions.
-				config._allowedExtensionsRegex.test(file.extension)
-			)
+			// The file extension must be in the list of allowed extensions.
+			config._allowedExtensionsRegex.test(file.extension)
 		) && (
 			// SEARCH TERMS
 			// ============
-			( // If search terms are empty, the search is omitted.
+			(
+				// If search terms are empty, the search is omitted.
 				config._searchTerms.length === 0
-			) || ( // If search in title is enabled, the search terms must appear in the title.
+			) || (
+				// If search in title is enabled, the search terms must appear in the title.
 				config.searchInTitle
 				&& config._searchTermsRegex.test(file.title)
-			) || ( // If search in description is enabled, the search terms must appear in the description.
+			) || (
+				// If search in description is enabled, the search terms must appear in the description.
 				config.searchInDescription
 				&& config._searchTermsRegex.test(file.description)
-			) || ( // If search in tags is enabled, the search terms must appear in the tags.
+			) || (
+				// If search in tags is enabled, the search terms must appear in the tags.
 				config.searchInTags && file.properties.tags
 				&& file.properties.tags.some(tag => config._searchTermsExactRegex.test(tag.value))
 			)
 		) && (
 			// DATE RANGES
 			// ===========
-			( // If the minimum and maximum dates are invalid, the date is not checked.
+			(
+				// If the minimum and maximum dates are invalid, the date is not checked.
 				Number.isNaN(config._dateMinEpoch) && Number.isNaN(config._dateMaxEpoch)
-			) || ( // If the minimum date is valid but the maximum date is not, check only the minimum date.
+			) || (
+				// If the minimum date is valid but the maximum date is not, check only the minimum date.
 				!Number.isNaN(config._dateMinEpoch) && Number.isNaN(config._dateMaxEpoch)
 				&& new Date(file[config.dateProperty]).getTime() > config._dateMinEpoch
-			) || ( // If the maximum date is valid but the minimum date is not, check only the maximum date.
+			) || (
+				// If the maximum date is valid but the minimum date is not, check only the maximum date.
 				Number.isNaN(config._dateMinEpoch) && !Number.isNaN(config._dateMaxEpoch)
 				&& new Date(file[config.dateProperty]).getTime() < config._dateMaxEpoch
-			) || ( // If the minimum and maximum dates are valid, check both.
+			) || (
+				// If the minimum and maximum dates are valid, check both.
 				!Number.isNaN(config._dateMinEpoch) && !Number.isNaN(config._dateMaxEpoch)
 				&& inRange(new Date(file[config.dateProperty]).getTime(), config._dateMinEpoch, config._dateMaxEpoch)
 			)
@@ -133,28 +143,51 @@ export default class Repository {
 	}
 
 	fromPath(path = '') {
-		const splittedPath = this.splitPath(path);
-		if (!splittedPath) {
+		const splitted = this.splitPath(path);
+		if (!splitted) {
 			return null;
 		}
 
-		let currentPath = '';
-		let currentFolder = this.root;
-		if (currentFolder.path !== path) {
-			for (let i = 0; i < splittedPath.length; i++) {
-				currentPath += splittedPath[i];
-				for (let j = 0; j < currentFolder.children.length; j++) {
-					if (currentFolder.children[j].path === currentPath) {
-						currentFolder = currentFolder.children[j];
-						break;
-					}
+		let node = this.root;
+		if (node.path === path) {
+			return node;
+		}
+
+		let fragment = '';
+		for (let i = 0; i < splitted.length; i++) {
+			let match;
+			fragment += splitted[i];
+			for (let j = 0; j < node.children.length; j++) {
+				if (fragment === node.children[j].path) {
+					match = node.children[j];
+					break;
 				}
-				if (!currentFolder) {
-					return null;
+			}
+			if (match) {
+				node = match;
+			} else {
+				return null;
+			}
+		}
+
+		return node;
+	}
+
+	fromId(id = '') {
+		const stack = [this.root];
+
+		while (stack.length > 0) {
+			const node = stack.pop();
+			if (node.id === id) {
+				return node;
+			}
+			if (node.isFolder) {
+				for (let i = 0; i < node.children.length; i++) {
+					stack.push(node.children[i]);
 				}
 			}
 		}
 
-		return currentFolder;
+		return null;
 	}
 }
