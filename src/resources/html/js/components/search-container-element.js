@@ -231,6 +231,9 @@ export default class SearchContainerElement extends BaseElement {
 				}
 			});
 		} else {
+			if (this.searchFileFormModalElement instanceof SearchFileFormModalElement) {
+				this.searchFileFormModalElement.$ref.modal('hide');
+			}
 			this.searchFileFormModalElement = new EmptyElement();
 		}
 
