@@ -27,7 +27,7 @@
     "max-tags": "10",
     "page-places": "5",
     "page-size": "24",
-    "form-file": ""
+    "form-file-path": ""
   },
   "global": {
     "enable-filters": "false",

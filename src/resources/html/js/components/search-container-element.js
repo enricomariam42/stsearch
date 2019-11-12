@@ -31,11 +31,16 @@ export default class SearchContainerElement extends BaseElement {
 	constructor(...args) {
 		super(...args);
 		this.className = 'search-container-element';
-		this.currentFormFile = null;
 		this.pageNumber = 0;
 	}
 
 	get template() {
+		let formFile = null;
+		if (config.formFilePath) {
+			formFile = this.options.repository.fromPath(config.formFilePath);
+			if (!formFile) config.formFilePath = '';
+		}
+
 		if (config.enableBanner) {
 			this.searchBannerElement = new SearchBannerElement(null);
 		} else {
@@ -104,9 +109,7 @@ export default class SearchContainerElement extends BaseElement {
 			files: this.options.repository.files.slice(filesStart, filesEnd),
 			fileFormCallback: fileData => {
 				if (!fileData.isReadonly) {
-					const file = this.options.repository.fromPath(fileData.path);
-					this.currentFormFile = file;
-
+					config.formFilePath = fileData.path;
 					this.render();
 				}
 			},
@@ -182,9 +185,9 @@ export default class SearchContainerElement extends BaseElement {
 			}
 		});
 
-		if (this.currentFormFile) {
+		if (formFile) {
 			this.searchFileFormModalElement = new SearchFileFormModalElement(null, {
-				file: this.currentFormFile,
+				file: formFile,
 				formSubmitCallback: async formObj => {
 					const metadata = {
 						path: formObj.path,
@@ -218,7 +221,7 @@ export default class SearchContainerElement extends BaseElement {
 							target: window.parent
 						});
 
-						this.currentFormFile = null;
+						config.formFilePath = '';
 						this.searchFileFormModalElement.$ref.modal('hide');
 
 						this.render();
@@ -260,7 +263,7 @@ export default class SearchContainerElement extends BaseElement {
 	render() {
 		super.render();
 
-		if (this.currentFormFile && !this.searchFileFormModalElement.opened) {
+		if (config.formFilePath && !this.searchFileFormModalElement.opened) {
 			const modalFormSelector = `.${this.searchFileFormModalElement.className}`;
 			const thumbnailInputSelector = `${modalFormSelector} input[name="thumbnail"]`;
 			const tagsInputSelector = `${modalFormSelector} input[name="tags"]`;
@@ -275,7 +278,7 @@ export default class SearchContainerElement extends BaseElement {
 				.one('hide.bs.modal', () => {
 					tagsInputTagify.destroy();
 					bsCustomFileInput.destroy(thumbnailInputSelector, modalFormSelector);
-					this.currentFormFile = null;
+					config.formFilePath = '';
 				})
 				.modal('show');
 		}

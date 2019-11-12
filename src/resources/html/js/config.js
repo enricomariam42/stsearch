@@ -358,12 +358,12 @@ class Config {
 			: pageSize;
 	}
 
-	get formFile() {
-		return this._formFile;
+	get formFilePath() {
+		return this._formFilePath;
 	}
 
-	set formFile(formFile) {
-		this._formFile = formFile;
+	set formFilePath(formFilePath) {
+		this._formFilePath = formFilePath;
 	}
 }
 

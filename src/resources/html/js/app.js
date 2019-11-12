@@ -36,13 +36,6 @@ window.addEventListener('load', async () => {
 		}
 	}
 
-	if (config.formFile) {
-		const formFile = repository.fromId(config.formFile);
-		if (formFile && !formFile.isFolder) {
-			searchContainerElement.currentFormFile = formFile;
-		}
-	}
-
 	searchContainerElement.render();
 
 	// Public API
