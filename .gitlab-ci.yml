@@ -5,6 +5,12 @@ stages:
 .variables: &variables
   MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
 
+.variables_develop: &variables_develop
+  <<: *variables
+
+.variables_release: &variables_release
+  <<: *variables
+
 .artifacts: &artifacts
   expire_in: "15 mins"
   paths:
@@ -23,7 +29,7 @@ stages:
 build:develop:
   stage: "build"
   variables:
-    <<: *variables
+    <<: *variables_develop
   script:
     - "npm install"
     - "npm run lint"
@@ -38,7 +44,7 @@ build:develop:
 build:release:
   stage: "build"
   variables:
-    <<: *variables
+    <<: *variables_release
   script:
     - "npm install"
     - "npm run lint"
@@ -52,8 +58,10 @@ build:release:
 
 deploy:develop:mvn:
   stage: "deploy"
+  dependencies:
+    - "build:develop"
   variables:
-    <<: *variables
+    <<: *variables_develop
   script:
     - "npm install"
     - "npm run deploy:dev"
@@ -64,8 +72,10 @@ deploy:develop:mvn:
 
 deploy:release:mvn:
   stage: "deploy"
+  dependencies:
+    - "build:release"
   variables:
-    <<: *variables
+    <<: *variables_release
   script:
     - "npm install"
     - "npm run deploy:prod"
