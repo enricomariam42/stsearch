@@ -27,7 +27,7 @@ module.exports = (env, argv) => {
 			minimizer: [
 				new TerserPlugin({
 					parallel: true,
-					terserOptions: { output: { comments: false } }
+					extractComments: false
 				})
 			]
 		},
