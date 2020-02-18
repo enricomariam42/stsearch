@@ -1,0 +1,41 @@
+{
+  "search-file-form-modal": {
+    "path": { "label": "Ruta", "placeholder": "Ruta..." },
+    "title": { "label": "Títol", "placeholder": "Títol..." },
+    "tags": { "label": "Etiquetes", "placeholder": "Etiquetes..." },
+    "description": { "label": "Descripció", "placeholder": "Descripció..." },
+    "image": { "label": "Imatge", "placeholder": "Imatge..." },
+    "cancel": "Cancel·lar",
+    "ok": "Ok"
+  },
+  "search-file-list": {
+    "noResultsFound": "No s'han trobat resultats"
+  },
+  "search-filter-form": {
+    "search": { "label": "Cercar", "placeholder": "Cercar..." },
+    "searchIn": "Cercar en:",
+    "searchInTitle": "Títol",
+    "searchInDescription": "Descripció",
+    "searchInTags": "Etiquetes",
+    "mustBeIn": "Ha d'estar en:",
+    "mustBeInGlobal": "Global",
+    "mustBeInHome": "Inici",
+    "mustBeInFavorites": "Favorits",
+    "mustBeInRecents": "Recents",
+    "creationDate": "Data de creació",
+    "modificationDate": "Data de modificació",
+    "extensionsOther": "Documents i arxius de Report Designer",
+    "extensionsCde": "Quadres de comandament",
+    "extensionsStpivot": "Arxius de STPivot",
+    "extensionsStreport": "Arxius de STReport",
+    "extensionsStdashboard": "Arxius de STDashboard",
+    "extensionsStagile": "Arxius de STAgile",
+    "refresh": "Recarregar"
+  },
+  "notifications": {
+    "errorLoadingData": "Error de càrrega de dades",
+    "errorSavingData": "Error a guardar dades",
+    "invalidImage": "Imatge invàlida",
+    "dataWillNotPersistInDemoEnv": "Les dades no persistiran a l'entorn de demostració"
+  }
+}
