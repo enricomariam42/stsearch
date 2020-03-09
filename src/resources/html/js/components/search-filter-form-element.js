@@ -275,6 +275,26 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-stpivot')}
 									</label>
 								` : ''}
+								${config._installedPluginsSet.has('stolap') ? html`
+									<label
+										class="
+											btn btn-outline-tool-stolap
+											${config._allowedExtensionsSet.has(extensionMap.get('stolap')) ? 'active' : ''}
+										"
+										title="${translate('search-filter-form.extensionsStolap')}"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stolap'))}
+											.value="${extensionMap.get('stolap')}"
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
+										${this.faTemplate('fac-tool-stolap')}
+									</label>
+								` : ''}
 								${config._installedPluginsSet.has('streport') ? html`
 									<label
 										class="

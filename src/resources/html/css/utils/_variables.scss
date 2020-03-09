@@ -15,23 +15,25 @@ $theme-colors: (
 $theme-colors: map-merge($theme-colors, (
 	"tool-other": #5C6BC0,
 	"tool-cde": #955cc1,
-	"tool-stpivot": #9aa210,
-	"tool-streport": #e67e22,
+	"tool-stagile": #b91616,
 	"tool-stdashboard": #2980b9,
-	"tool-stagile": #b91616
+	"tool-stolap": #993711,
+	"tool-stpivot": #9aa210,
+	"tool-streport": #e67e22
 ));
 
 /* File colors */
 $theme-colors: map-merge($theme-colors, (
 	"file-other": map-get($theme-colors, tool-other),
-	"file-pdf": map-get($theme-colors, tool-other),
-	"file-url": map-get($theme-colors, tool-other),
-	"file-prpt": map-get($theme-colors, tool-other),
-	"file-wcdf": map-get($theme-colors, tool-cde),
-	"file-xjpivot": map-get($theme-colors, tool-stpivot),
 	"file-adhoc": map-get($theme-colors, tool-streport),
+	"file-pdf": map-get($theme-colors, tool-other),
+	"file-prpt": map-get($theme-colors, tool-other),
+	"file-sta": map-get($theme-colors, tool-stagile),
 	"file-std": map-get($theme-colors, tool-stdashboard),
-	"file-sta": map-get($theme-colors, tool-stagile)
+	"file-stolap": map-get($theme-colors, tool-stolap),
+	"file-url": map-get($theme-colors, tool-other),
+	"file-wcdf": map-get($theme-colors, tool-cde),
+	"file-xjpivot": map-get($theme-colors, tool-stpivot)
 ));
 
 $yiq-text-dark: #495057;

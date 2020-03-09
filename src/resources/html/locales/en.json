@@ -30,6 +30,7 @@
     "extensionsStreport": "STReport files",
     "extensionsStdashboard": "STDashboard files",
     "extensionsStagile": "STAgile files",
+    "extensionsStolap": "STOlap files",
     "refresh": "Refresh"
   },
   "notifications": {
