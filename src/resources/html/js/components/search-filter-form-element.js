@@ -217,44 +217,6 @@ export default class SearchFilterFormElement extends BaseElement {
 										</div>
 									</div>
 								</div>
-								<label
-									class="
-										btn btn-outline-tool-other
-										${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}
-									"
-									title="${translate('search-filter-form.extensionsOther')}"
-									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
-								>
-									<input
-										name="allowed-extensions[]"
-										type="checkbox"
-										.checked=${config._allowedExtensionsSet.has(extensionMap.get('other'))}
-										.value="${extensionMap.get('other')}"
-										@keyup=${this.formButtonCheckboxKeyupHandler}
-										autocomplete="off"
-									>
-										${this.faTemplate('fac-tool-other')}
-								</label>
-								${config._installedPluginsSet.has('cde') ? html`
-									<label
-										class="
-											btn btn-outline-tool-cde
-											${config._allowedExtensionsSet.has(extensionMap.get('cde')) ? 'active' : ''}
-										"
-										title="${translate('search-filter-form.extensionsCde')}"
-										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
-									>
-										<input
-											name="allowed-extensions[]"
-											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('cde'))}
-											.value="${extensionMap.get('cde')}"
-											@keyup=${this.formButtonCheckboxKeyupHandler}
-											autocomplete="off"
-										>
-											${this.faTemplate('fac-tool-cde')}
-									</label>
-								` : ''}
 								${config._installedPluginsSet.has('stpivot') ? html`
 									<label
 										class="
@@ -355,6 +317,44 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-stagile')}
 									</label>
 								` : ''}
+								${config._installedPluginsSet.has('cde') ? html`
+									<label
+										class="
+											btn btn-outline-tool-cde
+											${config._allowedExtensionsSet.has(extensionMap.get('cde')) ? 'active' : ''}
+										"
+										title="${translate('search-filter-form.extensionsCde')}"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('cde'))}
+											.value="${extensionMap.get('cde')}"
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
+											${this.faTemplate('fac-tool-cde')}
+									</label>
+								` : ''}
+								<label
+									class="
+										btn btn-outline-tool-other
+										${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}
+									"
+									title="${translate('search-filter-form.extensionsOther')}"
+									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+								>
+									<input
+										name="allowed-extensions[]"
+										type="checkbox"
+										.checked=${config._allowedExtensionsSet.has(extensionMap.get('other'))}
+										.value="${extensionMap.get('other')}"
+										@keyup=${this.formButtonCheckboxKeyupHandler}
+										autocomplete="off"
+									>
+										${this.faTemplate('fac-tool-other')}
+								</label>
 							</div>
 							<div class="btn-group flex-fill mx-1 mb-1">
 								<button
