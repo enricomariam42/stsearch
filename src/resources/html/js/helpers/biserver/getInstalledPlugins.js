@@ -1,5 +1,6 @@
 import isStagileInstalled from './plugins/isStagileInstalled';
 import isStdashboardInstalled from './plugins/isStdashboardInstalled';
+import isStolapInstalled from './plugins/isStolapInstalled';
 import isStpivotInstalled from './plugins/isStpivotInstalled';
 import isStreportInstalled from './plugins/isStreportInstalled';
 
@@ -10,6 +11,7 @@ const getInstalledPlugins = async () => {
 	const installCheckers = [
 		['stagile', isStagileInstalled],
 		['stdashboard', isStdashboardInstalled],
+		['stolap', isStolapInstalled],
 		['stpivot', isStpivotInstalled],
 		['streport', isStreportInstalled]
 	];
