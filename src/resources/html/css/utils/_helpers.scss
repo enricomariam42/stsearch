@@ -153,12 +153,9 @@ label.btn {
 	}
 
 	> tag > div {
+		max-width: calc(100% - #{rem(14)});
 		padding: rem(4) rem(8) rem(4) rem(8);
 		color: map-get($theme-colors, dark);
-
-		> .tagify__tag-text {
-			vertical-align: baseline;
-		}
 	}
 
 	> tag > div::before {
