@@ -1,4 +1,5 @@
 import isCdeInstalled from './plugins/isCdeInstalled';
+import isSaikuInstalled from './plugins/isSaikuInstalled';
 import isStagileInstalled from './plugins/isStagileInstalled';
 import isStdashboardInstalled from './plugins/isStdashboardInstalled';
 import isStolapInstalled from './plugins/isStolapInstalled';
@@ -11,6 +12,7 @@ const getInstalledPlugins = async () => {
 	// Each checker makes a HEAD request to a known plugin resource.
 	const installCheckers = [
 		['cde', isCdeInstalled],
+		['saiku', isSaikuInstalled],
 		['stagile', isStagileInstalled],
 		['stdashboard', isStdashboardInstalled],
 		['stolap', isStolapInstalled],
