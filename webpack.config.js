@@ -60,16 +60,18 @@ module.exports = (env, argv) => {
 				filename: '[name].[hash].css',
 				chunkFilename: '[id].[hash].css'
 			}),
-			new CopyWebpackPlugin(
-				[
+			new CopyWebpackPlugin({
+				patterns: [
 					{ from: 'src/plugin.xml', to: dist },
 					{ from: 'src/plugin.spring.xml', to: dist },
 					{ from: 'src/resources/html/presets.json', to: `${dist}/resources/html/` },
 					{ from: 'src/resources/messages', to: `${dist}/resources/messages/` },
 					{ from: 'src/resources/images', to: `${dist}/resources/images/` }
-				],
-				{ ignore: ['.gitkeep'] }
-			)
+				].map(pattern => {
+					pattern.globOptions = { ignore: ['.gitkeep'] };
+					return pattern;
+				})
+			})
 		],
 		module: {
 			rules: [
