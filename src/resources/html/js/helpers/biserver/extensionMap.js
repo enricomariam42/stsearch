@@ -5,5 +5,5 @@ export default new Map([
 	['stdashboard', 'std'],
 	['stolap', 'stolap'],
 	['stpivot', 'xjpivot'],
-	['streport', 'adhoc']
+	['saiku-adhoc', 'adhoc']
 ]);

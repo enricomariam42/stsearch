@@ -261,7 +261,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<label
 										class="
 											btn btn-outline-tool-streport
-											${config._allowedExtensionsSet.has(extensionMap.get('streport')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('saiku-adhoc')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStreport')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -269,8 +269,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('streport'))}
-											.value="${extensionMap.get('streport')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('saiku-adhoc'))}
+											.value="${extensionMap.get('saiku-adhoc')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
