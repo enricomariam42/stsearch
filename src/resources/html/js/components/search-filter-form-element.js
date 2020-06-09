@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import { translate } from '@appnest/lit-translate';
 
 import formData from '../helpers/formData';
-import extensionMap from '../helpers/biserver/plugins/extensionMap';
+import extensionMap from '../helpers/biserver/extensionMap';
 
 import config from '../config';
 
@@ -257,7 +257,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-stolap')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('streport') ? html`
+								${config._installedPluginsSet.has('saiku-adhoc') ? html`
 									<label
 										class="
 											btn btn-outline-tool-streport

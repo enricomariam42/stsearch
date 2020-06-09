@@ -4,9 +4,9 @@ import escapeRegExp from 'lodash/escapeRegExp';
 import fetch from 'unfetch';
 import isString from 'lodash/isString';
 
-import extensionMap from './helpers/biserver/plugins/extensionMap';
+import extensionMap from './helpers/biserver/extensionMap';
 import getCanAdminister from './helpers/biserver/getCanAdminister';
-import getInstalledPlugins from './helpers/biserver/getInstalledPlugins';
+import getPlugins from './helpers/biserver/getPlugins';
 import override from './helpers/override';
 import searchParams from './helpers/searchParams';
 import strToBool from './helpers/strToBool';
@@ -32,7 +32,7 @@ class Config {
 
 			// If "installed-plugins" is not defined, retrieve installed plugins.
 			if (typeof this._initialConfig['installed-plugins'] === 'undefined') {
-				const installedPlugins = await getInstalledPlugins();
+				const installedPlugins = await getPlugins();
 				this._initialConfig['installed-plugins'] = installedPlugins;
 			}
 
