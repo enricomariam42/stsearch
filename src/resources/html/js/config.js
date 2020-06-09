@@ -32,7 +32,7 @@ class Config {
 
 			// If "installed-plugins" is not defined, retrieve installed plugins.
 			if (typeof this._initialConfig['installed-plugins'] === 'undefined') {
-				const installedPlugins = await getPlugins();
+				const installedPlugins = Array.from(await getPlugins());
 				this._initialConfig['installed-plugins'] = installedPlugins;
 			}
 
