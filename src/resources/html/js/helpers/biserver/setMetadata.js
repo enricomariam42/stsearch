@@ -4,7 +4,7 @@ import { get } from '@appnest/lit-translate';
 
 import getContextPath from './getContextPath';
 import getLocale from './getLocale';
-import isDemo from '../isDemo';
+import isMocked from '../isMocked';
 import safeJSON from '../safeJSON';
 import searchParams from '../searchParams';
 
@@ -15,8 +15,8 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 		metadata = [metadata];
 	}
 
-	// Mock metadata update in demo environment.
-	if (isDemo) {
+	// Simulate action if mocked.
+	if (isMocked) {
 		Noty.warning(get('notifications.dataWillNotPersistInDemoEnv'));
 		return metadata.map(entry => ({ fullPath: entry.path }));
 	}
