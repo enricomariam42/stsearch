@@ -317,11 +317,11 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-stagile')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('cde') ? html`
+								${config._installedPluginsSet.has('pentaho-cdf') ? html`
 									<label
 										class="
 											btn btn-outline-tool-cde
-											${config._allowedExtensionsSet.has(extensionMap.get('cde')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('pentaho-cdf')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsCde')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -329,8 +329,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('cde'))}
-											.value="${extensionMap.get('cde')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('pentaho-cdf'))}
+											.value="${extensionMap.get('pentaho-cdf')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
