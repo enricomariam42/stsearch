@@ -43,6 +43,9 @@ export const faIcons = new Set();
 		import(/* webpackMode: "eager" */ './fontawesome/facFileUrl'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileWcdf'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileXjpivot'),
+		import(/* webpackMode: "eager" */ './fontawesome/facGlobeOutline'),
+		import(/* webpackMode: "eager" */ './fontawesome/facHomeOutline'),
+		import(/* webpackMode: "eager" */ './fontawesome/facHomeSolid'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolCde'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolOther'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolSaiku'),
@@ -50,10 +53,7 @@ export const faIcons = new Set();
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStdashboard'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStolap'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStpivot'),
-		import(/* webpackMode: "eager" */ './fontawesome/facToolStreport'),
-		import(/* webpackMode: "eager" */ './fontawesome/falGlobe'),
-		import(/* webpackMode: "eager" */ './fontawesome/farHomeAlt'),
-		import(/* webpackMode: "eager" */ './fontawesome/fasHomeAlt')
+		import(/* webpackMode: "eager" */ './fontawesome/facToolStreport')
 	]);
 
 	icons.forEach(icon => {
