@@ -63,7 +63,7 @@ export default class SearchFileElement extends BaseElement {
 									class="btn btn-light flex-grow-0"
 									@click=${this.fileGlobalClickHandler}
 								>
-									${this.faTemplate(`${this.options.file.isGlobal ? 'fas' : 'fal'}-globe`)}
+									${this.faTemplate(this.options.file.isGlobal ? 'fas-globe' : 'fac-globe-outline')}
 								</button>
 							` : ''}
 							${config.enableFileHome ? html`
@@ -72,7 +72,7 @@ export default class SearchFileElement extends BaseElement {
 									class="btn btn-light flex-grow-0"
 									@click=${this.fileHomeClickHandler}
 								>
-									${this.faTemplate(`${this.options.file.isHome ? 'fas' : 'far'}-home-alt`)}
+									${this.faTemplate(this.options.file.isHome ? 'fac-home-solid' : 'fac-home-outline')}
 								</button>
 							` : ''}
 							${config.enableFileFavorite ? html`
@@ -81,7 +81,7 @@ export default class SearchFileElement extends BaseElement {
 									class="btn btn-light flex-grow-0"
 									@click=${this.fileFavoriteClickHandler}
 								>
-									${this.faTemplate(`${this.options.file.isFavorite ? 'fas' : 'far'}-star`)}
+									${this.faTemplate(this.options.file.isFavorite ? 'fas-star' : 'far-star')}
 								</button>
 							` : ''}
 							${config.enableFileEdit ? html`
