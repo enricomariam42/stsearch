@@ -8,7 +8,8 @@ import ca from '../../locales/ca.json';
 
 const defaultLocale = 'en';
 const navigatorLocale = navigator.language.slice(0, 2);
-const availableLocales = { en, es, pt, ca };
+// eslint-disable-next-line camelcase
+const availableLocales = { en, es, pt, pt_PT: pt, ca };
 
 registerTranslateConfig({
 	loader: locale => availableLocales[locale]
