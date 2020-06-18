@@ -3,11 +3,12 @@ import { registerTranslateConfig, use } from '@appnest/lit-translate';
 import getLocale from '../helpers/biserver/getLocale';
 import en from '../../locales/en.json';
 import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
 import ca from '../../locales/ca.json';
 
 const defaultLocale = 'en';
 const navigatorLocale = navigator.language.slice(0, 2);
-const availableLocales = { en, es, ca };
+const availableLocales = { en, es, pt, ca };
 
 registerTranslateConfig({
 	loader: locale => availableLocales[locale]

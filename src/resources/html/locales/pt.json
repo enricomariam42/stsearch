@@ -1,0 +1,42 @@
+{
+  "search-file-form-modal": {
+    "path": { "label": "Rota", "placeholder": "Rota..." },
+    "title": { "label": "Título", "placeholder": "Título..." },
+    "tags": { "label": "Rótulos", "placeholder": "Rótulos..." },
+    "description": { "label": "Descrição", "placeholder": "Descrição..." },
+    "image": { "label": "Imagem", "placeholder": "Imagem..." },
+    "cancel": "Cancelar",
+    "ok": "Ok"
+  },
+  "search-file-list": {
+    "noResultsFound": "Resultados não encontrados"
+  },
+  "search-filter-form": {
+    "search": { "label": "Procurar", "placeholder": "Procurar..." },
+    "searchIn": "Procurar em:",
+    "searchInTitle": "Título",
+    "searchInDescription": "Descrição",
+    "searchInTags": "Rótulos",
+    "mustBeIn": "Deve estar em:",
+    "mustBeInGlobal": "Global",
+    "mustBeInHome": "Início",
+    "mustBeInFavorites": "Favoritos",
+    "mustBeInRecents": "Recentes",
+    "creationDate": "Data de criação",
+    "modificationDate": "Data de modificação",
+    "extensionsOther": "Documentos e arquivos do Report Designer",
+    "extensionsCde": "Dashboards",
+    "extensionsStpivot": "Arquivos do STPivot",
+    "extensionsStreport": "Arquivos do STReport",
+    "extensionsStdashboard": "Arquivos do STDashboard",
+    "extensionsStagile": "Arquivos do STAgile",
+    "extensionsStolap": "Arquivos do STOlap",
+    "refresh": "Recarregar"
+  },
+  "notifications": {
+    "errorLoadingData": "Erro ao carregar dados",
+    "errorSavingData": "Erro ao salvar dados",
+    "invalidImage": "Imagem inválida",
+    "dataWillNotPersistInDemoEnv": "Os dados não permanecerão no ambiente de demonstração"
+  }
+}
