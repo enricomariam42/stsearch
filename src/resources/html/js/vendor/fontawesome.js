@@ -1,7 +1,5 @@
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
-export const faIcons = new Set();
-
 (async () => {
 	const container = document.createElement('div');
 	container.style.display = 'none';
@@ -62,13 +60,6 @@ export const faIcons = new Set();
 		symbol.classList.add(icon.prefix, `fa-${icon.iconName}`, 'fa-fw');
 		container.append(symbol);
 		library.add(icon.definition);
-	});
-
-	// Populate list of available icons.
-	Object.entries(library.definitions).forEach(([p, i]) => {
-		Object.keys(i).forEach(n => {
-			faIcons.add(`${p}-${n}`);
-		});
 	});
 
 	dom.i2svg({ node: container });

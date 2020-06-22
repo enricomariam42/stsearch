@@ -15,6 +15,7 @@ $theme-colors: (
 $theme-colors: map-merge($theme-colors, (
 	"tool-other": #3e50b7,
 	"tool-cde": #9836e4,
+	"tool-saiku": #c52120,
 	"tool-stagile": #b91616,
 	"tool-stdashboard": #2980b9,
 	"tool-stolap": #993711,
@@ -26,8 +27,10 @@ $theme-colors: map-merge($theme-colors, (
 $theme-colors: map-merge($theme-colors, (
 	"file-other": map-get($theme-colors, tool-other),
 	"file-adhoc": map-get($theme-colors, tool-streport),
+	"file-csv": map-get($theme-colors, tool-other),
 	"file-pdf": map-get($theme-colors, tool-other),
 	"file-prpt": map-get($theme-colors, tool-other),
+	"file-saiku": map-get($theme-colors, tool-saiku),
 	"file-sta": map-get($theme-colors, tool-stagile),
 	"file-std": map-get($theme-colors, tool-stdashboard),
 	"file-stolap": map-get($theme-colors, tool-stolap),

@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
+import { library as faLibrary } from '@fortawesome/fontawesome-svg-core';
 
 import config from '../config';
-import { faIcons } from '../vendor/fontawesome';
 
 import BaseElement from './base-element';
 import SearchFileTagElement from './search-file-tag-element';
@@ -25,9 +25,10 @@ export default class SearchFileElement extends BaseElement {
 			tagTemplates = [];
 		}
 
-		const facIconName = faIcons.has(`fac-file-${this.options.file.extension}`)
-			? `fac-file-${this.options.file.extension}`
-			: 'fac-file-other';
+		const faDefs = faLibrary.definitions;
+		const facIconName = faDefs.fac && faDefs.fac[`file-${this.options.file.extension}`]
+			? `file-${this.options.file.extension}`
+			: 'file-other';
 
 		return html`
 			<div
@@ -45,7 +46,7 @@ export default class SearchFileElement extends BaseElement {
 					<div class="card-header">
 						<div class="card-buttons btn-group d-flex flex-fill flex-wrap justify-content-end m-n2">
 							<button type="button" class="btn btn-light btn-inactive d-none d-sm-inline flex-fill text-left" tabindex="-1">
-								${this.faTemplate(facIconName)}
+								${this.faTemplate(`fac-${facIconName}`)}
 							</button>
 							${config.enableFileForm ? html`
 								<button
