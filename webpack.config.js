@@ -102,7 +102,7 @@ module.exports = (env, argv) => {
 							options: {
 								implementation: sass,
 								sassOptions: { fiber: Fiber },
-								prependData: `$env: ${argv.mode};`
+								additionalData: `$env: ${argv.mode};`
 							}
 						}
 					]
