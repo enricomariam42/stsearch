@@ -88,13 +88,15 @@ module.exports = (env, argv) => {
 						{
 							loader: 'postcss-loader',
 							options: {
-								plugins: [
-									autoprefixer(),
-									...ifProduction(
-										[cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })],
-										[]
-									)
-								]
+								postcssOptions: {
+									plugins: [
+										autoprefixer(),
+										...ifProduction(
+											[cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })],
+											[]
+										)
+									]
+								}
 							}
 						},
 						{
