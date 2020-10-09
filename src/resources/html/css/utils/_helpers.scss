@@ -156,6 +156,7 @@ label.btn {
 		max-width: calc(100% - #{rem(14)});
 		padding: rem(4) rem(8) rem(4) rem(8);
 		color: map-get($theme-colors, dark);
+		transition: none;
 	}
 
 	> tag > div::before {
@@ -176,6 +177,21 @@ label.btn {
 	> tag.tagify--notAllowed > div::before {
 		box-shadow: 0 0 0 rem(20) lighten(map-get($theme-colors, danger), 40%) inset !important;
 		border: rem(1) solid lighten(map-get($theme-colors, danger), 20%) !important;
+	}
+
+	> tag.tagify__tag--editable {
+		> div {
+			max-width: 100%;
+
+			> .tagify__tag-text {
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		> x {
+			display: none;
+		}
 	}
 }
 
