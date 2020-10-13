@@ -1,0 +1,13 @@
+{
+	admin off
+}
+
+http://*:2015 {
+	# Pentaho BI Server
+	reverse_proxy /* http://127.0.0.1:8080
+
+	# Webpack Dev Server
+	handle_path /pentaho/content/stsearch/resources/html/* {
+		reverse_proxy http://127.0.0.1:8081
+	}
+}
