@@ -21,7 +21,11 @@ module.exports = (env, argv) => {
 	return {
 		mode: ifProduction('production', 'development'),
 		entry: path.join(__dirname, 'src/resources/html/js/app.js'),
-		output: { filename: '[name].[hash].js', path: `${dist}/resources/html` },
+		output: {
+			filename: '[name].[contenthash].js',
+			path: `${dist}/resources/html`,
+			publicPath: ''
+		},
 		devtool: ifProduction(false, 'eval-source-map'),
 		optimization: {
 			minimizer: [
@@ -57,8 +61,8 @@ module.exports = (env, argv) => {
 				)
 			}),
 			new MiniCssExtractPlugin({
-				filename: '[name].[hash].css',
-				chunkFilename: '[id].[hash].css'
+				filename: '[name].[contenthash].css',
+				chunkFilename: '[id].[contenthash].css'
 			}),
 			new CopyWebpackPlugin({
 				patterns: [
@@ -113,20 +117,20 @@ module.exports = (env, argv) => {
 					test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
 					use: {
 						loader: 'file-loader',
-						options: { name: './fonts/[name].[hash].[ext]' }
+						options: { name: './fonts/[name].[contenthash].[ext]' }
 					}
 				},
 				{
 					test: /\.(png|gif|jpg)$/i,
 					use: {
 						loader: 'file-loader',
-						options: { name: '../images/[name].[hash].[ext]' }
+						options: { name: '../images/[name].[contenthash].[ext]' }
 					}
 				},
 				{
 					test: /\.svg$/i,
 					exclude: /-webfont\.svg$/i,
-					loader: ['svg-url-loader', 'svgo-loader']
+					use: ['svg-url-loader', 'svgo-loader']
 				}
 			]
 		},
