@@ -217,11 +217,11 @@ export default class SearchFilterFormElement extends BaseElement {
 										</div>
 									</div>
 								</div>
-								${config._installedPluginsSet.has('stpivot') ? html`
+								${config._availableOverlaysSet.has('launch.jpivot') ? html`
 									<label
 										class="
 											btn btn-outline-tool-stpivot
-											${config._allowedExtensionsSet.has(extensionMap.get('stpivot')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStpivot')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -229,19 +229,19 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stpivot'))}
-											.value="${extensionMap.get('stpivot')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot'))}
+											.value="${extensionMap.get('launch.jpivot')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
 										${this.faTemplate('fac-tool-stpivot')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('stolap') ? html`
+								${config._availableOverlaysSet.has('launch.launch_new_stolap_analytic') ? html`
 									<label
 										class="
 											btn btn-outline-tool-stolap
-											${config._allowedExtensionsSet.has(extensionMap.get('stolap')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStolap')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -249,19 +249,19 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stolap'))}
-											.value="${extensionMap.get('stolap')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic'))}
+											.value="${extensionMap.get('launch.launch_new_stolap_analytic')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
 										${this.faTemplate('fac-tool-stolap')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('saiku-adhoc') ? html`
+								${config._availableOverlaysSet.has('launch.launch-new-saiku-adhoc') ? html`
 									<label
 										class="
 											btn btn-outline-tool-streport
-											${config._allowedExtensionsSet.has(extensionMap.get('saiku-adhoc')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-saiku-adhoc')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStreport')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -269,19 +269,19 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('saiku-adhoc'))}
-											.value="${extensionMap.get('saiku-adhoc')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-saiku-adhoc'))}
+											.value="${extensionMap.get('launch.launch-new-saiku-adhoc')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
 										${this.faTemplate('fac-tool-streport')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('stdashboard') ? html`
+								${config._availableOverlaysSet.has('launch.stdashboardButton') ? html`
 									<label
 										class="
 											btn btn-outline-tool-stdashboard
-											${config._allowedExtensionsSet.has(extensionMap.get('stdashboard')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStdashboard')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -289,19 +289,19 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stdashboard'))}
-											.value="${extensionMap.get('stdashboard')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton'))}
+											.value="${extensionMap.get('launch.stdashboardButton')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
 										${this.faTemplate('fac-tool-stdashboard')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('stagile') ? html`
+								${config._availableOverlaysSet.has('launch.launch-new-stagile') ? html`
 									<label
 										class="
 											btn btn-outline-tool-stagile
-											${config._allowedExtensionsSet.has(extensionMap.get('stagile')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stagile')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsStagile')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -309,19 +309,19 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('stagile'))}
-											.value="${extensionMap.get('stagile')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stagile'))}
+											.value="${extensionMap.get('launch.launch-new-stagile')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
 										${this.faTemplate('fac-tool-stagile')}
 									</label>
 								` : ''}
-								${config._installedPluginsSet.has('pentaho-cdf') ? html`
+								${config._availableOverlaysSet.has('launch.launch_new_cde') ? html`
 									<label
 										class="
 											btn btn-outline-tool-cde
-											${config._allowedExtensionsSet.has(extensionMap.get('pentaho-cdf')) ? 'active' : ''}
+											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_cde')) ? 'active' : ''}
 										"
 										title="${translate('search-filter-form.extensionsCde')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
@@ -329,8 +329,8 @@ export default class SearchFilterFormElement extends BaseElement {
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('pentaho-cdf'))}
-											.value="${extensionMap.get('pentaho-cdf')}"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_cde'))}
+											.value="${extensionMap.get('launch.launch_new_cde')}"
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>

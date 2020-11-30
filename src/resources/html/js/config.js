@@ -6,7 +6,7 @@ import isString from 'lodash/isString';
 
 import extensionMap from './helpers/biserver/extensionMap';
 import getCanAdminister from './helpers/biserver/getCanAdminister';
-import getPlugins from './helpers/biserver/getPlugins';
+import getOverlays from './helpers/biserver/getOverlays';
 import override from './helpers/override';
 import searchParams from './helpers/searchParams';
 import strToBool from './helpers/strToBool';
@@ -30,18 +30,18 @@ class Config {
 
 			override(this._initialConfig, this._presets.default, this._presets[params.preset], params);
 
-			// If "installed-plugins" is not defined, retrieve installed plugins.
-			if (typeof this._initialConfig['installed-plugins'] === 'undefined') {
-				const installedPlugins = Array.from(await getPlugins());
-				this._initialConfig['installed-plugins'] = installedPlugins;
+			// If "available-overlays" is not defined, retrieve available overlays.
+			if (typeof this._initialConfig['available-overlays'] === 'undefined') {
+				const availableOverlays = Array.from((await getOverlays()).keys());
+				this._initialConfig['available-overlays'] = availableOverlays;
 			}
 
-			// If "allowed-extensions" is not defined, define it according to the installed plugins.
+			// If "allowed-extensions" is not defined, define it according to the available overlays.
 			if (typeof this._initialConfig['allowed-extensions'] === 'undefined') {
 				const allowedExtensions = [extensionMap.get('other')];
-				this._initialConfig['installed-plugins'].forEach(plugin => {
-					if (extensionMap.has(plugin)) {
-						allowedExtensions.push(extensionMap.get(plugin));
+				this._initialConfig['available-overlays'].forEach(overlay => {
+					if (extensionMap.has(overlay)) {
+						allowedExtensions.push(extensionMap.get(overlay));
 					}
 				});
 				this._initialConfig['allowed-extensions'] = allowedExtensions;
@@ -77,13 +77,13 @@ class Config {
 		});
 	}
 
-	get installedPlugins() {
-		return this._installedPlugins;
+	get availableOverlays() {
+		return this._availableOverlays;
 	}
 
-	set installedPlugins(installedPlugins) {
-		this._installedPlugins = installedPlugins;
-		this._installedPluginsSet = new Set(installedPlugins);
+	set availableOverlays(availableOverlays) {
+		this._availableOverlays = availableOverlays;
+		this._availableOverlaysSet = new Set(availableOverlays);
 	}
 
 	get enableBanner() {
