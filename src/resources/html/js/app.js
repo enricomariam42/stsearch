@@ -9,6 +9,7 @@ import './vendor/lit-translate';
 import Noty from './vendor/noty';
 
 import getRepository from './helpers/biserver/getRepository';
+import safeWindowParent from './helpers/safeWindowParent';
 
 import config from './config';
 import Repository from './repository';
@@ -25,8 +26,8 @@ window.addEventListener('load', async () => {
 	const searchContainerElement = new SearchContainerElement(container, { repository });
 	searchContainerElement.render();
 
-	if ('stsearch_initial_repository' in window.parent) {
-		repository.root = cloneDeep(window.parent.stsearch_initial_repository);
+	if ('stsearch_initial_repository' in safeWindowParent) {
+		repository.root = cloneDeep(safeWindowParent.stsearch_initial_repository);
 	} else {
 		try {
 			repository.root = await getRepository();

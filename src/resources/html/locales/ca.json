@@ -5,6 +5,7 @@
     "tags": { "label": "Etiquetes", "placeholder": "Etiquetes..." },
     "description": { "label": "Descripció", "placeholder": "Descripció..." },
     "image": { "label": "Imatge", "placeholder": "Imatge..." },
+    "embedded": { "label": "Encastat", "placeholder": "" },
     "cancel": "Cancel·lar",
     "ok": "Ok"
   },

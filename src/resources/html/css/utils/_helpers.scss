@@ -52,6 +52,14 @@ label.btn {
 	}
 }
 
+/* Increase top margin to center checkboxes vertically */
+/* NOTICE: In Bootstrap 5 this will no longer be necessary */
+.form-check > .form-check-input {
+	@supports not (-moz-appearance: none) {
+		margin-top: 0.4em;
+	}
+}
+
 /* Allow different color for the button icon */
 @each $color, $value in $theme-colors {
 	.btn-icon-#{$color}:not(:disabled) .icon {

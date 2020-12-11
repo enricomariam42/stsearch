@@ -12,6 +12,7 @@ import getRepository from '../helpers/biserver/getRepository';
 import imageToDataURI from '../helpers/imageToDataURI';
 import override from '../helpers/override';
 import safeJSON from '../helpers/safeJSON';
+import safeWindowParent from '../helpers/safeWindowParent';
 import setMetadata from '../helpers/biserver/setMetadata';
 import strToBool from '../helpers/strToBool';
 import trigger from '../helpers/trigger';
@@ -125,7 +126,7 @@ export default class SearchContainerElement extends BaseElement {
 					override(file, metadata);
 					dispatchCustomEvent('stsearch-set-metadata', {
 						detail: file,
-						target: window.parent
+						target: safeWindowParent
 					});
 
 					this.render();
@@ -145,7 +146,7 @@ export default class SearchContainerElement extends BaseElement {
 					override(file, metadata);
 					dispatchCustomEvent('stsearch-set-metadata', {
 						detail: file,
-						target: window.parent
+						target: safeWindowParent
 					});
 
 					this.render();
@@ -165,7 +166,7 @@ export default class SearchContainerElement extends BaseElement {
 					override(file, metadata);
 					dispatchCustomEvent('stsearch-set-metadata', {
 						detail: file,
-						target: window.parent
+						target: safeWindowParent
 					});
 
 					this.render();
@@ -178,10 +179,18 @@ export default class SearchContainerElement extends BaseElement {
 				trigger('submit', this.searchFilterFormElement.ref);
 			},
 			fileOpenCallback: file => {
-				window.open(file.openUrl, `stsearch_open_${file.id}`, 'noopener');
+				if (file.properties.embedded === 'true' && 'mantle_openRepositoryFile' in safeWindowParent) {
+					safeWindowParent.mantle_openRepositoryFile(file.path, 'RUN');
+				} else {
+					window.open(file.openUrl, `stsearch_open_${file.id}`, 'noopener');
+				}
 			},
 			fileEditCallback: file => {
-				window.open(file.editUrl, `stsearch_edit_${file.id}`, 'noopener');
+				if (file.properties.embedded === 'true' && 'mantle_openRepositoryFile' in safeWindowParent) {
+					safeWindowParent.mantle_openRepositoryFile(file.path, 'EDIT');
+				} else {
+					window.open(file.editUrl, `stsearch_edit_${file.id}`, 'noopener');
+				}
 			}
 		});
 
@@ -194,9 +203,8 @@ export default class SearchContainerElement extends BaseElement {
 						title: formObj.title,
 						description: formObj.description,
 						properties: {
-							tags: formObj.tags.length > 0
-								? safeJSON.parse(formObj.tags, [])
-								: []
+							tags: formObj.tags.length > 0 ? safeJSON.parse(formObj.tags, []) : [],
+							embedded: formObj.embedded === 'true' ? 'true' : 'false'
 						}
 					};
 
@@ -218,7 +226,7 @@ export default class SearchContainerElement extends BaseElement {
 						override(file, metadata);
 						dispatchCustomEvent('stsearch-set-metadata', {
 							detail: file,
-							target: window.parent
+							target: safeWindowParent
 						});
 
 						config.formFilePath = '';

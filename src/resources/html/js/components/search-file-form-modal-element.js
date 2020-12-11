@@ -107,6 +107,22 @@ export default class SearchFileFormModalElement extends BaseElement {
 											<span class="custom-file-label"></span>
 										</div>
 									</div>
+									<div class="form-group">
+										<div class="form-check">
+											<input
+												id="${this.id}-form-embedded"
+												name="embedded"
+												type="checkbox"
+												class="form-check-input"
+												value="true"
+												.checked=${this.options.file.properties.embedded === 'true'}
+											>
+											<label
+												for="${this.id}-form-embedded"
+												class="form-check-label"
+											>${translate('search-file-form-modal.embedded.label')}</label>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -129,6 +145,15 @@ export default class SearchFileFormModalElement extends BaseElement {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
 					const form = new FormData(event.target);
+
+					// Ensure that the entry exists if the checkbox is not checked.
+					const checkboxes = event.target.querySelectorAll('[type=checkbox], [type=radio]');
+					checkboxes.forEach(checkbox => {
+						const name = checkbox.getAttribute('name');
+						if (!form.has(name)) {
+							form.set(name, '');
+						}
+					});
 
 					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);

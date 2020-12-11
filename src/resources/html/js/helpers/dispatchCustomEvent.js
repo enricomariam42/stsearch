@@ -8,12 +8,14 @@ export default (
 		target = window
 	} = {}
 ) => {
-	return target.dispatchEvent(
-		new CustomEvent(type, {
-			detail,
-			bubbles,
-			cancelable,
-			composed
-		})
-	);
+	return ('dispatchEvent' in target)
+		? target.dispatchEvent(
+			new CustomEvent(type, {
+				detail,
+				bubbles,
+				cancelable,
+				composed
+			})
+		)
+		: false;
 };
