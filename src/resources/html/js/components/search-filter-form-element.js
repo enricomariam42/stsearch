@@ -205,7 +205,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											name="allowed-extensions[]"
 											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot'))}
-											.value="${extensionMap.get('launch.jpivot')}"
+											.value=${extensionMap.get('launch.jpivot')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
@@ -222,7 +222,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											name="allowed-extensions[]"
 											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic'))}
-											.value="${extensionMap.get('launch.launch_new_stolap_analytic')}"
+											.value=${extensionMap.get('launch.launch_new_stolap_analytic')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
@@ -239,7 +239,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											name="allowed-extensions[]"
 											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-saiku-adhoc'))}
-											.value="${extensionMap.get('launch.launch-new-saiku-adhoc')}"
+											.value=${extensionMap.get('launch.launch-new-saiku-adhoc')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
@@ -256,7 +256,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											name="allowed-extensions[]"
 											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton'))}
-											.value="${extensionMap.get('launch.stdashboardButton')}"
+											.value=${extensionMap.get('launch.stdashboardButton')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
@@ -273,7 +273,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											name="allowed-extensions[]"
 											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stagile'))}
-											.value="${extensionMap.get('launch.launch-new-stagile')}"
+											.value=${extensionMap.get('launch.launch-new-stagile')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
@@ -290,7 +290,7 @@ export default class SearchFilterFormElement extends BaseElement {
 											name="allowed-extensions[]"
 											type="checkbox"
 											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_cde'))}
-											.value="${extensionMap.get('launch.launch_new_cde')}"
+											.value=${extensionMap.get('launch.launch_new_cde')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
@@ -306,7 +306,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										name="allowed-extensions[]"
 										type="checkbox"
 										.checked=${config._allowedExtensionsSet.has(extensionMap.get('other'))}
-										.value="${extensionMap.get('other')}"
+										.value=${extensionMap.get('other')}
 										@keyup=${this.formButtonCheckboxKeyupHandler}
 										autocomplete="off"
 									>
