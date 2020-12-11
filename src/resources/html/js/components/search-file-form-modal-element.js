@@ -98,7 +98,12 @@ export default class SearchFileFormModalElement extends BaseElement {
 											class="mb-2"
 										>${translate('search-file-form-modal.image.label')}</label>
 										<div class="custom-file">
-											<input id="${this.id}-form-thumbnail" name="thumbnail" type="file" class="custom-file-input">
+											<input
+												id="${this.id}-form-thumbnail"
+												name="thumbnail"
+												type="file"
+												class="custom-file-input"
+											>
 											<span class="custom-file-label"></span>
 										</div>
 									</div>
