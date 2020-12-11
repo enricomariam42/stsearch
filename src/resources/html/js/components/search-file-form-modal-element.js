@@ -42,58 +42,64 @@ export default class SearchFileFormModalElement extends BaseElement {
 								</div>
 								<div class="col-sm-12 col-lg-9">
 									<div class="form-group">
-										<label class="w-100">
-											<input
-												name="path"
-												type="text"
-												class="form-control"
-												.value=${this.options.file.path}
-												readonly
-											>
-										</label>
+										<input
+											id="${this.id}-form-path"
+											name="path"
+											type="text"
+											class="form-control"
+											.value=${this.options.file.path}
+											readonly
+										>
 									</div>
 									<div class="form-group">
-										<label class="w-100">
-											<div class="mb-2">${translate('search-file-form-modal.title.label')}</div>
-											<input
-												name="title"
-												type="text"
-												class="form-control"
-												maxlength="100"
-												.value=${this.options.file.title}
-											>
-										</label>
+										<label
+											for="${this.id}-form-title"
+											class="mb-2"
+										>${translate('search-file-form-modal.title.label')}</label>
+										<input
+											id="${this.id}-form-title"
+											name="title"
+											type="text"
+											class="form-control"
+											maxlength="100"
+											.value=${this.options.file.title}
+										>
 									</div>
 									<div class="form-group">
-										<label class="w-100">
-											<div class="mb-2">${translate('search-file-form-modal.tags.label')}</div>
-											<input
-												name="tags"
-												type="hidden"
-												class="form-control"
-												.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}
-											>
-										</label>
+										<label
+											for="${this.id}-form-tags"
+											class="mb-2"
+										>${translate('search-file-form-modal.tags.label')}</label>
+										<input
+											id="${this.id}-form-tags"
+											name="tags"
+											type="hidden"
+											class="form-control"
+											.value=${this.options.file.properties.tags ? safeJSON.stringify(this.options.file.properties.tags, '[]') : '[]'}
+										>
 									</div>
 									<div class="form-group">
-										<label class="w-100">
-											<div class="mb-2">${translate('search-file-form-modal.description.label')}</div>
-											<textarea
-												name="description"
-												type="text"
-												class="form-control"
-												rows="3"
-												maxlength="500"
-											>${this.options.file.description}</textarea>
-										</label>
+										<label
+											for="${this.id}-form-description"
+											class="mb-2"
+										>${translate('search-file-form-modal.description.label')}</label>
+										<textarea
+											id="${this.id}-form-description"
+											name="description"
+											type="text"
+											class="form-control"
+											rows="3"
+											maxlength="500"
+										>${this.options.file.description}</textarea>
 									</div>
 									<div class="form-group">
-										<div class="w-100">
-											<div class="mb-2">${translate('search-file-form-modal.image.label')}</div>
-											<div class="custom-file">
-												<input name="thumbnail" type="file" class="custom-file-input">
-												<span class="custom-file-label"></span>
-											</div>
+										<label
+											for="${this.id}-form-thumbnail"
+											class="mb-2"
+										>${translate('search-file-form-modal.image.label')}</label>
+										<div class="custom-file">
+											<input id="${this.id}-form-thumbnail" name="thumbnail" type="file" class="custom-file-input">
+											<span class="custom-file-label"></span>
 										</div>
 									</div>
 								</div>

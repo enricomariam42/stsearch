@@ -26,17 +26,16 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-grow-5 mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<label for="${this.id}-search-terms" class="btn btn-icon-primary input-group-text">
-										${this.faTemplate('fas-search')}
-									</label>
+									<label
+										for="${this.id}-search-terms"
+										class="btn btn-icon-primary input-group-text"
+									>${this.faTemplate('fas-search')}</label>
 									<button
 										type="button"
 										data-toggle="dropdown"
 										class="btn btn-icon-primary input-group-text dropdown-toggle-split"
 										title="${translate('search-filter-form.searchIn')}"
-									>
-										${this.faTemplate('fas-caret-down')}
-									</button>
+									>${this.faTemplate('fas-caret-down')}</button>
 									<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
 										<div class="dropdown-item p-0">
 											<div class="px-3 pb-1">${translate('search-filter-form.searchIn')}</div>
@@ -44,10 +43,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
 												<label
-													class="
-														btn btn-sm btn-link text-left px-3 w-100 rounded-0
-														${config.searchInTitle ? 'active' : ''}
-													"
+													class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.searchInTitle ? 'active' : ''}"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-title')}
 												>
 													<input
@@ -65,10 +61,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
 												<label
-													class="
-														btn btn-sm btn-link text-left px-3 w-100 rounded-0
-														${config.searchInDescription ? 'active' : ''}
-													"
+													class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.searchInDescription ? 'active' : ''}"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-description')}
 												>
 													<input
@@ -80,16 +73,13 @@ export default class SearchFilterFormElement extends BaseElement {
 														autocomplete="off"
 													>
 													${translate('search-filter-form.searchInDescription')}
-													</label>
+												</label>
 											</div>
 										</div>
 										<div class="dropdown-item p-0">
 											<div class="btn-group-toggle" data-toggle="buttons">
 												<label
-													class="
-														btn btn-sm btn-link text-left px-3 w-100 rounded-0
-														${config.searchInTags ? 'active' : ''}
-													"
+													class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.searchInTags ? 'active' : ''}"
 													@click=${this.formFieldChangeHandlerGenerator('search-in-tags')}
 												>
 													<input
@@ -101,7 +91,7 @@ export default class SearchFilterFormElement extends BaseElement {
 														autocomplete="off"
 													>
 													${translate('search-filter-form.searchInTags')}
-													</label>
+												</label>
 											</div>
 										</div>
 									</div>
@@ -135,10 +125,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<div class="dropdown-item p-0">
 										<div class="btn-group-toggle">
 											<label
-												class="
-													btn btn-sm btn-link text-left px-3 w-100 rounded-0
-													${config.filterGlobal ? 'active' : ''}
-												"
+												class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.filterGlobal ? 'active' : ''}"
 												@click=${this.formFieldChangeHandlerGenerator('filter-global')}
 											>
 												<input
@@ -156,10 +143,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<div class="dropdown-item p-0">
 										<div class="btn-group-toggle">
 											<label
-												class="
-													btn btn-sm btn-link text-left px-3 w-100 rounded-0
-													${config.filterHome ? 'active' : ''}
-												"
+												class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.filterHome ? 'active' : ''}"
 												@click=${this.formFieldChangeHandlerGenerator('filter-home')}
 											>
 												<input
@@ -177,10 +161,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<div class="dropdown-item p-0">
 										<div class="btn-group-toggle">
 											<label
-												class="
-													btn btn-sm btn-link text-left px-3 w-100 rounded-0
-													${config.filterFavorites ? 'active' : ''}
-												"
+												class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.filterFavorites ? 'active' : ''}"
 												@click=${this.formFieldChangeHandlerGenerator('filter-favorites')}
 											>
 												<input
@@ -198,10 +179,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<div class="dropdown-item p-0">
 										<div class="btn-group-toggle">
 											<label
-												class="
-													btn btn-sm btn-link text-left px-3 w-100 rounded-0
-													${config.filterRecents ? 'active' : ''}
-												"
+												class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.filterRecents ? 'active' : ''}"
 												@click=${this.formFieldChangeHandlerGenerator('filter-recents')}
 											>
 												<input
@@ -219,10 +197,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								</div>
 								${config._availableOverlaysSet.has('launch.jpivot') ? html`
 									<label
-										class="
-											btn btn-outline-tool-stpivot
-											${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot')) ? 'active' : ''}
-										"
+										class="btn btn-outline-tool-stpivot ${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStpivot')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
@@ -239,10 +214,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								` : ''}
 								${config._availableOverlaysSet.has('launch.launch_new_stolap_analytic') ? html`
 									<label
-										class="
-											btn btn-outline-tool-stolap
-											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic')) ? 'active' : ''}
-										"
+										class="btn btn-outline-tool-stolap ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStolap')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
@@ -259,10 +231,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								` : ''}
 								${config._availableOverlaysSet.has('launch.launch-new-saiku-adhoc') ? html`
 									<label
-										class="
-											btn btn-outline-tool-streport
-											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-saiku-adhoc')) ? 'active' : ''}
-										"
+										class="btn btn-outline-tool-streport ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-saiku-adhoc')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStreport')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
@@ -279,10 +248,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								` : ''}
 								${config._availableOverlaysSet.has('launch.stdashboardButton') ? html`
 									<label
-										class="
-											btn btn-outline-tool-stdashboard
-											${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton')) ? 'active' : ''}
-										"
+										class="btn btn-outline-tool-stdashboard ${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStdashboard')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
@@ -299,10 +265,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								` : ''}
 								${config._availableOverlaysSet.has('launch.launch-new-stagile') ? html`
 									<label
-										class="
-											btn btn-outline-tool-stagile
-											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stagile')) ? 'active' : ''}
-										"
+										class="btn btn-outline-tool-stagile ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stagile')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStagile')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
@@ -319,10 +282,7 @@ export default class SearchFilterFormElement extends BaseElement {
 								` : ''}
 								${config._availableOverlaysSet.has('launch.launch_new_cde') ? html`
 									<label
-										class="
-											btn btn-outline-tool-cde
-											${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_cde')) ? 'active' : ''}
-										"
+										class="btn btn-outline-tool-cde ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_cde')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsCde')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
@@ -334,14 +294,11 @@ export default class SearchFilterFormElement extends BaseElement {
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
-											${this.faTemplate('fac-tool-cde')}
+										${this.faTemplate('fac-tool-cde')}
 									</label>
 								` : ''}
 								<label
-									class="
-										btn btn-outline-tool-other
-										${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}
-									"
+									class="btn btn-outline-tool-other ${config._allowedExtensionsSet.has(extensionMap.get('other')) ? 'active' : ''}"
 									title="${translate('search-filter-form.extensionsOther')}"
 									@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 								>
@@ -353,7 +310,7 @@ export default class SearchFilterFormElement extends BaseElement {
 										@keyup=${this.formButtonCheckboxKeyupHandler}
 										autocomplete="off"
 									>
-										${this.faTemplate('fac-tool-other')}
+									${this.faTemplate('fac-tool-other')}
 								</label>
 							</div>
 							<div class="btn-group flex-fill mx-1 mb-1">
@@ -374,9 +331,10 @@ export default class SearchFilterFormElement extends BaseElement {
 						<div class="flex-fill mb-3 mb-md-0 mr-0 mr-md-2">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<label for="${this.id}-date-min" class="btn btn-icon-primary input-group-text">
-										${this.faTemplate('far-calendar-alt')}
-									</label>
+									<label
+										for="${this.id}-date-min"
+										class="btn btn-icon-primary input-group-text"
+									>${this.faTemplate('far-calendar-alt')}</label>
 								</div>
 								<input
 									id="${this.id}-date-min"
@@ -388,9 +346,10 @@ export default class SearchFilterFormElement extends BaseElement {
 									@change=${this.formFieldChangeHandlerGenerator('date-min')}
 								>
 								<div class="input-group-prepend input-group-append">
-									<label for="${this.id}-date-max" class="btn btn-icon-primary input-group-text">
-										${this.faTemplate('fas-long-arrow-alt-right')}
-									</label>
+									<label
+										for="${this.id}-date-max"
+										class="btn btn-icon-primary input-group-text"
+									>${this.faTemplate('fas-long-arrow-alt-right')}</label>
 								</div>
 								<input
 									id="${this.id}-date-max"
@@ -413,15 +372,11 @@ export default class SearchFilterFormElement extends BaseElement {
 									<option
 										value="created"
 										.selected=${config.dateProperty === 'created'}
-									>
-										${translate('search-filter-form.creationDate')}
-									</option>
+									>${translate('search-filter-form.creationDate')}</option>
 									<option
 										value="modified"
 										.selected=${config.dateProperty === 'modified'}
-									>
-										${translate('search-filter-form.modificationDate')}
-									</option>
+									>${translate('search-filter-form.modificationDate')}</option>
 								</select>
 							</div>
 						</div>
