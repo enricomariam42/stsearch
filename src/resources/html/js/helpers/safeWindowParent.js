@@ -1,7 +1,11 @@
 export default (() => {
 	try {
-		return window.parent;
+		if (typeof window.parent.location.href !== 'undefined') {
+			return window.parent;
+		}
 	} catch (error) {
-		return {};
+		// If an exception occurs, it is probably due the same-origin policy.
 	}
+
+	return {};
 })();
