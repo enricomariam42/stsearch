@@ -195,17 +195,17 @@ export default class SearchFilterFormElement extends BaseElement {
 										</div>
 									</div>
 								</div>
-								${config._availableOverlaysSet.has('launch.jpivot') ? html`
+								${config._availableOverlaysSet.has('launch.stpivot') ? html`
 									<label
-										class="btn btn-outline-tool-stpivot ${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot')) ? 'active' : ''}"
+										class="btn btn-outline-tool-stpivot ${config._allowedExtensionsSet.has(extensionMap.get('launch.stpivot')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStpivot')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.jpivot'))}
-											.value=${extensionMap.get('launch.jpivot')}
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.stpivot'))}
+											.value=${extensionMap.get('launch.stpivot')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
