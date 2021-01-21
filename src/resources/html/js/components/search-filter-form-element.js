@@ -212,17 +212,17 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-stpivot')}
 									</label>
 								` : ''}
-								${config._availableOverlaysSet.has('launch.launch_new_stolap_analytic') ? html`
+								${config._availableOverlaysSet.has('launch.launch_new_stolap_analytics') ? html`
 									<label
-										class="btn btn-outline-tool-stolap ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic')) ? 'active' : ''}"
+										class="btn btn-outline-tool-stolap ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytics')) ? 'active' : ''}"
 										title="${translate('search-filter-form.extensionsStolap')}"
 										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
 									>
 										<input
 											name="allowed-extensions[]"
 											type="checkbox"
-											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytic'))}
-											.value=${extensionMap.get('launch.launch_new_stolap_analytic')}
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch_new_stolap_analytics'))}
+											.value=${extensionMap.get('launch.launch_new_stolap_analytics')}
 											@keyup=${this.formButtonCheckboxKeyupHandler}
 											autocomplete="off"
 										>
