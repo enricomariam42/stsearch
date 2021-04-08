@@ -1,0 +1,27 @@
+{
+	admin off
+	auto_https off
+}
+
+http://*:8080 {
+	tls internal {
+		on_demand
+	}
+
+	redir /* https://{host}:8443{uri} 301
+}
+
+https://*:8443 {
+	tls internal {
+		on_demand
+	}
+
+	# Pentaho BI Server
+	reverse_proxy /* http://biserver:8080
+
+	# Webpack Dev Server
+	handle_path /pentaho/content/stsearch/resources/html/* {
+		reverse_proxy http://host.docker.internal:8081
+	}
+	reverse_proxy /sockjs-node/* http://host.docker.internal:8081
+}

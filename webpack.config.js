@@ -19,6 +19,7 @@ module.exports = (env, argv) => {
 	const dist = path.join(__dirname, `dist/${isProduction ? 'prod' : 'dev'}`);
 
 	return {
+		target: 'web',
 		mode: ifProduction('production', 'development'),
 		entry: path.join(__dirname, 'src/resources/html/js/app.js'),
 		output: {
@@ -138,8 +139,10 @@ module.exports = (env, argv) => {
 			contentBase: dist,
 			host: '0.0.0.0',
 			port: 8081,
+			public: 'localhost:8443',
+			historyApiFallback: false,
 			disableHostCheck: true,
-			clientLogLevel: 'info'
+			liveReload: true
 		}
 	};
 };
