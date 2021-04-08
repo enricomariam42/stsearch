@@ -108,20 +108,20 @@ export default class SearchFileFormModalElement extends BaseElement {
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="form-check">
-											<input
-												id="${this.id}-form-embedded"
-												name="embedded"
-												type="checkbox"
-												class="form-check-input"
-												value="true"
-												.checked=${this.options.file.properties.embedded === 'true'}
-											>
-											<label
-												for="${this.id}-form-embedded"
-												class="form-check-label"
-											>${translate('search-file-form-modal.embedded.label')}</label>
-										</div>
+										<label
+											for="${this.id}-form-embedded"
+											class="mb-2"
+										>${translate('search-file-form-modal.embedded.label')}</label>
+										<select
+											id="${this.id}-form-embedded"
+											name="embedded"
+											class="form-control"
+											.value=${this.options.file.properties.embedded}
+										>
+											<option value="auto" ?selected=${!/^(true)|(false)$/.test(this.options.file.properties.embedded)}>${translate('search-file-form-modal.embedded.auto')}</option>
+											<option value="true" ?selected=${this.options.file.properties.embedded === 'true'}>${translate('search-file-form-modal.embedded.true')}</option>
+											<option value="false" ?selected=${this.options.file.properties.embedded === 'false'}>${translate('search-file-form-modal.embedded.false')}</option>
+										</select>
 									</div>
 								</div>
 							</div>

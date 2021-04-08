@@ -10,6 +10,7 @@ import Noty from '../vendor/noty';
 import dispatchCustomEvent from '../helpers/dispatchCustomEvent';
 import getRepository from '../helpers/biserver/getRepository';
 import imageToDataURI from '../helpers/imageToDataURI';
+import isSmallScreen from '../helpers/isSmallScreen';
 import override from '../helpers/override';
 import safeJSON from '../helpers/safeJSON';
 import safeWindowParent from '../helpers/safeWindowParent';
@@ -179,14 +180,16 @@ export default class SearchContainerElement extends BaseElement {
 				trigger('submit', this.searchFilterFormElement.ref);
 			},
 			fileOpenCallback: file => {
-				if (file.properties.embedded === 'true' && 'mantle_openRepositoryFile' in safeWindowParent) {
+				const embedded = file.properties.embedded === 'true' || (file.properties.embedded !== 'false' && !isSmallScreen);
+				if (embedded && 'mantle_openRepositoryFile' in safeWindowParent) {
 					safeWindowParent.mantle_openRepositoryFile(file.path, 'RUN');
 				} else {
 					window.open(file.openUrl, `stsearch_open_${file.id}`, 'noopener');
 				}
 			},
 			fileEditCallback: file => {
-				if (file.properties.embedded === 'true' && 'mantle_openRepositoryFile' in safeWindowParent) {
+				const embedded = file.properties.embedded === 'true' || (file.properties.embedded !== 'false' && !isSmallScreen);
+				if (embedded && 'mantle_openRepositoryFile' in safeWindowParent) {
 					safeWindowParent.mantle_openRepositoryFile(file.path, 'EDIT');
 				} else {
 					window.open(file.editUrl, `stsearch_edit_${file.id}`, 'noopener');
@@ -204,7 +207,7 @@ export default class SearchContainerElement extends BaseElement {
 						description: formObj.description,
 						properties: {
 							tags: formObj.tags.length > 0 ? safeJSON.parse(formObj.tags, []) : [],
-							embedded: formObj.embedded === 'true' ? 'true' : 'false'
+							embedded: formObj.embedded
 						}
 					};
 

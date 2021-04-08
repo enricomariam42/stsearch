@@ -5,7 +5,12 @@
     "tags": { "label": "Tags", "placeholder": "Tags..." },
     "description": { "label": "Description", "placeholder": "Description..." },
     "image": { "label": "Image", "placeholder": "Image..." },
-    "embedded": { "label": "Embedded", "placeholder": "" },
+    "embedded": {
+      "label": "Opening behavior",
+      "auto": "Automatic",
+      "true": "Open in application",
+      "false": "Open in new tab"
+    },
     "cancel": "Cancel",
     "ok": "Ok"
   },

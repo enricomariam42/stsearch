@@ -5,7 +5,12 @@
     "tags": { "label": "Etiquetes", "placeholder": "Etiquetes..." },
     "description": { "label": "Descripció", "placeholder": "Descripció..." },
     "image": { "label": "Imatge", "placeholder": "Imatge..." },
-    "embedded": { "label": "Encastat", "placeholder": "" },
+    "embedded": {
+      "label": "Comportament d'obertura",
+      "auto": "Automàtic",
+      "true": "Obrir en aplicació",
+      "false": "Obrir en nova pestanya"
+    },
     "cancel": "Cancel·lar",
     "ok": "Ok"
   },
