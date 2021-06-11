@@ -10,7 +10,7 @@ export const svgPathData = 'M 248.33008 8.0117188 C 246.96832 7.9963029 245.6310
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faGlobeOutline };

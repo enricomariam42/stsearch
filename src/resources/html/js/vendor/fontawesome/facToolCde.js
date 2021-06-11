@@ -10,7 +10,7 @@ export const svgPathData = 'M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faToolCde };

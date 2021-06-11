@@ -1,1 +1,1 @@
-export default str => Number.parseInt(str, 10);
+export default (str) => Number.parseInt(str, 10);

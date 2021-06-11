@@ -15,10 +15,10 @@ export default class SearchFileElement extends BaseElement {
 	get template() {
 		let tagTemplates;
 		if (config.enableFileTags && Array.isArray(this.options.file.properties.tags)) {
-			tagTemplates = this.options.file.properties.tags.map(tag => {
+			tagTemplates = this.options.file.properties.tags.map((tag) => {
 				return new SearchFileTagElement(null, {
 					tag,
-					fileTagCallback: this.options.fileTagCallback
+					fileTagCallback: this.options.fileTagCallback,
 				}).template;
 			});
 		} else {
@@ -154,7 +154,7 @@ export default class SearchFileElement extends BaseElement {
 				if (typeof this.options.fileFormCallback === 'function') {
 					this.options.fileFormCallback(this.options.file);
 				}
-			}
+			},
 		};
 	}
 
@@ -167,7 +167,7 @@ export default class SearchFileElement extends BaseElement {
 				if (typeof this.options.fileGlobalCallback === 'function') {
 					this.options.fileGlobalCallback(this.options.file);
 				}
-			}
+			},
 		};
 	}
 
@@ -180,7 +180,7 @@ export default class SearchFileElement extends BaseElement {
 				if (typeof this.options.fileHomeCallback === 'function') {
 					this.options.fileHomeCallback(this.options.file);
 				}
-			}
+			},
 		};
 	}
 
@@ -193,7 +193,7 @@ export default class SearchFileElement extends BaseElement {
 				if (typeof this.options.fileFavoriteCallback === 'function') {
 					this.options.fileFavoriteCallback(this.options.file);
 				}
-			}
+			},
 		};
 	}
 
@@ -206,7 +206,7 @@ export default class SearchFileElement extends BaseElement {
 				if (typeof this.options.fileOpenCallback === 'function') {
 					this.options.fileOpenCallback(this.options.file);
 				}
-			}
+			},
 		};
 	}
 
@@ -219,7 +219,7 @@ export default class SearchFileElement extends BaseElement {
 				if (typeof this.options.fileEditCallback === 'function') {
 					this.options.fileEditCallback(this.options.file);
 				}
-			}
+			},
 		};
 	}
 }

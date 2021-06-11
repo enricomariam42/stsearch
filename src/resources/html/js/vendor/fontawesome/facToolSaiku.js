@@ -10,7 +10,7 @@ export const svgPathData = 'M 0.88307522,628.58636 C 18.10525,961.17651 300.3387
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faToolSaiku };

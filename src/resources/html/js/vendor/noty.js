@@ -7,7 +7,7 @@ export const NOTY_DEFAULTS = {
 	theme: 'bootstrap-v4',
 	timeout: 1000,
 	progressBar: true,
-	closeWith: ['click']
+	closeWith: ['click'],
 };
 
 export default {
@@ -15,5 +15,5 @@ export default {
 	success: (text, config) => new Noty({ ...NOTY_DEFAULTS, ...config, type: 'success', text }).show(),
 	error: (text, config) => new Noty({ ...NOTY_DEFAULTS, ...config, type: 'error', text }).show(),
 	warning: (text, config) => new Noty({ ...NOTY_DEFAULTS, ...config, type: 'warning', text }).show(),
-	info: (text, config) => new Noty({ ...NOTY_DEFAULTS, ...config, type: 'info', text }).show()
+	info: (text, config) => new Noty({ ...NOTY_DEFAULTS, ...config, type: 'info', text }).show(),
 };

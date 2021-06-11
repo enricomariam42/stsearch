@@ -12,13 +12,13 @@ const navigatorLocale = navigator.language.slice(0, 2);
 const availableLocales = { en, es, pt, pt_PT: pt, ca };
 
 registerTranslateConfig({
-	loader: locale => availableLocales[locale]
+	loader: (locale) => availableLocales[locale],
 });
 
 use(defaultLocale);
 document.documentElement.lang = defaultLocale;
 
-getLocale().then(biserverLocale => {
+getLocale().then((biserverLocale) => {
 	let locale = defaultLocale;
 	if (biserverLocale in availableLocales) {
 		locale = biserverLocale;

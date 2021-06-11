@@ -21,12 +21,12 @@ export default async (paths, { locale = getLocale(), depth = 1 } = {}) => {
 
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}plugin/lincebi/api/file-metadata/get?${searchParams.stringify(
-		{ locale, depth }
+		{ locale, depth },
 	)}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(paths)
+		body: JSON.stringify(paths),
 	});
 
 	if (response.status === 200) {
@@ -34,7 +34,7 @@ export default async (paths, { locale = getLocale(), depth = 1 } = {}) => {
 
 		// Transform "metadata" object.
 		(function transform(children) {
-			children.forEach(child => {
+			children.forEach((child) => {
 				if (child.isFolder) {
 					transform(child.children);
 				} else if (typeof child.properties.tags !== 'undefined') {

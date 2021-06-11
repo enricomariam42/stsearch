@@ -1,1 +1,1 @@
-export default str => str === 'true';
+export default (str) => str === 'true';

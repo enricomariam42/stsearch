@@ -12,10 +12,10 @@ export default class SearchFolderListElement extends BaseElement {
 	get template() {
 		let folderTemplates;
 		if (Array.isArray(this.options.folders)) {
-			folderTemplates = this.options.folders.map(options => {
+			folderTemplates = this.options.folders.map((options) => {
 				const folder = new SearchFolderElement(null, {
 					...options,
-					folderClickCallback: this.options.folderDownCallback
+					folderClickCallback: this.options.folderDownCallback,
 				});
 				return folder.template;
 			});
@@ -77,7 +77,7 @@ export default class SearchFolderListElement extends BaseElement {
 				if (typeof this.options.folderUpCallback === 'function') {
 					this.options.folderUpCallback(this.options.parent);
 				}
-			}
+			},
 		};
 	}
 }

@@ -25,23 +25,23 @@ module.exports = (env, argv) => {
 		output: {
 			filename: '[name].[contenthash].js',
 			path: `${dist}/resources/html`,
-			publicPath: ''
+			publicPath: '',
 		},
 		devtool: ifProduction(false, 'eval-source-map'),
 		optimization: {
 			minimizer: [
 				new TerserPlugin({
 					parallel: true,
-					extractComments: false
-				})
-			]
+					extractComments: false,
+				}),
+			],
 		},
 		plugins: [
 			new CleanWebpackPlugin({
-				cleanOnceBeforeBuildPatterns: [dist]
+				cleanOnceBeforeBuildPatterns: [dist],
 			}),
 			new webpack.EnvironmentPlugin({
-				VERSION: pkg.version
+				VERSION: pkg.version,
 			}),
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
@@ -56,14 +56,14 @@ module.exports = (env, argv) => {
 						collapseInlineTagWhitespace: true,
 						collapseBooleanAttributes: false,
 						keepClosingSlash: true,
-						maxLineLength: 512
+						maxLineLength: 512,
 					},
-					false
-				)
+					false,
+				),
 			}),
 			new MiniCssExtractPlugin({
 				filename: '[name].[contenthash].css',
-				chunkFilename: '[id].[contenthash].css'
+				chunkFilename: '[id].[contenthash].css',
 			}),
 			new CopyWebpackPlugin({
 				patterns: [
@@ -71,19 +71,19 @@ module.exports = (env, argv) => {
 					{ from: 'src/plugin.spring.xml', to: dist },
 					{ from: 'src/resources/html/presets.json', to: `${dist}/resources/html/` },
 					{ from: 'src/resources/messages', to: `${dist}/resources/messages/` },
-					{ from: 'src/resources/images', to: `${dist}/resources/images/` }
-				].map(pattern => {
+					{ from: 'src/resources/images', to: `${dist}/resources/images/` },
+				].map((pattern) => {
 					pattern.globOptions = { ignore: ['.gitkeep'] };
 					return pattern;
-				})
-			})
+				}),
+			}),
 		],
 		module: {
 			rules: [
 				{
 					test: /\.js$/i,
 					exclude: /node_modules/,
-					use: { loader: 'babel-loader' }
+					use: { loader: 'babel-loader' },
 				},
 				{
 					test: /\.(css|scss)$/i,
@@ -98,42 +98,42 @@ module.exports = (env, argv) => {
 										autoprefixer(),
 										...ifProduction(
 											[cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })],
-											[]
-										)
-									]
-								}
-							}
+											[],
+										),
+									],
+								},
+							},
 						},
 						{
 							loader: 'sass-loader',
 							options: {
 								implementation: sass,
 								sassOptions: { fiber: Fiber },
-								additionalData: `$env: ${argv.mode};`
-							}
-						}
-					]
+								additionalData: `$env: ${argv.mode};`,
+							},
+						},
+					],
 				},
 				{
 					test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
 					use: {
 						loader: 'file-loader',
-						options: { name: './fonts/[name].[contenthash].[ext]' }
-					}
+						options: { name: './fonts/[name].[contenthash].[ext]' },
+					},
 				},
 				{
 					test: /\.(png|gif|jpg)$/i,
 					use: {
 						loader: 'file-loader',
-						options: { name: '../images/[name].[contenthash].[ext]' }
-					}
+						options: { name: '../images/[name].[contenthash].[ext]' },
+					},
 				},
 				{
 					test: /\.svg$/i,
 					exclude: /-webfont\.svg$/i,
-					use: ['svg-url-loader', 'svgo-loader']
-				}
-			]
+					use: ['svg-url-loader', 'svgo-loader'],
+				},
+			],
 		},
 		devServer: {
 			contentBase: dist,
@@ -142,7 +142,7 @@ module.exports = (env, argv) => {
 			public: 'localhost:8443',
 			historyApiFallback: false,
 			disableHostCheck: true,
-			liveReload: true
-		}
+			liveReload: true,
+		},
 	};
 };

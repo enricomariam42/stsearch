@@ -51,7 +51,7 @@ export default class SearchContainerElement extends BaseElement {
 
 		if (config.enableFilters) {
 			this.searchFilterFormElement = new SearchFilterFormElement(null, {
-				formSubmitCallback: formObj => {
+				formSubmitCallback: (formObj) => {
 					override(config, {
 						searchTerms: formObj['search-terms'],
 						searchInTitle: strToBool(formObj['search-in-title']),
@@ -64,7 +64,7 @@ export default class SearchContainerElement extends BaseElement {
 						allowedExtensions: formObj['allowed-extensions'],
 						dateMin: formObj['date-min'],
 						dateMax: formObj['date-max'],
-						dateProperty: formObj['date-property']
+						dateProperty: formObj['date-property'],
 					});
 					this.options.repository.applyFilters();
 					this.pageNumber = 0;
@@ -81,7 +81,7 @@ export default class SearchContainerElement extends BaseElement {
 				},
 				formFieldChangeCallback: debounce(() => {
 					trigger('submit', this.searchFilterFormElement.ref);
-				}, 200)
+				}, 200),
 			});
 		} else {
 			this.searchFilterFormElement = new EmptyElement();
@@ -96,10 +96,10 @@ export default class SearchContainerElement extends BaseElement {
 					this.options.repository.current = this.options.repository.parent;
 					this.render();
 				},
-				folderDownCallback: folder => {
+				folderDownCallback: (folder) => {
 					this.options.repository.current = folder;
 					this.render();
-				}
+				},
 			});
 		} else {
 			this.searchFolderListElement = new EmptyElement();
@@ -109,16 +109,16 @@ export default class SearchContainerElement extends BaseElement {
 		const filesEnd = filesStart + config.pageSize;
 		this.searchFileListElement = new SearchFileListElement(null, {
 			files: this.options.repository.files.slice(filesStart, filesEnd),
-			fileFormCallback: fileData => {
+			fileFormCallback: (fileData) => {
 				if (!fileData.isReadonly) {
 					config.formFilePath = fileData.path;
 					this.render();
 				}
 			},
-			fileGlobalCallback: async fileData => {
+			fileGlobalCallback: async (fileData) => {
 				const metadata = {
 					path: fileData.path,
-					isGlobal: !fileData.isGlobal
+					isGlobal: !fileData.isGlobal,
 				};
 
 				const result = await setMetadata(metadata);
@@ -127,7 +127,7 @@ export default class SearchContainerElement extends BaseElement {
 					override(file, metadata);
 					dispatchCustomEvent('stsearch-set-metadata', {
 						detail: file,
-						target: safeWindowParent
+						target: safeWindowParent,
 					});
 
 					this.render();
@@ -135,10 +135,10 @@ export default class SearchContainerElement extends BaseElement {
 					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
-			fileHomeCallback: async fileData => {
+			fileHomeCallback: async (fileData) => {
 				const metadata = {
 					path: fileData.path,
-					isHome: !fileData.isHome
+					isHome: !fileData.isHome,
 				};
 
 				const result = await setMetadata(metadata);
@@ -147,7 +147,7 @@ export default class SearchContainerElement extends BaseElement {
 					override(file, metadata);
 					dispatchCustomEvent('stsearch-set-metadata', {
 						detail: file,
-						target: safeWindowParent
+						target: safeWindowParent,
 					});
 
 					this.render();
@@ -155,10 +155,10 @@ export default class SearchContainerElement extends BaseElement {
 					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
-			fileFavoriteCallback: async fileData => {
+			fileFavoriteCallback: async (fileData) => {
 				const metadata = {
 					path: fileData.path,
-					isFavorite: !fileData.isFavorite
+					isFavorite: !fileData.isFavorite,
 				};
 
 				const result = await setMetadata(metadata);
@@ -167,7 +167,7 @@ export default class SearchContainerElement extends BaseElement {
 					override(file, metadata);
 					dispatchCustomEvent('stsearch-set-metadata', {
 						detail: file,
-						target: safeWindowParent
+						target: safeWindowParent,
 					});
 
 					this.render();
@@ -175,11 +175,11 @@ export default class SearchContainerElement extends BaseElement {
 					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
-			fileTagCallback: tag => {
+			fileTagCallback: (tag) => {
 				this.searchFilterFormElement.ref['search-terms'].value = tag.value;
 				trigger('submit', this.searchFilterFormElement.ref);
 			},
-			fileOpenCallback: file => {
+			fileOpenCallback: (file) => {
 				const embedded = file.properties.embedded === 'true' || (file.properties.embedded !== 'false' && !isSmallScreen);
 				if (embedded && 'mantle_openRepositoryFile' in safeWindowParent) {
 					safeWindowParent.mantle_openRepositoryFile(file.path, 'RUN');
@@ -187,28 +187,28 @@ export default class SearchContainerElement extends BaseElement {
 					window.open(file.openUrl, `stsearch_open_${file.id}`, 'noopener');
 				}
 			},
-			fileEditCallback: file => {
+			fileEditCallback: (file) => {
 				const embedded = file.properties.embedded === 'true' || (file.properties.embedded !== 'false' && !isSmallScreen);
 				if (embedded && 'mantle_openRepositoryFile' in safeWindowParent) {
 					safeWindowParent.mantle_openRepositoryFile(file.path, 'EDIT');
 				} else {
 					window.open(file.editUrl, `stsearch_edit_${file.id}`, 'noopener');
 				}
-			}
+			},
 		});
 
 		if (formFile) {
 			this.searchFileFormModalElement = new SearchFileFormModalElement(null, {
 				file: formFile,
-				formSubmitCallback: async formObj => {
+				formSubmitCallback: async (formObj) => {
 					const metadata = {
 						path: formObj.path,
 						title: formObj.title,
 						description: formObj.description,
 						properties: {
 							tags: formObj.tags.length > 0 ? safeJSON.parse(formObj.tags, []) : [],
-							embedded: formObj.embedded
-						}
+							embedded: formObj.embedded,
+						},
 					};
 
 					// Thumbnail must be converted to a data URI.
@@ -229,7 +229,7 @@ export default class SearchContainerElement extends BaseElement {
 						override(file, metadata);
 						dispatchCustomEvent('stsearch-set-metadata', {
 							detail: file,
-							target: safeWindowParent
+							target: safeWindowParent,
 						});
 
 						config.formFilePath = '';
@@ -239,7 +239,7 @@ export default class SearchContainerElement extends BaseElement {
 					} else {
 						Noty.error(get('notifications.errorSavingData'));
 					}
-				}
+				},
 			});
 		} else {
 			if (this.searchFileFormModalElement instanceof SearchFileFormModalElement) {
@@ -253,10 +253,10 @@ export default class SearchContainerElement extends BaseElement {
 			this.searchPaginationElement = new SearchPaginationElement(null, {
 				pageNumber: this.pageNumber,
 				pageTotal,
-				pageChangeCallback: pageNumber => {
+				pageChangeCallback: (pageNumber) => {
 					this.pageNumber = clamp(pageNumber, 0, pageTotal);
 					this.render();
-				}
+				},
 			});
 		} else {
 			this.searchPaginationElement = new EmptyElement();

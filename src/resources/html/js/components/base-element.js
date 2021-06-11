@@ -18,7 +18,7 @@ export default class BaseElement {
 			enumerable: true,
 			configurable: false,
 			writable: false,
-			value: id
+			value: id,
 		});
 
 		return this.id;
@@ -36,7 +36,7 @@ export default class BaseElement {
 				enumerable: true,
 				configurable: false,
 				writable: false,
-				value: ref
+				value: ref,
 			});
 
 			return this.ref;
@@ -53,7 +53,7 @@ export default class BaseElement {
 				enumerable: true,
 				configurable: false,
 				writable: false,
-				value: $ref
+				value: $ref,
 			});
 
 			return this.$ref;
@@ -64,7 +64,7 @@ export default class BaseElement {
 
 	faTemplate(icon, classes = '') {
 		const xlinkNamespace = 'http://www.w3.org/1999/xlink';
-		const xlinkDirective = directive(value => part => {
+		const xlinkDirective = directive((value) => (part) => {
 			part.committer.element.setAttributeNS(xlinkNamespace, part.committer.name, value);
 		});
 

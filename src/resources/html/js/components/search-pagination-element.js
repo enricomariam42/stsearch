@@ -116,7 +116,7 @@ export default class SearchPaginationElement extends BaseElement {
 				if (typeof this.options.pageChangeCallback === 'function') {
 					this.options.pageChangeCallback(pageNumber);
 				}
-			}
+			},
 		};
 	}
 }

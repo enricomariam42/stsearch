@@ -10,7 +10,7 @@ export const svgPathData = 'm 166.01787,1200 c 29.89286,-48.16 58.82143,-97.0133
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faToolStagile };

@@ -9,7 +9,7 @@ const getPlugins = async () => {
 	const endpoint = `${contextPath}api/plugin-manager/ids`;
 	const response = await fetch(endpoint, {
 		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
+		headers: { 'Content-Type': 'text/plain' },
 	});
 
 	const plugins = new Set();
@@ -19,7 +19,7 @@ const getPlugins = async () => {
 
 		try {
 			const json = JSON.parse(content);
-			json.strings.forEach(p => {
+			json.strings.forEach((p) => {
 				plugins.add(p);
 			});
 		} catch (error) {

@@ -10,7 +10,7 @@ export const svgPathData = 'M 546.37009,221.45665 C 461.01885,149.60047 306.027,
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faHomeOutline };

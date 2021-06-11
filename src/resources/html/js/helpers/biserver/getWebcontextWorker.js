@@ -17,14 +17,14 @@ const getWebcontextWorker = async () => {
 	const endpoint = '../webcontext.js?useFullyQualifiedUrl=false';
 	const response = await fetch(endpoint, {
 		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
+		headers: { 'Content-Type': 'text/plain' },
 	});
 
 	if (response.status === 200) {
 		const webcontextBody = await response.text();
 		const webcontextBlob = new Blob(
 			[webcontextHeader, webcontextBody, webcontextFooter],
-			{ type: 'text/javascript' }
+			{ type: 'text/javascript' },
 		);
 		return new Worker(window.URL.createObjectURL(webcontextBlob));
 	}

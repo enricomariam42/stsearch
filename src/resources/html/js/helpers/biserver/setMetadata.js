@@ -18,7 +18,7 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 	// Simulate action if mocked.
 	if (isMocked) {
 		Noty.warning(get('notifications.dataWillNotPersistInDemoEnv'));
-		return metadata.map(entry => ({ fullPath: entry.path }));
+		return metadata.map((entry) => ({ fullPath: entry.path }));
 	}
 
 	// If "locale" is a promise, resolve it.
@@ -49,12 +49,12 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}plugin/lincebi/api/file-metadata/set?${searchParams.stringify(
-		{ locale }
+		{ locale },
 	)}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(metadata)
+		body: JSON.stringify(metadata),
 	});
 
 	if (response.status === 200) {

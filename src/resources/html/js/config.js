@@ -21,7 +21,7 @@ class Config {
 	async loadConfig() {
 		const response = await fetch('./presets.json', {
 			method: 'GET',
-			headers: { 'Content-Type': 'application/json' }
+			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.status === 200) {
@@ -39,7 +39,7 @@ class Config {
 			// If "allowed-extensions" is not defined, define it according to the available overlays.
 			if (typeof this._initialConfig['allowed-extensions'] === 'undefined') {
 				const allowedExtensions = [extensionMap.get('other')];
-				this._initialConfig['available-overlays'].forEach(overlay => {
+				this._initialConfig['available-overlays'].forEach((overlay) => {
 					if (extensionMap.has(overlay)) {
 						allowedExtensions.push(extensionMap.get(overlay));
 					}

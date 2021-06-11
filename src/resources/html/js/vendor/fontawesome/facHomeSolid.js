@@ -10,7 +10,7 @@ export const svgPathData = 'm 287.96012,0.1737895 c 0,0 -171.29213,146.7819405 -
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faHomeSolid };

@@ -9,7 +9,7 @@ const getOverlays = async () => {
 	const endpoint = `${contextPath}api/plugin-manager/overlays`;
 	const response = await fetch(endpoint, {
 		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
+		headers: { 'Content-Type': 'text/plain' },
 	});
 
 	const overlays = new Map();
@@ -20,7 +20,7 @@ const getOverlays = async () => {
 		try {
 			const json = JSON.parse(content);
 			const xmlParser = new DOMParser();
-			json.overlay.forEach(overlay => {
+			json.overlay.forEach((overlay) => {
 				const xml = xmlParser.parseFromString(overlay.source, 'text/xml');
 				const $commands = xml.querySelectorAll('[command]');
 				for (const $command of $commands) {

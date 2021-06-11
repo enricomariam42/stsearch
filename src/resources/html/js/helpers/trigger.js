@@ -3,6 +3,6 @@ export default (type, ref, init = {}) => ref.dispatchEvent(
 		bubbles: true,
 		cancelable: true,
 		composed: true,
-		...init
-	})
+		...init,
+	}),
 );

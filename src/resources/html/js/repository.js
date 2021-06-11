@@ -25,7 +25,7 @@ export default class Repository {
 
 	set current(current) {
 		const files = [];
-		const folders = current.children.filter(node => node.isFolder);
+		const folders = current.children.filter((node) => node.isFolder);
 
 		const stack = [current];
 
@@ -107,7 +107,7 @@ export default class Repository {
 			) || (
 				// If search in tags is enabled, the search terms must appear in the tags.
 				config.searchInTags && file.properties.tags
-				&& file.properties.tags.some(tag => config._searchTermsExactRegex.test(tag.value))
+				&& file.properties.tags.some((tag) => config._searchTermsExactRegex.test(tag.value))
 			)
 		) && (
 			// DATE RANGES
@@ -133,8 +133,8 @@ export default class Repository {
 
 	orderFiles(files) {
 		return orderBy(files, [
-			file => file.title,
-			file => file.name
+			(file) => file.title,
+			(file) => file.name,
 		]);
 	}
 

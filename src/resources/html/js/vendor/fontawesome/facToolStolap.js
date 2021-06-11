@@ -10,7 +10,7 @@ export const svgPathData = 'm 487.50242,502.47866 c 517.83058,-268.67128 0,0 517
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faToolStolap };

@@ -28,15 +28,15 @@ zipStream.on('close', () => {
 		`-DartifactId=${pkg.name}`,
 		`-Dversion=${isProduction ? pkg.version : `${pkg.version}-SNAPSHOT`}`,
 		`-DrepositoryId=${isProduction ? pkg.maven.repository.release.id : pkg.maven.repository.snapshot.id}`,
-		`-Durl=${isProduction ? pkg.maven.repository.release.url : pkg.maven.repository.snapshot.url}`
+		`-Durl=${isProduction ? pkg.maven.repository.release.url : pkg.maven.repository.snapshot.url}`,
 	]);
 
-	mvn.stdout.on('data', data => {
+	mvn.stdout.on('data', (data) => {
 		/* eslint-disable-next-line no-console */
 		console.log(data.toString());
 	});
 
-	mvn.stderr.on('data', data => {
+	mvn.stderr.on('data', (data) => {
 		console.error(data.toString());
 	});
 
@@ -45,11 +45,11 @@ zipStream.on('close', () => {
 	});
 });
 
-zipArchiver.on('error', error => {
+zipArchiver.on('error', (error) => {
 	throw error;
 });
 
-zipArchiver.on('warning', error => {
+zipArchiver.on('warning', (error) => {
 	if (error.code !== 'ENOENT') {
 		throw error;
 	}

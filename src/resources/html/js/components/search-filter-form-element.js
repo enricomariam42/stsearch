@@ -391,14 +391,14 @@ export default class SearchFilterFormElement extends BaseElement {
 			capture: true,
 			passive: false,
 			once: false,
-			handleEvent: event => {
+			handleEvent: (event) => {
 				event.preventDefault();
 				if (typeof this.options.formSubmitCallback === 'function') {
 					const form = new FormData(event.target);
 
 					// Ensure that the entry exists if the checkbox is not checked.
 					const checkboxes = event.target.querySelectorAll('[type=checkbox], [type=radio]');
-					checkboxes.forEach(checkbox => {
+					checkboxes.forEach((checkbox) => {
 						const name = checkbox.getAttribute('name');
 						if (!form.has(name)) {
 							form.set(name, '');
@@ -408,7 +408,7 @@ export default class SearchFilterFormElement extends BaseElement {
 					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);
 				}
-			}
+			},
 		};
 	}
 
@@ -421,7 +421,7 @@ export default class SearchFilterFormElement extends BaseElement {
 				if (typeof this.options.formRefreshCallback === 'function') {
 					this.options.formRefreshCallback();
 				}
-			}
+			},
 		};
 	}
 
@@ -430,11 +430,11 @@ export default class SearchFilterFormElement extends BaseElement {
 			capture: true,
 			passive: false,
 			once: false,
-			handleEvent: event => {
+			handleEvent: (event) => {
 				if (typeof this.options.formFieldChangeCallback === 'function') {
 					this.options.formFieldChangeCallback(field, event);
 				}
-			}
+			},
 		};
 	}
 

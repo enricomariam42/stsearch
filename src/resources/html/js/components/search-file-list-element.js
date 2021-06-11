@@ -13,7 +13,7 @@ export default class SearchFileListElement extends BaseElement {
 	get template() {
 		let fileTemplates;
 		if (Array.isArray(this.options.files)) {
-			fileTemplates = this.options.files.map(file => {
+			fileTemplates = this.options.files.map((file) => {
 				return new SearchFileElement(null, {
 					file,
 					fileFormCallback: this.options.fileFormCallback,
@@ -22,7 +22,7 @@ export default class SearchFileListElement extends BaseElement {
 					fileFavoriteCallback: this.options.fileFavoriteCallback,
 					fileTagCallback: this.options.fileTagCallback,
 					fileOpenCallback: this.options.fileOpenCallback,
-					fileEditCallback: this.options.fileEditCallback
+					fileEditCallback: this.options.fileEditCallback,
 				}).template;
 			});
 		} else {

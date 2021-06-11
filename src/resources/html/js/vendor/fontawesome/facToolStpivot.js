@@ -10,7 +10,7 @@ export const svgPathData = 'm 487.97701,502.47869 121.014,-62.90126 -276.048,-14
 export const definition = {
 	prefix,
 	iconName,
-	icon: [width, height, ligatures, unicode, svgPathData]
+	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
 export { definition as faToolStpivot };

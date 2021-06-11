@@ -37,7 +37,7 @@ export default class SearchFolderElement extends BaseElement {
 
 					this.options.folderClickCallback(this.options);
 				}
-			}
+			},
 		};
 	}
 }

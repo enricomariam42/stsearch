@@ -51,10 +51,10 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStdashboard'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStolap'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStpivot'),
-		import(/* webpackMode: "eager" */ './fontawesome/facToolStreport')
+		import(/* webpackMode: "eager" */ './fontawesome/facToolStreport'),
 	]);
 
-	icons.forEach(icon => {
+	icons.forEach((icon) => {
 		const symbol = document.createElement('i');
 		symbol.dataset.faSymbol = `${icon.prefix}-${icon.iconName}`;
 		symbol.classList.add(icon.prefix, `fa-${icon.iconName}`, 'fa-fw');

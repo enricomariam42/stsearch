@@ -30,7 +30,7 @@ export default class SearchFileTagElement extends BaseElement {
 				if (typeof this.options.fileTagCallback === 'function') {
 					this.options.fileTagCallback(this.options.tag);
 				}
-			}
+			},
 		};
 	}
 }
