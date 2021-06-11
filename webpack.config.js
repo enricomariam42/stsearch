@@ -4,7 +4,6 @@ const autoprefixer = require('autoprefixer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const cssnano = require('cssnano');
-const Fiber = require('fibers');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const sass = require('sass');
@@ -108,7 +107,6 @@ module.exports = (env, argv) => {
 							loader: 'sass-loader',
 							options: {
 								implementation: sass,
-								sassOptions: { fiber: Fiber },
 								additionalData: `$env: ${argv.mode};`,
 							},
 						},
