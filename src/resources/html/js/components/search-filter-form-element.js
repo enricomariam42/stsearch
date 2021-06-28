@@ -245,6 +245,40 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-stpanels')}
 									</label>
 								` : ''}
+								${config._availableOverlaysSet.has('launch.launch-datafor') ? html`
+									<label
+										class="btn btn-outline-tool-datafor ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-datafor')) ? 'active' : ''}"
+										title="${translate('search-filter-form.extensionsDatafor')}"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-datafor'))}
+											.value=${extensionMap.get('launch.launch-datafor')}
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
+										${this.faTemplate('fac-tool-datafor')}
+									</label>
+								` : ''}
+								${config._availableOverlaysSet.has('launch.SaikuAnalytics') ? html`
+									<label
+										class="btn btn-outline-tool-saiku ${config._allowedExtensionsSet.has(extensionMap.get('launch.SaikuAnalytics')) ? 'active' : ''}"
+										title="${translate('search-filter-form.extensionsSaiku')}"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.SaikuAnalytics'))}
+											.value=${extensionMap.get('launch.SaikuAnalytics')}
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
+										${this.faTemplate('fac-tool-saiku')}
+									</label>
+								` : ''}
 								${config._availableOverlaysSet.has('launch.stdashboardButton') ? html`
 									<label
 										class="btn btn-outline-tool-stdashboard ${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton')) ? 'active' : ''}"

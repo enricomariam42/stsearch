@@ -53,6 +53,8 @@
     "modificationDate": "Modification date",
     "extensionsOther": "Documents and Report Designer files",
     "extensionsCde": "Dashboards",
+    "extensionsDatafor": "Datafor Visualizer files",
+    "extensionsSaiku": "Saiku Analytics files",
     "extensionsStpivot": "STPivot files",
     "extensionsStreport": "STReport files",
     "extensionsStpanels": "STPanels files",
