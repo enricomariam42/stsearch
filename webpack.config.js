@@ -134,12 +134,21 @@ module.exports = (env, argv) => {
 			],
 		},
 		devServer: {
-			contentBase: dist,
 			host: '0.0.0.0',
 			port: 8081,
-			public: 'localhost:8443',
+			allowedHosts: 'all',
+			static: {
+				directory: dist,
+				publicPath: '/',
+			},
+			client: {
+				webSocketURL: {
+					protocol: 'wss',
+					hostname: '0.0.0.0',
+					port: 8443,
+				},
+			},
 			historyApiFallback: false,
-			disableHostCheck: true,
 			liveReload: true,
 		},
 	};
