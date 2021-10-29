@@ -114,17 +114,11 @@ module.exports = (env, argv) => {
 				},
 				{
 					test: /(\.(ttf|otf|eot|woff|woff2)|-webfont\.svg)$/i,
-					use: {
-						loader: 'file-loader',
-						options: { name: './fonts/[name].[contenthash].[ext]' },
-					},
+					type: 'asset/resource',
 				},
 				{
 					test: /\.(png|gif|jpg)$/i,
-					use: {
-						loader: 'file-loader',
-						options: { name: '../images/[name].[contenthash].[ext]' },
-					},
+					type: 'asset/resource',
 				},
 				{
 					test: /\.svg$/i,
