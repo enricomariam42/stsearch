@@ -246,6 +246,23 @@ export default class SearchFilterFormElement extends BaseElement {
 										${this.faTemplate('fac-tool-streport')}
 									</label>
 								` : ''}
+								${config._availableOverlaysSet.has('launch.launch-new-stpanels') ? html`
+									<label
+										class="btn btn-outline-tool-stpanels ${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stpanels')) ? 'active' : ''}"
+										title="${translate('search-filter-form.extensionsStpanels')}"
+										@click=${this.formFieldChangeHandlerGenerator('allowed-extensions')}
+									>
+										<input
+											name="allowed-extensions[]"
+											type="checkbox"
+											.checked=${config._allowedExtensionsSet.has(extensionMap.get('launch.launch-new-stpanels'))}
+											.value=${extensionMap.get('launch.launch-new-stpanels')}
+											@keyup=${this.formButtonCheckboxKeyupHandler}
+											autocomplete="off"
+										>
+										${this.faTemplate('fac-tool-stpanels')}
+									</label>
+								` : ''}
 								${config._availableOverlaysSet.has('launch.stdashboardButton') ? html`
 									<label
 										class="btn btn-outline-tool-stdashboard ${config._allowedExtensionsSet.has(extensionMap.get('launch.stdashboardButton')) ? 'active' : ''}"

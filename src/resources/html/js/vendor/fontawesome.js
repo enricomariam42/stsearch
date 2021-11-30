@@ -37,6 +37,7 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 		import(/* webpackMode: "eager" */ './fontawesome/facFileSaiku'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileSta'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileStd'),
+		import(/* webpackMode: "eager" */ './fontawesome/facFileStp'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileStolap'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileUrl'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileWcdf'),
@@ -50,6 +51,7 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStagile'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStdashboard'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStolap'),
+		import(/* webpackMode: "eager" */ './fontawesome/facToolStpanels'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStpivot'),
 		import(/* webpackMode: "eager" */ './fontawesome/facToolStreport'),
 	]);
