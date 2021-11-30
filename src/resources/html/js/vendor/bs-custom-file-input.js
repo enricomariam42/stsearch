@@ -1,1 +1,3 @@
-export { default } from 'bs-custom-file-input';
+import bsCustomFileInput from 'bs-custom-file-input';
+
+export default bsCustomFileInput;
