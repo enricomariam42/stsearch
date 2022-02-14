@@ -1,6 +1,7 @@
 @import 'utils/variables';
 
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-v4-rtl/scss/_rtl.scss';
 
 @import 'utils/em';
 @import 'utils/fonts';
@@ -16,6 +17,7 @@
 body {
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
+	text-align: inherit;
 	background-color: transparent;
 }
 

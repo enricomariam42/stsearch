@@ -1,0 +1,71 @@
+{
+  "__meta__": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
+  "search-file-form-modal": {
+    "path": {
+      "label": "مسار",
+      "placeholder": "مسار..."
+    },
+    "title": {
+      "label": "عنوان",
+      "placeholder": "عنوان..."
+    },
+    "tags": {
+      "label": "العلامات",
+      "placeholder": "العلامات..."
+    },
+    "description": {
+      "label": "وصف",
+      "placeholder": "وصف..."
+    },
+    "image": {
+      "label": "صورة",
+      "placeholder": "صورة..."
+    },
+    "embedded": {
+      "label": "سلوك الفتح",
+      "auto": "تلقائي",
+      "true": "مفتوح في التطبيق",
+      "false": "فتح في علامة تبويب جديدة"
+    },
+    "cancel": "إلغاء الأمر",
+    "ok": "موافق"
+  },
+  "search-file-list": {
+    "noResultsFound": "لم يتم العثور على نتائج"
+  },
+  "search-filter-form": {
+    "search": {
+      "label": "بحث",
+      "placeholder": "بحث..."
+    },
+    "searchIn": "البحث في:",
+    "searchInTitle": "عنوان",
+    "searchInDescription": "وصف",
+    "searchInTags": "العلامات",
+    "mustBeIn": "يجب أن يكون في:",
+    "mustBeInGlobal": "عالمي",
+    "mustBeInHome": "وطن",
+    "mustBeInFavorites": "المفضله",
+    "mustBeInRecents": "الأحدث",
+    "creationDate": "تاريخ الإنشاء",
+    "modificationDate": "تاريخ التعديل",
+    "extensionsOther": "ملفات مصمم المستندات والتقارير",
+    "extensionsCde": "لوحات",
+    "extensionsStpivot": "STPivot ملفات",
+    "extensionsStreport": "STReport ملفات",
+    "extensionsStpanels": "STPanels ملفات",
+    "extensionsStdashboard": "ملفات ال STDashboard",
+    "extensionsStagile": "STAgile ملفات",
+    "extensionsStolap": "STOlap ملفات",
+    "refresh": "تحديث"
+  },
+  "notifications": {
+    "errorLoadingData": "خطأ في تحميل البيانات",
+    "errorSavingData": "خطأ حفظ البيانات",
+    "invalidImage": "صورة غير صالحة",
+    "dataWillNotPersistInDemoEnv": "لن تستمر البيانات في بيئة العرض التوضيحي"
+  }
+}

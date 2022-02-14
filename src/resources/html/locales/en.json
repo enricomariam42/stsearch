@@ -1,10 +1,29 @@
 {
+  "__meta__": {
+    "lang": "en",
+    "dir": "ltr"
+  },
   "search-file-form-modal": {
-    "path": { "label": "Path", "placeholder": "Path..." },
-    "title": { "label": "Title", "placeholder": "Title..." },
-    "tags": { "label": "Tags", "placeholder": "Tags..." },
-    "description": { "label": "Description", "placeholder": "Description..." },
-    "image": { "label": "Image", "placeholder": "Image..." },
+    "path": {
+      "label": "Path",
+      "placeholder": "Path..."
+    },
+    "title": {
+      "label": "Title",
+      "placeholder": "Title..."
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Tags..."
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Description..."
+    },
+    "image": {
+      "label": "Image",
+      "placeholder": "Image..."
+    },
     "embedded": {
       "label": "Opening behavior",
       "auto": "Automatic",
@@ -18,7 +37,10 @@
     "noResultsFound": "No results found"
   },
   "search-filter-form": {
-    "search": { "label": "Search", "placeholder": "Search..." },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
+    },
     "searchIn": "Search in:",
     "searchInTitle": "Title",
     "searchInDescription": "Description",

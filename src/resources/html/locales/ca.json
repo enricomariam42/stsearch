@@ -1,10 +1,29 @@
 {
+  "__meta__": {
+    "lang": "ca",
+    "dir": "ltr"
+  },
   "search-file-form-modal": {
-    "path": { "label": "Ruta", "placeholder": "Ruta..." },
-    "title": { "label": "Títol", "placeholder": "Títol..." },
-    "tags": { "label": "Etiquetes", "placeholder": "Etiquetes..." },
-    "description": { "label": "Descripció", "placeholder": "Descripció..." },
-    "image": { "label": "Imatge", "placeholder": "Imatge..." },
+    "path": {
+      "label": "Ruta",
+      "placeholder": "Ruta..."
+    },
+    "title": {
+      "label": "Títol",
+      "placeholder": "Títol..."
+    },
+    "tags": {
+      "label": "Etiquetes",
+      "placeholder": "Etiquetes..."
+    },
+    "description": {
+      "label": "Descripció",
+      "placeholder": "Descripció..."
+    },
+    "image": {
+      "label": "Imatge",
+      "placeholder": "Imatge..."
+    },
     "embedded": {
       "label": "Comportament d'obertura",
       "auto": "Automàtic",
@@ -18,7 +37,10 @@
     "noResultsFound": "No s'han trobat resultats"
   },
   "search-filter-form": {
-    "search": { "label": "Cercar", "placeholder": "Cercar..." },
+    "search": {
+      "label": "Cercar",
+      "placeholder": "Cercar..."
+    },
     "searchIn": "Cercar en:",
     "searchInTitle": "Títol",
     "searchInDescription": "Descripció",

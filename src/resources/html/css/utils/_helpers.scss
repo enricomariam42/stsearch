@@ -9,8 +9,14 @@ $env: development !default;
 }
 
 /* Increase margin between Font Awesome icons and labels */
-.svg-inline--fa + .lbl {
-	margin-left: rem(5);
+img + .lbl, .svg-inline--fa + .lbl {
+	margin-right: 0;
+	margin-left: rem(8);
+
+	[dir='rtl'] & {
+		margin-right: rem(8);
+		margin-left: 0;
+	}
 }
 
 /* SVG symbol class for Font Awesome */
@@ -130,7 +136,7 @@ label.btn {
 
 /* Make Tagify fields display correctly with Bootstrap */
 .tagify.form-control {
-	padding: rem(4);
+	padding: rem(2);
 	height: auto;
 	font-size: 1em;
 	line-height: 1.2;
@@ -148,7 +154,7 @@ label.btn {
 	}
 
 	> tag {
-		margin: rem(4);
+		margin: rem(2);
 		max-width: rem(200);
 
 		> div > span {
@@ -162,7 +168,10 @@ label.btn {
 
 	> tag > div {
 		max-width: calc(100% - #{rem(14)});
-		padding: rem(4) rem(8) rem(4) rem(8);
+		padding-top: rem(2);
+		padding-bottom: rem(2);
+		padding-right: rem(8);
+		padding-left: rem(8);
 		color: map-get($theme-colors, dark);
 		transition: none;
 	}
@@ -175,6 +184,16 @@ label.btn {
 	> tag:hover:not([readonly]) > div::before {
 		box-shadow: 0 0 0 rem(20) map-get($theme-colors, light) inset;
 		border: rem(1) solid lighten(map-get($theme-colors, dark), 40%);
+	}
+
+	tag > x {
+		margin-right: rem(5);
+		margin-left: rem(-5);
+	
+		[dir="rtl"] & {
+			margin-right: rem(-5);
+			margin-left: rem(5);
+		}
 	}
 
 	> tag > x:hover {

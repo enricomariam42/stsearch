@@ -1,10 +1,29 @@
 {
+  "__meta__": {
+    "lang": "pt",
+    "dir": "ltr"
+  },
   "search-file-form-modal": {
-    "path": { "label": "Rota", "placeholder": "Rota..." },
-    "title": { "label": "Título", "placeholder": "Título..." },
-    "tags": { "label": "Rótulos", "placeholder": "Rótulos..." },
-    "description": { "label": "Descrição", "placeholder": "Descrição..." },
-    "image": { "label": "Imagem", "placeholder": "Imagem..." },
+    "path": {
+      "label": "Rota",
+      "placeholder": "Rota..."
+    },
+    "title": {
+      "label": "Título",
+      "placeholder": "Título..."
+    },
+    "tags": {
+      "label": "Rótulos",
+      "placeholder": "Rótulos..."
+    },
+    "description": {
+      "label": "Descrição",
+      "placeholder": "Descrição..."
+    },
+    "image": {
+      "label": "Imagem",
+      "placeholder": "Imagem..."
+    },
     "embedded": {
       "label": "Comportamento de abertura",
       "auto": "Automático",
@@ -18,7 +37,10 @@
     "noResultsFound": "Resultados não encontrados"
   },
   "search-filter-form": {
-    "search": { "label": "Procurar", "placeholder": "Procurar..." },
+    "search": {
+      "label": "Procurar",
+      "placeholder": "Procurar..."
+    },
     "searchIn": "Procurar em:",
     "searchInTitle": "Título",
     "searchInDescription": "Descrição",
