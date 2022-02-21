@@ -1,3 +1,4 @@
+import jQuery from 'jquery';
 import clamp from 'lodash/clamp';
 import debounce from 'lodash/debounce';
 import { html } from 'lit-html';
@@ -296,5 +297,17 @@ export default class SearchContainerElement extends BaseElement {
 				})
 				.modal('show');
 		}
+
+		this.ref.querySelectorAll('[data-toggle="dropdown"]').forEach((el) => {
+			jQuery(el).data('popperConfig', {
+				placement: 'bottom-start',
+				modifiers: {
+					computeStyle: {
+						enabled: true,
+						y: document.documentElement.dir === 'rtl' ? 'left' : 'right',
+					},
+				},
+			});
+		});
 	}
 }
