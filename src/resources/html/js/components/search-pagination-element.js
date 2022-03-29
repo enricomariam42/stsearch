@@ -12,6 +12,7 @@ export default class SearchPaginationElement extends BaseElement {
 	}
 
 	get template() {
+		const isRtl = document.documentElement.dir === 'rtl';
 		const isFirstPage = this.options.pageNumber < 1;
 		const isLastPage = this.options.pageNumber + 1 >= this.options.pageTotal;
 
@@ -53,7 +54,7 @@ export default class SearchPaginationElement extends BaseElement {
 					href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(0)}
 				>
-					${this.faTemplate('fas-angles-left')}
+					${this.faTemplate(isRtl ? 'fas-angles-right' : 'fas-angles-left')}
 				</a>
 			</li>
 		`;
@@ -65,7 +66,7 @@ export default class SearchPaginationElement extends BaseElement {
 					href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageNumber - 1)}
 				>
-					${this.faTemplate('fas-angle-left')}
+					${this.faTemplate(isRtl ? 'fas-angle-right' : 'fas-angle-left')}
 				</a>
 			</li>
 		`;
@@ -77,7 +78,7 @@ export default class SearchPaginationElement extends BaseElement {
 					href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageNumber + 1)}
 				>
-					${this.faTemplate('fas-angle-right')}
+					${this.faTemplate(isRtl ? 'fas-angle-left' : 'fas-angle-right')}
 				</i></a>
 			</li>
 		`;
@@ -89,7 +90,7 @@ export default class SearchPaginationElement extends BaseElement {
 					href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageTotal - 1)}
 				>
-					${this.faTemplate('fas-angles-right')}
+					${this.faTemplate(isRtl ? 'fas-angles-left' : 'fas-angles-right')}
 				</i></a>
 			</li>
 		`;
