@@ -29,7 +29,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<label
 										for="${this.id}-search-terms"
 										class="btn btn-icon-primary input-group-text"
-									>${this.faTemplate('fas-search')}</label>
+									>${this.faTemplate('fas-magnifying-glass')}</label>
 									<button
 										type="button"
 										data-toggle="dropdown"
@@ -116,7 +116,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									class="btn btn-secondary"
 									title="${translate('search-filter-form.mustBeIn')}"
 								>
-									${this.faTemplate('fas-tasks')}
+									${this.faTemplate('fas-list-check')}
 								</button>
 								<div class="dropdown-menu dropdown-menu-multiselect py-2 px-0">
 									<div class="dropdown-item p-0">
@@ -337,7 +337,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									title="${translate('search-filter-form.refresh')}"
 									@click=${this.formRefreshHandler}
 								>
-									${this.faTemplate('fas-sync')}
+									${this.faTemplate('fas-arrows-rotate')}
 								</button>
 							</div>
 						</div>
@@ -351,7 +351,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<label
 										for="${this.id}-date-min"
 										class="btn btn-icon-primary input-group-text"
-									>${this.faTemplate('far-calendar-alt')}</label>
+									>${this.faTemplate('far-calendar-days')}</label>
 								</div>
 								<input
 									id="${this.id}-date-min"
@@ -366,7 +366,7 @@ export default class SearchFilterFormElement extends BaseElement {
 									<label
 										for="${this.id}-date-max"
 										class="btn btn-icon-primary input-group-text"
-									>${this.faTemplate('fas-long-arrow-alt-right')}</label>
+									>${this.faTemplate('fas-right-long')}</label>
 								</div>
 								<input
 									id="${this.id}-date-max"

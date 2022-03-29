@@ -35,7 +35,7 @@ export default class SearchFileListElement extends BaseElement {
 					${fileTemplates}
 				` : html`
 					<div class="empty">
-						${this.faTemplate('fas-search', 'empty-icon')}
+						${this.faTemplate('fas-magnifying-glass', 'empty-icon')}
 						<div class="empty-text">${translate('search-file-list.noResultsFound')}</div>
 					</div>
 				`}

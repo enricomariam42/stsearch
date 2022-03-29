@@ -92,7 +92,7 @@ export default class SearchFileElement extends BaseElement {
 									?disabled=${this.options.file.isReadonly || !this.options.file.editUrl}
 									@click=${this.fileEditClickHandler}
 								>
-									${this.faTemplate('fas-pencil-alt')}
+									${this.faTemplate('fas-pencil')}
 								</button>
 							` : ''}
 						</div>

@@ -53,7 +53,7 @@ export default class SearchPaginationElement extends BaseElement {
 					href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(0)}
 				>
-					${this.faTemplate('fas-angle-double-left')}
+					${this.faTemplate('fas-angles-left')}
 				</a>
 			</li>
 		`;
@@ -89,7 +89,7 @@ export default class SearchPaginationElement extends BaseElement {
 					href="javascript:void(0)"
 					@click=${this.pageClickHandlerGenerator(this.options.pageTotal - 1)}
 				>
-					${this.faTemplate('fas-angle-double-right')}
+					${this.faTemplate('fas-angles-right')}
 				</i></a>
 			</li>
 		`;
