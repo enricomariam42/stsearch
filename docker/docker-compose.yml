@@ -16,7 +16,7 @@ services:
       - "caddy-data:/data/"
 
   biserver:
-    image: "repo.stratebi.com/lincebi/lincebi:8.3"
+    image: "repo.stratebi.com/lincebi/lincebi:9.3"
     networks:
       - "biserver"
     volumes:

@@ -127,6 +127,10 @@ module.exports = (env, argv) => {
 				},
 			],
 		},
+		ignoreWarnings: [
+			{ message: /Replace color-adjust to print-color-adjust\. The color-adjust shorthand is currently deprecated\./ },
+			{ message: /Using \/ for division outside of calc\(\) is deprecated and will be removed in Dart Sass 2\.0\.0\./ },
+		],
 		devServer: {
 			host: '0.0.0.0',
 			port: 8081,
