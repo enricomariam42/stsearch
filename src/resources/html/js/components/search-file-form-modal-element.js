@@ -116,7 +116,6 @@ export default class SearchFileFormModalElement extends BaseElement {
 											id="${this.id}-form-embedded"
 											name="embedded"
 											class="form-control"
-											.value=${this.options.file.properties.embedded}
 										>
 											<option value="auto" ?selected=${!/^(true)|(false)$/.test(this.options.file.properties.embedded)}>${translate('search-file-form-modal.embedded.auto')}</option>
 											<option value="true" ?selected=${this.options.file.properties.embedded === 'true'}>${translate('search-file-form-modal.embedded.true')}</option>
@@ -157,6 +156,8 @@ export default class SearchFileFormModalElement extends BaseElement {
 
 					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);
+
+					console.log(formObj);
 				}
 			},
 		};
