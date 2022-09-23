@@ -156,8 +156,6 @@ export default class SearchFileFormModalElement extends BaseElement {
 
 					const formObj = formData.objectify(form);
 					this.options.formSubmitCallback(formObj);
-
-					console.log(formObj);
 				}
 			},
 		};
