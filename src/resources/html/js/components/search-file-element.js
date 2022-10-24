@@ -82,7 +82,7 @@ export default class SearchFileElement extends BaseElement {
 									class="btn btn-light flex-grow-0"
 									@click=${this.fileFavoriteClickHandler}
 								>
-									${this.faTemplate(this.options.file.isFavorite ? 'fas-star' : 'far-star')}
+									${this.faTemplate(this.options.file.isFavorite ? 'fas-heart' : 'far-heart')}
 								</button>
 							` : ''}
 							${config.enableFileEdit ? html`

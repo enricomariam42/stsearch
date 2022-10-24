@@ -7,7 +7,7 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
 	const icons = await Promise.all([
 		import(/* webpackMode: "eager" */ '@fortawesome/free-regular-svg-icons/faCalendarDays'),
-		import(/* webpackMode: "eager" */ '@fortawesome/free-regular-svg-icons/faStar'),
+		import(/* webpackMode: "eager" */ '@fortawesome/free-regular-svg-icons/faHeart'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faAngleLeft'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faAngleRight'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faAnglesLeft'),
@@ -20,6 +20,7 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faFolder'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faFolderOpen'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faGlobe'),
+		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faHeart'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faLeftLong'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faLink'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faList'),
@@ -28,7 +29,6 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faMapLocationDot'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faPencil'),
 		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faRightLong'),
-		import(/* webpackMode: "eager" */ '@fortawesome/free-solid-svg-icons/faStar'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileAdhoc'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileCsv'),
 		import(/* webpackMode: "eager" */ './fontawesome/facFileOther'),
