@@ -7,9 +7,11 @@ stages:
 
 .variables_develop: &variables_develop
   <<: *variables
+  NODE_PROJECT_VERSION_SUFFIX: "-${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-SNAPSHOT"
 
 .variables_release: &variables_release
   <<: *variables
+  NODE_PROJECT_VERSION_SUFFIX: ""
 
 .artifacts: &artifacts
   expire_in: "15 mins"

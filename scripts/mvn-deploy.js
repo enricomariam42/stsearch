@@ -26,7 +26,7 @@ zipStream.on('close', () => {
 		`-Dfile=${zipPath}`,
 		`-DgroupId=${pkg.maven.group}`,
 		`-DartifactId=${pkg.name}`,
-		`-Dversion=${isProduction ? pkg.version : `${pkg.version}-SNAPSHOT`}`,
+		`-Dversion=${pkg.version}${process.env.NODE_PROJECT_VERSION_SUFFIX ?? (isProduction ? '' : '-SNAPSHOT')}`,
 		`-DrepositoryId=${isProduction ? pkg.maven.repository.release.id : pkg.maven.repository.snapshot.id}`,
 		`-Durl=${isProduction ? pkg.maven.repository.release.url : pkg.maven.repository.snapshot.url}`,
 	]);
