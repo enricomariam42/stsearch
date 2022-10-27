@@ -47,10 +47,10 @@ class Config {
 				this._initialConfig['allowed-extensions'] = allowedExtensions;
 			}
 
-			// If "enable-file-global" is "true", check if the user really has permission.
-			if (this._initialConfig['enable-file-global'] === 'true') {
+			// If "enable-file-home" is "true", check if the user really has permission.
+			if (this._initialConfig['enable-file-home'] === 'true') {
 				const canAdminister = await getCanAdminister();
-				this._initialConfig['enable-file-global'] = canAdminister;
+				this._initialConfig['enable-file-home'] = canAdminister;
 			}
 
 			this.resetConfig();
@@ -134,16 +134,6 @@ class Config {
 		this._enableFileForm = isString(enableFileForm)
 			? strToBool(enableFileForm)
 			: enableFileForm;
-	}
-
-	get enableFileGlobal() {
-		return this._enableFileGlobal;
-	}
-
-	set enableFileGlobal(enableFileGlobal) {
-		this._enableFileGlobal = isString(enableFileGlobal)
-			? strToBool(enableFileGlobal)
-			: enableFileGlobal;
 	}
 
 	get enableFileHome() {
@@ -248,16 +238,6 @@ class Config {
 		this._searchTerms = searchTerms;
 		this._searchTermsRegex = new RegExp(escapeRegExp(this._searchTerms), 'i');
 		this._searchTermsExactRegex = new RegExp(`^${escapeRegExp(this._searchTerms)}$`, 'i');
-	}
-
-	get filterGlobal() {
-		return this._filterGlobal;
-	}
-
-	set filterGlobal(filterGlobal) {
-		this._filterGlobal = isString(filterGlobal)
-			? strToBool(filterGlobal)
-			: filterGlobal;
 	}
 
 	get filterHome() {

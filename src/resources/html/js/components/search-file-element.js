@@ -35,10 +35,9 @@ export default class SearchFileElement extends BaseElement {
 				id="${this.id}"
 				class="${this.className} col-lg-6 col-xl-4 mb-3
 					file-extension-${this.options.file.extension}
+					file-home-${this.options.file.isHome ? 'on' : 'off'}
 					file-recent-${this.options.file.isRecent ? 'on' : 'off'}
 					file-favorite-${this.options.file.isFavorite ? 'on' : 'off'}
-					file-global-${this.options.file.isGlobal ? 'on' : 'off'}
-					file-home-${this.options.file.isHome ? 'on' : 'off'}
 					file-readonly-${this.options.file.isReadonly ? 'on' : 'off'}
 				"
 			>
@@ -56,15 +55,6 @@ export default class SearchFileElement extends BaseElement {
 									@click=${this.fileFormClickHandler}
 								>
 									${this.faTemplate('fas-list')}
-								</button>
-							` : ''}
-							${config.enableFileGlobal ? html`
-								<button
-									type="button"
-									class="btn btn-light flex-grow-0"
-									@click=${this.fileGlobalClickHandler}
-								>
-									${this.faTemplate(this.options.file.isGlobal ? 'fas-globe' : 'fac-globe-outline')}
 								</button>
 							` : ''}
 							${config.enableFileHome ? html`
@@ -153,19 +143,6 @@ export default class SearchFileElement extends BaseElement {
 			handleEvent: () => {
 				if (typeof this.options.fileFormCallback === 'function') {
 					this.options.fileFormCallback(this.options.file);
-				}
-			},
-		};
-	}
-
-	get fileGlobalClickHandler() {
-		return {
-			capture: true,
-			passive: true,
-			once: false,
-			handleEvent: () => {
-				if (typeof this.options.fileGlobalCallback === 'function') {
-					this.options.fileGlobalCallback(this.options.file);
 				}
 			},
 		};

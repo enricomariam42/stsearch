@@ -58,7 +58,6 @@ export default class SearchContainerElement extends BaseElement {
 						searchInTitle: strToBool(formObj['search-in-title']),
 						searchInDescription: strToBool(formObj['search-in-description']),
 						searchInTags: strToBool(formObj['search-in-tags']),
-						filterGlobal: strToBool(formObj['filter-global']),
 						filterHome: strToBool(formObj['filter-home']),
 						filterFavorites: strToBool(formObj['filter-favorites']),
 						filterRecents: strToBool(formObj['filter-recents']),
@@ -114,26 +113,6 @@ export default class SearchContainerElement extends BaseElement {
 				if (!fileData.isReadonly) {
 					config.formFilePath = fileData.path;
 					this.render();
-				}
-			},
-			fileGlobalCallback: async (fileData) => {
-				const metadata = {
-					path: fileData.path,
-					isGlobal: !fileData.isGlobal,
-				};
-
-				const result = await setMetadata(metadata);
-				if (result !== null && result.length > 0) {
-					const file = this.options.repository.fromPath(metadata.path);
-					override(file, metadata);
-					dispatchCustomEvent('stsearch-set-metadata', {
-						detail: file,
-						target: safeWindowParent,
-					});
-
-					this.render();
-				} else {
-					Noty.error(get('notifications.errorSavingData'));
 				}
 			},
 			fileHomeCallback: async (fileData) => {

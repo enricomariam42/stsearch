@@ -125,24 +125,6 @@ export default class SearchFilterFormElement extends BaseElement {
 									<div class="dropdown-item p-0">
 										<div class="btn-group-toggle">
 											<label
-												class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.filterGlobal ? 'active' : ''}"
-												@click=${this.formFieldChangeHandlerGenerator('filter-global')}
-											>
-												<input
-													name="filter-global"
-													type="checkbox"
-													value="true"
-													.checked=${config.filterGlobal}
-													@keyup=${this.formButtonCheckboxKeyupHandler}
-													autocomplete="off"
-												>
-												${translate('search-filter-form.mustBeInGlobal')}
-											</label>
-										</div>
-									</div>
-									<div class="dropdown-item p-0">
-										<div class="btn-group-toggle">
-											<label
 												class="btn btn-sm btn-link text-left px-3 w-100 rounded-0 ${config.filterHome ? 'active' : ''}"
 												@click=${this.formFieldChangeHandlerGenerator('filter-home')}
 											>

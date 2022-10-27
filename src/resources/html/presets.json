@@ -5,7 +5,6 @@
     "enable-folders": "true",
     "enable-file-tags": "true",
     "enable-file-form": "true",
-    "enable-file-global": "true",
     "enable-file-home": "true",
     "enable-file-favorite": "true",
     "enable-file-open": "true",
@@ -17,7 +16,6 @@
     "search-in-description": "true",
     "search-in-tags": "true",
     "search-terms": "",
-    "filter-global": "false",
     "filter-home": "false",
     "filter-favorites": "false",
     "filter-recents": "false",
@@ -28,12 +26,6 @@
     "page-places": "5",
     "page-size": "24",
     "form-file-path": ""
-  },
-  "global": {
-    "enable-filters": "false",
-    "enable-folders": "false",
-    "enable-file-tags": "false",
-    "filter-global": "true"
   },
   "home": {
     "enable-filters": "false",

@@ -66,11 +66,6 @@ export default class Repository {
 
 	isFileFiltered(file) {
 		return (
-			// GLOBAL
-			// ======
-			// If this filter is true, the file must be marked as global.
-			!config.filterGlobal || (config.filterGlobal && file.isGlobal)
-		) && (
 			// HOME
 			// ====
 			// If this filter is true, the file must be marked as home.
