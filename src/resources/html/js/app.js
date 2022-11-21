@@ -46,21 +46,21 @@ window.addEventListener('load', async () => {
 
 	STSearch.applyConfig = (newConfig, reset = false) => {
 		config.applyConfig(newConfig, reset);
-		repository.applyFilters(repository.root);
+		repository.applyFilters(config.defaultFolderPath);
 		searchContainerElement.render();
 		return STSearch;
 	};
 
 	STSearch.applyPreset = (preset, reset = true) => {
 		config.applyPreset(preset, reset);
-		repository.applyFilters(repository.root);
+		repository.applyFilters(config.defaultFolderPath);
 		searchContainerElement.render();
 		return STSearch;
 	};
 
 	STSearch.resetConfig = () => {
 		config.resetConfig();
-		repository.applyFilters(repository.root);
+		repository.applyFilters(config.defaultFolderPath);
 		searchContainerElement.render();
 		return STSearch;
 	};
@@ -72,7 +72,7 @@ window.addEventListener('load', async () => {
 	STSearch.doSearch = (searchTerms, reset = false) => {
 		if (reset) config.resetConfig();
 		config.searchTerms = searchTerms;
-		repository.applyFilters(reset ? repository.root : undefined);
+		repository.applyFilters(reset ? config.defaultFolderPath : undefined);
 		searchContainerElement.render();
 		return STSearch;
 	};

@@ -338,6 +338,14 @@ class Config {
 			: pageSize;
 	}
 
+	get defaultFolderPath() {
+		return this._defaultFolderPath;
+	}
+
+	set defaultFolderPath(defaultFolderPath) {
+		this._defaultFolderPath = defaultFolderPath;
+	}
+
 	get formFilePath() {
 		return this._formFilePath;
 	}

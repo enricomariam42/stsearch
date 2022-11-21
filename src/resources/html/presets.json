@@ -25,6 +25,7 @@
     "max-tags": "30",
     "page-places": "5",
     "page-size": "24",
+    "default-folder-path": "",
     "form-file-path": ""
   },
   "home": {

@@ -16,7 +16,7 @@ export default class Repository {
 
 	set root(root) {
 		this._root = root;
-		this.current = root;
+		this.current = this.fromPath(config.defaultFolderPath) ?? root;
 	}
 
 	get current() {
@@ -61,7 +61,11 @@ export default class Repository {
 	}
 
 	applyFilters(folder = this.current) {
-		this.current = folder;
+		if (typeof folder === 'string') {
+			folder = this.fromPath(folder);
+		}
+
+		this.current = folder ?? this.root;
 	}
 
 	isFileFiltered(file) {
