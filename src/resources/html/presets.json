@@ -26,7 +26,8 @@
     "page-places": "5",
     "page-size": "24",
     "default-folder-path": "",
-    "form-file-path": ""
+    "form-file-path": "",
+    "form-return-href": ""
   },
   "home": {
     "enable-filters": "false",

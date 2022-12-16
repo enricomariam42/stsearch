@@ -353,6 +353,14 @@ class Config {
 	set formFilePath(formFilePath) {
 		this._formFilePath = formFilePath;
 	}
+
+	get formReturnHref() {
+		return this._formReturnHref;
+	}
+
+	set formReturnHref(formReturnHref) {
+		this._formReturnHref = formReturnHref;
+	}
 }
 
 export default new Config();

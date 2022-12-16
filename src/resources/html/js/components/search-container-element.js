@@ -15,6 +15,7 @@ import isSmallScreen from '../helpers/isSmallScreen';
 import override from '../helpers/override';
 import safeJSON from '../helpers/safeJSON';
 import safeWindowParent from '../helpers/safeWindowParent';
+import safeWindowTop from '../helpers/safeWindowTop';
 import setMetadata from '../helpers/biserver/setMetadata';
 import strToBool from '../helpers/strToBool';
 import trigger from '../helpers/trigger';
@@ -273,6 +274,9 @@ export default class SearchContainerElement extends BaseElement {
 					tagsInputTagify.destroy();
 					bsCustomFileInput.destroy(thumbnailInputSelector, modalFormSelector);
 					config.formFilePath = '';
+					if (config.formReturnHref) {
+						safeWindowTop.location.href = config.formReturnHref;
+					}
 				})
 				.modal('show');
 		}
